@@ -1014,7 +1014,7 @@ diff -urN coreutils-5.0.org/src/cp.c coreutils-5.0/src/cp.c
    char *target_directory = NULL;
 +#ifdef WITH_SELINUX
 +  security_context_t scontext = NULL;
-+  selinux_enabled= is_selinux_enabled();
++  selinux_enabled= (is_selinux_enabled() > 0);
 +#endif
  
    program_name = argv[0];
@@ -1119,7 +1119,7 @@ diff -urN coreutils-5.0.org/src/id.c coreutils-5.0/src/id.c
  main (int argc, char **argv)
  {
    int optc;
-+  int selinux_enabled=is_selinux_enabled();
++  int selinux_enabled=(is_selinux_enabled() > 0);
  
    /* If nonzero, output the list of all group IDs. -G */
    int just_group_list = 0;
@@ -1252,7 +1252,7 @@ diff -urN coreutils-5.0.org/src/install.c coreutils-5.0/src/install.c
 +#ifdef WITH_SELINUX
 +  security_context_t scontext = NULL;
 + /* set iff kernel has extra selinux system calls */
-+  selinux_enabled = is_selinux_enabled();
++  selinux_enabled = (is_selinux_enabled() >= 0);
 +#endif
  
    program_name = argv[0];
@@ -1437,7 +1437,7 @@ diff -urN coreutils-5.0.org/src/ls.c coreutils-5.0/src/ls.c
  
 +#ifdef WITH_SELINUX
 +  /* 1 iff kernel has new selinux system calls */
-+  selinux_enabled= is_selinux_enabled();
++  selinux_enabled= (is_selinux_enabled() > 0);
 +#endif
 +
    qmark_funny_chars = 0;
@@ -1779,7 +1779,7 @@ diff -urN coreutils-5.0.org/src/mkdir.c coreutils-5.0/src/mkdir.c
 +#ifdef WITH_SELINUX
 + 	case 'Z':
 + 	  /* politely decline if we're not on a selinux-enabled kernel. */
-+	  if( !is_selinux_enabled()) {
++	  if( is_selinux_enabled() <= 0) {
 + 	    fprintf( stderr, _("Sorry, --context (-Z) can be used only on "
 + 		             "a SELinux-enabled kernel.\n") );
 + 	    exit( 1 );
@@ -1845,7 +1845,7 @@ diff -urN coreutils-5.0.org/src/mkfifo.c coreutils-5.0/src/mkfifo.c
  	  break;
 +#ifdef WITH_SELINUX
 + 	case 'Z':
-+ 	  if( !is_selinux_enabled()) {
++ 	  if( is_selinux_enabled() <= 0) {
 + 	    fprintf( stderr, _("Sorry, --context (-Z) can be used only on "
 +		             "a SELinux-enabled kernel.\n") );
 + 	    exit( 1 );
@@ -1909,7 +1909,7 @@ diff -urN coreutils-5.0.org/src/mknod.c coreutils-5.0/src/mknod.c
 +#ifdef WITH_SELINUX
 + 	case 'Z':
 + 	  /* politely decline if we're not on a selinux-enabled kernel. */
-+	  if( !is_selinux_enabled()) {
++	  if( is_selinux_enabled() <= 0) {
 + 	    fprintf( stderr, _("Sorry, --context (-Z) can be used only on "
 +		             "a SELinux-enabled kernel.\n") );
 + 	    exit( 1 );
@@ -1943,7 +1943,7 @@ diff -urN coreutils-5.0.org/src/mv.c coreutils-5.0/src/mv.c
    cp_option_init (&x);
  
 +#ifdef WITH_SELINUX
-+  selinux_enabled= is_selinux_enabled();
++  selinux_enabled= (is_selinux_enabled() > 0);
 +#endif
 +
    /* FIXME: consider not calling getenv for SIMPLE_BACKUP_SUFFIX unless
@@ -2400,7 +2400,7 @@ diff -urN coreutils-5.0.org/src/stat.c coreutils-5.0/src/stat.c
  	  terse = 1;
  	  break;
 +	case 'Z':
-+	  if(is_selinux_enabled())
++	  if(is_selinux_enabled() > 0)
 +	    secure = 1;
 +	  else {
 +	    error (0, 0, _("Kernel is not SELinux-enabled"));
