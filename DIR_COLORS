@@ -77,6 +77,8 @@ EXEC 32
 
 # archives or compressed (bright red)
 
+.7z   01;31
+.7zip 01;31
 .arj  01;31
 .bz   01;31
 .bz2  01;31
