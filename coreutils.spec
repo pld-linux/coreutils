@@ -44,7 +44,6 @@ Patch10:	%{name}-no-nb.patch
 Patch11:	%{name}-acl-0.8.25.patch
 Patch12:	%{name}-lsw.patch
 Patch13:	%{name}-selinux.patch
-BuildRequires:	attr-devel
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
