@@ -34,7 +34,6 @@ Patch10:	%{name}-no-nb.patch
 # based on patch from Fedora, based on patches from http://acl.bestbits.at/
 Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
-Patch13:	%{name}-pam.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.8
