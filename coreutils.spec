@@ -1,8 +1,12 @@
+
+# TODO: check patches in {sh-,file,text}utils packages
+# e.g. su in coreutils doesn't have PAM support!!!
+
 Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
-Version:	4.5.1
-Release:	0.2
+Version:	4.5.3
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
