@@ -114,6 +114,8 @@ Programy zawarte w tym pakiecie to:
 # no_NO is just an alias for nb_NO in recent glibc
 # no.po is outdated, nb.po is more fresh here (see also patch10)
 rm -f po/no.*
+# allow rebuilding *.gmo
+rm -f po/stamp-po
 
 %build
 # jm's inttypes.m4 and inttypes.m4 from gettext are really different files
