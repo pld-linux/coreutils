@@ -1,13 +1,11 @@
 #%PAM-1.0
-auth       required	/lib/security/pam_pwdb.so md5 shadow 
-auth       required	/lib/security/pam_wheel.so group=wheel 
-auth	   sufficient	/lib/security/pam_rootok.so
-account    required	/lib/security/pam_pwdb.so
-account	   required	/lib/security/pam_permit.so
-password   required	/lib/security/pam_cracklib.so
-password   required	/lib/security/pam_pwdb.so md5 shadow use_authtok 
-session    required	/lib/security/pam_pwdb.so
-session	   required	/lib/security/pam_limits.so
-session	   required	/lib/security/pam_env.so
-session    optional	/lib/security/pam_xauth.so
-
+auth		required	/lib/security/pam_unix.so
+auth		required	/lib/security/pam_wheel.so group=wheel 
+auth		sufficient	/lib/security/pam_rootok.so
+account		required	/lib/security/pam_unix.so
+password	required	/lib/security/pam_cracklib.so difok=2 minlen=8 dcredit=2 ocredit=2 retry=3
+password	required	/lib/security/pam_unix.so md5 shadow use_authtok 
+session		required	/lib/security/pam_unix.so
+session		required	/lib/security/pam_env.so
+session		required	/lib/security/pam_limits.so
+session		optional	/lib/security/pam_xauth.so
