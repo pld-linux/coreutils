@@ -33,8 +33,9 @@ Patch10:	%{name}-install-C.patch
 Patch11:	%{name}-po.patch
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
+BuildRequires:	texinfo >= 4.2
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
