@@ -28,13 +28,13 @@ TERM con80x43
 TERM con80x50
 TERM con80x60
 TERM cons25
-TERM xterm
 TERM rxvt
+TERM xterm
 TERM xterm-color
 TERM color-xterm
+TERM color_xterm
 TERM vt100
 TERM dtterm
-TERM color_xterm
 
 # EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
 EIGHTBIT 1
@@ -55,11 +55,11 @@ FIFO 33		# pipe
 SOCK 01;35	# socket
 BLK 01;33	# block device driver
 CHR 01;33	# character device driver
-ORPHAN 01;05;37;41  # orphaned syminks
+ORPHAN 01;05;37;41  # orphaned symlinks
 MISSING 01;05;37;41 # ... and the files they point to
 
 # This is for files with execute permission:
-EXEC 00;32
+EXEC 32
 
 # List any file extensions like '.gz' or '.tar' that you would like ls
 # to colorize below. Put the extension, a space, and the color init string.
