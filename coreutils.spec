@@ -58,6 +58,7 @@ Obsoletes:	sh-utils
 Obsoletes:	stat
 Obsoletes:	textutils
 Conflicts:	shadow < 1:4.0.3-6
+Conflicts:	tetex < 1:2.0.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
