@@ -132,20 +132,30 @@ EXEC 00;32
 
 # documents (blue)
 
+.css 36
 .doc 36
 .htm 36
 .html 36
+.kpr 36
 .ps 36
 .pdf 36
+.rtf 36
 .sxc 36
+.sxw 36
 .txt 36
+.xls 36
 
 # devel (yellow)
 
+.ac 01;33
+.am 01;33
 .c 01;33
-.h 01;33
-.o 01;33
 .cc 01;33
 .cpp 01;33
-.spec 01;33
+.h 01;33
+.in 01;33
+.o 01;33
 .patch 01;33
+.po 01;33
+.pot 01;33
+.spec 01;33
