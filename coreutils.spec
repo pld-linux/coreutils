@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	4.5.10
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -33,12 +33,15 @@ Patch10:	%{name}-po.patch
 Patch11:	%{name}-no-nb.patch
 # temporary fix for missing lib/*-stub.c files
 Patch12:	%{name}-jmfix.patch
+# based on http://acl.bestbits.at/current/diff/fileutils-4.1.8acl-0.8.25.diff.gz
+Patch13:	%{name}-acl-0.8.25.patch
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
 BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
+BuildRequires:	acl-devel
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
@@ -100,6 +103,7 @@ Programy zawarte w tej paczce to:
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
