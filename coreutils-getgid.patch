@@ -133,8 +133,8 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
  src/head.c
  src/hostid.c
  src/hostname.c
---- coreutils-4.5.3.orig/po/pl.po	Fri Nov  1 02:16:44 2002
-+++ coreutils-4.5.3/po/pl.po	Fri Nov  1 02:28:50 2002
+--- coreutils-5.2.1.orig/po/pl.po	Fri Nov  1 02:16:44 2002
++++ coreutils-5.2.1/po/pl.po	Fri Nov  1 02:28:50 2002
 @@ -2618,6 +2618,15 @@
  msgid "invalid number of columns: `%s'"
  msgstr "b³êdna liczba kolumn: `%s'"
@@ -148,6 +148,6 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +"Sk³adnia:\n"
 +"\t%s nazwa-grupy\n"
 +
- #: src/head.c:92
+ #: src/head.c:117
  msgid ""
  "Print first 10 lines of each FILE to standard output.\n"

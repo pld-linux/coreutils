@@ -1,9 +1,9 @@
-diff -Nur sh-utils-2.0.12.orig/configure.ac sh-utils-2.0.12/configure.ac
---- sh-utils-2.0.12.orig/configure.ac	Sun Apr 28 11:29:18 2002
-+++ sh-utils-2.0.12/configure.ac	Mon May 27 23:10:36 2002
-@@ -8,6 +8,13 @@
+diff -Nur coreutils-5.2.1.orig/configure.ac coreutils-5.2.1/configure.ac
+--- coreutils-5.2.1.orig/configure.ac	Tue Mar  2 23:47:31 2004
++++ coreutils-5.2.1/configure.ac	Thu Mar 18 17:06:38 2004
+@@ -7,6 +7,13 @@
  
- AM_INIT_AUTOMAKE([1.6b gnits dist-bzip2])
+ AM_INIT_AUTOMAKE([1.8 gnits dist-bzip2])
  
 +dnl Give the chance to enable PAM
 +AC_ARG_ENABLE(pam, dnl
@@ -12,12 +12,12 @@ diff -Nur sh-utils-2.0.12.orig/configure.ac sh-utils-2.0.12/configure.ac
 +LIB_PAM="-ldl -lpam -lpam_misc"
 +)
 +
- AC_GNU_SOURCE
+ gl_DEFAULT_POSIX2_VERSION
+ gl_USE_SYSTEM_EXTENSIONS
  jm_PERL
- AC_PROG_CC
-@@ -238,6 +245,13 @@
- 
- AM_GNU_GETTEXT([external])
+@@ -235,6 +242,13 @@
+ AM_GNU_GETTEXT([external], [need-ngettext])
+ AM_GNU_GETTEXT_VERSION(0.13.1)
  
 +# just in case we want PAM
 +AC_SUBST(LIB_PAM)
@@ -29,17 +29,17 @@ diff -Nur sh-utils-2.0.12.orig/configure.ac sh-utils-2.0.12/configure.ac
  AC_CONFIG_FILES(
    Makefile
    doc/Makefile
-diff -Nur sh-utils-2.0.12.orig/doc/coreutils.texi sh-utils-2.0.12/doc/coreutils.texi
---- sh-utils-2.0.12.orig/doc/coreutils.texi	Sun Apr 28 23:55:31 2002
-+++ sh-utils-2.0.12/doc/coreutils.texi	Mon May 27 23:11:49 2002
-@@ -10898,32 +10898,6 @@
- 
- @end table
+diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.texi
+--- coreutils-5.2.1.orig/doc/coreutils.texi	Thu Mar 18 16:58:54 2004
++++ coreutils-5.2.1/doc/coreutils.texi	Thu Mar 18 17:08:08 2004
+@@ -11892,32 +11892,6 @@
+ the exit status of the subshell otherwise
+ @end display
  
 -@cindex wheel group, not supported
 -@cindex group wheel, not supported
 -@cindex fascism
--@heading Why GNU @command{su} does not support the @samp{wheel} group
+-@subsection Why GNU @command{su} does not support the @samp{wheel} group
 -
 -(This section is by Richard Stallman.)
 -
@@ -63,23 +63,299 @@ diff -Nur sh-utils-2.0.12.orig/doc/coreutils.texi sh-utils-2.0.12/doc/coreutils.
 -might find this idea strange at first.
 -
  
- @node Process control
- @chapter Process control
-diff -Nur sh-utils-2.0.12.orig/src/Makefile.am sh-utils-2.0.12/src/Makefile.am
---- sh-utils-2.0.12.orig/src/Makefile.am	Mon May 27 23:06:24 2002
-+++ sh-utils-2.0.12/src/Makefile.am	Mon May 27 23:09:22 2002
-@@ -47,7 +47,7 @@
+ @node Delaying
+ @chapter Delaying
+diff -Nur coreutils-5.2.1.orig/man/es/su.1 coreutils-5.2.1/man/es/su.1
+--- coreutils-5.2.1.orig/man/es/su.1	Mon Apr 12 14:26:19 1999
++++ coreutils-5.2.1/man/es/su.1	Thu Mar 18 17:05:55 2004
+@@ -47,13 +47,6 @@
+ puede ser compilado para reportar fallo, y opcionalmente éxito en syslog.
+ .B su
+ intentará utilizar syslog.
+-.PP
+-Este programa no soporta el grupo "wheel", el cual restringe quien podrá
+-ejecutar
+-.B su
+-hacia la cuenta de root (el superusuario) ya que esta política podría
+-ayudar a los administradores de máquinas a facilitar un uso inadecuado a otros
+-usuarios.
+ .SS OPCIONES
+ .TP
+ .I "\-c COMANDO, \-\-command=COMANDO"
+@@ -118,22 +111,3 @@
+ .I "\-\-version"
+ Escribe información sobre la versión en  la  salida estándar y acaba sin
+ provocar error.
+-
+-.SH Por que GNU no soporta el grupo "wheel" (por Richard Stallman)
+-A veces, algunos listillos intentan hacerse con el poder total
+-sobre el resto de usuarios. Por ejemplo, en 1984, un grupo de usuarios del
+-laboratorio de Inteligencia Artificial del MIT decidieron tomar el poder
+-cambiando el password de operador del sistema Twenex y manteniendolo secreto
+-para el resto de usuarios. (De todas maneras, hubiera sido posible desbaratar
+-la situación y devolver el control a los usuarios legítimos parcheando el
+-kernel, pero no sabría como realizar esta operación en un sistema Unix.)
+-.PP
+-Sin embargo, casualmente alguien contó el secreto. Mediante el uso habitual de
+-.B su
+-una vez que alguien conoce el password de root puede contarselo al resto de 
+-usuarios. El grupo "wheel" hará que esto sea imposible, protegiendo así el poder
+-de los superusuarios.
+-.PP
+-Yo estoy del lado de las masas, no de los superusuarios. Si eres de los que
+-estan de acuerdo con los jefes y los administradores de sistemas en cualquier
+-cosa que hagan, al principio encontrarás esta idea algo extraña.
+diff -Nur coreutils-5.2.1.orig/man/fr/su.1 coreutils-5.2.1/man/fr/su.1
+--- coreutils-5.2.1.orig/man/fr/su.1	Sun Aug 10 12:00:00 2003
++++ coreutils-5.2.1/man/fr/su.1	Thu Mar 18 17:05:55 2004
+@@ -54,13 +54,6 @@
+ peut être compilé afin de fournir des rapports d'échec, et éventuellement
+ de réussite des tentatives d'utilisation de
+ .BR su .
+-.PP
+-Ce programme ne gère pas le "groupe wheel" utilisé pour restreindre
+-l'accès par 
+-.B su
+-au compte Super-Utilisateur, car il pourrait aider des administrateurs
+-système fascistes à disposer d'un pouvoir incontrôlé
+-sur les autres utilisateurs.
+ .SS OPTIONS
+ .TP
+ .I "\-c COMMANDE, \-\-command=COMMANDE"
+@@ -119,25 +112,5 @@
+ .I "\-\-version"
+ Afficher un numéro de version sur la sortie standard et se terminer normalement.
  
- uptime_LDADD = $(LDADD) @GETLOADAVG_LIBS@
+-.SH Pourquoi GNU SU ne gère-t-il pas le groupe `wheel' (par Richard Stallman)
+-Il peut arriver qu'un petit groupe d'utilisateurs essayent de s'approprier
+-l'ensemble du système. Par exemple, en 1984, quelques utilisateurs du
+-laboratoire d'I.A du MIT ont tentés de prendre le pouvoir en modifiant
+-le mot de passe de l'opérateur sur le système Twenex, et en
+-gardant ce mot de passe secret. (J'ai pu les en empêcher en modifiant le noyau, et
+-restaurer ainsi les autres accès, mais je ne saurais pas en faire autant
+-sous Unix).
+-.PP
+-Néanmoins, il arrive parfois que les chefs fournissent le mot
+-de passe de root à un utilisateur ordinaire.
+-Avec le mécanisme habituel de \fBsu\fP,
+-une fois que quelqu'un connaît ce mot de passe, il peut le transmettre
+-à ses amis. Le principe du "groupe wheel" rend ce partage impossible,
+-ce qui renforce la puissance des chefs.
+-.PP
+-Je me situe du cote du peuple, pas du côté des chefs. Si vous avez l'habitude
+-de soutenir les patrons et les administrateurs systèmes quoi qu'ils fassent,
+-cette idée peut vous paraître étrange au premier abord.
+-
+ .SH TRADUCTION
+ Christophe Blaess, 1997-2003.
+diff -Nur coreutils-5.2.1.orig/man/hu/su.1 coreutils-5.2.1/man/hu/su.1
+--- coreutils-5.2.1.orig/man/hu/su.1	Sun Jul  9 14:19:12 2000
++++ coreutils-5.2.1/man/hu/su.1	Thu Mar 18 17:05:55 2004
+@@ -151,33 +151,6 @@
+ .B "\-\-version"
+ A program verziójáról ír ki információt a standard kimenetre, majd 
+ sikeres visszatérési értékkel kilép.
+-.SH Miért nem támogatja a GNU su a wheel csoportot? (Richard Stallman)
+-
+-Néha a rendszer fölötti teljes ellenõrzést egy néhány emberbõl 
+-álló csoport akarja kézbe venni. Például 1984-ben pár user a MIT AI
+-laborban úgy döntött, hogy átveszik az irányítást a Twenex rendszer
+-operátori jelszavának megváltoztatásával, és annak titokban tartásával. 
+-(A puccsot sikerült leverni, és a felhasználókat jogaikba visszahelyezni 
+-egy kernel patch segítségével, de Unix alatt ezt nem tudtam volna megcsinálni.)
+-(A fordító megj.: a wheel csoportot ezzel a módszerrel könnyen
+-önkényesen is leszûkíthetik a csoporttagok , így tulajdonképpen nincs sok értelme.)
+-.PP
+-Néha az uralmon levõk elárulják a root jelszót. A szokásos su 
+-mechanizmus szerint, ha valaki megtudja a root jelszót, és 
+-szimpatizál a többi közönséges felhasználóval, elárulhatja nekik 
+-is. A wheel csoport ezt lehetetlenné tenné, és így bebetonozná az 
+-uralmon levõ hatalmát.
+-.PP
+-Én a tömegek oldalán állok, nem az uralkodókén. Ha te mindig a 
+-fõnökök és a rendszergazdák oldalán állsz, bármit is tesznek, akkor 
+-valószínûleg furcsálni fogod ezt a hozzáállást.
+-.PP
+-A fordító megjegyzése: 
+-Valami jó azért mégis lenne a wheel csoportban: az, hogy ha a root 
+-jelszó kitudódna azzal nem tudna bármelyik felhasználó közvetlenül 
+-visszaélni. A wheel csoporthoz hasonló dolgot lehet elérni a
+-.B sudo
+-csomaggal.
+ .SH MEGJEGYZÉS
+ A hibákat a bug-sh-utils@gnu.org címen lehet jelenteni.
+ Az oldalt Ragnar Hojland Espinosa <ragnar@macula.net> frissítette.
+diff -Nur coreutils-5.2.1.orig/man/it/su.1 coreutils-5.2.1/man/it/su.1
+--- coreutils-5.2.1.orig/man/it/su.1	Mon Jul  1 23:09:38 2002
++++ coreutils-5.2.1/man/it/su.1	Thu Mar 18 17:05:55 2004
+@@ -52,11 +52,6 @@
+ .B su
+ può essere compilato per riportare tramite syslog gli errori, ed
+ eventualmente anche i successi che ottiene.
+-.PP
+-Questo programma non supporta un "gruppo wheel" che limita chi può fare
+-.B su
+-agli account del superuser, poiché ciò può aiutare amministratori di
+-sistema "fascisti" a tenere un potere inautorizzato sugli altri utenti.
+ .SS OPZIONI
+ .TP
+ .I "\-c COMANDO, \-\-command=COMANDO"
+@@ -117,21 +112,3 @@
+ .I "\-\-version"
+ Stampa in standard output informazioni sulla versione e esce (con
+ successo). 
+-.SH Perché GNU su non supporta il gruppo wheel (di Richard Stallman)
+-Qualche volta pochi utenti provano a tenere il potere assoluto sul
+-resto degli utenti. Per esempio, nel 1984, alcuni utenti nel
+-laboratorio di AI del MIT decisero impossessarsi del potere cambiando
+-la password dell'operatore su un sistema Twenex e tenendola segreta a
+-tutti gli altri (fui in grado di contrastare questo colpaccio e
+-restituire il potere agli utenti ``patch-ando'' il kernel, ma non
+-saprei come fare ciò in Unix).
+-.PP
+-Comunque, occasionalmente i sovrani lo fanno. Tramite l'usuale
+-meccanismo  su, una volta che qualcuno che simpatizzi con gli
+-utenti normali, abbia imparato la password di root può dirla anche
+-agli altri. La caratteristica del "gruppo wheel" renderebbe ciò
+-impossibile, consolidando quindi il potere dei sovrani.
+-.PP
+-Io sono dalla parte delle masse, non da quella dei sovrani. Se tu sei
+-abituato a sostenere i capi e gli amministratori di sistema in tutto
+-quello che fanno, potresti trovare questa idea strana all'inizio.
+diff -Nur coreutils-5.2.1.orig/man/ja/su.1 coreutils-5.2.1/man/ja/su.1
+--- coreutils-5.2.1.orig/man/ja/su.1	Sun Dec 14 16:06:54 2003
++++ coreutils-5.2.1/man/ja/su.1	Thu Mar 18 17:05:55 2004
+@@ -83,12 +83,6 @@
+ .B su
+ ¤¬¼ºÇÔ¤·¤¿¤È¤­ syslog ¤Ë¥ì¥Ý¡¼¥È¤¹¤ë¤è¤¦¤Ë¥³¥ó¥Ñ¥¤¥ë¤¹¤ë¤³¤È
+ ¤¬¤Ç¤­¤ë¡ÊÀ®¸ù¤ò¥ì¥Ý¡¼¥È¤¹¤ë¤è¤¦¤Ë¤â¤Ç¤­¤ë¡Ë¡£
+-.PP
+-¤³¤Î¥×¥í¥°¥é¥à¤Ï "wheel group" ¤Îµ¡Ç½¡Ê
+-.B su
+-¤Ë¤è¤Ã¤Æ¥¹¡¼¥Ñ¡¼¥æ¡¼¥¶¡¼¥¢¥«¥¦¥ó¥È¤Ë¤Ê¤ì¤ë¥æ¡¼¥¶¤òÀ©¸Â¤¹¤ëµ¡Ç½¡Ë¤ò¥µ¥Ý¡¼
+-¥È¤·¤Ê¤¤¡£¤³¤ì¤ÏÀìÀ©Åª¤Ê¥·¥¹¥Æ¥à´ÉÍý¼Ô¤¬Â¾¤Î¥æ¡¼¥¶¡¼¤ËÉÔÅö¤Ê¸¢ÎÏ¤ò¿¶¤ë
+-¤¨¤Ê¤¤¤è¤¦¤Ë¤¹¤ë¤¿¤á¤Ç¤¢¤ë¡£
+ .SS OPTIONS
+ .TP
+ .I "\-c COMMAND, \-\-command=COMMAND"
+@@ -151,19 +145,3 @@
+ .TP
+ .I "\-\-version"
+ ¥Ð¡¼¥¸¥ç¥ó¾ðÊó¤òÉ¸½à½ÐÎÏ¤ËÉ½¼¨¤·¡¢¼Â¹ÔÀ®¸ù¤òÊÖ¤·¤Æ½ªÎ»¤¹¤ë¡£
+-.SH GNU su ¤Ç wheel ¥°¥ë¡¼¥×¤ò¥µ¥Ý¡¼¥È¤·¤Ê¤¤¤ï¤±¡ÊRichard Stallman¡Ë
+-¤È¤­¤ª¤ê¡¢¾¯¿ô¤Î¥æ¡¼¥¶¡¼¤Ë¤è¤Ã¤Æ¡¢Â¾¤Î¥æ¡¼¥¶¡¼¤ËÂÐ¤¹¤ëÁ´¸¢¤ò¾¸°®¤·¤è¤¦
+-¤È¤¹¤ë»î¤ß¤¬¤Ê¤µ¤ì¤ë¤³¤È¤¬¤¢¤ë¡£Îã¤¨¤Ð 1984 Ç¯¡¢ MIT AI ¥é¥Ü¤Î¾¯¿ô¤Î¥æ¡¼
+-¥¶¡¼¤Ï Twenex ¥·¥¹¥Æ¥à¤Î¥ª¥Ú¥ì¡¼¥¿¡¼¥Ñ¥¹¥ï¡¼¥É¤ÎÊÑ¹¹¸¢¸Â¤ò¶¯Ã¥¤·¡¢¤³¤ì
+-¤òÂ¾¤Î¥æ¡¼¥¶¡¼¤«¤éÈëÆ¿¤¹¤ë¤³¤È¤Ë·èÄê¤·¤¿¡Ê¤³¤ÎºÝ¤Ë¤Ï»ä¤Ï¤³¤Î¥¯¡¼¥Ç¥¿¡¼
+-¤ÎÎ¢¤ò¤«¤­¡¢¥«¡¼¥Í¥ë¤Ë¥Ñ¥Ã¥Á¤òÅö¤Æ¤Æ¸¢¸Â¤ò¼è¤êÊÖ¤¹¤³¤È¤ËÀ®¸ù¤·¤¿¡£¤·¤«
+-¤·¤³¤ì¤¬ Unix ¤Ç¤¢¤Ã¤¿¤é¡¢»ä¤Ë¤Ï¤É¤¦¤¹¤ì¤Ð¤è¤¤¤«¤ï¤«¤é¤Ê¤«¤Ã¤¿¤À¤í¤¦¡Ë¡£
+-.PP
+-¤·¤«¤·¤Ê¤¬¤é¡¢»þ¤Ë¤ÏÀìÀ©¼Ô¤âÈëÌ©¤òÏ³¤é¤¹¤â¤Î¤Ç¤¢¤ë¡£ÄÌ¾ï¤Î su ¤Î¥á¥«¥Ë
+-¥º¥à¤Ç¤Ï¡¢°ìÈÌ¥æ¡¼¥¶¡¼¤ÎÂ¦¤ËÎ©¤Ä¼Ô¤¬ root ¤Î¥Ñ¥¹¥ï¡¼¥É¤òÃÎ¤ì¤Ð¡¢¤³¤ì¤ò
+-Â¾¤Î¥æ¡¼¥¶¡¼¤Ë¤âÃÎ¤é¤»¤ë¤³¤È¤¬¤Ç¤­¤ë¡£¤·¤«¤· "wheel group" µ¡Ç½¤Ï¤³¤ì
+-¤òÉÔ²ÄÇ½¤Ë¤·¡¢·ë²Ì¤È¤·¤ÆÀìÀ©¼ÔÃ£¤Î¸¢¸Â¤ò¶¯¸Ç¤¿¤ë¤â¤Î¤Ë¤·¤Æ¤·¤Þ¤¦¡£
+-.PP
+-»ä¤ÏÂç½°¤ÎÂ¦¤ËÎ©¤Ä¤â¤Î¤Ç¤¢¤ê¡¢ÀìÀ©Åª¤ÊÎ©¾ì¤Ë¤ÏÈ¿ÂÐ¤¹¤ë¡£¤¢¤Ê¤¿¤Ï¥Ü¥¹¤ä
+-¥·¥¹¥Æ¥à´ÉÍý¼Ô¤Î¤ä¤ê¸ý¤Ë½¾¤¦¤³¤È¤Ë´·¤ì¤Æ¤¤¤ë¤«¤âÃÎ¤ì¤Ê¤¤¤¬¡¢¤½¤Î¾ì¹ç¤Ï
+-¤Þ¤º¤½¤Î¤³¤È¼«¿È¤òÉÔ»×µÄ¤Ë»×¤¦¤Ù¤­¤Ç¤Ï¤Ê¤¤¤À¤í¤¦¤«¡£
+diff -Nur coreutils-5.2.1.orig/man/pl/su.1 coreutils-5.2.1/man/pl/su.1
+--- coreutils-5.2.1.orig/man/pl/su.1	Tue Jun 20 16:07:31 2000
++++ coreutils-5.2.1/man/pl/su.1	Thu Mar 18 17:05:55 2004
+@@ -78,8 +78,6 @@
+ mo¿e zostaæ tak skompilowane, by raportowa³o nieudane, lub opcjonalnie
+ równie¿ udane próby zmiany id przy u¿yciu
+ .BR su .
+-Jednak \fBsu\fP w wersji GNU nie sprawdza czy u¿ytkownik jest cz³onkiem grupy
+-`wheel' -- patrz poni¿ej.
+ .SH OPCJE
+ .TP
+ .BR \-c " \fIpolecenie\fP, " \-\-command= \fIpolecenie
+@@ -139,25 +137,6 @@
+ .TP
+ .B \-\-version
+ Wy¶wietla numer wersji programu i koñczy pracê.
+-.SH Dlaczego GNU `su' nie obs³uguje grupy `wheel'
+-
+-(Sekcjê tê napisa³ Richard Stallman)
+-
+-Czasami kilku u¿ytkowników usi³uje sprawowaæ nieograniczon± w³adzê nad
+-pozosta³ymi. Na przyk³ad, w 1984, kilku u¿ytkowników w laboratorium AI MIT
+-zdecydowa³o siê `przej±æ w³adzê' zmieniaj±c has³o operatora systemu Twenex
+-i trzymaj±c je w tajemnicy przed wszystkimi innymi. (Uda³o mi siê
+-udaremniæ ten zamach i przywróciæ w³adzê u¿ytkownikom ³ataj±c j±dro, lecz
+-nie wiedzia³bym jak zrobiæ to w Uniksie.)
+-
+-Jednak, od czasu do czasu panuj±cy wyjawiaj± komu¶. Przy zwyk³ym
+-mechanizmie `su', kto¶, kto pozna³ has³o root'a i sympatyzuje ze zwyk³ymi
+-u¿ytkownikami, mo¿e przekazaæ je pozosta³ym. Funkcja "grupy wheel"
+-uniemo¿liwia³aby to, i w ten sposób umacnia³a w³adzê rz±dz±cych.
+-
+-Jestem po stronie mas, nie po stronie rz±dz±cych. Je¿eli zwyk³e¶ popieraæ
+-szefów i administratorów systemów we wszystkim, co robi±, podej¶cie to mo¿e
+-pocz±tkowo wydaæ Ci siê dziwne.
+ .SH "ZG£ASZANIE B£ÊDÓW"
+ B³êdy proszê zg³aszaæ, w jêz.ang., do <bug-sh-utils@gnu.org>.
+ .SH COPYRIGHT
+diff -Nur coreutils-5.2.1.orig/po/pl.po coreutils-5.2.1/po/pl.po
+--- coreutils-5.2.1.orig/po/pl.po	Thu Mar 18 16:58:54 2004
++++ coreutils-5.2.1/po/pl.po	Thu Mar 18 17:05:55 2004
+@@ -7332,6 +7332,41 @@
+ msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
+ msgstr "Sk³adnia: %s [OPCJA]... [-] [U¯YTKOWNIK [ARGUMENT]...]\n"
  
--su_LDADD = $(LDADD) @LIB_CRYPT@
-+su_LDADD = $(LDADD) @LIB_CRYPT@ @LIB_PAM@
++#: src/su.c:468
++msgid "could not open session\n"
++msgstr "nie mo¿na otworzyæ sesji\n"
++
++#: src/su.c:476
++msgid "error copying PAM environment\n"
++msgstr "b³±d podczas kopiowania ¶rodowiska PAM\n"
++
++#: src/su.c:521
++#, c-format
++msgid "cannot fork user shell: %s"
++msgstr "nie mo¿na utworzyæ procesu pow³oki u¿ytkownika: %s"
++
++#: src/su.c:527
++#, c-format
++msgid "%s: signal malfunction\n"
++msgstr "%s: b³êdne dzia³anie sygna³ów\n"
++
++#: src/su.c:540
++#, c-format
++msgid "%s: signal masking malfunction\n"
++msgstr "%s: b³êdne dzia³anie maskowania sygna³ów\n"
++
++#: src/su.c:559
++msgid ""
++"\n"
++"Session terminated, killing shell..."
++msgstr ""
++"\n"
++"Sesja zakoñczona, zabijanie pow³oki..."
++
++#: src/su.c:569
++msgid " killed.\n"
++msgstr " zabito.\n"
++
+ #: src/su.c:437
+ msgid ""
+ "Change the effective user id and group id to that of USER.\n"
+diff -Nur coreutils-5.2.1.orig/src/Makefile.am coreutils-5.2.1/src/Makefile.am
+--- coreutils-5.2.1.orig/src/Makefile.am	Mon Feb  2 09:12:57 2004
++++ coreutils-5.2.1/src/Makefile.am	Thu Mar 18 17:08:45 2004
+@@ -63,7 +63,7 @@
+ 
+ uptime_LDADD = $(LDADD) $(GETLOADAVG_LIBS)
+ 
+-su_LDADD = $(LDADD) $(LIB_CRYPT)
++su_LDADD = $(LDADD) $(LIB_CRYPT) $(LIB_PAM)
  
  $(PROGRAMS): ../lib/libfetish.a
  
-diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
---- sh-utils-2.0.12.orig/src/su.c	Mon May 27 23:06:24 2002
-+++ sh-utils-2.0.12/src/su.c	Mon May 27 23:08:28 2002
+diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
+--- coreutils-5.2.1.orig/src/su.c	Wed Jan 21 23:27:02 2004
++++ coreutils-5.2.1/src/su.c	Thu Mar 18 17:11:21 2004
 @@ -38,6 +38,16 @@
     restricts who can su to UID 0 accounts.  RMS considers that to
     be fascist.
@@ -110,9 +386,9 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +#endif /* USE_PAM */
 +
  #include "system.h"
- #include "closeout.h"
  #include "dirname.h"
-@@ -151,7 +169,9 @@
+ 
+@@ -141,7 +159,9 @@
  /* The user to become if none is specified.  */
  #define DEFAULT_USER "root"
  
@@ -122,7 +398,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
  char *getpass ();
  char *getusershell ();
  void endusershell ();
-@@ -159,7 +179,7 @@
+@@ -149,7 +169,7 @@
  
  extern char **environ;
  
@@ -131,7 +407,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
       ATTRIBUTE_NORETURN;
  
  /* The name this program was run with.  */
-@@ -272,7 +292,22 @@
+@@ -262,7 +282,22 @@
  }
  #endif
  
@@ -154,7 +430,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
     Return 1 if the user gives the correct password for entry PW,
     0 if not.  Return 1 without asking for a password if run by UID 0
     or if PW has an empty password.  */
-@@ -280,6 +315,29 @@
+@@ -270,6 +305,29 @@
  static int
  correct_password (const struct passwd *pw)
  {
@@ -184,7 +460,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
    char *unencrypted, *encrypted, *correct;
  #if HAVE_GETSPNAM && HAVE_STRUCT_SPWD_SP_PWDP
    /* Shadow passwd stuff for SVR3 and maybe other systems.  */
-@@ -304,6 +362,7 @@
+@@ -294,6 +352,7 @@
    encrypted = crypt (unencrypted, correct);
    memset (unencrypted, 0, strlen (unencrypted));
    return strcmp (encrypted, correct) == 0;
@@ -192,7 +468,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
  }
  
  /* Update `environ' for the new shell based on PW, with SHELL being
-@@ -313,16 +372,20 @@
+@@ -303,16 +362,20 @@
  modify_environment (const struct passwd *pw, const char *shell)
  {
    char *term;
@@ -205,7 +481,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
           Unset all other environment variables.  */
        term = getenv ("TERM");
 +      display = getenv ("DISPLAY");
-       environ = (char **) xmalloc (2 * sizeof (char *));
+       environ = xmalloc (2 * sizeof (char *));
        environ[0] = 0;
        if (term)
  	xputenv (concat ("TERM", "=", term));
@@ -214,8 +490,8 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
        xputenv (concat ("HOME", "=", pw->pw_dir));
        xputenv (concat ("SHELL", "=", shell));
        xputenv (concat ("USER", "=", pw->pw_name));
-@@ -359,23 +422,73 @@
-     error (EXIT_FAILURE, errno, _("cannot set groups"));
+@@ -349,23 +412,74 @@
+     error (EXIT_FAIL, errno, _("cannot set groups"));
    endgrent ();
  #endif
 +#ifdef USE_PAM
@@ -224,9 +500,9 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +    error (1, 0, pam_strerror(pamh, retval));
 +#endif /* USE_PAM */
    if (setgid (pw->pw_gid))
-     error (EXIT_FAILURE, errno, _("cannot set group id"));
+     error (EXIT_FAIL, errno, _("cannot set group id"));
    if (setuid (pw->pw_uid))
-     error (EXIT_FAILURE, errno, _("cannot set user id"));
+     error (EXIT_FAIL, errno, _("cannot set user id"));
  }
  
 +#ifdef USE_PAM
@@ -241,7 +517,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +pam_copyenv (pam_handle_t *pamh)
 +{
 +  char **env;
-+
++ 
 +  env = pam_getenvlist(pamh);
 +  if(env) {
 +    while(*env) {
@@ -264,6 +540,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
  {
    const char **args;
    int argno = 1;
+ 
 +#ifdef USE_PAM
 +  int child;
 +  sigset_t ourset;
@@ -280,18 +557,18 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +*/
 +  if(pam_copyenv(pamh) != PAM_SUCCESS)
 +     fprintf (stderr, _("error copying PAM environment\n"));
- 
++  
 +  child = fork();
 +  if (child == 0) {  /* child shell */
 +  change_identity (pw);
 +  pam_end(pamh, 0);
 +#endif
    if (additional_args)
-     args = (const char **) xmalloc (sizeof (char *)
+     args = xmalloc (sizeof (char *)
  				    * (10 + elements (additional_args)));
-@@ -408,6 +521,61 @@
-    error (0, errno, "%s", shell);
-    exit (exit_status);
+@@ -402,6 +516,61 @@
+     error (0, errno, "%s", shell);
+     exit (exit_status);
    }
 +#ifdef USE_PAM
 +  } else if (child == -1) {
@@ -351,7 +628,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
  }
  
  /* Return 1 if SHELL is a restricted shell (one not returned by
-@@ -580,9 +748,14 @@
+@@ -577,9 +746,14 @@
      }
    modify_environment (pw, shell);
  
@@ -367,272 +644,3 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 -  run_shell (shell, command, additional_args);
 +  run_shell (shell, command, additional_args, pw);
  }
---- coreutils-4.5.3.orig/po/pl.po	Fri Nov  1 01:55:42 2002
-+++ coreutils-4.5.3/po/pl.po	Fri Nov  1 02:11:20 2002
-@@ -6491,6 +6491,41 @@
- msgid "cannot set user id"
- msgstr "nie mo¿na ustawiæ identyfikatora u¿ytkownika"
- 
-+#: src/su.c:468
-+msgid "could not open session\n"
-+msgstr "nie mo¿na otworzyæ sesji\n"
-+
-+#: src/su.c:476
-+msgid "error copying PAM environment\n"
-+msgstr "b³±d podczas kopiowania ¶rodowiska PAM\n"
-+
-+#: src/su.c:521
-+#, c-format
-+msgid "cannot fork user shell: %s"
-+msgstr "nie mo¿na utworzyæ procesu pow³oki u¿ytkownika: %s"
-+
-+#: src/su.c:527
-+#, c-format
-+msgid "%s: signal malfunction\n"
-+msgstr "%s: b³êdne dzia³anie sygna³ów\n"
-+
-+#: src/su.c:540
-+#, c-format
-+msgid "%s: signal masking malfunction\n"
-+msgstr "%s: b³êdne dzia³anie maskowania sygna³ów\n"
-+
-+#: src/su.c:559
-+msgid ""
-+"\n"
-+"Session terminated, killing shell..."
-+msgstr ""
-+"\n"
-+"Sesja zakoñczona, zabijanie pow³oki..."
-+
-+#: src/su.c:569
-+msgid " killed.\n"
-+msgstr " zabito.\n"
-+
- #: src/su.c:437
- #, c-format
- msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
---- coreutils-non-en/man/es/su.1.orig	Mon Apr 12 14:26:19 1999
-+++ coreutils-non-en/man/es/su.1	Tue Jan 20 13:18:22 2004
-@@ -47,13 +47,6 @@
- puede ser compilado para reportar fallo, y opcionalmente éxito en syslog.
- .B su
- intentará utilizar syslog.
--.PP
--Este programa no soporta el grupo "wheel", el cual restringe quien podrá
--ejecutar
--.B su
--hacia la cuenta de root (el superusuario) ya que esta política podría
--ayudar a los administradores de máquinas a facilitar un uso inadecuado a otros
--usuarios.
- .SS OPCIONES
- .TP
- .I "\-c COMANDO, \-\-command=COMANDO"
-@@ -118,22 +111,3 @@
- .I "\-\-version"
- Escribe información sobre la versión en  la  salida estándar y acaba sin
- provocar error.
--
--.SH Por que GNU no soporta el grupo "wheel" (por Richard Stallman)
--A veces, algunos listillos intentan hacerse con el poder total
--sobre el resto de usuarios. Por ejemplo, en 1984, un grupo de usuarios del
--laboratorio de Inteligencia Artificial del MIT decidieron tomar el poder
--cambiando el password de operador del sistema Twenex y manteniendolo secreto
--para el resto de usuarios. (De todas maneras, hubiera sido posible desbaratar
--la situación y devolver el control a los usuarios legítimos parcheando el
--kernel, pero no sabría como realizar esta operación en un sistema Unix.)
--.PP
--Sin embargo, casualmente alguien contó el secreto. Mediante el uso habitual de
--.B su
--una vez que alguien conoce el password de root puede contarselo al resto de 
--usuarios. El grupo "wheel" hará que esto sea imposible, protegiendo así el poder
--de los superusuarios.
--.PP
--Yo estoy del lado de las masas, no de los superusuarios. Si eres de los que
--estan de acuerdo con los jefes y los administradores de sistemas en cualquier
--cosa que hagan, al principio encontrarás esta idea algo extraña.
---- coreutils-non-en/man/fr/su.1.orig	Sun Aug 10 12:00:00 2003
-+++ coreutils-non-en/man/fr/su.1	Tue Jan 20 13:17:38 2004
-@@ -54,13 +54,6 @@
- peut être compilé afin de fournir des rapports d'échec, et éventuellement
- de réussite des tentatives d'utilisation de
- .BR su .
--.PP
--Ce programme ne gère pas le "groupe wheel" utilisé pour restreindre
--l'accès par 
--.B su
--au compte Super-Utilisateur, car il pourrait aider des administrateurs
--système fascistes à disposer d'un pouvoir incontrôlé
--sur les autres utilisateurs.
- .SS OPTIONS
- .TP
- .I "\-c COMMANDE, \-\-command=COMMANDE"
-@@ -119,25 +112,5 @@
- .I "\-\-version"
- Afficher un numéro de version sur la sortie standard et se terminer normalement.
- 
--.SH Pourquoi GNU SU ne gère-t-il pas le groupe `wheel' (par Richard Stallman)
--Il peut arriver qu'un petit groupe d'utilisateurs essayent de s'approprier
--l'ensemble du système. Par exemple, en 1984, quelques utilisateurs du
--laboratoire d'I.A du MIT ont tentés de prendre le pouvoir en modifiant
--le mot de passe de l'opérateur sur le système Twenex, et en
--gardant ce mot de passe secret. (J'ai pu les en empêcher en modifiant le noyau, et
--restaurer ainsi les autres accès, mais je ne saurais pas en faire autant
--sous Unix).
--.PP
--Néanmoins, il arrive parfois que les chefs fournissent le mot
--de passe de root à un utilisateur ordinaire.
--Avec le mécanisme habituel de \fBsu\fP,
--une fois que quelqu'un connaît ce mot de passe, il peut le transmettre
--à ses amis. Le principe du "groupe wheel" rend ce partage impossible,
--ce qui renforce la puissance des chefs.
--.PP
--Je me situe du cote du peuple, pas du côté des chefs. Si vous avez l'habitude
--de soutenir les patrons et les administrateurs systèmes quoi qu'ils fassent,
--cette idée peut vous paraître étrange au premier abord.
--
- .SH TRADUCTION
- Christophe Blaess, 1997-2003.
---- coreutils-non-en/man/hu/su.1.orig	Sun Jul  9 14:19:12 2000
-+++ coreutils-non-en/man/hu/su.1	Tue Jan 20 13:17:18 2004
-@@ -151,33 +151,6 @@
- .B "\-\-version"
- A program verziójáról ír ki információt a standard kimenetre, majd 
- sikeres visszatérési értékkel kilép.
--.SH Miért nem támogatja a GNU su a wheel csoportot? (Richard Stallman)
--
--Néha a rendszer fölötti teljes ellenõrzést egy néhány emberbõl 
--álló csoport akarja kézbe venni. Például 1984-ben pár user a MIT AI
--laborban úgy döntött, hogy átveszik az irányítást a Twenex rendszer
--operátori jelszavának megváltoztatásával, és annak titokban tartásával. 
--(A puccsot sikerült leverni, és a felhasználókat jogaikba visszahelyezni 
--egy kernel patch segítségével, de Unix alatt ezt nem tudtam volna megcsinálni.)
--(A fordító megj.: a wheel csoportot ezzel a módszerrel könnyen
--önkényesen is leszûkíthetik a csoporttagok , így tulajdonképpen nincs sok értelme.)
--.PP
--Néha az uralmon levõk elárulják a root jelszót. A szokásos su 
--mechanizmus szerint, ha valaki megtudja a root jelszót, és 
--szimpatizál a többi közönséges felhasználóval, elárulhatja nekik 
--is. A wheel csoport ezt lehetetlenné tenné, és így bebetonozná az 
--uralmon levõ hatalmát.
--.PP
--Én a tömegek oldalán állok, nem az uralkodókén. Ha te mindig a 
--fõnökök és a rendszergazdák oldalán állsz, bármit is tesznek, akkor 
--valószínûleg furcsálni fogod ezt a hozzáállást.
--.PP
--A fordító megjegyzése: 
--Valami jó azért mégis lenne a wheel csoportban: az, hogy ha a root 
--jelszó kitudódna azzal nem tudna bármelyik felhasználó közvetlenül 
--visszaélni. A wheel csoporthoz hasonló dolgot lehet elérni a
--.B sudo
--csomaggal.
- .SH MEGJEGYZÉS
- A hibákat a bug-sh-utils@gnu.org címen lehet jelenteni.
- Az oldalt Ragnar Hojland Espinosa <ragnar@macula.net> frissítette.
---- coreutils-non-en/man/it/su.1.orig	Mon Jul  1 23:09:38 2002
-+++ coreutils-non-en/man/it/su.1	Tue Jan 20 13:16:38 2004
-@@ -52,11 +52,6 @@
- .B su
- può essere compilato per riportare tramite syslog gli errori, ed
- eventualmente anche i successi che ottiene.
--.PP
--Questo programma non supporta un "gruppo wheel" che limita chi può fare
--.B su
--agli account del superuser, poiché ciò può aiutare amministratori di
--sistema "fascisti" a tenere un potere inautorizzato sugli altri utenti.
- .SS OPZIONI
- .TP
- .I "\-c COMANDO, \-\-command=COMANDO"
-@@ -117,21 +112,3 @@
- .I "\-\-version"
- Stampa in standard output informazioni sulla versione e esce (con
- successo). 
--.SH Perché GNU su non supporta il gruppo wheel (di Richard Stallman)
--Qualche volta pochi utenti provano a tenere il potere assoluto sul
--resto degli utenti. Per esempio, nel 1984, alcuni utenti nel
--laboratorio di AI del MIT decisero impossessarsi del potere cambiando
--la password dell'operatore su un sistema Twenex e tenendola segreta a
--tutti gli altri (fui in grado di contrastare questo colpaccio e
--restituire il potere agli utenti ``patch-ando'' il kernel, ma non
--saprei come fare ciò in Unix).
--.PP
--Comunque, occasionalmente i sovrani lo fanno. Tramite l'usuale
--meccanismo  su, una volta che qualcuno che simpatizzi con gli
--utenti normali, abbia imparato la password di root può dirla anche
--agli altri. La caratteristica del "gruppo wheel" renderebbe ciò
--impossibile, consolidando quindi il potere dei sovrani.
--.PP
--Io sono dalla parte delle masse, non da quella dei sovrani. Se tu sei
--abituato a sostenere i capi e gli amministratori di sistema in tutto
--quello che fanno, potresti trovare questa idea strana all'inizio.
---- coreutils-non-en/man/ja/su.1.orig	Sun Dec 14 16:06:54 2003
-+++ coreutils-non-en/man/ja/su.1	Tue Jan 20 13:16:18 2004
-@@ -83,12 +83,6 @@
- .B su
- ¤¬¼ºÇÔ¤·¤¿¤È¤­ syslog ¤Ë¥ì¥Ý¡¼¥È¤¹¤ë¤è¤¦¤Ë¥³¥ó¥Ñ¥¤¥ë¤¹¤ë¤³¤È
- ¤¬¤Ç¤­¤ë¡ÊÀ®¸ù¤ò¥ì¥Ý¡¼¥È¤¹¤ë¤è¤¦¤Ë¤â¤Ç¤­¤ë¡Ë¡£
--.PP
--¤³¤Î¥×¥í¥°¥é¥à¤Ï "wheel group" ¤Îµ¡Ç½¡Ê
--.B su
--¤Ë¤è¤Ã¤Æ¥¹¡¼¥Ñ¡¼¥æ¡¼¥¶¡¼¥¢¥«¥¦¥ó¥È¤Ë¤Ê¤ì¤ë¥æ¡¼¥¶¤òÀ©¸Â¤¹¤ëµ¡Ç½¡Ë¤ò¥µ¥Ý¡¼
--¥È¤·¤Ê¤¤¡£¤³¤ì¤ÏÀìÀ©Åª¤Ê¥·¥¹¥Æ¥à´ÉÍý¼Ô¤¬Â¾¤Î¥æ¡¼¥¶¡¼¤ËÉÔÅö¤Ê¸¢ÎÏ¤ò¿¶¤ë
--¤¨¤Ê¤¤¤è¤¦¤Ë¤¹¤ë¤¿¤á¤Ç¤¢¤ë¡£
- .SS OPTIONS
- .TP
- .I "\-c COMMAND, \-\-command=COMMAND"
-@@ -151,19 +145,3 @@
- .TP
- .I "\-\-version"
- ¥Ð¡¼¥¸¥ç¥ó¾ðÊó¤òÉ¸½à½ÐÎÏ¤ËÉ½¼¨¤·¡¢¼Â¹ÔÀ®¸ù¤òÊÖ¤·¤Æ½ªÎ»¤¹¤ë¡£
--.SH GNU su ¤Ç wheel ¥°¥ë¡¼¥×¤ò¥µ¥Ý¡¼¥È¤·¤Ê¤¤¤ï¤±¡ÊRichard Stallman¡Ë
--¤È¤­¤ª¤ê¡¢¾¯¿ô¤Î¥æ¡¼¥¶¡¼¤Ë¤è¤Ã¤Æ¡¢Â¾¤Î¥æ¡¼¥¶¡¼¤ËÂÐ¤¹¤ëÁ´¸¢¤ò¾¸°®¤·¤è¤¦
--¤È¤¹¤ë»î¤ß¤¬¤Ê¤µ¤ì¤ë¤³¤È¤¬¤¢¤ë¡£Îã¤¨¤Ð 1984 Ç¯¡¢ MIT AI ¥é¥Ü¤Î¾¯¿ô¤Î¥æ¡¼
--¥¶¡¼¤Ï Twenex ¥·¥¹¥Æ¥à¤Î¥ª¥Ú¥ì¡¼¥¿¡¼¥Ñ¥¹¥ï¡¼¥É¤ÎÊÑ¹¹¸¢¸Â¤ò¶¯Ã¥¤·¡¢¤³¤ì
--¤òÂ¾¤Î¥æ¡¼¥¶¡¼¤«¤éÈëÆ¿¤¹¤ë¤³¤È¤Ë·èÄê¤·¤¿¡Ê¤³¤ÎºÝ¤Ë¤Ï»ä¤Ï¤³¤Î¥¯¡¼¥Ç¥¿¡¼
--¤ÎÎ¢¤ò¤«¤­¡¢¥«¡¼¥Í¥ë¤Ë¥Ñ¥Ã¥Á¤òÅö¤Æ¤Æ¸¢¸Â¤ò¼è¤êÊÖ¤¹¤³¤È¤ËÀ®¸ù¤·¤¿¡£¤·¤«
--¤·¤³¤ì¤¬ Unix ¤Ç¤¢¤Ã¤¿¤é¡¢»ä¤Ë¤Ï¤É¤¦¤¹¤ì¤Ð¤è¤¤¤«¤ï¤«¤é¤Ê¤«¤Ã¤¿¤À¤í¤¦¡Ë¡£
--.PP
--¤·¤«¤·¤Ê¤¬¤é¡¢»þ¤Ë¤ÏÀìÀ©¼Ô¤âÈëÌ©¤òÏ³¤é¤¹¤â¤Î¤Ç¤¢¤ë¡£ÄÌ¾ï¤Î su ¤Î¥á¥«¥Ë
--¥º¥à¤Ç¤Ï¡¢°ìÈÌ¥æ¡¼¥¶¡¼¤ÎÂ¦¤ËÎ©¤Ä¼Ô¤¬ root ¤Î¥Ñ¥¹¥ï¡¼¥É¤òÃÎ¤ì¤Ð¡¢¤³¤ì¤ò
--Â¾¤Î¥æ¡¼¥¶¡¼¤Ë¤âÃÎ¤é¤»¤ë¤³¤È¤¬¤Ç¤­¤ë¡£¤·¤«¤· "wheel group" µ¡Ç½¤Ï¤³¤ì
--¤òÉÔ²ÄÇ½¤Ë¤·¡¢·ë²Ì¤È¤·¤ÆÀìÀ©¼ÔÃ£¤Î¸¢¸Â¤ò¶¯¸Ç¤¿¤ë¤â¤Î¤Ë¤·¤Æ¤·¤Þ¤¦¡£
--.PP
--»ä¤ÏÂç½°¤ÎÂ¦¤ËÎ©¤Ä¤â¤Î¤Ç¤¢¤ê¡¢ÀìÀ©Åª¤ÊÎ©¾ì¤Ë¤ÏÈ¿ÂÐ¤¹¤ë¡£¤¢¤Ê¤¿¤Ï¥Ü¥¹¤ä
--¥·¥¹¥Æ¥à´ÉÍý¼Ô¤Î¤ä¤ê¸ý¤Ë½¾¤¦¤³¤È¤Ë´·¤ì¤Æ¤¤¤ë¤«¤âÃÎ¤ì¤Ê¤¤¤¬¡¢¤½¤Î¾ì¹ç¤Ï
--¤Þ¤º¤½¤Î¤³¤È¼«¿È¤òÉÔ»×µÄ¤Ë»×¤¦¤Ù¤­¤Ç¤Ï¤Ê¤¤¤À¤í¤¦¤«¡£
---- coreutils-non-en/man/pl/su.1.orig	Tue Jun 20 16:07:31 2000
-+++ coreutils-non-en/man/pl/su.1	Tue Jan 20 13:15:21 2004
-@@ -78,8 +78,6 @@
- mo¿e zostaæ tak skompilowane, by raportowa³o nieudane, lub opcjonalnie
- równie¿ udane próby zmiany id przy u¿yciu
- .BR su .
--Jednak \fBsu\fP w wersji GNU nie sprawdza czy u¿ytkownik jest cz³onkiem grupy
--`wheel' -- patrz poni¿ej.
- .SH OPCJE
- .TP
- .BR \-c " \fIpolecenie\fP, " \-\-command= \fIpolecenie
-@@ -139,25 +137,6 @@
- .TP
- .B \-\-version
- Wy¶wietla numer wersji programu i koñczy pracê.
--.SH Dlaczego GNU `su' nie obs³uguje grupy `wheel'
--
--(Sekcjê tê napisa³ Richard Stallman)
--
--Czasami kilku u¿ytkowników usi³uje sprawowaæ nieograniczon± w³adzê nad
--pozosta³ymi. Na przyk³ad, w 1984, kilku u¿ytkowników w laboratorium AI MIT
--zdecydowa³o siê `przej±æ w³adzê' zmieniaj±c has³o operatora systemu Twenex
--i trzymaj±c je w tajemnicy przed wszystkimi innymi. (Uda³o mi siê
--udaremniæ ten zamach i przywróciæ w³adzê u¿ytkownikom ³ataj±c j±dro, lecz
--nie wiedzia³bym jak zrobiæ to w Uniksie.)
--
--Jednak, od czasu do czasu panuj±cy wyjawiaj± komu¶. Przy zwyk³ym
--mechanizmie `su', kto¶, kto pozna³ has³o root'a i sympatyzuje ze zwyk³ymi
--u¿ytkownikami, mo¿e przekazaæ je pozosta³ym. Funkcja "grupy wheel"
--uniemo¿liwia³aby to, i w ten sposób umacnia³a w³adzê rz±dz±cych.
--
--Jestem po stronie mas, nie po stronie rz±dz±cych. Je¿eli zwyk³e¶ popieraæ
--szefów i administratorów systemów we wszystkim, co robi±, podej¶cie to mo¿e
--pocz±tkowo wydaæ Ci siê dziwne.
- .SH "ZG£ASZANIE B£ÊDÓW"
- B³êdy proszê zg³aszaæ, w jêz.ang., do <bug-sh-utils@gnu.org>.
- .SH COPYRIGHT
