@@ -1,0 +1,20 @@
+--- coreutils-4.5.3.orig/configure.ac	Sat Oct 19 17:40:38 2002
++++ coreutils-4.5.3/configure.ac	Sat Oct 19 17:15:34 2002
+@@ -17,12 +17,17 @@
+ 
+ AC_GNU_SOURCE
+ jm_PERL
++AC_PROG_YACC
+ AC_PROG_CC
+ AC_PROG_CPP
+ AC_PROG_GCC_TRADITIONAL
+ AC_PROG_RANLIB
+ AC_AIX
+ AC_MINIX
++AC_FUNC_ALLOCA
++AM_C_PROTOTYPES
++LIB@&t@OBJS=`echo "$LIB@&t@OBJS" | sed 's,\.[[^.]]* ,$U&,g;s,\.[[^.]]*$,$U&,'`
++AC_SUBST(LIB@&t@OBJS)
+ 
+ AC_CHECK_FUNCS(uname,
+ 	OPTIONAL_BIN_PROGS="$OPTIONAL_BIN_PROGS uname" MAN="$MAN uname.1")
