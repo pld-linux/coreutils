@@ -1,0 +1,13 @@
+--- coreutils-4.5.10/m4/jm-macros.m4.orig	Wed Mar 12 21:17:25 2003
++++ coreutils-4.5.10/m4/jm-macros.m4	Wed Mar 19 22:13:54 2003
+@@ -229,9 +229,7 @@
+ 
+   # If any of these functions don't exist (e.g. DJGPP 2.03),
+   # use the corresponding stub.
+-  AC_CHECK_FUNC([fchown], , [AC_LIBOBJ(fchown-stub)])
+-  AC_CHECK_FUNC([lstat], , [AC_LIBOBJ(lstat-stub)])
+-  AC_CHECK_FUNC([readlink], , [AC_LIBOBJ(readlink-stub)])
++  # but these files don't exist yet - removed.  --q
+ 
+ ])
+ 

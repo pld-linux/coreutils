@@ -5,7 +5,7 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
-Version:	4.5.9
+Version:	4.5.10
 Release:	1
 License:	GPL
 Group:		Applications/System
@@ -31,6 +31,8 @@ Patch8:		%{name}-mem.patch
 Patch9:		%{name}-install-C.patch
 Patch10:	%{name}-po.patch
 Patch11:	%{name}-no-nb.patch
+# temporary fix for missing lib/*-stub.c files
+Patch12:	%{name}-jmfix.patch
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel >= 0.11.5
@@ -97,6 +99,7 @@ Programy zawarte w tej paczce to:
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 

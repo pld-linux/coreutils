@@ -1,41 +1,6 @@
---- coreutils-4.5.9/po/ca.po.orig	Wed Mar  5 08:46:54 2003
-+++ coreutils-4.5.9/po/ca.po	Sun Mar  9 11:33:18 2003
-@@ -2272,16 +2272,14 @@
- # FIXME: This arrangement is extremely language-dependent.  ivb
- # Ehemmm...  AARGHHFSSS!!  ivb
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "S. fitxers "
-+msgstr "S. fitxers   Tipus"
- 
- # FIXME: This arrangement is extremely language-dependent.  ivb
- # Ehemmm...  AARGHHFSSS!!  ivb
- #: src/df.c:155
--#, fuzzy
- msgid "Filesystem        "
--msgstr "S. fitxers "
-+msgstr "S. fitxers        "
- 
- # InformaciцЁ sobre inodes.  ivb
- #: src/df.c:158
---- coreutils-4.5.9/po/da.po.orig	Wed Mar  5 08:46:59 2003
-+++ coreutils-4.5.9/po/da.po	Sun Mar  9 11:23:57 2003
-@@ -2029,39 +2029,37 @@
- msgstr "TorbjЬrn Granlund, David MacKenzie, Larry McVoy og Paul Eggert"
- 
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "Filsystem "
-+msgstr "Filsystem      Typ"
- 
- #: src/df.c:155
--#, fuzzy
- msgid "Filesystem        "
--msgstr "Filsystem "
-+msgstr "Filsystem         "
- 
+--- coreutils-4.5.10/po/da.po.orig	Wed Mar 12 23:59:41 2003
++++ coreutils-4.5.10/po/da.po	Wed Mar 19 21:50:19 2003
+@@ -2034,27 +2034,27 @@
  #: src/df.c:158
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
@@ -55,10 +20,9 @@
 +msgstr "    StЬrr  Brugt  Tilb Brug%%"
  
  #: src/df.c:167
--#, fuzzy, c-format
-+#, c-format
+ #, c-format
  msgid " %4s-blocks      Used Available Capacity"
--msgstr " %4d-blokke     Brugt   Tilbage Kapacitet"
+-msgstr " %4s-blokke     Brugt   Tilbage Kapacitet"
 +msgstr " %4s-blokke     Brugt  Tilbage Kapacitet"
  
  #: src/df.c:198
@@ -69,61 +33,26 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/de.po.orig	Wed Mar  5 08:46:54 2003
-+++ coreutils-4.5.9/po/de.po	Sun Mar  9 11:29:47 2003
-@@ -2112,14 +2112,12 @@
- msgstr "Torbjц╤rn Granlund, David MacKenzie, Larry McVoy und Paul Eggert"
- 
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "Dateisystem"
-+msgstr "Dateisystem    Typ"
- 
- #: src/df.c:155
--#, fuzzy
- msgid "Filesystem        "
--msgstr "Dateisystem"
-+msgstr "Dateisystem       "
- 
- #: src/df.c:158
+--- coreutils-4.5.10/po/es.po.orig	Wed Mar 12 23:59:45 2003
++++ coreutils-4.5.10/po/es.po	Wed Mar 19 21:53:04 2003
+@@ -2364,12 +2364,12 @@
+ #: src/df.c:167
  #, c-format
---- coreutils-4.5.9/po/es.po.orig	Wed Mar  5 08:46:57 2003
-+++ coreutils-4.5.9/po/es.po	Sun Mar  9 11:39:09 2003
-@@ -2340,14 +2340,12 @@
- msgstr "Torbjorn Granlund, David MacKenzie, Larry McVoy, y Paul Eggert"
+ msgid " %4s-blocks      Used Available Capacity"
+-msgstr " Bloques de %-4s Usado    Dispon  Ocupado"
++msgstr " Bloques de %-4s Usado   Dispon  Ocupado"
  
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "S.ficheros "
-+msgstr "S.ficheros   Tipo "
- 
- #: src/df.c:155
--#, fuzzy
- msgid "Filesystem        "
--msgstr "S.ficheros "
-+msgstr "S.ficheros        "
- 
- #: src/df.c:158
+ #: src/df.c:198
  #, c-format
---- coreutils-4.5.9/po/et.po.orig	Wed Mar  5 08:46:56 2003
-+++ coreutils-4.5.9/po/et.po	Sun Mar  9 11:46:04 2003
-@@ -2002,19 +2002,17 @@
- msgstr "Torbjorn Granlund, David MacKenzie, Larry McVoy ja Paul Eggert"
+ msgid " %4s-blocks      Used Available Use%%"
+-msgstr " Bloques de %-4s Usado    Dispon Uso%%"
++msgstr " Bloques de %-4s Usado   Dispon Uso%%"
  
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "FailisЭsteem "
-+msgstr "FailisЭsteem  TЭЭp"
- 
- #: src/df.c:155
--#, fuzzy
- msgid "Filesystem        "
--msgstr "FailisЭsteem "
-+msgstr "FailisЭsteem      "
- 
+ #: src/df.c:202
+ msgid " Mounted on\n"
+--- coreutils-4.5.10/po/et.po.orig	Wed Mar 12 23:59:46 2003
++++ coreutils-4.5.10/po/et.po	Wed Mar 19 21:54:23 2003
+@@ -2008,7 +2008,7 @@
  #: src/df.c:158
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
@@ -132,7 +61,7 @@
  
  #: src/df.c:162
  #, c-format
-@@ -2024,17 +2022,17 @@
+@@ -2018,17 +2018,17 @@
  #: src/df.c:164
  #, c-format
  msgid "     Size   Used  Avail Use%%"
@@ -153,9 +82,9 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/fi.po.orig	Wed Mar  5 08:46:53 2003
-+++ coreutils-4.5.9/po/fi.po	Sun Mar  9 11:52:42 2003
-@@ -1835,14 +1835,12 @@
+--- coreutils-4.5.10/po/fi.po.orig	Wed Mar 12 23:59:47 2003
++++ coreutils-4.5.10/po/fi.po	Wed Mar 19 21:46:50 2003
+@@ -1831,14 +1831,12 @@
  msgstr "TorbjЖrn Granlund, David MacKenzie, Larry McVoy ja Paul Eggert"
  
  #: src/df.c:153
@@ -172,7 +101,7 @@
  
  #: src/df.c:158
  #, c-format
-@@ -1857,7 +1855,7 @@
+@@ -1853,7 +1851,7 @@
  #: src/df.c:164
  #, c-format
  msgid "     Size   Used  Avail Use%%"
@@ -181,26 +110,18 @@
  
  #: src/df.c:167
  #, c-format
---- coreutils-4.5.9/po/fr.po.orig	Wed Mar  5 08:47:01 2003
-+++ coreutils-4.5.9/po/fr.po	Sun Mar  9 12:03:43 2003
-@@ -2090,14 +2090,12 @@
- msgstr "Torbjorn Granlund, David MacKenzie, Larry McVoy et Paul Eggert"
+--- coreutils-4.5.10/po/fr.po.orig	Wed Mar 12 23:59:49 2003
++++ coreutils-4.5.10/po/fr.po	Wed Mar 19 21:56:42 2003
+@@ -2087,7 +2087,7 @@
  
  #: src/df.c:153
--#, fuzzy
  msgid "Filesystem    Type"
--msgstr "SystХme de fichiers"
-+msgstr "S.de fichiers Type"
+-msgstr "Sys. de fich. Type "
++msgstr "Sys. de fich. Type"
  
  #: src/df.c:155
--#, fuzzy
  msgid "Filesystem        "
--msgstr "SystХme de fichiers"
-+msgstr "S.de fichiers     "
- 
- #: src/df.c:158
- #, c-format
-@@ -2107,22 +2105,22 @@
+@@ -2101,22 +2101,22 @@
  #: src/df.c:162
  #, c-format
  msgid "    Size  Used Avail Use%%"
@@ -227,9 +148,9 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/gl.po.orig	Wed Mar  5 08:47:00 2003
-+++ coreutils-4.5.9/po/gl.po	Sun Mar  9 12:07:57 2003
-@@ -1935,14 +1935,12 @@
+--- coreutils-4.5.10/po/gl.po.orig	Wed Mar 12 23:59:51 2003
++++ coreutils-4.5.10/po/gl.po	Wed Mar 19 21:46:50 2003
+@@ -1931,14 +1931,12 @@
  msgstr "David Ihnat, David MacKenzie e Jim Meyering"
  
  #: src/df.c:153
@@ -246,7 +167,7 @@
  
  #: src/df.c:158
  #, c-format
-@@ -1955,14 +1953,14 @@
+@@ -1951,14 +1949,14 @@
  msgstr "  TamaЯo Usado  Disp Uso%%"
  
  #: src/df.c:164
@@ -265,9 +186,9 @@
  
  #: src/df.c:198
  #, c-format
---- coreutils-4.5.9/po/hu.po.orig	Wed Mar  5 08:46:56 2003
-+++ coreutils-4.5.9/po/hu.po	Sun Mar  9 12:40:01 2003
-@@ -1890,44 +1890,41 @@
+--- coreutils-4.5.10/po/hu.po.orig	Wed Mar 12 23:59:52 2003
++++ coreutils-4.5.10/po/hu.po	Wed Mar 19 21:46:50 2003
+@@ -1886,44 +1886,41 @@
  msgstr "%s bАjtnАl tovАbblИptЭnk a kЖvetkezУ kimeneti fАjlban: %s"
  
  #: src/df.c:49
@@ -320,9 +241,9 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/it.po.orig	Wed Mar  5 08:46:55 2003
-+++ coreutils-4.5.9/po/it.po	Sun Mar  9 12:45:07 2003
-@@ -2043,24 +2043,21 @@
+--- coreutils-4.5.10/po/it.po.orig	Wed Mar 12 23:59:53 2003
++++ coreutils-4.5.10/po/it.po	Wed Mar 19 21:46:50 2003
+@@ -2039,24 +2039,21 @@
  msgstr "avanzamento di %s byte nel file di output %s"
  
  #: src/df.c:49
@@ -351,7 +272,7 @@
  
  #: src/df.c:162
  #, c-format
-@@ -2070,17 +2067,17 @@
+@@ -2066,17 +2063,17 @@
  #: src/df.c:164
  #, c-format
  msgid "     Size   Used  Avail Use%%"
@@ -373,9 +294,9 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/ja.po.orig	Wed Mar  5 08:47:00 2003
-+++ coreutils-4.5.9/po/ja.po	Sun Mar  9 12:53:45 2003
-@@ -2025,39 +2025,36 @@
+--- coreutils-4.5.10/po/ja.po.orig	Wed Mar 12 23:59:54 2003
++++ coreutils-4.5.10/po/ja.po	Wed Mar 19 21:46:50 2003
+@@ -2021,39 +2021,36 @@
  msgstr "╫пно╔у╔║╔╓╔К %s ╓нд╬а╟ %s ╔п╔╓╔х╓Р©й╓А╓ч╓╧"
  
  #: src/df.c:49
@@ -424,9 +345,9 @@
  
  #: src/df.c:198
  #, c-format
---- coreutils-4.5.9/po/ms.po.orig	Wed Mar  5 08:46:55 2003
-+++ coreutils-4.5.9/po/ms.po	Sun Mar  9 12:56:02 2003
-@@ -1737,19 +1737,16 @@
+--- coreutils-4.5.10/po/ms.po.orig	Wed Mar 12 23:59:56 2003
++++ coreutils-4.5.10/po/ms.po	Wed Mar 19 21:46:50 2003
+@@ -1733,19 +1733,16 @@
  msgstr ""
  
  #: src/df.c:49
@@ -449,9 +370,9 @@
  
  #: src/df.c:158
  #, c-format
---- coreutils-4.5.9/po/pt_BR.po.orig	Wed Mar  5 08:47:00 2003
-+++ coreutils-4.5.9/po/pt_BR.po	Sun Mar  9 13:01:06 2003
-@@ -2006,39 +2006,37 @@
+--- coreutils-4.5.10/po/pt_BR.po.orig	Thu Mar 13 00:00:03 2003
++++ coreutils-4.5.10/po/pt_BR.po	Wed Mar 19 21:46:50 2003
+@@ -2002,39 +2002,37 @@
  msgstr "Torbjorn Granlund, David MacKenzie, Larry McVoy e Paul Eggert"
  
  #: src/df.c:153
@@ -498,23 +419,18 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/ru.po.orig	Wed Mar  5 08:47:01 2003
-+++ coreutils-4.5.9/po/ru.po	Sun Mar  9 13:17:54 2003
-@@ -2056,43 +2056,41 @@
- msgstr "Торбьёрн Гранлунд, Девид МакКензи, Ларри МакВой и Пол Эггерт"
+--- coreutils-4.5.10/po/ru.po.orig	Thu Mar 13 00:00:05 2003
++++ coreutils-4.5.10/po/ru.po	Wed Mar 19 22:00:54 2003
+@@ -2053,7 +2053,7 @@
  
  #: src/df.c:153
--#, fuzzy
  msgid "Filesystem    Type"
--msgstr "Файловая система "
-+msgstr "Файловая сист. Тип"
+-msgstr "Ф. система    Тип "
++msgstr "Ф. система     Тип"
  
  #: src/df.c:155
--#, fuzzy
  msgid "Filesystem        "
--msgstr "Файловая система "
-+msgstr "Файловая система  "
- 
+@@ -2062,27 +2062,27 @@
  #: src/df.c:158
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
@@ -524,37 +440,32 @@
  #: src/df.c:162
  #, c-format
  msgid "    Size  Used Avail Use%%"
--msgstr "   Размер  Испол Дост  Исп%%"
-+msgstr "  Размер Испол  Дост Исп%%"
+-msgstr "    Разм  Исп  Дост  Исп%%"
++msgstr "    Разм   Исп  Дост Исп%%"
  
  #: src/df.c:164
  #, c-format
  msgid "     Size   Used  Avail Use%%"
--msgstr "   Размер  Испол Дост  Исп%%"
-+msgstr "   Размер  Испол   Дост Исп%%"
+-msgstr "     Разм   Исп   Дост  Исп%%"
++msgstr "     Разм    Исп   Дост Исп%%"
  
  #: src/df.c:167
  #, c-format
  msgid " %4s-blocks      Used Available Capacity"
--msgstr " %4s-блоков    Испол Доступно  Всего"
-+msgstr " %4s-блоков     Испол  Доступно    Всего"
+-msgstr " %4s-блоков      Исп  Доступно  Всего"
++msgstr " %4s-блоков       Исп  Доступно    Всего"
  
  #: src/df.c:198
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
--msgstr " %4s-блоков    Испол Доступно Исп%%"
-+msgstr " %4s-блоков     Испол  Доступно Исп%%"
+-msgstr " %4s-блоков      Исп  Доступно  Исп%%"
++msgstr " %4s-блоков       Исп  Доступно Исп%%"
  
  #: src/df.c:202
  msgid " Mounted on\n"
--msgstr "Подключено к\n"
-+msgstr " Подключено к\n"
- 
- #: src/df.c:712
- msgid ""
---- coreutils-4.5.9/po/sk.po.orig	Wed Mar  5 08:47:01 2003
-+++ coreutils-4.5.9/po/sk.po	Sun Mar  9 13:21:52 2003
-@@ -1931,39 +1931,37 @@
+--- coreutils-4.5.10/po/sk.po.orig	Thu Mar 13 00:00:06 2003
++++ coreutils-4.5.10/po/sk.po	Wed Mar 19 21:46:50 2003
+@@ -1927,39 +1927,37 @@
  msgstr ""
  
  #: src/df.c:153
@@ -603,47 +514,9 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/sl.po.orig	Wed Mar  5 09:08:37 2003
-+++ coreutils-4.5.9/po/sl.po	Sun Mar  9 13:24:14 2003
-@@ -2050,14 +2050,12 @@
- msgstr "Torbjorn Granlund, David MacKenzie, Larry McVoy in Paul Eggert"
- 
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "Dat. sist. "
-+msgstr "Dat. sist.   Vrsta"
- 
- #: src/df.c:155
--#, fuzzy
- msgid "Filesystem        "
--msgstr "Dat. sist. "
-+msgstr "Dat. sist.        "
- 
- #: src/df.c:158
- #, c-format
---- coreutils-4.5.9/po/sv.po.orig	Wed Mar  5 09:08:37 2003
-+++ coreutils-4.5.9/po/sv.po	Sun Mar  9 13:26:48 2003
-@@ -2019,14 +2019,12 @@
- msgstr "TorbjЖrn Granlund, David MacKenzie, Larry McVoy och Paul Eggert"
- 
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "Filsystem  "
-+msgstr "Filsystem      Typ"
- 
- #: src/df.c:155
--#, fuzzy
- msgid "Filesystem        "
--msgstr "Filsystem  "
-+msgstr "Filsystem         "
- 
- #: src/df.c:158
- #, c-format
---- coreutils-4.5.9/po/tr.po.orig	Wed Mar  5 08:47:00 2003
-+++ coreutils-4.5.9/po/tr.po	Sun Mar  9 13:30:57 2003
-@@ -2075,43 +2075,41 @@
+--- coreutils-4.5.10/po/tr.po.orig	Thu Mar 13 00:00:10 2003
++++ coreutils-4.5.10/po/tr.po	Wed Mar 19 21:47:08 2003
+@@ -2071,43 +2071,41 @@
  msgstr "Torbjorn Granlund, David MacKenzie, Larry McVoy ve Paul Eggert"
  
  #: src/df.c:153
@@ -695,9 +568,9 @@
  
  #: src/df.c:712
  msgid ""
---- coreutils-4.5.9/po/zh_CN.po.orig	Wed Mar  5 08:46:59 2003
-+++ coreutils-4.5.9/po/zh_CN.po	Sun Mar  9 13:39:23 2003
-@@ -1857,19 +1857,17 @@
+--- coreutils-4.5.10/po/zh_CN.po.orig	Thu Mar 13 00:00:11 2003
++++ coreutils-4.5.10/po/zh_CN.po	Wed Mar 19 21:47:08 2003
+@@ -1853,19 +1853,17 @@
  msgstr "Torbjorn GranlundЦ─│David MacKenzie Е▐┼ Jim Meyering"
  
  #: src/df.c:153
@@ -720,7 +593,7 @@
  
  #: src/df.c:162
  #, c-format
-@@ -1882,14 +1880,14 @@
+@@ -1878,14 +1876,14 @@
  msgstr "     Е╝╧И┤▐   Е╥╡Г■╗  Е▐╞Г■╗ Е╥╡Г■╗%%"
  
  #: src/df.c:167
@@ -738,9 +611,9 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.9/po/zh_TW.po.orig	Wed Mar  5 08:46:59 2003
-+++ coreutils-4.5.9/po/zh_TW.po	Sun Mar  9 13:47:16 2003
-@@ -1913,19 +1913,17 @@
+--- coreutils-4.5.10/po/zh_TW.po.orig	Thu Mar 13 00:00:12 2003
++++ coreutils-4.5.10/po/zh_TW.po	Wed Mar 19 21:47:08 2003
+@@ -1909,19 +1909,17 @@
  msgstr "David IhnatЦ─│David MacKenzie Е▐┼ Jim Meyering"
  
  #: src/df.c:153
@@ -763,7 +636,7 @@
  
  #: src/df.c:162
  #, c-format
-@@ -1938,9 +1936,9 @@
+@@ -1934,9 +1932,9 @@
  msgstr "     Е╝╧И┤▐   Е╥╡Г■╗  Е▐╞Г■╗ Е╥╡Г■╗%%"
  
  #: src/df.c:167
