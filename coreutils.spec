@@ -12,6 +12,7 @@ Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 Source10:	su.pamd
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-pam.patch
+Patch2:		%{name}-info.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	gettext-devel
 BuildRequires:	autoconf >= 2.54
@@ -65,6 +66,7 @@ Programy zawarte w tej paczce to:
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gettextize}
