@@ -49,7 +49,7 @@ BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
 BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
-%{?_with_selinux:BuildRequires:	selinux-libs-static}
+%{?_with_selinux:BuildRequires:	libselinux-devel}
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
