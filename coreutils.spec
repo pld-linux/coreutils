@@ -156,6 +156,9 @@ for f in `find $RPM_BUILD_ROOT%{_mandir} -type f -name ginstall.1`; do
 	mv -f $f `dirname $f`/install.1
 done
 
+# not supported by glibc 2.3.1
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/lg
+
 %find_lang %{name}
 
 %clean
