@@ -1,6 +1,7 @@
-
-# _with_selinux - build with selinux support
-
+#
+# Conditional build:
+%bcond_with	selinux		# build with selinux support
+#
 # TODO:
 # - see Source 8
 
@@ -8,7 +9,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -41,7 +42,8 @@ Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
 # based on http://acl.bestbits.at/current/diff/fileutils-4.1.8acl-0.8.25.diff.gz
 Patch11:	%{name}-acl-0.8.25.patch
-Patch12:	%{name}-selinux.patch
+Patch12:	%{name}-lsw.patch
+Patch13:	%{name}-selinux.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
@@ -49,7 +51,7 @@ BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
 BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
-%{?_with_selinux:BuildRequires:	libselinux-devel}
+%{?with_selinux:BuildRequires:	libselinux-devel}
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
@@ -111,7 +113,8 @@ Programy zawarte w tej paczce to:
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%{?_with_selinux:%patch12 -p1}
+%patch12 -p1
+%{?with_selinux:%patch13 -p1}
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
