@@ -31,15 +31,13 @@ Patch7:		%{name}-mem.patch
 Patch8:		%{name}-install-C.patch
 Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
+# based on patch from Fedora, based on patches from http://acl.bestbits.at/
+Patch11:	%{name}-acl.patch
 # NEEDS UPDATE
-# based on http://acl.bestbits.at/current/diff/fileutils-4.1.8acl-0.8.25.diff.gz
-Patch11:	%{name}-acl-0.8.25.patch
-Patch12:	%{name}-lsw.patch
-Patch13:	%{name}-nanosleep.patch
-Patch14:	%{name}-selinux.patch
+Patch12:	%{name}-selinux.patch
 # allow obsolete head/tail syntax when compiled on POSIX2.200112-compliant glibc
 # (only if POSIXLY_CORRECT is not set in environment)
-#Patch15:	%{name}-noposix2.patch
+#Patch13:	%{name}-noposix2.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.8
@@ -112,9 +110,7 @@ Programy zawarte w tym pakiecie to:
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%{?with_selinux:%patch14 -p1}
+%{?with_selinux:%patch12 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
