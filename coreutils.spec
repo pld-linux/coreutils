@@ -9,7 +9,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.0
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -45,6 +45,9 @@ Patch11:	%{name}-acl-0.8.25.patch
 Patch12:	%{name}-lsw.patch
 Patch13:	%{name}-nanosleep.patch
 Patch14:	%{name}-selinux.patch
+# allow obsolete head/tail syntax when compiled on POSIX2.200112-compliant glibc
+# (only if POSIXLY_CORRECT is not set in environment)
+Patch15:	%{name}-noposix2.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
@@ -117,6 +120,7 @@ Programy zawarte w tej paczce to:
 %patch12 -p1
 %patch13 -p1
 %{?with_selinux:%patch14 -p1}
+%patch15 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
