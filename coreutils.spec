@@ -36,7 +36,7 @@ Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
-BuildRequires:	automake >= 1.8
+BuildRequires:	automake >= 1:1.8
 %{?with_selinux:BuildRequires:	gcc >= 5:3.2}
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
