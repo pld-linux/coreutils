@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	4.5.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -31,6 +31,7 @@ Patch8:		%{name}-date-man.patch
 Patch9:		%{name}-mem.patch
 Patch10:	%{name}-install-C.patch
 Patch11:	%{name}-po.patch
+Patch12:	%{name}-no-nb.patch
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel >= 0.11.5
@@ -96,8 +97,14 @@ Programy zawarte w tej paczce to:
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
+
+# nb_NO is just an alias for no_NO in glibc
+# no.po is outdated, nb.po is more fresh here
+mv -f po/{nb,no}.po
+rm -f po/{nb,no}.gmo
 
 %build
 # jm's inttypes.m4 and inttypes.m4 from gettext are really different files
