@@ -5,7 +5,7 @@ Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
 Version:	4.5.3
-Release:	0.5
+Release:	0.7
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -95,12 +95,15 @@ rm -f uptime* hostname* groups*
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin,%{_sysconfdir}/pam.d}
 
-install src/{dir,dircolors,dirname,du,env,expr,factor,hostid,logname,mkfifo,pathchk,pinky,printenv,printf,seq,shred,stat,tee,tty,users,vdir,who,whoami,yes,\
-cksum,comm,csplit,cut,expand,fmt,fold,head,join,md5sum,nl,od,paste,pr,ptx,sha1sum,split,sum,tac,tail,tr,tsort,unexpand,uniq,wc,ginstall,install,test,[} \
-$RPM_BUILD_ROOT%{_bindir}
-install src/nohup $RPM_BUILD_ROOT%{_bindir}
+install src/{dir,dircolors,dirname,du,env,expr,factor,hostid,logname,mkfifo,\
+pathchk,pinky,printenv,printf,seq,shred,stat,tee,tty,users,vdir,who,whoami,\
+yes,cksum,comm,csplit,cut,expand,fmt,fold,head,join,md5sum,nohup,nl,od,paste,\
+pr,ptx,sha1sum,split,sum,tac,tail,test,tr,tsort,unexpand,uniq,wc,ginstall,\
+install,[} $RPM_BUILD_ROOT%{_bindir}
 
-install src/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,pwd,rm,rmdir,sleep,sort,stty,su,sync,test,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
+install src/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,echo,false,id,link,\
+ln,ls,mkdir,mknod,mv,nice,pwd,rm,rmdir,sleep,sort,stty,su,sync,touch,true,\
+unlink,uname} $RPM_BUILD_ROOT/bin
 
 install src/chroot $RPM_BUILD_ROOT%{_sbindir}
 
@@ -119,7 +122,39 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc
-%attr(755,root,root) /bin/*
+
+%attr(755,root,root) /bin/basename
+%attr(755,root,root) /bin/cat
+%attr(755,root,root) /bin/chgrp
+%attr(755,root,root) /bin/chmod
+%attr(755,root,root) /bin/chown
+%attr(755,root,root) /bin/cp
+%attr(755,root,root) /bin/date
+%attr(755,root,root) /bin/dd
+%attr(755,root,root) /bin/df
+%attr(755,root,root) /bin/echo
+%attr(755,root,root) /bin/false
+%attr(755,root,root) /bin/id
+%attr(755,root,root) /bin/link
+%attr(755,root,root) /bin/ln
+%attr(755,root,root) /bin/ls
+%attr(755,root,root) /bin/mkdir
+%attr(755,root,root) /bin/mknod
+%attr(755,root,root) /bin/mv
+%attr(755,root,root) /bin/nice
+%attr(755,root,root) /bin/pwd
+%attr(755,root,root) /bin/rm
+%attr(755,root,root) /bin/rmdir
+%attr(755,root,root) /bin/sleep
+%attr(755,root,root) /bin/sort
+%attr(755,root,root) /bin/stty
+%attr(4755,root,root) /bin/su
+%attr(755,root,root) /bin/sync
+%attr(755,root,root) /bin/touch
+%attr(755,root,root) /bin/true
+%attr(755,root,root) /bin/unlink
+%attr(755,root,root) /bin/uname
+
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %{_sysconfdir}/pam.d/*
