@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	selinux		# build with selinux support
+%bcond_without	selinux		# build without selinux support
 #
 # TODO:
 # - see Source 8
