@@ -75,7 +75,7 @@ Narzêdzia podstawowe (core utilities) GNU to po³±czone paczki GNU
 fileutils, sh-utils i textutils.
 
 Wiêkszo¶æ z zawartych programów jest znacznie ulepszona w porównaniu
-z ich Uniksowymi odpowiednikami, np. szybciej dzia³aj±, maj± dodatkowe
+z ich uniksowymi odpowiednikami, np. szybciej dzia³aj±, maj± dodatkowe
 opcje i mniej ograniczeñ.
 
 Programy zawarte w tej paczce to:
