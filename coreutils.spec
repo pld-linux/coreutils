@@ -3,7 +3,7 @@
 # - pl.po-update patch (in progress)
 # - po patch from fileutils
 # - add po updates to pam,getgid,install-C patches (as they add new messages)
-# - see Source 2,3,4
+# - see Source 4
 
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
@@ -14,11 +14,7 @@ License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/fileutils-non-english-man-pages.tar.bz2
-# Source2 TODO: update date(1) from PTM (with TZ information from date-man patch)
 Source2:	sh-utils-non-english-man-pages.tar.bz2
-# Source3 TODO:
-# - update pl (at least cksum.1,ptx.1,sort.1)
-# - add es od.1(?),paste.1,pr.1 (from man-pages-es-extra)
 Source3:	textutils-non-english-man-pages.tar.bz2
 # to be put in Source1
 Source4:	stat.1.pl
@@ -101,6 +97,8 @@ Programy zawarte w tej paczce to:
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+
+perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
 %build
 # jm's inttypes.m4 and inttypes.m4 from gettext are really different files
