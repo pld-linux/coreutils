@@ -1,0 +1,110 @@
+--- coreutils-5.2.1/po/pl.po.orig	Fri Mar 12 14:56:32 2004
++++ coreutils-5.2.1/po/pl.po	Thu Mar 18 16:47:11 2004
+@@ -10,10 +10,10 @@
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: coreutils 5.2.0\n"
++"Project-Id-Version: coreutils 5.2.1\n"
+ "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
+ "POT-Creation-Date: 2004-03-12 14:56+0100\n"
+-"PO-Revision-Date: 2004-02-21 15:00+0200\n"
++"PO-Revision-Date: 2004-03-14 00:30+0200\n"
+ "Last-Translator: Rafa³ Maszkowski <rzm@icm.edu.pl>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+@@ -965,7 +965,7 @@
+ 
+ #: src/comm.c:76
+ msgid "Compare sorted files FILE1 and FILE2 line by line.\n"
+-msgstr ""
++msgstr "Porównanie posortowanych plików PLIK1 i PLIK2 linia po linii.\n"
+ 
+ #: src/comm.c:79
+ msgid ""
+@@ -974,19 +974,21 @@
+ "lines unique to FILE1, column two contains lines unique to FILE2,\n"
+ "and column three contains lines common to both files.\n"
+ msgstr ""
++"\n"
++"Bez opcji wypisuje wyniki w trzech kolumnach. Pierwsza zawiera linie\n"
++"wystêpuj±ce tylko w PLIKU1, druga - tylko w PLIKU2, trzecia - wystêpuj±ce w\n"
++"obu plikach.\n"
+ 
+ #: src/comm.c:85
+-#, fuzzy
+ msgid ""
+ "\n"
+ "  -1              suppress lines unique to FILE1\n"
+ "  -2              suppress lines unique to FILE2\n"
+ "  -3              suppress lines that appear in both files\n"
+ msgstr ""
+-"Porównanie posortowanych plików LEWY_PLIK i PRAWY_PLIK linia po linii.\n"
+ "\n"
+-"  -1              bez pokazania linii, które s± tylko w lewym pliku\n"
+-"  -2              bez pokazania linii, które s± tylko w prawym pliku\n"
++"  -1              bez pokazania linii, które s± tylko w PLIKU1\n"
++"  -2              bez pokazania linii, które s± tylko w PLIKU2\n"
+ "  -3              bez pokazania linii, które s± w obu plikach\n"
+ 
+ #: src/copy.c:222 src/fmt.c:435 src/head.c:866 src/tail.c:1268
+@@ -2523,7 +2525,6 @@
+ "  -D, --dereference-args  rozwijanie PLIKÓW - dowi±zañ symbolicznych\n"
+ 
+ #: src/du.c:186
+-#, fuzzy
+ msgid ""
+ "  -H                    like --si, but also evokes a warning; will soon\n"
+ "                        change to be equivalent to --dereference-args (-D)\n"
+@@ -2533,10 +2534,14 @@
+ "  -k                    like --block-size=1K\n"
+ "  -l, --count-links     count sizes many times if hard linked\n"
+ msgstr ""
++"  -H                    to samo co --si, ale wypisuje ostrze¿enie; "
++"znaczenie\n"
++"                          bêdzie nied³ugo zmienione na równowa¿ne\n"
++"                          --dereference-args (-D)\n"
+ "  -h, --human-readable  rozmiary w formacie czytelnym dla ludzi (np. 1K "
+ "234M\n"
+ "                          2G)\n"
+-"  -H, --si              podobnie, ale z u¿yciem potêg 1000, nie 1024\n"
++"      --si              podobnie, ale z u¿yciem potêg 1000, nie 1024\n"
+ "                          (przestarza³e)\n"
+ "  -k, --kilobytes       to samo co --block-size=1K\n"
+ "  -l, --count-links     liczenie rozmiaru wielokrotnie je¿eli plik ma\n"
+@@ -4724,6 +4729,7 @@
+ #: src/nohup.c:155
+ msgid "failed to set the copy of stderr to close on exec"
+ msgstr ""
++"nie uda³o siê zamkn±æ kopii standardowego wyj¶cia przy wykonywaniu exec"
+ 
+ #: src/nohup.c:158
+ msgid "failed to redirect standard error"
+@@ -6041,7 +6047,7 @@
+ "  -w, --equal-width        wype³nienie zerami do równej szeroko¶ci\n"
+ 
+ #: src/seq.c:96
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "\n"
+ "If FIRST or INCREMENT is omitted, it defaults to 1.  That is, an\n"
+@@ -6053,14 +6059,13 @@
+ "the printf-style, floating point output formats %e, %f, %g\n"
+ msgstr ""
+ "\n"
+-"Je¿eli PIERWSZA lub KROK s± pominiête, maj± warto¶æ 1. Tzn. je¿eli KROK "
+-"jest\n"
+-"pominiêty, domy¶lnie ma warto¶æ 1, nawet je¿eli OSTATNIA jest mniejsza od\n"
+-"PIERWSZEJ.\n"
++"Je¿eli PIERWSZA lub KROK s± pominiête, maj± domy¶ln± warto¶æ 1. Tzn. je¿eli\n"
++"KROK jest pominiêty, domy¶lnie ma warto¶æ 1, nawet je¿eli OSTATNIA jest\n"
++"mniejsza od PIERWSZEJ.\n"
+ "PIERWSZA, KROK i OSTATNIA s± interpretowane jako liczby zmiennoprzecinkowe.\n"
+ "KROK powinien byæ dodatni, je¶li PIERWSZA jest mniejsza od OSTATNIEJ lub\n"
+ "ujemny w przeciwnym wypadku. Podany FORMAT musi zawieraæ dok³adnie jeden\n"
+-"ze zmiennoprzecinkowych formatów wyj¶cia: %e, %f lub %g\n"
++"ze zmiennoprzecinkowych formatów wyj¶cia w stylu printf: %e, %f lub %g\n"
+ 
+ #: src/seq.c:121
+ #, c-format
