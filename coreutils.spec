@@ -2,7 +2,7 @@ Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
 Version:	4.5.1
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/System
 Source0:	%{name}-%{version}.tar.bz2
@@ -63,10 +63,22 @@ Programy zawarte w tej paczce to:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin,/sbin}
-#%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
+%{__make} -C po install DESTDIR=$RPM_BUILD_ROOT
+%{__make} -C man install DESTDIR=$RPM_BUILD_ROOT mandir="/usr/share/man"
+%{__make} -C doc install DESTDIR=$RPM_BUILD_ROOT prefix="%{_datadir}"
 
-#%find_lang 
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin}
+
+install -s src/{dir,dircolors,dirname,du,env,expr,factor,hostid,hostname,logname,mkfifo,pathchk,pinky,printenv,printf,seq,shred,stat,tee,tty,users,vdir,who,whoami,yes,\
+cksum,comm,csplit,cut,expand,fmt,fold,head,join,md5sum,nl,od,paste,pr,ptx,sha1sum,split,sum,tac,tail,tr,tsort,unexpand,uniq,wc} $RPM_BUILD_ROOT%{_bindir}
+install src/nohup $RPM_BUILD_ROOT%{_bindir}
+
+install -s src/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,pwd,rm,rmdir,sleep,sort,stty,su,sync,test,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin/
+
+install -s src/{chroot,kill,uptime} $RPM_BUILD_ROOT%{_sbindir}
+install src/groups $RPM_BUILD_ROOT%{_sbindir}
+
+%find_lang  %{name}
 
 %post
 %postun
@@ -74,8 +86,11 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mand
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_sbindir}/*
+%attr(644,root,root) %{_mandir}/man1/*
+%attr(644,root,root) %{_datadir}/info/*
