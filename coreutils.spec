@@ -8,7 +8,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -59,6 +59,7 @@ Obsoletes:	sh-utils
 Obsoletes:	stat
 Obsoletes:	textutils
 Requires(post,preun):	fix-info-dir
+Requires:	pam >= 0.77.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
