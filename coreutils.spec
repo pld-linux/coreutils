@@ -10,6 +10,7 @@ Release:	0.2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
+Source10:	su.pamd
 Patch1:		%{name}-pam.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	autoconf >= 2.54
@@ -80,7 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C man install DESTDIR=$RPM_BUILD_ROOT mandir="%{_mandir}"
 %{__make} -C doc install DESTDIR=$RPM_BUILD_ROOT prefix="%{_datadir}"
 
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin,%{_sysconfdir}/pam.d}
 
 install src/{dir,dircolors,dirname,du,env,expr,factor,hostid,logname,mkfifo,pathchk,pinky,printenv,printf,seq,shred,stat,tee,tty,users,vdir,who,whoami,yes,\
 cksum,comm,csplit,cut,expand,fmt,fold,head,join,md5sum,nl,od,paste,pr,ptx,sha1sum,split,sum,tac,tail,tr,tsort,unexpand,uniq,wc} $RPM_BUILD_ROOT%{_bindir}
@@ -90,6 +91,7 @@ install src/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,echo,false,id,link,ln,
 
 install src/chroot $RPM_BUILD_ROOT%{_sbindir}
 
+install %{SOURCE10} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/su
 %find_lang %{name}
 
 %clean
@@ -107,5 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
+%{_sysconfdir}/pam.d/*
 %{_mandir}/man1/*
 %{_infodir}/*
