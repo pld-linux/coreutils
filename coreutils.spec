@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.2.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -183,7 +183,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/*
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/su
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/DIR_COLORS
-/etc/shrc.d/*
+%attr(755,root,root) /etc/shrc.d/*
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(da) %{_mandir}/da/man1/*
