@@ -36,6 +36,7 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
+BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
 Provides:	fileutils
 Provides:	sh-utils
