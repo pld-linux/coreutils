@@ -1,7 +1,7 @@
 diff -Nur coreutils-5.0.orig/lib/xalloc.h coreutils-5.0/lib/xalloc.h
 --- coreutils-5.0.orig/lib/xalloc.h	Tue Oct 31 08:09:56 2000
 +++ coreutils-5.0/lib/xalloc.h	Mon Dec  1 16:46:22 2003
-@@ -56,32 +56,22 @@
+@@ -56,32 +56,23 @@
     memory allocation failure.  */
  extern void xalloc_die PARAMS ((void)) ATTRIBUTE_NORETURN;
  
@@ -12,6 +12,7 @@ diff -Nur coreutils-5.0.orig/lib/xalloc.h coreutils-5.0/lib/xalloc.h
  void *xcalloc PARAMS ((size_t n, size_t s));
 -void *xrealloc PARAMS ((void *p, size_t n));
 +void *xrealloc PARAMS ((void *p, size_t s));
++void *xnrealloc PARAMS ((void *p, size_t n, size_t s));
  char *xstrdup PARAMS ((const char *str));
 +void *xclone PARAMS ((void const *p, size_t s));
  
@@ -101,7 +102,7 @@ diff -Nur coreutils-5.0.orig/lib/xmalloc.c coreutils-5.0/lib/xmalloc.c
 +/* Allocate an array of N objects, each with S bytes of memory,
 +   dynamically, with error checking.  S must be nonzero.  */
 +
-+inline void *
++void *
 +xnmalloc (size_t n, size_t s)
 +{
 +  void *p;
@@ -124,7 +125,7 @@ diff -Nur coreutils-5.0.orig/lib/xmalloc.c coreutils-5.0/lib/xmalloc.c
 +/* Change the size of an allocated block of memory P to an array of N
 +   objects each of S bytes, with error checking.  S must be nonzero.  */
 +
-+inline void *
++void *
 +xnrealloc (void *p, size_t n, size_t s)
 +{
 +  if (array_size_overflow (n, s) || ! (p = realloc (p, n * s)))
