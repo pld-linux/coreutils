@@ -2,9 +2,6 @@
 # Conditional build:
 %bcond_without	selinux		# build without SELinux support
 #
-# TODO:
-# - see Source 8
-
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
@@ -16,19 +13,13 @@ Group:		Applications/System
 #Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 # final versions:
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
-# Source0-md5: 94e5558ee2a65723d4840bfde2d323f0
-Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/fileutils-non-english-man-pages.tar.bz2
-# Source1-md5: def2f215ac4832e3de0889f06d8543ca
-Source2:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/sh-utils-non-english-man-pages.tar.bz2
-# Source2-md5: 9c5fd04cad759fe8d2a70d755679cbc9
-Source3:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/textutils-non-english-man-pages.tar.bz2
-# Source3-md5: 4331303b69dd3b74b7c9be9fa3905557
-Source4:	DIR_COLORS
-Source5:	fileutils.sh
-Source6:	fileutils.csh
-Source7:	su.pamd
-# to be put in Source1
-Source8:	stat.1.pl
+# Source0-md5:	94e5558ee2a65723d4840bfde2d323f0
+Source1:	%{name}-non-english-man-pages.tar.bz2
+# Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
+Source2:	DIR_COLORS
+Source3:	fileutils.sh
+Source4:	fileutils.csh
+Source5:	su.pamd
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pam.patch
 Patch2:		%{name}-getgid.patch
@@ -105,7 +96,7 @@ Programy zawarte w tym pakiecie to:
   uniq unlink users vdir wc who whoami yes
 
 %prep
-%setup -q -a1 -a3
+%setup -q -a1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -150,7 +141,7 @@ install -d $RPM_BUILD_ROOT{/bin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/profile.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_bindir}/{uptime,hostname,kill}
+rm -f $RPM_BUILD_ROOT%{_bindir}/{hostname,kill,uptime}
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{uptime,hostname}.1*
 
 ln -sf test $RPM_BUILD_ROOT%{_bindir}/[
@@ -164,21 +155,16 @@ mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 # su is missed by "make install"
 install src/su $RPM_BUILD_ROOT/bin
 
-install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}
-install %{SOURCE5} %{SOURCE6} $RPM_BUILD_ROOT/etc/profile.d
-install %{SOURCE7} $RPM_BUILD_ROOT/etc/pam.d/su
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
+install %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/profile.d
+install %{SOURCE5} $RPM_BUILD_ROOT/etc/pam.d/su
 
-mv -f man/pt_BR/*.1 man/pt
-for d in cs da de es fi fr hu id it ja ko nl pl pt ru ; do
+mv -f man/pt_BR man/pt
+for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
 	install man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
 done
-install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/pl/man1/stat.1
-bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,uptime}.1
-for f in `find $RPM_BUILD_ROOT%{_mandir} -type f -name ginstall.1`; do
-	mv -f $f `dirname $f`/install.1
-done
+rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 
 %find_lang %{name}
 
@@ -218,4 +204,5 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pl) %{_mandir}/pl/man1/*
 %lang(pt) %{_mandir}/pt/man1/*
 %lang(ru) %{_mandir}/ru/man1/*
+%lang(zh_CN) %{_mandir}/zh_CN/man1/*
 %{_infodir}/coreutils.info*
