@@ -5,8 +5,8 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
-Version:	4.5.4
-Release:	2
+Version:	4.5.8
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -87,17 +87,17 @@ Programy zawarte w tej paczce to:
 %prep
 %setup -q -a1 -a3
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
+#%patch1 -p1
+#%patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
+#%patch5 -p1
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p1
-%patch11 -p1
+#%patch10 -p1
+#%patch11 -p1
 %patch12 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
