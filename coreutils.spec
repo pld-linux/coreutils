@@ -41,8 +41,8 @@ Patch15:	%{name}-selinux.patch
 # (only if POSIXLY_CORRECT is not set in environment)
 Patch16:	%{name}-noposix2.patch
 BuildRequires:	acl-devel
-BuildRequires:	autoconf >= 2.56
-BuildRequires:	automake >= 1.7
+BuildRequires:	autoconf >= 2.58
+BuildRequires:	automake >= 1.8
 %{?with_selinux:BuildRequires:	gcc >= 5:3.2}
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
@@ -102,10 +102,10 @@ Programy zawarte w tym pakiecie to:
 %setup -q -a1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 exit 1
-##%%patch2 -p1
-##%%patch3 -p1
-##%%patch4 -p1
+#%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
