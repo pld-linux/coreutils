@@ -58,7 +58,6 @@ Obsoletes:	fileutils
 Obsoletes:	sh-utils
 Obsoletes:	stat
 Obsoletes:	textutils
-Requires(post,preun):	fix-info-dir
 Requires:	pam >= 0.77.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
