@@ -99,21 +99,21 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+##%%patch0 -p1
+##%%patch1 -p1
+##%%patch2 -p1
+##%%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1
+##%%patch9 -p1
 %patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%{?with_selinux:%patch14 -p1}
+##%%patch11 -p1
+##%%patch12 -p1
+##%%patch13 -p1
+##%%{?with_selinux:%patch14 -p1}
 %patch15 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
