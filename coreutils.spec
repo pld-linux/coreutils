@@ -6,11 +6,14 @@ Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
 Version:	4.5.3
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
+Patch1:		%{name}-pam.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	autoconf >= 2.54
+BuildRequires:	automake >= 1.7
 # when no spec requires sh/file/text utils Provides can be removed
 Provides:	fileutils
 Provides:	sh-utils
@@ -60,7 +63,14 @@ Programy zawarte w tej paczce to:
 %setup -q
 
 %build
-%configure
+#%{__gettextize}
+#%{__libtoolize}
+#%{__aclocal}
+#%{__autoconf}
+#%{__autoheader}
+#%{__automake}
+%configure \
+	--with-pam
 
 %{__make}
 
