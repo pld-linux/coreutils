@@ -5,11 +5,12 @@ Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
 Version:	4.5.3
-Release:	0.4
+Release:	0.5
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 Source10:	su.pamd
+Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-pam.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 BuildRequires:	autoconf >= 2.54
@@ -61,16 +62,20 @@ Programy zawarte w tej paczce to:
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
-#%{__gettextize}
-#%{__libtoolize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__autoheader}
-#%{__automake}
+%{__gettextize}
+%{__libtoolize}
+# don't ask:
+mv -f m4/inttypes.m4~ m4/inttypes.m4
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
-	--with-pam
+	--enable-pam
 
 %{__make}
 
