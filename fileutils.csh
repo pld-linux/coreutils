@@ -1,2 +1,2 @@
 alias	ls	"ls --color=tty"
-eval `dircolors -c /etc/DIR_COLORS`
+eval `/usr/bin/dircolors -c /etc/DIR_COLORS`
