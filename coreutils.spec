@@ -1,31 +1,27 @@
 
 # TODO:
-# - pl.po-update patch (in progress)
-# - po patch from fileutils
-# - add po updates to pam,getgid,install-C patches (as they add new messages)
-# - see Source 4
+# - see Source 8
 
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	4.5.3
-Release:	0.8
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/fileutils-non-english-man-pages.tar.bz2
 Source2:	sh-utils-non-english-man-pages.tar.bz2
 Source3:	textutils-non-english-man-pages.tar.bz2
+Source4:	DIR_COLORS
+Source5:	fileutils.sh
+Source6:	fileutils.csh
+Source7:	su.pamd
 # to be put in Source1
-Source4:	stat.1.pl
-Source5:	DIR_COLORS
-Source6:	fileutils.sh
-Source7:	fileutils.csh
-Source10:	su.pamd
+Source8:	stat.1.pl
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-info.patch
-# reserved (patch !ready)
-#Patch2:	%{name}-pl.po-update.patch
+Patch2:		%{name}-pl.po-update.patch
 Patch3:		%{name}-pam.patch
 Patch4:		%{name}-getgid.patch
 Patch5:		%{name}-utmp.patch
@@ -34,6 +30,7 @@ Patch7:		%{name}-uname-cpuinfo.patch
 Patch8:		%{name}-date-man.patch
 Patch9:		%{name}-mem.patch
 Patch10:	%{name}-install-C.patch
+Patch11:	%{name}-po.patch
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel
@@ -88,7 +85,7 @@ Programy zawarte w tej paczce to:
 %setup -q -a1 -a3
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1	# !ready
+%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
@@ -97,6 +94,7 @@ Programy zawarte w tej paczce to:
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
@@ -138,16 +136,16 @@ unlink,uname} $RPM_BUILD_ROOT/bin
 
 install src/chroot $RPM_BUILD_ROOT%{_sbindir}
 
-install %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}
-install %{SOURCE6} %{SOURCE7} $RPM_BUILD_ROOT/etc/profile.d
-install %{SOURCE10} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/su
+install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}
+install %{SOURCE5} %{SOURCE6} $RPM_BUILD_ROOT/etc/profile.d
+install %{SOURCE7} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/su
 
 mv -f man/pt_BR/*.1 man/pt
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
 	install man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
 done
-install %{SOURCE4} $RPM_BUILD_ROOT%{_mandir}/pl/man1/stat.1
+install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/pl/man1/stat.1
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{groups,hostname,uptime}.1
 for f in `find $RPM_BUILD_ROOT%{_mandir} -type f -name ginstall.1`; do

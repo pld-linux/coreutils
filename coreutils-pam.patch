@@ -295,7 +295,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
    }
 +#ifdef USE_PAM
 +  } else if (child == -1) {
-+      fprintf(stderr, _("can not fork user shell: %s"), strerror(errno));
++      fprintf(stderr, _("cannot fork user shell: %s"), strerror(errno));
 +      exit(1);
 +  }
 +  /* parent only */
@@ -367,3 +367,47 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 -  run_shell (shell, command, additional_args);
 +  run_shell (shell, command, additional_args, pw);
  }
+--- coreutils-4.5.3.orig/po/pl.po	Fri Nov  1 01:55:42 2002
++++ coreutils-4.5.3/po/pl.po	Fri Nov  1 02:11:20 2002
+@@ -6491,6 +6491,41 @@
+ msgid "cannot set user id"
+ msgstr "nie mo¿na ustawiæ identyfikatora u¿ytkownika"
+ 
++#: src/su.c:468
++msgid "could not open session\n"
++msgstr "nie mo¿na otworzyæ sesji\n"
++
++#: src/su.c:476
++msgid "error copying PAM environment\n"
++msgstr "b³±d podczas kopiowania ¶rodowiska PAM\n"
++
++#: src/su.c:521
++#, c-format
++msgid "cannot fork user shell: %s"
++msgstr "nie mo¿na utworzyæ procesu pow³oki u¿ytkownika: %s"
++
++#: src/su.c:527
++#, c-format
++msgid "%s: signal malfunction\n"
++msgstr "%s: b³êdne dzia³anie sygna³ów\n"
++
++#: src/su.c:540
++#, c-format
++msgid "%s: signal masking malfunction\n"
++msgstr "%s: b³êdne dzia³anie maskowania sygna³ów\n"
++
++#: src/su.c:559
++msgid ""
++"\n"
++"Session terminated, killing shell..."
++msgstr ""
++"\n"
++"Sesja zakoñczona, zabijanie pow³oki..."
++
++#: src/su.c:569
++msgid " killed.\n"
++msgstr " zabito.\n"
++
+ #: src/su.c:437
+ #, c-format
+ msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
