@@ -1,0 +1,35 @@
+--- coreutils-4.5.3/lib/physmem.c.orig	Fri Nov 16 10:20:25 2001
++++ coreutils-4.5.3/lib/physmem.c	Sun Oct 27 22:35:25 2002
+@@ -31,6 +31,14 @@
+ # include <sys/pstat.h>
+ #endif
+ 
++/* Cap physical memory to something sane */
++static double
++physmem_cap (double mem)
++{
++  double max = 1 << (sizeof(void *)*8 - 4);
++  return mem > max ? max : mem;
++}
++
+ /* Return the total amount of physical memory.  */
+ double
+ physmem_total (void)
+@@ -40,7 +48,7 @@
+     double pages = sysconf (_SC_PHYS_PAGES);
+     double pagesize = sysconf (_SC_PAGESIZE);
+     if (0 <= pages && 0 <= pagesize)
+-      return pages * pagesize;
++      return physmem_cap(pages * pagesize);
+   }
+ #endif
+ 
+@@ -52,7 +60,7 @@
+ 	double pages = pss.physical_memory;
+ 	double pagesize = pss.page_size;
+ 	if (0 <= pages && 0 <= pagesize)
+-	  return pages * pagesize;
++	  return physmem_cap(pages * pagesize);
+       }
+   }
+ #endif

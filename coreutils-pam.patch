@@ -15,12 +15,16 @@ diff -Nur sh-utils-2.0.12.orig/configure.ac sh-utils-2.0.12/configure.ac
  AC_GNU_SOURCE
  jm_PERL
  AC_PROG_CC
-@@ -238,6 +245,9 @@
+@@ -238,6 +245,13 @@
  
  AM_GNU_GETTEXT([external])
  
 +# just in case we want PAM
 +AC_SUBST(LIB_PAM)
++# with PAM su doesn't need libcrypt
++if test -n "$LIB_PAM" ; then
++  LIB_CRYPT=
++fi
 +
  AC_CONFIG_FILES(
    Makefile
@@ -267,7 +271,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +
 +  retval = pam_open_session(pamh,0);
 +  if (retval != PAM_SUCCESS) {
-+    fprintf (stderr, "could not open session\n");
++    fprintf (stderr, _("could not open session\n"));
 +    exit (1);
 +  }
 +
@@ -275,7 +279,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +   be passed even in the session phase
 +*/
 +  if(pam_copyenv(pamh) != PAM_SUCCESS)
-+     fprintf (stderr, "error copying PAM environment\n");
++     fprintf (stderr, _("error copying PAM environment\n"));
  
 +  child = fork();
 +  if (child == 0) {  /* child shell */
@@ -291,13 +295,13 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
    }
 +#ifdef USE_PAM
 +  } else if (child == -1) {
-+      fprintf(stderr, "can not fork user shell: %s", strerror(errno));
++      fprintf(stderr, _("can not fork user shell: %s"), strerror(errno));
 +      exit(1);
 +  }
 +  /* parent only */
 +  sigfillset(&ourset);
 +  if (sigprocmask(SIG_BLOCK, &ourset, NULL)) {
-+    fprintf(stderr, "%s: signal malfunction\n", PROGRAM_NAME);
++    fprintf(stderr, _("%s: signal malfunction\n"), PROGRAM_NAME);
 +    caught = 1;
 +  }
 +  if (!caught) {
@@ -310,7 +314,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +        || sigaddset(&ourset, SIGALRM)
 +        || sigaction(SIGTERM, &action, NULL)
 +        || sigprocmask(SIG_UNBLOCK, &ourset, NULL)) {
-+      fprintf(stderr, "%s: signal masking malfunction\n", PROGRAM_NAME);
++      fprintf(stderr, _("%s: signal masking malfunction\n"), PROGRAM_NAME);
 +      caught = 1;
 +    }
 +  }
@@ -329,7 +333,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +  }
 +
 +  if (caught) {
-+    fprintf(stderr, "\nSession terminated, killing shell...");
++    fprintf(stderr, _("\nSession terminated, killing shell..."));
 +    kill (child, SIGTERM);
 +  }
 +  retval = pam_close_session(pamh, 0);
@@ -339,7 +343,7 @@ diff -Nur sh-utils-2.0.12.orig/src/su.c sh-utils-2.0.12/src/su.c
 +  if (caught) {
 +    sleep(2);
 +    kill(child, SIGKILL);
-+    fprintf(stderr, " ...killed.\n");
++    fprintf(stderr, _(" killed.\n"));
 +    exit(-1);
 +  }
 +  exit (WEXITSTATUS(status));

@@ -1,0 +1,121 @@
+diff -Nur coreutils-4.5.3.orig/man/Makefile.am coreutils-4.5.3/man/Makefile.am
+--- coreutils-4.5.3.orig/man/Makefile.am	Fri Aug  9 08:12:29 2002
++++ coreutils-4.5.3/man/Makefile.am	Sun Oct 27 21:38:26 2002
+@@ -10,6 +10,7 @@
+   su.1 sum.1 sync.1 tac.1 tail.1 tee.1 test.1 touch.1 tr.1 true.1 tsort.1 \
+   tty.1 uname.1 unexpand.1 uniq.1 unlink.1 uptime.1 users.1 vdir.1 wc.1 \
+   who.1 whoami.1 yes.1
++man_MANS = getgid.1
+ 
+ man_aux = $(dist_man_MANS:.1=.x)
+ 
+diff -Nur coreutils-4.5.3.orig/man/getgid.1 coreutils-4.5.3/man/getgid.1
+--- coreutils-4.5.3.orig/man/getgid.1	Thu Jan  1 01:00:00 1970
++++ coreutils-4.5.3/man/getgid.1	Sun Oct 27 21:40:54 2002
+@@ -0,0 +1,22 @@
++.TH GETGID "1" "October 2002" "getgid (coreutils) 4.5.3" "User Commands"
++.SH NAME
++getgid \- print ID of given group
++.SH SYNOPSIS
++.B getgid
++\fIGROUPNAME\fR
++.SH DESCRIPTION
++.PP
++Print group ID for GROUPNAME.
++.PP
++Without any OPTION, print usage information.
++.SH AUTHOR
++Written by Artur Frysiak.
++.SH "REPORTING BUGS"
++Report bugs to <feedback@pld.org.pl>.
++.SH COPYRIGHT
++Copyright \(co 1999 Artur Frysiak.
++.br
++This is free software; see the source for copying conditions.  There is NO
++warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
++.SH "SEE ALSO"
++.BR id (1)
+diff -Nur coreutils-4.5.3.orig/man/pl/getgid.1 coreutils-4.5.3/man/pl/getgid.1
+--- coreutils-4.5.3.orig/man/pl/getgid.1	Thu Jan  1 01:00:00 1970
++++ coreutils-4.5.3/man/pl/getgid.1	Sun Oct 27 21:46:48 2002
+@@ -0,0 +1,22 @@
++.TH GETGID "1" "Pa¼dziernik 2002" "getgid (coreutils) 4.5.3" "Polecenia u¿ytkownika"
++.SH NAZWA
++getgid \- wypisuje identyfikator podanej grupy
++.SH SK£ADNIA
++.B getgid
++\fINAZWA-GRUPY\fR
++.SH OPIS
++.PP
++Wypisuje identyfikator grupy NAZWA-GRUPY.
++.PP
++Bez ¿adnych opcji podaje sposób u¿ycia.
++.SH AUTOR
++Napisane przez Artura Frysiaka.
++.SH "ZG£ASZANIE B£ÊDÓW"
++B³êdy proszê zg³aszaæ (w jêz. polskim lub angielskim) pod <feedback@pld.org.pl>.
++.SH COPYRIGHT
++Copyright \(co 1999 Artur Frysiak.
++.br
++This is free software; see the source for copying conditions.  There is NO
++warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
++.SH ZOBACZ TAK¯E
++.BR id (1)
+diff -Nur coreutils-4.5.3.orig/src/Makefile.am coreutils-4.5.3/src/Makefile.am
+--- coreutils-4.5.3.orig/src/Makefile.am	Sun Oct 27 21:25:08 2002
++++ coreutils-4.5.3/src/Makefile.am	Sun Oct 27 21:30:35 2002
+@@ -10,7 +10,7 @@
+   mkfifo mknod mv rm rmdir shred stat sync touch unlink \
+   cat cksum comm csplit cut expand fmt fold head join md5sum \
+   nl od paste pr ptx sha1sum sort split sum tac tail tr tsort unexpand uniq wc \
+-  basename date dirname echo env expr factor false \
++  basename date dirname echo env expr factor false getgid \
+   hostname id kill logname pathchk printenv printf pwd seq sleep tee \
+   test true tty whoami yes \
+   @OPTIONAL_BIN_PROGS@ @DF_PROG@
+diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
+--- coreutils-4.5.3.orig/src/getgid.c	Thu Jan  1 01:00:00 1970
++++ coreutils-4.5.3/src/getgid.c	Sun Oct 27 21:52:01 2002
+@@ -0,0 +1,42 @@
++/* getgid - print GID of given group
++   Copyright (C) 1999 Artur Frysiak <wiget@pld.org.pl>
++
++   This program is free software; you can redistribute it and/or modify
++   it under the terms of the GNU General Public License as published by
++   the Free Software Foundation; either version 2, or (at your option)
++   any later version.
++
++   This program is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++   GNU General Public License for more details.
++
++   You should have received a copy of the GNU General Public License
++   along with this program; if not, write to the Free Software Foundation,
++   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  */
++
++#include <config.h>
++#include <grp.h>
++#include <sys/types.h>
++#include "system.h"
++
++int main(int argc, char **argv)
++{
++	struct group 	*gr;
++	int		retval;
++
++	if (argc > 1) {
++		gr = getgrnam(argv[1]);
++		if (gr) {
++			printf("%d\n",gr->gr_gid);
++			retval = 0;
++		} else {
++			retval = 1;
++		}
++	} else {
++		printf(_("Usage:\n\t%s groupname\n"),argv[0]);
++		retval = 1;
++	}
++	return retval;
++}
++

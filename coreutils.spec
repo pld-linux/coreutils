@@ -10,6 +10,7 @@ License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/fileutils-non-english-man-pages.tar.bz2
+# Source2 TODO: add TZ information from date-man patch
 Source2:	sh-utils-non-english-man-pages.tar.bz2
 # Source3 TODO:
 # - update pl (at least cksum.1,ptx.1,sort.1)
@@ -22,11 +23,21 @@ Source6:	fileutils.sh
 Source7:	fileutils.csh
 Source10:	su.pamd
 Patch0:		%{name}-ac_fix.patch
-Patch1:		%{name}-pam.patch
-Patch2:		%{name}-info.patch
+Patch1:		%{name}-info.patch
+# reserved (patch !ready)
+#Patch2:	%{name}-pl.po-update.patch
+Patch3:		%{name}-pam.patch
+Patch4:		%{name}-getgid.patch
+Patch5:		%{name}-utmp.patch
+Patch6:		%{name}-su-paths.patch
+Patch7:		%{name}-uname-cpuinfo.patch
+Patch8:		%{name}-date-man.patch
+Patch9:		%{name}-mem.patch
+Patch10:	%{name}-install-C.patch
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel
+BuildRequires:	help2man
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
@@ -77,7 +88,15 @@ Programy zawarte w tej paczce to:
 %setup -q -a1 -a3
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1	# !ready
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
 
 %build
 %{__gettextize}
@@ -129,6 +148,9 @@ done
 install %{SOURCE4} $RPM_BUILD_ROOT%{_mandir}/pl/man1/stat.1
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{groups,hostname,uptime}.1
+for f in `find $RPM_BUILD_ROOT%{_mandir} -type f -name ginstall.1`; do
+	mv $f `dirname $f`/install.1
+done
 
 %find_lang %{name}
 

@@ -1,0 +1,67 @@
+--- coreutils-4.5.3/src/uname.c.orig	Sat Aug 31 10:52:11 2002
++++ coreutils-4.5.3/src/uname.c	Sun Oct 27 22:21:27 2002
+@@ -78,6 +78,8 @@
+ /* Operating system.  */
+ #define PRINT_OPERATING_SYSTEM 128
+ 
++void __sysinfo_processor_type(char*);
++
+ /* The name this program was run with, for error messages. */
+ char *program_name;
+ 
+@@ -240,13 +242,9 @@
+   if (toprint & PRINT_PROCESSOR)
+     {
+       char const *element = unknown;
+-#if HAVE_SYSINFO && defined SI_ARCHITECTURE
+-      {
+-	static char processor[257];
+-	if (0 <= sysinfo (SI_ARCHITECTURE, processor, sizeof processor))
+-	  element = processor;
+-      }
+-#endif
++      char processor[BUFSIZ];
++      __sysinfo_processor_type(processor);
++      element = processor;
+ #ifdef UNAME_PROCESSOR
+       if (element == unknown)
+ 	{
+@@ -291,3 +289,38 @@
+ 
+   exit (EXIT_SUCCESS);
+ }
++
++
++/* Carlos E. Gorges
++return vendor_id from proc cpuinfo
++*/
++
++void
++__sysinfo_processor_type (char* proc_info) {
++ FILE *ffd;
++ char *p,temp_string[BUFSIZ],final_string[BUFSIZ]="unknown";
++ 
++ if ((ffd=fopen("/proc/cpuinfo", "r") )!=NULL) {
++ while ( fscanf(ffd, "%s : ", temp_string) != EOF)
++ #ifdef __PPC__
++ 	if (!(strcmp(temp_string, "machine"))) 
++ #endif /* __PPC__ */
++ #ifdef __sparc__
++ 	if (!(strcmp(temp_string, "cpu"))) 
++ #endif /* __sparc__ */
++ #ifdef __i386__
++ 	if (!(strcmp(temp_string, "name"))) 
++ #endif /* __x86__ */
++ #ifdef __alpha__
++ 	if (!(strcmp(temp_string, "string"))) 
++ #endif /* __alpha__ */
++ {
++         fgets(final_string, 64, ffd);
++         while (p=strchr(final_string, ' ')) *p='_';
++         while (p=strchr(final_string, '\n')) *p=0;
++	 break;
++ }
++ fclose(ffd);
++ }
++ strncpy(proc_info,final_string,BUFSIZ);
++}
