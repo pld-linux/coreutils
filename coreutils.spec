@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	4.5.9
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -19,20 +19,19 @@ Source6:	fileutils.csh
 Source7:	su.pamd
 # to be put in Source1
 Source8:	stat.1.pl
-Patch0:		%{name}-ac_fix.patch
-Patch1:		%{name}-info.patch
-Patch2:		%{name}-pl.po-update.patch
-Patch3:		%{name}-pam.patch
-Patch4:		%{name}-getgid.patch
-Patch5:		%{name}-utmp.patch
-Patch6:		%{name}-su-paths.patch
-Patch7:		%{name}-uname-cpuinfo.patch
-Patch8:		%{name}-date-man.patch
-Patch9:		%{name}-mem.patch
-Patch10:	%{name}-install-C.patch
-Patch11:	%{name}-po.patch
-Patch12:	%{name}-no-nb.patch
-BuildRequires:	autoconf >= 2.54
+Patch0:		%{name}-info.patch
+Patch1:		%{name}-pl.po-update.patch
+Patch2:		%{name}-pam.patch
+Patch3:		%{name}-getgid.patch
+Patch4:		%{name}-utmp.patch
+Patch5:		%{name}-su-paths.patch
+Patch6:		%{name}-uname-cpuinfo.patch
+Patch7:		%{name}-date-man.patch
+Patch8:		%{name}-mem.patch
+Patch9:		%{name}-install-C.patch
+Patch10:	%{name}-po.patch
+Patch11:	%{name}-no-nb.patch
+BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
@@ -97,8 +96,7 @@ Programy zawarte w tej paczce to:
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-#%patch11 -p1
-%patch12 -p1
+%patch11 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
@@ -171,8 +169,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS THANKS-to-translators TODO
-%attr(755,root,root) /bin/[^s]*
-%attr(755,root,root) /bin/s[^u]*
+%attr(755,root,root) /bin/[!s]*
+%attr(755,root,root) /bin/s[!u]*
 %attr(4755,root,root) /bin/su
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
