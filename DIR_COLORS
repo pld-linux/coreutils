@@ -132,12 +132,13 @@ EXEC 00;32
 
 # documents (blue)
 
-.ps 36
-.pdf 36
-.txt 36
 .doc 36
 .htm 36
 .html 36
+.ps 36
+.pdf 36
+.sxc 36
+.txt 36
 
 # devel (yellow)
 
