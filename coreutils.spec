@@ -5,15 +5,15 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
-Version:	5.0
-Release:	12
+Version:	5.2.1
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 # devel versions:
 #Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 # final versions:
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	94e5558ee2a65723d4840bfde2d323f0
+# Source0-md5:	172ee3c315af93d3385ddfbeb843c53f
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
