@@ -58,6 +58,7 @@ Obsoletes:	fileutils
 Obsoletes:	sh-utils
 Obsoletes:	stat
 Obsoletes:	textutils
+Requires(post,preun):	fix-info-dir
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
