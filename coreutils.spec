@@ -16,7 +16,7 @@ Group:		Applications/System
 # final versions:
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
 # Source0-md5: 94e5558ee2a65723d4840bfde2d323f0
-Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/fileutils-non-english-man-pages.tar.bz2
+Source1:	fileutils-non-english-man-pages.tar.bz2
 # Source1-md5: def2f215ac4832e3de0889f06d8543ca
 Source2:	sh-utils-non-english-man-pages.tar.bz2
 # Source2-md5: 9c5fd04cad759fe8d2a70d755679cbc9
