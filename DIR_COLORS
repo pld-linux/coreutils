@@ -98,8 +98,10 @@ EXEC 00;32
 # image formats (bright magenta)
 
 .jpg 01;35
+.jpeg 01;35
 .gif 01;35
 .bmp 01;35
+.pcx 01;35
 .xbm 01;35
 .xpm 01;35
 .pbm 01;35
