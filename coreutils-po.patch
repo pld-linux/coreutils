@@ -16,7 +16,7 @@
  #: src/df.c:164
  #, c-format
  msgid "     Size   Used  Avail Use%%"
--msgstr "    Størr  Brugt   Tilb Brug%%"
+-msgstr "    Størr  Brugt   Tilb Brug"
 +msgstr "    Størr  Brugt  Tilb Brug%%"
  
  #: src/df.c:167
@@ -82,37 +82,47 @@
  
  #: src/df.c:202
  msgid " Mounted on\n"
---- coreutils-4.5.10/po/fi.po.orig	Wed Mar 12 23:59:47 2003
-+++ coreutils-4.5.10/po/fi.po	Wed Mar 19 21:46:50 2003
-@@ -1831,14 +1831,12 @@
- msgstr "Torbjörn Granlund, David MacKenzie, Larry McVoy ja Paul Eggert"
- 
- #: src/df.c:153
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "Tied.järj. "
-+msgstr "Tied.järj.  Tyyppi"
+--- coreutils-5.0/po/fi.po.orig	Mon Mar 31 10:45:36 2003
++++ coreutils-5.0/po/fi.po	Mon Apr  7 20:25:14 2003
+@@ -1853,7 +1853,7 @@
  
  #: src/df.c:155
--#, fuzzy
  msgid "Filesystem        "
--msgstr "Tied.järj. "
+-msgstr "Tiedostojärjestelmä"
 +msgstr "Tied.järj.        "
  
  #: src/df.c:158
  #, c-format
-@@ -1853,7 +1851,7 @@
+@@ -1863,22 +1863,22 @@
+ #: src/df.c:162
+ #, c-format
+ msgid "    Size  Used Avail Use%%"
+-msgstr "   Koko  Käyt Vapaa  Käy%%"
++msgstr "    Koko  Käyt Vapaa Käy%%"
+ 
  #: src/df.c:164
  #, c-format
  msgid "     Size   Used  Avail Use%%"
--msgstr "     Koko   Käyt  Jälj  Käy%%"
-+msgstr "     Koko   Käyt   Jälj Käy%%"
+-msgstr "     Koko   Käyt Vapaa Käy%%"
++msgstr "     Koko   Käyt  Vapaa Käy%%"
  
  #: src/df.c:167
  #, c-format
---- coreutils-4.5.10/po/fr.po.orig	Wed Mar 12 23:59:49 2003
-+++ coreutils-4.5.10/po/fr.po	Wed Mar 19 21:56:42 2003
-@@ -2087,7 +2087,7 @@
+ msgid " %4s-blocks      Used Available Capacity"
+-msgstr "%4s-lohkot  Käytetty   Vapaana Käytetty"
++msgstr " %4s-lohkot  Käytetty   Vapaana Käytetty"
+ 
+ #: src/df.c:198
+ #, c-format
+ msgid " %4s-blocks      Used Available Use%%"
+-msgstr "%4s-lohkot  Käytetty   Vapaana Käy%%"
++msgstr " %4s-lohkot  Käytetty   Vapaana Käy%%"
+ 
+ #: src/df.c:202
+ msgid " Mounted on\n"
+--- coreutils-5.0/po/fr.po.orig	Mon Mar 31 10:45:37 2003
++++ coreutils-5.0/po/fr.po	Mon Apr  7 20:32:02 2003
+@@ -2079,7 +2079,7 @@
  
  #: src/df.c:153
  msgid "Filesystem    Type"
@@ -121,30 +131,36 @@
  
  #: src/df.c:155
  msgid "Filesystem        "
-@@ -2101,22 +2101,22 @@
+@@ -2088,27 +2088,27 @@
+ #: src/df.c:158
+ #, c-format
+ msgid "    Inodes   IUsed   IFree IUse%%"
+-msgstr "    Inodes   IUtil.  ILib. %%IUti."
++msgstr "    Inodes  IUtil.   ILib. %%IUti."
+ 
  #: src/df.c:162
  #, c-format
  msgid "    Size  Used Avail Use%%"
--msgstr "    Tail. Util.Disp. Uti%%"
-+msgstr "   Tail. Util. Disp. Uti%%"
+-msgstr "    Tail. Occ. Disp. %%Occ."
++msgstr "   Tail.  Occ. Disp. %%Occ."
  
  #: src/df.c:164
  #, c-format
  msgid "     Size   Used  Avail Use%%"
--msgstr "     Tail.  Util. Disp. Uti%%"
-+msgstr "    Tail.  Util.  Disp. Uti%%"
+-msgstr "     Tail.  Occ.  Disp. %%Occ."
++msgstr "    Tail.   Occ.  Disp. %%Occ."
  
  #: src/df.c:167
  #, c-format
  msgid " %4s-blocks      Used Available Capacity"
--msgstr " %4s-blocs    Utilisé la capacité disponible"
-+msgstr "  %4s-blocs  Utilisé Disponible Capacité"
+-msgstr " %4s-blocs    Occupé Disponible Capacité"
++msgstr "  %4s-blocs   Occupé Disponible Capacité"
  
  #: src/df.c:198
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
--msgstr " %4s-blocs    Utilisé de la capacité disponible%%"
-+msgstr "  %4s-blocs  Utilisé Disponible Uti%%"
+-msgstr " %4s-blocs       Occupé Disponible Capacité"
++msgstr "  %4s-blocs   Occupé Disponible Uti%%"
  
  #: src/df.c:202
  msgid " Mounted on\n"

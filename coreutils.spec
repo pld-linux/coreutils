@@ -6,10 +6,13 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.0
-Release:	0.1
+Release:	0.9
 License:	GPL
 Group:		Applications/System
-Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
+# devel versions:
+#Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
+# final versions:
+Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/fileutils-non-english-man-pages.tar.bz2
 Source2:	sh-utils-non-english-man-pages.tar.bz2
 Source3:	textutils-non-english-man-pages.tar.bz2
@@ -20,28 +23,25 @@ Source7:	su.pamd
 # to be put in Source1
 Source8:	stat.1.pl
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-pl.po-update.patch
-Patch2:		%{name}-pam.patch
-Patch3:		%{name}-getgid.patch
-Patch4:		%{name}-utmp.patch
-Patch5:		%{name}-su-paths.patch
-Patch6:		%{name}-uname-cpuinfo.patch
-Patch7:		%{name}-date-man.patch
-Patch8:		%{name}-mem.patch
-Patch9:		%{name}-install-C.patch
-Patch10:	%{name}-po.patch
-Patch11:	%{name}-no-nb.patch
-# temporary fix for missing lib/*-stub.c files
-Patch12:	%{name}-jmfix.patch
+Patch1:		%{name}-pam.patch
+Patch2:		%{name}-getgid.patch
+Patch3:		%{name}-utmp.patch
+Patch4:		%{name}-su-paths.patch
+Patch5:		%{name}-uname-cpuinfo.patch
+Patch6:		%{name}-date-man.patch
+Patch7:		%{name}-mem.patch
+Patch8:		%{name}-install-C.patch
+Patch9:		%{name}-po.patch
+Patch10:	%{name}-no-nb.patch
 # based on http://acl.bestbits.at/current/diff/fileutils-4.1.8acl-0.8.25.diff.gz
-Patch13:	%{name}-acl-0.8.25.patch
+Patch11:	%{name}-acl-0.8.25.patch
+BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
 BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
-BuildRequires:	acl-devel
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
@@ -91,7 +91,7 @@ Programy zawarte w tej paczce to:
 %prep
 %setup -q -a1 -a3
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -99,11 +99,9 @@ Programy zawarte w tej paczce to:
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-#%patch9 -p1
-#%patch10 -p1
+%patch9 -p1
+%patch10 -p1
 %patch11 -p1
-#%patch12 -p1
-%patch13 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 

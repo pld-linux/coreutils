@@ -159,8 +159,8 @@ diff -Nur coreutils-4.5.3.orig/src/install.c coreutils-4.5.3/src/install.c
    -d, --directory     treat all arguments as directory names; create all\n\
                          components of the specified directories\n\
  "), stdout);
---- coreutils-4.5.9/po/pl.po.orig	Sat Mar  8 23:13:30 2003
-+++ coreutils-4.5.9/po/pl.po	Sat Mar  8 23:15:06 2003
+--- coreutils-5.0/po/pl.po.orig	Sat Mar  8 23:13:30 2003
++++ coreutils-5.0/po/pl.po	Sat Mar  8 23:15:06 2003
 @@ -2967,12 +2967,18 @@
  "      --backup[=CONTROL] make a backup of each existing destination file\n"
  "  -b                  like --backup but does not accept an argument\n"
@@ -177,6 +177,6 @@ diff -Nur coreutils-4.5.3.orig/src/install.c coreutils-4.5.3/src/install.c
 +"  -C                  instalowanie pliku, chyba ¿e plik docelowy ju¿ istnieje\n"
 +"                        i jest taki sam - wtedy mtime pozostanie nie zmieniony\n"
 +"                        (dla kompatybilno¶ci z *BSD)\n"
- "  -d, --directory     traktowanie wszystkich argumentów jako nazw katalogów;\n"
+ "  -d, --directory     traktowanie wszystkich argumentów jako nazw "
+ "katalogów;\n"
  "                        tworzenie katalogów sk³adowych podanych katalogów\n"
- 
