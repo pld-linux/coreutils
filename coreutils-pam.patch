@@ -628,12 +628,13 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
  }
  
  /* Return 1 if SHELL is a restricted shell (one not returned by
-@@ -577,9 +746,14 @@
+@@ -577,9 +746,15 @@
      }
    modify_environment (pw, shell);
  
 +
 +#ifdef USE_PAM
++  setfsgid(pw->pw_gid);
 +  setfsuid(pw->pw_uid);
 +#else
    change_identity (pw);
