@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	4.5.3
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -116,26 +116,22 @@ mv -f m4/{inttypes.m4,jm-inttypes.m4}
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/bin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/profile.d}
 
-%{__make} -C po install DESTDIR=$RPM_BUILD_ROOT
-%{__make} -C man install DESTDIR=$RPM_BUILD_ROOT
-%{__make} -C doc install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_bindir}/{uptime,hostname,groups,kill}
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{uptime,hostname,groups}.1*
-
-install src/{dir,dircolors,dirname,du,env,expr,factor,hostid,logname,mkfifo,\
-pathchk,pinky,printenv,printf,seq,shred,stat,tee,tty,users,vdir,who,whoami,\
-yes,cksum,comm,csplit,cut,expand,fmt,fold,head,join,md5sum,nohup,nl,od,paste,\
-pr,ptx,sha1sum,split,sum,tac,tail,test,tr,tsort,unexpand,uniq,wc} \
-	$RPM_BUILD_ROOT%{_bindir}
-install src/ginstall $RPM_BUILD_ROOT%{_bindir}/install
 
 ln -sf test $RPM_BUILD_ROOT%{_bindir}/[
 
-install src/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,echo,false,id,link,\
-ln,ls,mkdir,mknod,mv,nice,pwd,rm,rmdir,sleep,sort,stty,su,sync,touch,true,\
-unlink,uname} $RPM_BUILD_ROOT/bin
+mv -f $RPM_BUILD_ROOT%{_bindir}/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,\
+echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,pwd,rm,rmdir,sleep,sort,stty,\
+sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
-install src/chroot $RPM_BUILD_ROOT%{_sbindir}
+mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
+
+# su is missed by "make install"
+install src/su $RPM_BUILD_ROOT/bin
 
 install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE5} %{SOURCE6} $RPM_BUILD_ROOT/etc/profile.d
@@ -150,7 +146,7 @@ install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/pl/man1/stat.1
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{groups,hostname,uptime}.1
 for f in `find $RPM_BUILD_ROOT%{_mandir} -type f -name ginstall.1`; do
-	mv $f `dirname $f`/install.1
+	mv -f $f `dirname $f`/install.1
 done
 
 %find_lang %{name}
