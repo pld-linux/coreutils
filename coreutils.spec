@@ -123,37 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc
 
-%attr(755,root,root) /bin/basename
-%attr(755,root,root) /bin/cat
-%attr(755,root,root) /bin/chgrp
-%attr(755,root,root) /bin/chmod
-%attr(755,root,root) /bin/chown
-%attr(755,root,root) /bin/cp
-%attr(755,root,root) /bin/date
-%attr(755,root,root) /bin/dd
-%attr(755,root,root) /bin/df
-%attr(755,root,root) /bin/echo
-%attr(755,root,root) /bin/false
-%attr(755,root,root) /bin/id
-%attr(755,root,root) /bin/link
-%attr(755,root,root) /bin/ln
-%attr(755,root,root) /bin/ls
-%attr(755,root,root) /bin/mkdir
-%attr(755,root,root) /bin/mknod
-%attr(755,root,root) /bin/mv
-%attr(755,root,root) /bin/nice
-%attr(755,root,root) /bin/pwd
-%attr(755,root,root) /bin/rm
-%attr(755,root,root) /bin/rmdir
-%attr(755,root,root) /bin/sleep
-%attr(755,root,root) /bin/sort
-%attr(755,root,root) /bin/stty
+%attr(755,root,root) /bin/*
+%exclude /bin/su
 %attr(4755,root,root) /bin/su
-%attr(755,root,root) /bin/sync
-%attr(755,root,root) /bin/touch
-%attr(755,root,root) /bin/true
-%attr(755,root,root) /bin/unlink
-%attr(755,root,root) /bin/uname
 
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
