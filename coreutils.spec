@@ -43,6 +43,7 @@ BuildRequires:	help2man
 BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
 %{?with_selinux:BuildRequires:	libselinux-devel}
+PreReq:		fix-info-dir
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	fileutils
