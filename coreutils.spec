@@ -1,12 +1,11 @@
 
 # TODO: check patches in {sh-,file,text}utils packages
-# e.g. su in coreutils doesn't have PAM support!!!
 
 Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
 Version:	4.5.3
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -84,6 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C po install DESTDIR=$RPM_BUILD_ROOT
 %{__make} -C man install DESTDIR=$RPM_BUILD_ROOT mandir="%{_mandir}"
 %{__make} -C doc install DESTDIR=$RPM_BUILD_ROOT prefix="%{_datadir}"
+
+(cd $RPM_BUILD_ROOT%{_mandir}/man1
+rm -f uptime* hostname* groups*
+)
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin,%{_sysconfdir}/pam.d}
 
