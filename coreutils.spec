@@ -99,9 +99,9 @@ Programy zawarte w tej paczce to:
 %patch10 -p1
 
 %build
+# jm's inttypes.m4 and inttypes.m4 from gettext are really different files
+mv -f m4/{inttypes.m4,jm-inttypes.m4}
 %{__gettextize}
-# don't ask:
-mv -f m4/inttypes.m4~ m4/inttypes.m4
 %{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
