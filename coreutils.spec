@@ -13,6 +13,7 @@ Source10:	su.pamd
 Patch0:		%{name}-ac_fix.patch
 Patch1:		%{name}-pam.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	gettext-devel
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
 # when no spec requires sh/file/text utils Provides can be removed
@@ -67,7 +68,6 @@ Programy zawarte w tej paczce to:
 
 %build
 %{__gettextize}
-%{__libtoolize}
 # don't ask:
 mv -f m4/inttypes.m4~ m4/inttypes.m4
 %{__aclocal} -I m4
