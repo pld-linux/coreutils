@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.2.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -34,6 +34,7 @@ Patch10:	%{name}-no-nb.patch
 # based on patch from Fedora, based on patches from http://acl.bestbits.at/
 Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
+Patch13:	%{name}-pam.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.8
