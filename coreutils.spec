@@ -1,5 +1,9 @@
 
-# TODO: check patches in {sh-,file,text}utils packages
+# TODO:
+# - pl.po-update patch (in progress)
+# - po patch from fileutils
+# - add po updates to pam,getgid,install-C patches (as they add new messages)
+# - see Source 2,3,4
 
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
@@ -10,7 +14,7 @@ License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/fileutils-non-english-man-pages.tar.bz2
-# Source2 TODO: add TZ information from date-man patch
+# Source2 TODO: update date(1) from PTM (with TZ information from date-man patch)
 Source2:	sh-utils-non-english-man-pages.tar.bz2
 # Source3 TODO:
 # - update pl (at least cksum.1,ptx.1,sort.1)
