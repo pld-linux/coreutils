@@ -29,9 +29,9 @@ Patch5:		%{name}-uname-cpuinfo.patch
 Patch6:		%{name}-date-man.patch
 Patch7:		%{name}-mem.patch
 Patch8:		%{name}-install-C.patch
-# NEEDS UPDATE
 Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
+# NEEDS UPDATE
 # based on http://acl.bestbits.at/current/diff/fileutils-4.1.8acl-0.8.25.diff.gz
 Patch11:	%{name}-acl-0.8.25.patch
 Patch12:	%{name}-lsw.patch
