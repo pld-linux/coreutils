@@ -124,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc
 
 %attr(755,root,root) /bin/[^s]*
-%attr(755,root,root) /bin/s[^u]
+%attr(755,root,root) /bin/s[^u]*
 %attr(4755,root,root) /bin/su
 
 %attr(755,root,root) %{_bindir}/*
