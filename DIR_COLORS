@@ -97,51 +97,55 @@ EXEC 32
 
 # image formats (bright magenta)
 
-.jpg 01;35
-.jpeg 01;35
-.gif 01;35
 .bmp 01;35
+.cdr 01;35
+.gif 01;35
+.jpeg 01;35
+.jpg 01;35
+.mng 01;35
+.pbm 01;35
 .pcx 01;35
+.pgm 01;35
+.png 01;35
+.ppm 01;35
+.tga 01;35
+.tif 01;35
 .xbm 01;35
 .xpm 01;35
-.pbm 01;35
-.pgm 01;35
-.ppm 01;35
-.png 01;35
-.mng 01;35
-.tif 01;35
-.tga 01;35
 
 # multimedia files (bright white)
 
+.asf 01;37
+.asx 01;37
+.avi 01;37
+.m1v 01;37
 .mp3 01;37
 .mpg 01;37
 .mpe 01;37
 .mpeg 01;37
-.m1v 01;37
-.avi 01;37
-.asf 01;37
-.asx 01;37
 .mov 01;37
+.ogg 01;37
 .qt 01;37
 .rm 01;37
-.ogg 01;37
 .wav 01;37
-.wmv 01;37
 .wma 01;37
+.wmv 01;37
 
 # documents (blue)
 
 .css 36
 .doc 36
+.dot 36
 .htm 36
 .html 36
 .kpr 36
 .ps 36
 .pdf 36
+.ppt 36
 .rtf 36
 .sxc 36
 .sxw 36
+.tex 36
 .txt 36
 .xls 36
 
