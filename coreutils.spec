@@ -42,6 +42,7 @@ Patch15:	%{name}-noposix2.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
+%{?with_selinux:BuildRequires:	gcc >= 5:3.2}
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
 BuildRequires:	pam-devel
