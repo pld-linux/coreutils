@@ -44,6 +44,7 @@ Patch10:	%{name}-no-nb.patch
 Patch11:	%{name}-acl-0.8.25.patch
 Patch12:	%{name}-lsw.patch
 Patch13:	%{name}-selinux.patch
+Patch14:	%{name}-ls-missing.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
@@ -115,6 +116,7 @@ Programy zawarte w tej paczce to:
 %patch11 -p1
 %patch12 -p1
 %{?with_selinux:%patch13 -p1}
+%patch14 -p1
 
 perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 

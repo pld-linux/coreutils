@@ -1,0 +1,11 @@
+--- coreutils-5.0/src/ls.c~	2004-12-22 17:00:02.168862040 +0100
++++ coreutils-5.0/src/ls.c	2004-12-22 17:00:02.168862040 +0100
+@@ -2317,6 +2317,8 @@
+ /* Add a file to the current table of files.
+    Verify that the file exists, and print an error message if it does not.
+    Return the number of blocks that the file occupies.  */
++/* Yes, it's ugly, but it's working */
++inline void * xnrealloc (void *, size_t, size_t);
+ 
+ static uintmax_t
+ gobble_file (const char *name, enum filetype type, int explicit_arg,
