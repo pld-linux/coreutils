@@ -53,7 +53,7 @@
 + 	if (!(strcmp(temp_string, "name"))) 
 + #endif /* __x86__ */
 + #ifdef __alpha__
-+ 	if (!(strcmp(temp_string, "string"))) 
++ 	if (!(strcmp(temp_string, "model"))) 
 + #endif /* __alpha__ */
 + {
 +         fgets(final_string, 64, ffd);
