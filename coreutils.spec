@@ -9,7 +9,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.0
-Release:	8
+Release:	9
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -124,10 +124,9 @@ Programy zawarte w tej paczce to:
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
-# nb_NO is just an alias for no_NO in glibc
-# no.po is outdated, nb.po is more fresh here
-mv -f po/{nb,no}.po
-rm -f po/{nb,no}.gmo
+# no_NO is just an alias for nb_NO in recent glibc
+# no.po is outdated, nb.po is more fresh here (see also patch10)
+rm -f po/no.*
 
 %build
 # jm's inttypes.m4 and inttypes.m4 from gettext are really different files
