@@ -56,6 +56,7 @@ BuildRequires:	help2man
 BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
 %{?with_selinux:BuildRequires:	libselinux-devel}
+Requires:	pam >= 0.77.3
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
@@ -64,7 +65,7 @@ Obsoletes:	fileutils
 Obsoletes:	sh-utils
 Obsoletes:	stat
 Obsoletes:	textutils
-Requires:	pam >= 0.77.3
+Conflicts:	shadow < 1:4.0.3-6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -79,11 +80,11 @@ The programs that can be built with this package are:
 
   basename cat chgrp chmod chown chroot cksum comm cp csplit cut date dd
   df dir dircolors dirname du echo env expand expr factor false fmt fold
-  ginstall head hostid id join link ln logname ls md5sum mkdir mkfifo
-  mknod mv nice nl nohup od paste pathchk pinky pr printenv printf ptx
-  pwd rm rmdir seq sha1sum shred sleep sort split stat stty su sum sync
-  tac tail tee test touch tr true tsort tty uname unexpand uniq unlink
-  users vdir wc who whoami yes
+  ginstall groups head hostid id join link ln logname ls md5sum mkdir
+  mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
+  printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
+  su sum sync tac tail tee test touch tr true tsort tty uname unexpand
+  uniq unlink users vdir wc who whoami yes
 
 %description -l pl
 Narzêdzia podstawowe (core utilities) GNU to po³±czone paczki GNU
@@ -93,15 +94,15 @@ Wiêkszo¶æ z zawartych programów jest znacznie ulepszona w porównaniu
 z ich uniksowymi odpowiednikami, np. szybciej dzia³aj±, maj± dodatkowe
 opcje i mniej ograniczeñ.
 
-Programy zawarte w tej paczce to:
+Programy zawarte w tym pakiecie to:
 
   basename cat chgrp chmod chown chroot cksum comm cp csplit cut date dd
   df dir dircolors dirname du echo env expand expr factor false fmt fold
-  ginstall head hostid id join link ln logname ls md5sum mkdir mkfifo
-  mknod mv nice nl nohup od paste pathchk pinky pr printenv printf ptx
-  pwd rm rmdir seq sha1sum shred sleep sort split stat stty su sum sync
-  tac tail tee test touch tr true tsort tty uname unexpand uniq unlink
-  users vdir wc who whoami yes
+  ginstall groups head hostid id join link ln logname ls md5sum mkdir
+  mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
+  printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
+  su sum sync tac tail tee test touch tr true tsort tty uname unexpand
+  uniq unlink users vdir wc who whoami yes
 
 %prep
 %setup -q -a1 -a3
