@@ -139,7 +139,7 @@ install src/chroot $RPM_BUILD_ROOT%{_sbindir}
 
 install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE5} %{SOURCE6} $RPM_BUILD_ROOT/etc/profile.d
-install %{SOURCE7} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/su
+install %{SOURCE7} $RPM_BUILD_ROOT/etc/pam.d/su
 
 mv -f man/pt_BR/*.1 man/pt
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru ; do
@@ -172,7 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4755,root,root) /bin/su
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pam.d/su
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/su
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/DIR_COLORS
 %attr(755,root,root) /etc/profile.d/*
 %{_mandir}/man1/*
