@@ -24,22 +24,22 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-pl.po-update.patch
 Patch2:		%{name}-pam.patch
 Patch3:		%{name}-getgid.patch
-Patch4:		%{name}-utmp.patch
-Patch5:		%{name}-su-paths.patch
-Patch6:		%{name}-uname-cpuinfo.patch
-Patch7:		%{name}-date-man.patch
-Patch8:		%{name}-mem.patch
-Patch9:		%{name}-install-C.patch
-Patch10:	%{name}-po.patch
-Patch11:	%{name}-no-nb.patch
+Patch4:		%{name}-su-paths.patch
+Patch5:		%{name}-uname-cpuinfo.patch
+Patch6:		%{name}-date-man.patch
+Patch7:		%{name}-mem.patch
+Patch8:		%{name}-install-C.patch
+# NEEDS UPDATE
+Patch9:		%{name}-po.patch
+Patch10:	%{name}-no-nb.patch
 # based on http://acl.bestbits.at/current/diff/fileutils-4.1.8acl-0.8.25.diff.gz
-Patch12:	%{name}-acl-0.8.25.patch
-Patch13:	%{name}-lsw.patch
-Patch14:	%{name}-nanosleep.patch
-Patch15:	%{name}-selinux.patch
+Patch11:	%{name}-acl-0.8.25.patch
+Patch12:	%{name}-lsw.patch
+Patch13:	%{name}-nanosleep.patch
+Patch14:	%{name}-selinux.patch
 # allow obsolete head/tail syntax when compiled on POSIX2.200112-compliant glibc
 # (only if POSIXLY_CORRECT is not set in environment)
-Patch16:	%{name}-noposix2.patch
+#Patch15:	%{name}-noposix2.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.8
@@ -104,20 +104,17 @@ Programy zawarte w tym pakiecie to:
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-exit 1
-#%patch4 -p1
+%patch4 -p1
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-##%%patch10 -p1
+%patch10 -p1
 %patch11 -p1
-##%%patch12 -p1
-##%%patch13 -p1
-##%%patch14 -p1
-##%%{?with_selinux:%patch15 -p1}
-%patch16 -p1
+%patch12 -p1
+%patch13 -p1
+%{?with_selinux:%patch14 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
