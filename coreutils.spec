@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.2.1
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -48,6 +48,7 @@ BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
 %{?with_selinux:BuildRequires:	libselinux-devel}
 Requires:	pam >= 0.77.3
+Requires:       setup >= 2.4.6-2
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
@@ -135,7 +136,7 @@ mv -f m4/{inttypes.m4,jm-inttypes.m4}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/bin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/profile.d}
+install -d $RPM_BUILD_ROOT{/bin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/shrc.d}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -155,7 +156,7 @@ mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 install src/su $RPM_BUILD_ROOT/bin
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
-install %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/profile.d
+install %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/shrc.d
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/pam.d/su
 
 mv -f man/pt_BR man/pt
@@ -186,7 +187,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/*
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/su
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/DIR_COLORS
-%attr(755,root,root) /etc/profile.d/*
+%attr(755,root,root) /etc/shrc.d/*
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(da) %{_mandir}/da/man1/*
