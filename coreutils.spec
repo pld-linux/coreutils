@@ -6,7 +6,7 @@ Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
 Version:	4.5.3
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -75,6 +75,10 @@ Programy zawarte w tej paczce to:
 
 %{__make}
 
+cd src
+ln -s test [
+ln -s ginstall install 
+
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} -C po install DESTDIR=$RPM_BUILD_ROOT
@@ -84,7 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin,%{_sysconfdir}/pam.d}
 
 install src/{dir,dircolors,dirname,du,env,expr,factor,hostid,logname,mkfifo,pathchk,pinky,printenv,printf,seq,shred,stat,tee,tty,users,vdir,who,whoami,yes,\
-cksum,comm,csplit,cut,expand,fmt,fold,head,join,md5sum,nl,od,paste,pr,ptx,sha1sum,split,sum,tac,tail,tr,tsort,unexpand,uniq,wc} $RPM_BUILD_ROOT%{_bindir}
+cksum,comm,csplit,cut,expand,fmt,fold,head,join,md5sum,nl,od,paste,pr,ptx,sha1sum,split,sum,tac,tail,tr,tsort,unexpand,uniq,wc,ginstall,install,test,[} \
+$RPM_BUILD_ROOT%{_bindir}
 install src/nohup $RPM_BUILD_ROOT%{_bindir}
 
 install src/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,pwd,rm,rmdir,sleep,sort,stty,su,sync,test,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
