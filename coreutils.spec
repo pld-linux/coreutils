@@ -146,8 +146,8 @@ install -d $RPM_BUILD_ROOT{/bin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/profile.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_bindir}/{uptime,hostname,groups,kill}
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{uptime,hostname,groups}.1*
+rm -f $RPM_BUILD_ROOT%{_bindir}/{uptime,hostname,kill}
+rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{uptime,hostname}.1*
 
 ln -sf test $RPM_BUILD_ROOT%{_bindir}/[
 
@@ -171,7 +171,7 @@ for d in cs da de es fi fr hu id it ja ko nl pl pt ru ; do
 done
 install %{SOURCE8} $RPM_BUILD_ROOT%{_mandir}/pl/man1/stat.1
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
-rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{groups,hostname,uptime}.1
+rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,uptime}.1
 for f in `find $RPM_BUILD_ROOT%{_mandir} -type f -name ginstall.1`; do
 	mv -f $f `dirname $f`/install.1
 done
