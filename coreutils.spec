@@ -5,7 +5,7 @@ Summary:	Coreutils
 Summary(pl):	Coreutils
 Name:		coreutils
 Version:	4.5.3
-Release:	0.7
+Release:	0.8
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
@@ -123,8 +123,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc
 
-%attr(755,root,root) /bin/*
-%exclude /bin/su
+%attr(755,root,root) /bin/[^s]*
+%attr(755,root,root) /bin/s[^u]
 %attr(4755,root,root) /bin/su
 
 %attr(755,root,root) %{_bindir}/*
