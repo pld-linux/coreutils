@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.2.1
-Release:	0.5
+Release:	0.6
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -67,10 +67,10 @@ arbitrary limits.
 
 The programs that can be built with this package are:
 
-  basename cat chgrp chmod chown chroot cksum comm cp csplit cut date dd
-  df dir dircolors dirname du echo env expand expr factor false fmt fold
-  ginstall groups head hostid id join link ln logname ls md5sum mkdir
-  mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
+  [ basename cat chgrp chmod chown chroot cksum comm cp csplit cut date
+  dd df dir dircolors dirname du echo env expand expr factor false fmt
+  fold install groups head hostid id join link ln logname ls md5sum
+  mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
   printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
   su sum sync tac tail tee test touch tr true tsort tty uname unexpand
   uniq unlink users vdir wc who whoami yes
@@ -85,10 +85,10 @@ opcje i mniej ograniczeñ.
 
 Programy zawarte w tym pakiecie to:
 
-  basename cat chgrp chmod chown chroot cksum comm cp csplit cut date dd
-  df dir dircolors dirname du echo env expand expr factor false fmt fold
-  ginstall groups head hostid id join link ln logname ls md5sum mkdir
-  mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
+  [ basename cat chgrp chmod chown chroot cksum comm cp csplit cut date
+  dd df dir dircolors dirname du echo env expand expr factor false fmt
+  fold ginstall groups head hostid id join link ln logname ls md5sum
+  mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
   printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
   su sum sync tac tail tee test touch tr true tsort tty uname unexpand
   uniq unlink users vdir wc who whoami yes
@@ -141,8 +141,6 @@ install -d $RPM_BUILD_ROOT{/bin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/shrc.d}
 
 rm -f $RPM_BUILD_ROOT%{_bindir}/{hostname,kill,uptime}
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{hostname,kill,uptime}.1*
-
-ln -sf test $RPM_BUILD_ROOT%{_bindir}/[
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,\
 echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,printf,pwd,rm,rmdir,sleep,sort,stty,\
