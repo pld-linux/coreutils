@@ -1,0 +1,2 @@
+- added missing setfsgid() call in pam.patch from romke (romke (at) estrefa.pl)
+- release 5
