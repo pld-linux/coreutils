@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.2.1
-Release:	0.3
+Release:	0.5
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -33,11 +33,7 @@ Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
 # based on patch from Fedora, based on patches from http://acl.bestbits.at/
 Patch11:	%{name}-acl.patch
-# NEEDS UPDATE
 Patch12:	%{name}-selinux.patch
-# allow obsolete head/tail syntax when compiled on POSIX2.200112-compliant glibc
-# (only if POSIXLY_CORRECT is not set in environment)
-#Patch13:	%{name}-noposix2.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1.8
@@ -48,7 +44,7 @@ BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
 %{?with_selinux:BuildRequires:	libselinux-devel}
 Requires:	pam >= 0.77.3
-Requires:       setup >= 2.4.6-2
+Requires:	setup >= 2.4.6-2
 Provides:	fileutils
 Provides:	sh-utils
 Provides:	stat
