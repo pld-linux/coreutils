@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	selinux		# build without selinux support
+%bcond_without	selinux		# build without SELinux support
 #
 # TODO:
 # - see Source 8
@@ -9,7 +9,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.0
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -43,8 +43,8 @@ Patch10:	%{name}-no-nb.patch
 # based on http://acl.bestbits.at/current/diff/fileutils-4.1.8acl-0.8.25.diff.gz
 Patch11:	%{name}-acl-0.8.25.patch
 Patch12:	%{name}-lsw.patch
-Patch13:	%{name}-selinux.patch
-Patch14:	%{name}-ls-missing.patch
+Patch13:	%{name}-nanosleep.patch
+Patch14:	%{name}-selinux.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.56
 BuildRequires:	automake >= 1.7
@@ -115,10 +115,10 @@ Programy zawarte w tej paczce to:
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%{?with_selinux:%patch13 -p1}
-%patch14 -p1
+%patch13 -p1
+%{?with_selinux:%patch14 -p1}
 
-perl -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
+%{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
 # nb_NO is just an alias for no_NO in glibc
 # no.po is outdated, nb.po is more fresh here
