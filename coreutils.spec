@@ -14,7 +14,7 @@ Provides:	sh-utils
 Provides:	fileutils
 Provides:	textutils
 
-%define	_prefix	/
+%define	_prefix	/usr
 
 %description
 These are the GNU core utilities.  This package is the union of
@@ -63,7 +63,10 @@ Programy zawarte w tej paczce to:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_libdir},%{_infodir},%{_mandir}/man1,/bin,/sbin}
+#%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} install
+
+#%find_lang 
 
 %post
 %postun
@@ -74,4 +77,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc
-%attr(,,)
+%attr(755,root,root) /bin/*
+%attr(755,root,root) %{_bindir}/*
