@@ -7,5 +7,5 @@ password	required	/lib/security/pam_cracklib.so difok=2 minlen=8 dcredit=2 ocred
 password	required	/lib/security/pam_unix.so md5 shadow use_authtok 
 session		required	/lib/security/pam_unix.so
 session		required	/lib/security/pam_env.so
-session		required	/lib/security/pam_limits.so
+session		required	/lib/security/pam_limits.so change_uid
 session		optional	/lib/security/pam_xauth.so
