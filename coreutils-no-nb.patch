@@ -1,0 +1,10 @@
+--- coreutils-4.5.4/po/LINGUAS.orig	Thu Nov 21 19:17:04 2002
++++ coreutils-4.5.4/po/LINGUAS	Fri Jan 31 14:24:05 2003
+@@ -14,7 +14,6 @@
+ ko
+ lg
+ ms
+-nb
+ nl
+ no
+ pl
