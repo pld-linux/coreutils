@@ -67,33 +67,36 @@ EXEC 32
 
 # executables (bright green)
 
-.cmd 01;32
-.exe 01;32
-.com 01;32
-.btm 01;32
-.bat 01;32
-.sh  01;32
+.sh 01;32
 .csh 01;32
+.bat 01;32
+.btm 01;32
+.cmd 01;32
+.com 01;32
+.exe 01;32
 
 # archives or compressed (bright red)
 
 .tar 01;31
 .tgz 01;31
-.arj 01;31
-.taz 01;31
-.lzh 01;31
-.lha 01;31
-.zip 01;31
-.z   01;31
-.Z   01;31
 .gz  01;31
 .bz2 01;31
 .bz  01;31
+.z   01;31
+.Z   01;31
 .tz  01;31
-.rpm 01;31
+.taz 01;31
+.tpz 01;31
 .cpio 01;31
+.trpm 01;31
+.rpm 01;31
 .deb 01;31
+.arj 01;31
+.lha 01;31
+.lzh 01;31
 .rar 01;31
+.zip 01;31
+.zoo 01;31
 
 # image formats (bright magenta)
 
@@ -110,44 +113,66 @@ EXEC 32
 .ppm 01;35
 .tga 01;35
 .tif 01;35
+.tiff 01;35
 .xbm 01;35
+.xcf 01;35
 .xpm 01;35
 
 # multimedia files (bright white)
 
 .asf 01;37
 .asx 01;37
+.au 01;37
 .avi 01;37
 .m1v 01;37
+.mid 01;37
 .mp3 01;37
+.mp4 01;37
 .mpg 01;37
 .mpe 01;37
 .mpeg 01;37
+.mod 01;37
 .mov 01;37
 .ogg 01;37
 .qt 01;37
 .rm 01;37
+.ram 01;37
+.s3m 01;37
+.vob 01;37
+.voc 01;37
 .wav 01;37
 .wma 01;37
 .wmv 01;37
+.xm 01;37
 
 # documents (blue)
 
+.abw 36
 .css 36
 .doc 36
 .dot 36
+.dvi 36
+.eps 36
 .htm 36
 .html 36
+.info 36
 .kpr 36
+.me 36
+.ms 36
 .ps 36
 .pdf 36
+.pps 36
 .ppt 36
 .rtf 36
 .sxc 36
 .sxw 36
 .tex 36
+.texi 36
+.texinfo 36
 .txt 36
+.wri 36
 .xls 36
+.xlw 36
 
 # devel (yellow)
 
@@ -156,10 +181,12 @@ EXEC 32
 .c 01;33
 .cc 01;33
 .cpp 01;33
+.f 01;33
 .h 01;33
 .in 01;33
 .o 01;33
 .patch 01;33
 .po 01;33
 .pot 01;33
+.s 01;33
 .spec 01;33
