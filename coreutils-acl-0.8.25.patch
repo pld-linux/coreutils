@@ -277,7 +277,7 @@ diff -urN coreutils-4.5.10.org/m4/Makefile.am coreutils-4.5.10/m4/Makefile.am
 diff -urN coreutils-4.5.10.org/m4/posix_acl.m4 coreutils-4.5.10/m4/posix_acl.m4
 --- coreutils-4.5.10.org/m4/posix_acl.m4	Thu Jan  1 01:00:00 1970
 +++ coreutils-4.5.10/m4/posix_acl.m4	Mon Mar 24 16:30:58 2003
-@@ -0,0 +1,19 @@
+@@ -0,0 +1,24 @@
 +#serial 1
 +
 +dnl Written by Andreas Gruenbacher <a.gruenbacher@computer.org>.
@@ -286,16 +286,21 @@ diff -urN coreutils-4.5.10.org/m4/posix_acl.m4 coreutils-4.5.10/m4/posix_acl.m4
 +dnl access control list support
 +AC_DEFUN([ag_POSIX_ACL],
 +[
++  save_LIBS="$LIBS"
 +  AC_CHECK_HEADERS(sys/acl.h)
 +  AC_CHECK_LIB(acl, main)
 +  AC_CHECK_FUNCS(acl_get_file acl_set_file acl_free acl_to_text \
 +                 acl_from_text acl_delete_def_file)
 +  # Linux specific extensions:
 +  AC_CHECK_FUNCS(acl_entries acl_extended_file)
++  LIBS="$save_LIBS"
 +
++  LIBACL=
 +  if test $ac_cv_header_sys_acl_h = yes; then
 +    AC_DEFINE(USE_ACL, 1, [Define if you want access control list support.])
++    LIBACL="-lacl"
 +  fi
++  AC_SUBST(LIBACL)
 +])
 diff -urN coreutils-4.5.10.org/src/copy.c coreutils-4.5.10/src/copy.c
 --- coreutils-4.5.10.org/src/copy.c	Mon Mar 24 16:29:46 2003
@@ -1160,3 +1165,36 @@ diff -urN coreutils-4.5.10.org/tests/misc/run coreutils-4.5.10/tests/misc/run
 +  }
 +}
 +
+--- coreutils-5.0/src/Makefile.am.orig	2003-12-28 23:21:11.000000000 +0100
++++ coreutils-5.0/src/Makefile.am	2003-12-28 23:27:33.113542384 +0100
+@@ -34,10 +34,13 @@
+ # replacement functions defined in libfetish.a.
+ LDADD = ../lib/libfetish.a @LIBINTL@ ../lib/libfetish.a
+ 
+-dir_LDADD = $(LDADD) @LIB_CLOCK_GETTIME@
+-ls_LDADD = $(LDADD) @LIB_CLOCK_GETTIME@
++dir_LDADD = $(LDADD) @LIB_CLOCK_GETTIME@ $(LIBACL)
++ls_LDADD = $(LDADD) @LIB_CLOCK_GETTIME@ $(LIBACL)
+ shred_LDADD = $(LDADD) @LIB_CLOCK_GETTIME@
+-vdir_LDADD = $(LDADD) @LIB_CLOCK_GETTIME@
++vdir_LDADD = $(LDADD) @LIB_CLOCK_GETTIME@ $(LIBACL)
++cp_LDADD = $(LDADD) $(LIBACL)
++ginstall_LDADD = $(LDADD) $(LIBACL)
++mv_LDADD = $(LDADD) $(LIBACL)
+ 
+ ## If necessary, add -lm to resolve use of pow in lib/strtod.c.
+ sort_LDADD = $(LDADD) @POW_LIB@
+--- coreutils-5.0/po/pl.po.orig	2003-12-28 23:21:11.000000000 +0100
++++ coreutils-5.0/po/pl.po	2003-12-28 23:43:19.632649608 +0100
+@@ -1011,6 +1011,11 @@
+ msgid "setting permissions for %s"
+ msgstr "nie mo¿na ustawiæ uprawnieñ do %s"
+ 
++#: src/copy.c:1568
++#, c-format
++msgid "preserving permissions for %s"
++msgstr "nie mo¿na zachowaæ uprawnieñ do %s"
++
+ #: src/copy.c:1571 src/ln.c:326
+ #, c-format
+ msgid "cannot un-backup %s"
