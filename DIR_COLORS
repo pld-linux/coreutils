@@ -148,36 +148,42 @@ EXEC 32
 .wmv  01;37
 .xm   01;37
 
-# documents (blue)
-
-.abw  36
-.css  36
-.doc  36
-.dot  36
-.dvi  36
-.eps  36
-.htm  36
-.html 36
-.info 36
-.kpr  36
-.me   36
-.ms   36
-.ps   36
-.pdf  36
-.pps  36
-.ppt  36
-.rtf  36
-.sxc  36
-.sxw  36
-.tex  36
-.texi 36
+# documents (cyan)
+.abw     36
+.bib     36
+.doc     36
+.dot     36
+.dvi     36
+.eps     36
+.info    36
+.kpr     36
+.me      36
+.ms      36
+.ps      36
+.pdf     36
+.pps     36
+.ppt     36
+.rtf     36
+.sxc     36
+.sxw     36
+.tex     36
+.texi    36
 .texinfo 36
-.txt  36
-.wri  36
-.xls  36
-.xlw  36
+.tm      36
+.txt     36
+.wri     36
+.xls     36
+.xlw     36
 
-# devel (yellow)
+# web (yellow)
+.cgi     33
+.css     33
+.htm     33
+.html    33
+.php     33
+.phtml   33
+
+# devel (bright yellow)
 
 .ac   01;33
 .am   01;33
