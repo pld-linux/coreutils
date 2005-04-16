@@ -34,6 +34,7 @@ Patch10:	%{name}-no-nb.patch
 # based on patch from Fedora, based on patches from http://acl.bestbits.at/
 Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
+Patch13:	%{name}-gettext-m4.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.8
@@ -108,6 +109,7 @@ Programy zawarte w tym pakiecie to:
 %patch10 -p1
 %patch11 -p1
 %{?with_selinux:%patch12 -p1}
+%patch13 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
