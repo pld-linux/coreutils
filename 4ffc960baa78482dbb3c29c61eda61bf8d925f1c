@@ -1,0 +1,3 @@
+- added non-english-man-pages and DIR_COLORS+scripts from *utils
+- removed ginstall (it was fake target), install is true binary again
+- added proper %config for pam.d/su
