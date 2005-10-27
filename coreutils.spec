@@ -35,6 +35,7 @@ Patch10:	%{name}-no-nb.patch
 Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
 Patch13:	%{name}-gettext-m4.patch
+URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.8
