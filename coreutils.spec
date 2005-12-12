@@ -42,9 +42,9 @@ BuildRequires:	automake >= 1:1.8
 %{?with_selinux:BuildRequires:	gcc >= 5:3.2}
 BuildRequires:	gettext-devel >= 0.11.5
 BuildRequires:	help2man
+%{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	pam-devel
 BuildRequires:	texinfo >= 4.2
-%{?with_selinux:BuildRequires:	libselinux-devel}
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	fileutils
@@ -60,8 +60,8 @@ Conflicts:	tetex < 1:2.0.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-These are the GNU core utilities.  This package is the union of
-the GNU fileutils, sh-utils, and textutils packages.
+These are the GNU core utilities. This package is the union of the GNU
+fileutils, sh-utils, and textutils packages.
 
 Most of these programs have significant advantages over their Unix
 counterparts, such as greater speed, additional options, and fewer
@@ -184,8 +184,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4755,root,root) /bin/su
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/su
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/DIR_COLORS
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
 %attr(755,root,root) /etc/shrc.d/*
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
