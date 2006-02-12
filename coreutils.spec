@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.2.1
-Release:	7.1
+Release:	8
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -35,6 +35,7 @@ Patch10:	%{name}-no-nb.patch
 Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
 Patch13:	%{name}-gettext-m4.patch
+Patch14:	%{name}-euidaccess.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
@@ -111,6 +112,7 @@ Programy zawarte w tym pakiecie to:
 %patch11 -p1
 %{?with_selinux:%patch12 -p1}
 %patch13 -p1
+%patch14 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
