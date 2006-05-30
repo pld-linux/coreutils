@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	5.2.1
-Release:	8
+Release:	8.1
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -131,6 +131,7 @@ mv -f m4/{inttypes.m4,jm-inttypes.m4}
 %{__autoheader}
 %{__automake}
 %configure \
+	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
 	DEFAULT_POSIX2_VERSION=199209 \
 	%{?with_selinux:--enable-selinux} \
 	--enable-pam
