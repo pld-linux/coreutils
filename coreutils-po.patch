@@ -615,3 +615,103 @@
  
  #: src/df.c:194
  #, c-format
+diff -ur coreutils-5.2.1.orig/po/da.po coreutils-5.2.1/po/da.po
+--- coreutils-5.2.1.orig/po/da.po	2006-07-29 22:00:42.000000000 +0000
++++ coreutils-5.2.1/po/da.po	2006-07-29 22:09:08.000000000 +0000
+@@ -8382,15 +8382,15 @@
+ #, c-format
+ msgid "%d day"
+ msgid_plural "%d days"
+-msgstr[0] "dage"
+-msgstr[1] "dag"
++msgstr[0] "%d dage"
++msgstr[1] "%d dag"
+ 
+ #: src/uptime.c:146
+ #, c-format
+ msgid "%d user"
+ msgid_plural "%d users"
+-msgstr[0] "brugere"
+-msgstr[1] "bruger"
++msgstr[0] "%d brugere"
++msgstr[1] "%d bruger"
+ 
+ #: src/uptime.c:159
+ #, c-format
+diff -ur coreutils-5.2.1.orig/po/fr.po coreutils-5.2.1/po/fr.po
+--- coreutils-5.2.1.orig/po/fr.po	2006-07-29 22:00:42.000000000 +0000
++++ coreutils-5.2.1/po/fr.po	2006-07-29 22:09:26.000000000 +0000
+@@ -8798,8 +8798,8 @@
+ #, c-format
+ msgid "%d day"
+ msgid_plural "%d days"
+-msgstr[0] "jour"
+-msgstr[1] "jours"
++msgstr[0] "%d jour"
++msgstr[1] "%d jours"
+ 
+ #: src/uptime.c:146
+ #, c-format
+diff -ur coreutils-5.2.1.orig/po/it.po coreutils-5.2.1/po/it.po
+--- coreutils-5.2.1.orig/po/it.po	2006-07-29 22:00:42.000000000 +0000
++++ coreutils-5.2.1/po/it.po	2006-07-29 22:09:49.000000000 +0000
+@@ -7993,15 +7993,15 @@
+ #, c-format
+ msgid "%d day"
+ msgid_plural "%d days"
+-msgstr[0] "giorni"
+-msgstr[1] "giorno"
++msgstr[0] "%d giorni"
++msgstr[1] "%d giorno"
+ 
+ #: src/uptime.c:146
+ #, c-format
+ msgid "%d user"
+ msgid_plural "%d users"
+-msgstr[0] "utenti"
+-msgstr[1] "utente"
++msgstr[0] "%d utenti"
++msgstr[1] "%d utente"
+ 
+ #: src/uptime.c:159
+ #, c-format
+diff -ur coreutils-5.2.1.orig/po/ja.po coreutils-5.2.1/po/ja.po
+--- coreutils-5.2.1.orig/po/ja.po	2006-07-29 22:00:42.000000000 +0000
++++ coreutils-5.2.1/po/ja.po	2006-07-29 22:10:31.000000000 +0000
+@@ -8310,8 +8310,7 @@
+ #, c-format
+ msgid "%d day"
+ msgid_plural "%d days"
+-msgstr[0] "%dфЭ"
+-msgstr[1] "%dфЭ"
++msgstr[0] "%d фЭ"
+ 
+ #: src/uptime.c:146
+ #, fuzzy, c-format
+diff -ur coreutils-5.2.1.orig/po/ru.po coreutils-5.2.1/po/ru.po
+--- coreutils-5.2.1.orig/po/ru.po	2006-07-29 22:00:42.000000000 +0000
++++ coreutils-5.2.1/po/ru.po	2006-07-29 22:11:34.000000000 +0000
+@@ -8554,17 +8554,17 @@
+ #, c-format
+ msgid "%d day"
+ msgid_plural "%d days"
+-msgstr[0] "день"
+-msgstr[1] "дня"
+-msgstr[2] "дней"
++msgstr[0] "%d день"
++msgstr[1] "%d дня"
++msgstr[2] "%d дней"
+ 
+ #: src/uptime.c:146
+ #, c-format
+ msgid "%d user"
+ msgid_plural "%d users"
+-msgstr[0] "пользователь"
+-msgstr[1] "пользователя"
+-msgstr[2] "пользователей"
++msgstr[0] "%d пользователь"
++msgstr[1] "%d пользователя"
++msgstr[2] "%d пользователей"
+ 
+ #: src/uptime.c:159
+ #, c-format
