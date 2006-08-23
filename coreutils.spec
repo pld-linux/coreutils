@@ -189,7 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
-%attr(755,root,root) /etc/shrc.d/*
+/etc/shrc.d/*
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(da) %{_mandir}/da/man1/*
