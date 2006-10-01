@@ -4,7 +4,7 @@
 # the system defaults.
 
 # NOTE:
-# The keywords OPTIONS, and EIGHTBIT (honored by the slackware version
+# The keywords OPTIONS and EIGHTBIT (honored by the slackware version
 # of dircolors) are recognized but ignored.
 
 # COLOR keyword is recognized by PLD fileutils.(c)sh script (which is located
