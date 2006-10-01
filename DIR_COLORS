@@ -4,14 +4,14 @@
 # the system defaults.
 
 # NOTE:
-# The keywords OPTIONS and EIGHTBIT (honored by the slackware version
+# The keywords COLOR, OPTIONS and EIGHTBIT (honored by the slackware version
 # of dircolors) are recognized but ignored.
 
 # COLOR keyword is recognized by PLD fileutils.(c)sh script (which is located
 # in /etc/shrc.d directory and needs one of these arguments:
 # 'auto', 'tty', 'if-tty' - colorizes output to ttys, but not pipes,
 # 'always', 'yes', 'force' - adds color characters to all output,
-# 'never', 'no', 'none' - shuts colorization off,
+# 'never', 'no', 'none' - shuts colorization off.
 COLOR tty
 
 # Below, there should be one TERM entry for each termtype that is colorizable
