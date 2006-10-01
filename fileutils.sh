@@ -1,2 +1,17 @@
-alias	ls="ls --color=tty"
-eval `/usr/bin/dircolors -b /etc/DIR_COLORS`
+SYS_RC_FILE=/etc/DIR_COLORS
+USER_RC_FILE=$HOME/.dir_colors
+DEF_COLOR_MODE=tty
+
+COLOR_MODE=`grep ^COLOR $SYS_RC_FILE |head -n 1|cut -c 7-`
+
+[ -r $USER_RC_FILE ] && COLOR_MODE=`grep ^COLOR $USER_RC_FILE |head -n 1|cut -c 7-`
+
+[ -z "$COLOR_MODE" ] && COLOR_MODE=$DEF_COLOR_MODE
+
+alias ls="ls --color=$COLOR_MODE"
+
+if [ -r $USER_RC_FILE ]; then
+	eval `/usr/bin/dircolors -b $USER_RC_FILE`
+else	
+	eval `/usr/bin/dircolors -b $SYS_RC_FILE`
+fi
