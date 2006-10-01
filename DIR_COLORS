@@ -1,18 +1,18 @@
 # Configuration file for the color ls utility
-# This file goes in the /etc directory, and must be world readable.
+# This file goes in the /etc directory and must be world readable.
 # You can copy this file to .dir_colors in your $HOME directory to override
 # the system defaults.
 
-# COLOR needs one of these arguments: 'tty' colorizes output to ttys, but not
-# pipes. 'all' adds color characters to all output. 'none' shuts colorization
-# off.
-COLOR tty
+# NOTE:
+# The keywords OPTIONS, and EIGHTBIT (honored by the slackware version
+# of dircolors) are recognized but ignored.
 
-# Extra command line options for ls go here.
-# Basically these ones are:
-#  -F = show '/' for dirs, '*' for executables, etc.
-#  -T 0 = don't trust tab spacing when formatting ls output.
-OPTIONS -F -T 0
+# COLOR keyword is recognized by PLD fileutils.(c)sh script (which is located
+# in /etc/shrc.d directory and needs one of these arguments:
+# 'auto', 'tty', 'if-tty' - colorizes output to ttys, but not pipes,
+# 'always', 'yes', 'force' - adds color characters to all output,
+# 'never', 'no', 'none' - shuts colorization off,
+COLOR tty
 
 # Below, there should be one TERM entry for each termtype that is colorizable
 TERM linux
@@ -35,9 +35,6 @@ TERM color-xterm
 TERM color_xterm
 TERM vt100
 TERM dtterm
-
-# EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
-EIGHTBIT 1
 
 # Below are the color init strings for the basic file types. A color init
 # string consists of one or more of the following numeric codes:
