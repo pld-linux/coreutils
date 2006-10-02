@@ -2,9 +2,9 @@ SYS_RC_FILE=/etc/DIR_COLORS
 USER_RC_FILE=$HOME/.dir_colors
 DEF_COLOR_MODE=tty
 
-COLOR_MODE=`grep ^COLOR $SYS_RC_FILE |head -n 1|cut -c 7-`
+COLOR_MODE=`awk '/^COLOR/{c=$2} END{print c}' $SYS_RC_FILE`
 
-[ -r $USER_RC_FILE ] && COLOR_MODE=`grep ^COLOR $USER_RC_FILE |head -n 1|cut -c 7-`
+[ -r $USER_RC_FILE ] && COLOR_MODE=`awk '/^COLOR/{c=$2} END{print c}' $USER_RC_FILE`
 
 # 'all' argument for 'ls --color=' is no longer valid
 [ "$COLOR_MODE" = all ] && COLOR_MODE=always
