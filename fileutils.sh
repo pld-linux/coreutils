@@ -18,3 +18,5 @@ if [ -r $USER_RC_FILE ]; then
 else	
 	eval `/usr/bin/dircolors -b $SYS_RC_FILE`
 fi
+
+unset SYS_RC_FILE USER_RC_FILE DEF_COLOR_MODE COLOR_MODE
