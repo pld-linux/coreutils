@@ -1,9 +1,8 @@
-diff -Nur coreutils-5.2.1.orig/configure.ac coreutils-5.2.1/configure.ac
---- coreutils-5.2.1.orig/configure.ac	Tue Mar  2 23:47:31 2004
-+++ coreutils-5.2.1/configure.ac	Thu Mar 18 17:06:38 2004
-@@ -7,6 +7,13 @@
- 
- AM_INIT_AUTOMAKE([1.8 gnits dist-bzip2])
+--- coreutils-6.3/configure.ac.orig	2006-09-30 09:37:48.000000000 +0200
++++ coreutils-6.3/configure.ac	2006-10-10 21:51:42.565887000 +0200
+@@ -29,6 +29,13 @@
+ AB_INIT()
+ AM_INIT_AUTOMAKE([1.9.6 gnits dist-bzip2])
  
 +dnl Give the chance to enable PAM
 +AC_ARG_ENABLE(pam, dnl
@@ -12,12 +11,12 @@ diff -Nur coreutils-5.2.1.orig/configure.ac coreutils-5.2.1/configure.ac
 +LIB_PAM="-ldl -lpam -lpam_misc"
 +)
 +
- gl_DEFAULT_POSIX2_VERSION
- gl_USE_SYSTEM_EXTENSIONS
- jm_PERL
-@@ -235,6 +242,13 @@
- AM_GNU_GETTEXT([external], [need-ngettext])
- AM_GNU_GETTEXT_VERSION(0.13.1)
+ AC_PROG_CC_STDC
+ AM_PROG_CC_C_O
+ AC_PROG_CPP
+@@ -249,6 +256,13 @@
+ AM_GNU_GETTEXT([external], [need-formatstring-macros])
+ AM_GNU_GETTEXT_VERSION([0.15])
  
 +# just in case we want PAM
 +AC_SUBST(LIB_PAM)
@@ -296,37 +295,36 @@ diff -Nur coreutils-5.2.1.orig/man/pl/su.1 coreutils-5.2.1/man/pl/su.1
  .SH "ZG£ASZANIE B£ÊDÓW"
  B³êdy proszê zg³aszaæ, w jêz.ang., do <bug-sh-utils@gnu.org>.
  .SH COPYRIGHT
-diff -Nur coreutils-5.2.1.orig/po/pl.po coreutils-5.2.1/po/pl.po
---- coreutils-5.2.1.orig/po/pl.po	Thu Mar 18 16:58:54 2004
-+++ coreutils-5.2.1/po/pl.po	Thu Mar 18 17:05:55 2004
-@@ -7332,6 +7332,41 @@
+--- coreutils-6.3/po/pl.po.orig	2006-09-30 11:11:04.000000000 +0200
++++ coreutils-6.3/po/pl.po	2006-10-10 22:07:14.416124000 +0200
+@@ -8149,6 +8149,41 @@
  msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
  msgstr "Sk³adnia: %s [OPCJA]... [-] [U¯YTKOWNIK [ARGUMENT]...]\n"
  
-+#: src/su.c:468
++#: src/su.c:425
 +msgid "could not open session\n"
 +msgstr "nie mo¿na otworzyæ sesji\n"
 +
-+#: src/su.c:476
++#: src/su.c:433
 +msgid "error copying PAM environment\n"
 +msgstr "b³±d podczas kopiowania ¶rodowiska PAM\n"
 +
-+#: src/su.c:521
++#: src/su.c:471
 +#, c-format
 +msgid "cannot fork user shell: %s"
 +msgstr "nie mo¿na utworzyæ procesu pow³oki u¿ytkownika: %s"
 +
-+#: src/su.c:527
++#: src/su.c:477
 +#, c-format
 +msgid "%s: signal malfunction\n"
 +msgstr "%s: b³êdne dzia³anie sygna³ów\n"
 +
-+#: src/su.c:540
++#: src/su.c:490
 +#, c-format
 +msgid "%s: signal masking malfunction\n"
 +msgstr "%s: b³êdne dzia³anie maskowania sygna³ów\n"
 +
-+#: src/su.c:559
++#: src/su.c:509
 +msgid ""
 +"\n"
 +"Session terminated, killing shell..."
@@ -334,13 +332,13 @@ diff -Nur coreutils-5.2.1.orig/po/pl.po coreutils-5.2.1/po/pl.po
 +"\n"
 +"Sesja zakoñczona, zabijanie pow³oki..."
 +
-+#: src/su.c:569
++#: src/su.c:519
 +msgid " killed.\n"
 +msgstr " zabito.\n"
 +
- #: src/su.c:437
+ #: src/su.c:386
+ #, fuzzy
  msgid ""
- "Change the effective user id and group id to that of USER.\n"
 diff -Nur coreutils-5.2.1.orig/src/Makefile.am coreutils-5.2.1/src/Makefile.am
 --- coreutils-5.2.1.orig/src/Makefile.am	Mon Feb  2 09:12:57 2004
 +++ coreutils-5.2.1/src/Makefile.am	Thu Mar 18 17:08:45 2004
@@ -353,9 +351,8 @@ diff -Nur coreutils-5.2.1.orig/src/Makefile.am coreutils-5.2.1/src/Makefile.am
  
  $(PROGRAMS): ../lib/libfetish.a
  
-diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
---- coreutils-5.2.1.orig/src/su.c	Wed Jan 21 23:27:02 2004
-+++ coreutils-5.2.1/src/su.c	Thu Mar 18 17:11:21 2004
+--- coreutils-6.3/src/su.c.orig	2006-09-03 08:38:55.000000000 +0200
++++ coreutils-6.3/src/su.c	2006-10-10 22:05:23.661202250 +0200
 @@ -38,6 +38,16 @@
     restricts who can su to UID 0 accounts.  RMS considers that to
     be fascist.
@@ -370,10 +367,10 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
 +
 +#endif
 +
-    Options:
-    -, -l, --login	Make the subshell a login shell.
- 			Unset all environment variables except
-@@ -81,6 +91,14 @@
+    Compile-time options:
+    -DSYSLOG_SUCCESS	Log successful su's (by default, to root) with syslog.
+    -DSYSLOG_FAILURE	Log failed su's (by default, to root) with syslog.
+@@ -59,6 +69,14 @@
     prototype (returning `int') in <unistd.h>.  */
  #define getusershell _getusershell_sys_proto_
  
@@ -386,28 +383,27 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
 +#endif /* USE_PAM */
 +
  #include "system.h"
- #include "dirname.h"
+ #include "getpass.h"
  
-@@ -141,7 +159,9 @@
+@@ -119,14 +137,16 @@
  /* The user to become if none is specified.  */
  #define DEFAULT_USER "root"
  
 +#ifndef USE_PAM
  char *crypt ();
 +#endif
- char *getpass ();
  char *getusershell ();
  void endusershell ();
-@@ -149,7 +169,7 @@
+ void setusershell ();
  
  extern char **environ;
  
--static void run_shell (const char *, const char *, char **)
-+static void run_shell (const char *, const char *, char **, const struct passwd *)
+-static void run_shell (char const *, char const *, char **, size_t)
++static void run_shell (char const *, char const *, char **, size_t, const struct passwd *)
       ATTRIBUTE_NORETURN;
  
  /* The name this program was run with.  */
-@@ -262,7 +282,22 @@
+@@ -216,7 +236,22 @@
  }
  #endif
  
@@ -427,11 +423,11 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
 +
  /* Ask the user for a password.
 +   If PAM is in use, let PAM ask for the password if necessary.
-    Return 1 if the user gives the correct password for entry PW,
-    0 if not.  Return 1 without asking for a password if run by UID 0
+    Return true if the user gives the correct password for entry PW,
+    false if not.  Return true without asking for a password if run by UID 0
     or if PW has an empty password.  */
-@@ -270,6 +305,29 @@
- static int
+@@ -224,6 +259,29 @@
+ static bool
  correct_password (const struct passwd *pw)
  {
 +#ifdef USE_PAM
@@ -460,37 +456,38 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
    char *unencrypted, *encrypted, *correct;
  #if HAVE_GETSPNAM && HAVE_STRUCT_SPWD_SP_PWDP
    /* Shadow passwd stuff for SVR3 and maybe other systems.  */
-@@ -294,6 +352,7 @@
+@@ -248,6 +306,7 @@
    encrypted = crypt (unencrypted, correct);
    memset (unencrypted, 0, strlen (unencrypted));
-   return strcmp (encrypted, correct) == 0;
+   return STREQ (encrypted, correct);
 +#endif /* !USE_PAM */
  }
  
  /* Update `environ' for the new shell based on PW, with SHELL being
-@@ -303,16 +362,20 @@
- modify_environment (const struct passwd *pw, const char *shell)
+@@ -258,15 +317,20 @@
  {
-   char *term;
-+  char *display;
- 
    if (simulate_login)
      {
 -      /* Leave TERM unchanged.  Set HOME, SHELL, USER, LOGNAME, PATH.
 +      /* Leave TERM, DISPLAY unchanged.  Set HOME, SHELL, USER, LOGNAME, PATH.
           Unset all other environment variables.  */
-       term = getenv ("TERM");
-+      display = getenv ("DISPLAY");
-       environ = xmalloc (2 * sizeof (char *));
-       environ[0] = 0;
+       char const *term = getenv ("TERM");
++      char const *display = getenv ("DISPLAY");
        if (term)
- 	xputenv (concat ("TERM", "=", term));
+ 	term = xstrdup (term);
+-      environ = xmalloc ((6 + !!term) * sizeof (char *));
 +      if (display)
-+	xputenv (concat ("DISPLAY", "=", display));
-       xputenv (concat ("HOME", "=", pw->pw_dir));
-       xputenv (concat ("SHELL", "=", shell));
-       xputenv (concat ("USER", "=", pw->pw_name));
-@@ -349,23 +412,74 @@
++	display = xstrdup (display);
++      environ = xmalloc ((6 + !!term + !!display) * sizeof (char *));
+       environ[0] = NULL;
+       if (term)
+ 	xsetenv ("TERM", term);
++      if (display)
++	xsetenv ("DISPLAY", display);
+       xsetenv ("HOME", pw->pw_dir);
+       xsetenv ("SHELL", shell);
+       xsetenv ("USER", pw->pw_name);
+@@ -303,12 +367,41 @@
      error (EXIT_FAIL, errno, _("cannot set groups"));
    endgrent ();
  #endif
@@ -531,15 +528,17 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
 +
  /* Run SHELL, or DEFAULT_SHELL if SHELL is empty.
     If COMMAND is nonzero, pass it to the shell with the -c option.
-    If ADDITIONAL_ARGS is nonzero, pass it to the shell as more
-    arguments.  */
+    Pass ADDITIONAL_ARGS to the shell as more arguments; there
+@@ -316,12 +409,34 @@
  
  static void
--run_shell (const char *shell, const char *command, char **additional_args)
-+run_shell (const char *shell, const char *command, char **additional_args, const struct passwd *pw)
+ run_shell (char const *shell, char const *command, char **additional_args,
+-	   size_t n_additional_args)
++	   size_t n_additional_args, const struct passwd *pw)
  {
-   const char **args;
-   int argno = 1;
+   size_t n_args = 1 + fast_startup + 2 * !!command + n_additional_args + 1;
+   char const **args = xnmalloc (n_args, sizeof *args);
+   size_t argno = 1;
  
 +#ifdef USE_PAM
 +  int child;
@@ -563,10 +562,10 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
 +  change_identity (pw);
 +  pam_end(pamh, 0);
 +#endif
-   if (additional_args)
-     args = xmalloc (sizeof (char *)
- 				    * (10 + elements (additional_args)));
-@@ -402,6 +516,61 @@
+   if (simulate_login)
+     {
+       char *arg0;
+@@ -351,6 +466,61 @@
      error (0, errno, "%s", shell);
      exit (exit_status);
    }
@@ -627,21 +626,20 @@ diff -Nur coreutils-5.2.1.orig/src/su.c coreutils-5.2.1/src/su.c
 +#endif /* USE_PAM */
  }
  
- /* Return 1 if SHELL is a restricted shell (one not returned by
-@@ -577,9 +746,15 @@
-     }
+ /* Return true if SHELL is a restricted shell (one not returned by
+@@ -518,9 +688,14 @@
+   shell = xstrdup (shell ? shell : pw->pw_shell);
    modify_environment (pw, shell);
  
-+
 +#ifdef USE_PAM
 +  setfsgid(pw->pw_gid);
 +  setfsuid(pw->pw_uid);
 +#else
    change_identity (pw);
 +#endif
-   if (simulate_login && chdir (pw->pw_dir))
+   if (simulate_login && chdir (pw->pw_dir) != 0)
      error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
  
--  run_shell (shell, command, additional_args);
-+  run_shell (shell, command, additional_args, pw);
+-  run_shell (shell, command, argv + optind, MAX (0, argc - optind));
++  run_shell (shell, command, argv + optind, MAX (0, argc - optind), pw);
  }
