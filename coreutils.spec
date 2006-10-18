@@ -5,15 +5,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
-Version:	5.2.1
-Release:	9
+Version:	6.3
+Release:	0.1
 License:	GPL
 Group:		Applications/System
-# devel versions:
-#Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
-# final versions:
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	172ee3c315af93d3385ddfbeb843c53f
+# Source0-md5:	065e9662c5aa2694693910ca9e6c9ec8
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -38,10 +35,10 @@ Patch13:	%{name}-gettext-m4.patch
 Patch14:	%{name}-euidaccess.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
-BuildRequires:	autoconf >= 2.58
-BuildRequires:	automake >= 1:1.8
+BuildRequires:	autoconf >= 2.60
+BuildRequires:	automake >= 1:1.9.6
 %{?with_selinux:BuildRequires:	gcc >= 5:3.2}
-BuildRequires:	gettext-devel >= 0.11.5
+BuildRequires:	gettext-devel >= 0.15
 BuildRequires:	help2man
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	pam-devel
@@ -99,7 +96,7 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -a1
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1	-- waiting for rzm (68 still todo in current GNU TP)
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -107,12 +104,15 @@ Programy zawarte w tym pakiecie to:
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+# UPDATEME
 %patch9 -p1
 %patch10 -p1
+# UPDATEME
 %patch11 -p1
+# UPDATEME
 %{?with_selinux:%patch12 -p1}
-%patch13 -p1
-%patch14 -p1
+#%patch13 -p1	-- obsolete?
+#%patch14 -p1	-- obsolete?
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
@@ -122,9 +122,10 @@ rm -f po/no.*
 # allow rebuilding *.gmo
 rm -f po/stamp-po
 
+# missing, added to gettext.m4 by ./bootstrap
+echo 'AC_DEFUN([gl_LOCK_EARLY],[])' > m4/gllock.m4
+
 %build
-# jm's inttypes.m4 and inttypes.m4 from gettext are really different files
-mv -f m4/{inttypes.m4,jm-inttypes.m4}
 %{__gettextize}
 %{__aclocal} -I m4
 %{__autoconf}
