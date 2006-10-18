@@ -1,7 +1,6 @@
-diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.texi
---- coreutils-5.2.1.orig/doc/coreutils.texi	Wed Mar 10 18:50:52 2004
-+++ coreutils-5.2.1/doc/coreutils.texi	Thu Mar 18 16:40:26 2004
-@@ -20,102 +20,93 @@
+--- coreutils-6.3/doc/coreutils.texi.orig	2006-09-26 21:17:33.000000000 +0200
++++ coreutils-6.3/doc/coreutils.texi	2006-10-10 20:11:23.333708500 +0200
+@@ -20,111 +20,97 @@
  @syncodeindex pg cp
  @syncodeindex vr cp
  
@@ -14,8 +13,14 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* Date input formats: (coreutils)Date input formats.
 -@end direntry
 -
+-@c FIXME: the following need documentation
+-@c * [: (coreutils)[ invocation.                   File/string tests.
+-@c * pinky: (coreutils)pinky invocation.           FIXME.
+-@c * uptime: (coreutils)uptime invocation.         FIXME.
+-
 -@dircategory Individual utilities
 -@direntry
+-* base64: (coreutils)base64 invocation.         Base64 encode/decode data.
 -* basename: (coreutils)basename invocation.     Strip directory and suffix.
 -* cat: (coreutils)cat invocation.               Concatenate and write files.
 -* chgrp: (coreutils)chgrp invocation.           Change file groups.
@@ -29,7 +34,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* cut: (coreutils)cut invocation.               Print selected parts of lines.
 -* date: (coreutils)date invocation.             Print/set system date and time.
 -* dd: (coreutils)dd invocation.                 Copy and convert a file.
--* df: (coreutils)df invocation.                 Report filesystem disk usage.
+-* df: (coreutils)df invocation.                 Report file system disk usage.
 -* dir: (coreutils)dir invocation.               List directories briefly.
 -* dircolors: (coreutils)dircolors invocation.   Color setup for ls.
 -* dirname: (coreutils)dirname invocation.       Strip non-directory suffix.
@@ -46,7 +51,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* head: (coreutils)head invocation.             Output the first part of files.
 -* hostid: (coreutils)hostid invocation.         Print numeric host identifier.
 -* hostname: (coreutils)hostname invocation.     Print or set system name.
--* id: (coreutils)id invocation.                 Print real/effective uid/gid.
+-* id: (coreutils)id invocation.                 Print user identity.
 -* install: (coreutils)install invocation.       Copy and change attributes.
 -* join: (coreutils)join invocation.             Join lines on a common field.
 -* kill: (coreutils)kill invocation.             Send a signal to processes.
@@ -54,12 +59,12 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* ln: (coreutils)ln invocation.                 Make links between files.
 -* logname: (coreutils)logname invocation.       Print current login name.
 -* ls: (coreutils)ls invocation.                 List directory contents.
--* md5sum: (coreutils)md5sum invocation.         Print or check message-digests.
+-* md5sum: (coreutils)md5sum invocation.         Print or check MD5 digests.
 -* mkdir: (coreutils)mkdir invocation.           Create directories.
 -* mkfifo: (coreutils)mkfifo invocation.         Create FIFOs (named pipes).
 -* mknod: (coreutils)mknod invocation.           Create special files.
 -* mv: (coreutils)mv invocation.                 Rename files.
--* nice: (coreutils)nice invocation.             Modify scheduling priority.
+-* nice: (coreutils)nice invocation.             Modify niceness.
 -* nl: (coreutils)nl invocation.                 Number lines and write files.
 -* nohup: (coreutils)nohup invocation.           Immunize to hangups.
 -* od: (coreutils)od invocation.                 Dump files in octal, etc.
@@ -74,13 +79,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* rm: (coreutils)rm invocation.                 Remove files.
 -* rmdir: (coreutils)rmdir invocation.           Remove empty directories.
 -* seq: (coreutils)seq invocation.               Print numeric sequences
+-* sha1sum: (coreutils)sha1sum invocation.       Print or check SHA-1 digests.
+-* sha2: (coreutils)sha2 utilities.              Print or check SHA-2 digests.
 -* shred: (coreutils)shred invocation.           Remove files more securely.
+-* shuf: (coreutils)shuf invocation.             Shuffling text files.
 -* sleep: (coreutils)sleep invocation.           Delay for a specified time.
 -* sort: (coreutils)sort invocation.             Sort text files.
 -* split: (coreutils)split invocation.           Split into fixed-size pieces.
 -* stat: (coreutils)stat invocation.             Report file(system) status.
 -* stty: (coreutils)stty invocation.             Print/change terminal settings.
--* su: (coreutils)su invocation.                 Modify user and group id.
+-* su: (coreutils)su invocation.                 Modify user and group ID.
 -* sum: (coreutils)sum invocation.               Print traditional checksum.
 -* sync: (coreutils)sync invocation.             Synchronize memory and disk.
 -* tac: (coreutils)tac invocation.               Reverse files.
@@ -100,9 +108,10 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* vdir: (coreutils)vdir invocation.             List directories verbosely.
 -* wc: (coreutils)wc invocation.                 Line, word, and byte counts.
 -* who: (coreutils)who invocation.               Print who is logged in.
--* whoami: (coreutils)whoami invocation.         Print effective user id.
+-* whoami: (coreutils)whoami invocation.         Print effective user ID.
 -* yes: (coreutils)yes invocation.               Print a string indefinitely.
 +* Coreutils: (coreutils).		Core GNU (file, text, shell) utilities
++* base64: (coreutils)base64.		Base64 encode/decode data
 +* basename: (coreutils)basename.	Strip directory and suffix
 +* cat: (coreutils)cat.			Concatenate and write files
 +* chgrp: (coreutils)chgrp.		Change file groups
@@ -116,7 +125,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 +* cut: (coreutils)cut.			Print selected parts of lines
 +* date: (coreutils)date.		Print/set system date and time
 +* dd: (coreutils)dd.			Copy and convert a file
-+* df: (coreutils)df.			Report filesystem disk usage
++* df: (coreutils)df.			Report file system disk usage
 +* dir: (coreutils)dir.			List directories briefly
 +* dircolors: (coreutils)dircolors.	Color setup for ls
 +* dirname: (coreutils)dirname.		Strip non-directory suffix
@@ -132,22 +141,22 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 +* groups: (coreutils)groups.		Print group names a user is in
 +* head: (coreutils)head.		Output the first part of files
 +* hostid: (coreutils)hostid.		Print numeric host identifier
-+* id: (coreutils)id.			Print real/effective uid/gid
++* id: (coreutils)id.			Print user identity
 +* install: (coreutils)install.		Copy and change attributes
 +* join: (coreutils)join.		Join lines on a common field
 +* link: (coreutils)link.		Make hard links between files
 +* ln: (coreutils)ln.			Make links between files
 +* logname: (coreutils)logname.		Print current login name
 +* ls: (coreutils)ls.			List directory contents
-+* md5sum: (coreutils)md5sum.		Print or check message-digests
++* md5sum: (coreutils)md5sum.		Print or check MD5 digests
 +* mkdir: (coreutils)mkdir.		Create directories
 +* mkfifo: (coreutils)mkfifo.		Create FIFOs (named pipes)
 +* mknod: (coreutils)mknod.		Create special files
 +* mv: (coreutils)mv.			Rename files
-+* nice: (coreutils)nice.		Modify scheduling priority
++* nice: (coreutils)nice.		Modify niceness
 +* nl: (coreutils)nl.			Number lines and write files
 +* nohup: (coreutils)nohup.		Immunize to hangups
-+* od: (coreutils)od.			Dump files in octal, etc.
++* od: (coreutils)od.			Dump files in octal, etc
 +* paste: (coreutils)paste.		Merge lines of files
 +* pathchk: (coreutils)pathchk.		Check file name portability
 +* pr: (coreutils)pr.			Paginate or columnate files
@@ -159,13 +168,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 +* rm: (coreutils)rm.			Remove files
 +* rmdir: (coreutils)rmdir.		Remove empty directories
 +* seq: (coreutils)seq.			Print numeric sequences
++* sha1sum: (coreutils)sha1sum.		Print or check SHA-1 digests
++* sha2: (coreutils)sha2.		Print or check SHA-2 digests
 +* shred: (coreutils)shred.		Remove files more securely
++* shuf: (coreutils)shuf.		Shuffling text files
 +* sleep: (coreutils)sleep.		Delay for a specified time
 +* sort: (coreutils)sort.		Sort text files
 +* split: (coreutils)split.		Split into fixed-size pieces
 +* stat: (coreutils)stat.		Report file(system) status
 +* stty: (coreutils)stty.		Print/change terminal settings
-+* su: (coreutils)su.			Modify user and group id
++* su: (coreutils)su.			Modify user and group ID
 +* sum: (coreutils)sum.			Print traditional checksum
 +* sync: (coreutils)sync.		Synchronize memory and disk
 +* tac: (coreutils)tac.			Reverse files
@@ -185,25 +197,23 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 +* vdir: (coreutils)vdir.		List directories verbosely
 +* wc: (coreutils)wc.			Line, word, and byte counts
 +* who: (coreutils)who.			Print who is logged in
-+* whoami: (coreutils)whoami.		Print effective user id
++* whoami: (coreutils)whoami.		Print effective user ID
 +* yes: (coreutils)yes.			Print a string indefinitely
  @end direntry
  
  @copying
-@@ -179,10 +170,9 @@
- * Redirection::                        tee
+@@ -189,9 +175,8 @@
  * File name manipulation::             dirname basename pathchk
  * Working context::                    pwd stty printenv tty
--* User information::                   id logname whoami groups users who
--* System context::                     date uname hostname
-+* User information::                   id logname whoami users who
-+* System context::                     date uname
+ * User information::                   id logname whoami groups users who
+-* System context::                     date uname hostname hostid
++* System context::                     date uname hostid
  * Modified command invocation::        chroot env nice nohup su
 -* Process control::                    kill
  * Delaying::                           sleep
  * Numeric operations::                 factor seq
  * File permissions::                   Access modes.
-@@ -207,38 +197,38 @@
+@@ -217,42 +202,42 @@
  
  Output of entire files
  
@@ -211,10 +221,12 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* tac invocation::              Concatenate and write files in reverse.
 -* nl invocation::               Number lines and write files.
 -* od invocation::               Write files in octal or other formats.
+-* base64 invocation::           Transform data into printable data.
 +* cat::                         Concatenate and write files.
 +* tac::                         Concatenate and write files in reverse.
 +* nl::                          Number lines and write files.
 +* od::                          Write files in octal or other formats.
++* base64::                      Transform data into printable data.
  
  Formatting file contents
  
@@ -241,20 +253,26 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* wc invocation::               Print newline, word, and byte counts.
 -* sum invocation::              Print checksum and block counts.
 -* cksum invocation::            Print CRC checksum and byte counts.
--* md5sum invocation::           Print or check message-digests.
+-* md5sum invocation::           Print or check MD5 digests.
+-* sha1sum invocation::          Print or check SHA-1 digests.
+-* sha2 utilities::              Print or check SHA-2 digests.
 +* wc::                          Print newline, word, and byte counts.
 +* sum::                         Print checksum and block counts.
 +* cksum::                       Print CRC checksum and byte counts.
-+* md5sum::                      Print or check message-digests.
++* md5sum::                      Print or check MD5 digests.
++* sha1sum::                     Print or check SHA-1 digests.
++* sha2::                        Print or check SHA-2 digests.
  
  Operating on sorted files
  
 -* sort invocation::             Sort text files.
+-* shuf invocation::             Shuffle text files.
 -* uniq invocation::             Uniquify files.
 -* comm invocation::             Compare two sorted files line by line.
 -* ptx invocation::              Produce a permuted index of file contents.
 -* tsort invocation::            Topological sort.
 +* sort::                        Sort text files.
++* shuf::                        Shuffle text files.
 +* uniq::                        Uniquify files.
 +* comm::                        Compare two sorted files line by line.
 +* ptx::                         Produce a permuted index of file contents.
@@ -262,7 +280,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
  @command{ptx}: Produce permuted indexes
  
-@@ -250,15 +240,15 @@
+@@ -264,15 +249,15 @@
  
  Operating on fields within a line
  
@@ -284,7 +302,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
  @command{tr}: Translate, squeeze, and/or delete characters
  
-@@ -269,10 +259,10 @@
+@@ -282,10 +267,10 @@
  
  Directory listing
  
@@ -299,7 +317,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
  @command{ls}:  List directory contents
  
-@@ -285,50 +275,50 @@
+@@ -298,50 +283,50 @@
  
  Basic operations
  
@@ -348,13 +366,13 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
  Disk usage
  
--* df invocation::               Report filesystem disk space usage
+-* df invocation::               Report file system disk space usage
 -* du invocation::               Estimate file space usage
--* stat invocation::             Report file or filesystem status
+-* stat invocation::             Report file or file system status
 -* sync invocation::             Synchronize data on disk with memory
-+* df::                          Report filesystem disk space usage
++* df::                          Report file system disk space usage
 +* du::                          Estimate file space usage
-+* stat::                        Report file or filesystem status
++* stat::                        Report file or file system status
 +* sync::                        Synchronize data on disk with memory
  
  Printing text
@@ -379,7 +397,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
  @command{test}: Check file types and compare values
  
-@@ -347,20 +337,20 @@
+@@ -360,20 +345,20 @@
  
  Redirection
  
@@ -408,19 +426,19 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
  @command{stty}: Print or change terminal characteristics
  
-@@ -374,19 +364,18 @@
+@@ -387,19 +372,18 @@
  
  User information
  
--* id invocation::                Print real and effective uid and gid
+-* id invocation::                Print user identity
 -* logname invocation::           Print current login name
--* whoami invocation::            Print effective user id
+-* whoami invocation::            Print effective user ID
 -* groups invocation::            Print group names a user is in
 -* users invocation::             Print login names of users currently logged in
 -* who invocation::               Print who is currently logged in
-+* id::                           Print real and effective uid and gid
++* id::                           Print user identity
 +* logname::                      Print current login name
-+* whoami::                       Print effective user id
++* whoami::                       Print effective user ID
 +* groups::                       Print group names a user is in
 +* users::                        Print login names of users currently logged in
 +* who::                          Print who is currently logged in
@@ -433,28 +451,28 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* hostid invocation::            Print numeric host identifier.
 +* date::                         Print or set system date and time
 +* uname::                        Print system information
-+* hostid::                       Print numeric host identifier
++* hostid::                       Print numeric host identifier.
  
  @command{date}: Print or set system date and time
  
-@@ -400,24 +389,20 @@
+@@ -413,24 +397,20 @@
  
  Modified command invocation
  
 -* chroot invocation::            Run a command with a different root directory
 -* env invocation::               Run a command in a modified environment
--* nice invocation::              Run a command with modified scheduling priority
+-* nice invocation::              Run a command with modified niceness
 -* nohup invocation::             Run a command immune to hangups
--* su invocation::                Run a command with substitute user and group id
+-* su invocation::                Run a command with substitute user and group ID
 -
 -Process control
 -
 -* kill invocation::              Sending a signal to processes.
 +* chroot::                       Run a command with a different root directory
 +* env::                          Run a command in a modified environment
-+* nice::                         Run a command with modified scheduling priority
++* nice::                         Run a command with modified niceness
 +* nohup::                        Run a command immune to hangups
-+* su::                           Run a command with substitute user and group id
++* su::                           Run a command with substitute user and group ID
  
  Delaying
  
@@ -470,7 +488,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
  File permissions
  
-@@ -1099,13 +1084,13 @@
+@@ -1227,14 +1207,14 @@
  in some way.
  
  @menu
@@ -478,10 +496,12 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -* tac invocation::              Concatenate and write files in reverse.
 -* nl invocation::               Number lines and write files.
 -* od invocation::               Write files in octal or other formats.
+-* base64 invocation::           Transform data into printable data.
 +* cat::                         Concatenate and write files.
 +* tac::                         Concatenate and write files in reverse.
 +* nl::                          Number lines and write files.
 +* od::                          Write files in octal or other formats.
++* base64::                      Transform data into printable data.
  @end menu
  
 -@node cat invocation
@@ -489,8 +509,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{cat}: Concatenate and write files
  
  @pindex cat
-@@ -1213,7 +1198,7 @@
- @exitstatus
+@@ -1332,7 +1312,7 @@
+ @end smallexample
  
  
 -@node tac invocation
@@ -498,7 +518,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{tac}: Concatenate and write files in reverse
  
  @pindex tac
-@@ -1262,7 +1247,7 @@
+@@ -1381,7 +1361,7 @@
  @exitstatus
  
  
@@ -507,7 +527,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{nl}: Number lines and write files
  
  @pindex nl
-@@ -1425,7 +1410,7 @@
+@@ -1544,7 +1524,7 @@
  @exitstatus
  
  
@@ -516,7 +536,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{od}: Write files in octal or other formats
  
  @pindex od
-@@ -1682,13 +1667,13 @@
+@@ -1795,7 +1775,7 @@
+ 
+ @exitstatus
+ 
+-@node base64 invocation
++@node base64
+ @section @command{base64}: Transform data into printable data.
+ 
+ @pindex base64
+@@ -1861,13 +1841,13 @@
  These commands reformat the contents of files.
  
  @menu
@@ -534,7 +563,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{fmt}: Reformat paragraph text
  
  @pindex fmt
-@@ -1786,7 +1771,7 @@
+@@ -1966,7 +1946,7 @@
  @exitstatus
  
  
@@ -543,16 +572,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{pr}: Paginate or columnate files for printing
  
  @pindex pr
-@@ -1928,7 +1913,7 @@
+@@ -2108,7 +2088,7 @@
  @cindex time formats
  @cindex formatting times
  Format header dates using @var{format}, using the same conventions as
--for the the command @samp{date +@var{format}}; @xref{date invocation}.
-+for the the command @samp{date +@var{format}}; @xref{date}.
+-for the command @samp{date +@var{format}}; @xref{date invocation}.
++for the command @samp{date +@var{format}}; @xref{date}.
  Except for directives, which start with
  @samp{%}, characters in @var{format} are printed unchanged.  You can use
  this option to specify an arbitrary string in place of the header date,
-@@ -2157,7 +2142,7 @@
+@@ -2337,7 +2317,7 @@
  @exitstatus
  
  
@@ -561,7 +590,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{fold}: Wrap input lines to fit in specified width
  
  @pindex fold
-@@ -2225,13 +2210,13 @@
+@@ -2404,13 +2384,13 @@
  These commands output pieces of the input.
  
  @menu
@@ -580,7 +609,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{head}: Output the first part of files
  
  @pindex head
-@@ -2303,7 +2288,7 @@
+@@ -2487,7 +2467,7 @@
  @exitstatus
  
  
@@ -589,7 +618,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{tail}: Output the last part of files
  
  @pindex tail
-@@ -2483,7 +2468,7 @@
+@@ -2698,7 +2678,7 @@
  @exitstatus
  
  
@@ -598,7 +627,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{split}: Split a file into fixed-size pieces
  
  @pindex split
-@@ -2565,7 +2550,7 @@
+@@ -2779,7 +2759,7 @@
  @exitstatus
  
  
@@ -607,18 +636,22 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{csplit}: Split a file into context-determined pieces
  
  @pindex csplit
-@@ -2705,14 +2690,14 @@
+@@ -2919,16 +2899,16 @@
  contents of files.
  
  @menu
 -* wc invocation::               Print newline, word, and byte counts.
 -* sum invocation::              Print checksum and block counts.
 -* cksum invocation::            Print CRC checksum and byte counts.
--* md5sum invocation::           Print or check message-digests.
+-* md5sum invocation::           Print or check MD5 digests.
+-* sha1sum invocation::          Print or check SHA-1 digests.
+-* sha2 utilities::              Print or check SHA-2 digests.
 +* wc::                          Print newline, word, and byte counts.
 +* sum::                         Print checksum and block counts.
 +* cksum::                       Print CRC checksum and byte counts.
-+* md5sum::                      Print or check message-digests.
++* md5sum::                      Print or check MD5 digests.
++* sha1sum::                     Print or check SHA-1 digests.
++* sha2::                        Print or check SHA-2 digests.
  @end menu
  
  
@@ -627,7 +660,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{wc}: Print newline, word, and byte counts
  
  @pindex wc
-@@ -2796,7 +2781,7 @@
+@@ -3034,7 +3014,7 @@
  @exitstatus
  
  
@@ -636,7 +669,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{sum}: Print checksum and block counts
  
  @pindex sum
-@@ -2847,7 +2832,7 @@
+@@ -3085,7 +3065,7 @@
  @exitstatus
  
  
@@ -645,25 +678,77 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{cksum}: Print CRC checksum and byte counts
  
  @pindex cksum
-@@ -2881,7 +2866,7 @@
+@@ -3119,7 +3099,7 @@
  @exitstatus
  
  
 -@node md5sum invocation
 +@node md5sum
- @section @command{md5sum}: Print or check message-digests
+ @section @command{md5sum}: Print or check MD5 digests
  
  @pindex md5sum
-@@ -2988,16 +2973,16 @@
+@@ -3141,8 +3121,8 @@
+ considered infeasible at the moment, it is known how to produce
+ different files with identical MD5 (a ``collision''), something which
+ can be a security issue in certain contexts.  For more secure hashes,
+-consider using SHA-1 or SHA-2.  @xref{sha1sum invocation}, and
+-@ref{sha2 utilities}.
++consider using SHA-1 or SHA-2.  @xref{sha1sum}, and
++@ref{sha2}.
+ 
+ If a @var{file} is specified as @samp{-} or if no files are given
+ @command{md5sum} computes the checksum for the standard input.
+@@ -3236,7 +3216,7 @@
+ @exitstatus
+ 
+ 
+-@node sha1sum invocation
++@node sha1sum
+ @section @command{sha1sum}: Print or check SHA-1 digests
+ 
+ @pindex sha1sum
+@@ -3248,17 +3228,17 @@
+ 
+ @command{sha1sum} computes a 160-bit checksum for each specified
+ @var{file}.  The usage and options of this command are precisely the
+-same as for @command{md5sum}.  @xref{md5sum invocation}.
++same as for @command{md5sum}.  @xref{md5sum}.
+ 
+ Note: The SHA-1 digest is more secure than MD5, and no collisions of
+ it are known (different files having the same fingerprint).  However,
+ it is known that they can be produced with considerable, but not
+ unreasonable, resources.  For this reason, it is generally considered
+ that SHA-1 should be gradually phased out in favor of the more secure
+-SHA-2 hash algorithms.  @xref{sha2 utilities}.
++SHA-2 hash algorithms.  @xref{sha2}.
+ 
+ 
+-@node sha2 utilities
++@node sha2
+ @section sha2 utilities: Print or check SHA-2 digests
+ 
+ @pindex sha224sum
+@@ -3288,7 +3268,7 @@
+ various lengths (respectively 224, 256, 384 and 512 bits),
+ collectively known as the SHA-2 hashes.  The usage and options of
+ these commands are precisely the same as for @command{md5sum}.
+-@xref{md5sum invocation}.
++@xref{md5sum}.
+ 
+ Note: The SHA384 and SHA512 digests are considerably slower to
+ compute, especially on 32-bit computers, than SHA224 or SHA256.
+@@ -3303,17 +3283,17 @@
  These commands work with (or produce) sorted files.
  
  @menu
 -* sort invocation::             Sort text files.
+-* shuf invocation::             Shuffle text files.
 -* uniq invocation::             Uniquify files.
 -* comm invocation::             Compare two sorted files line by line.
 -* ptx invocation::              Produce a permuted index of file contents.
 -* tsort invocation::            Topological sort.
 +* sort::                        Sort text files.
++* shuf::                        Shuffle text files.
 +* uniq::                        Uniquify files.
 +* comm::                        Compare two sorted files line by line.
 +* ptx::                         Produce a permuted index of file contents.
@@ -677,8 +762,35 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{sort}: Sort text files
  
  @pindex sort
-@@ -3481,7 +3466,7 @@
+@@ -3555,7 +3535,7 @@
+ Sort by hashing the input keys and then sorting the hash values.
+ Choose the hash function at random, ensuring that it is free of
+ collisions so that differing keys have differing hash values.  This is
+-like a random permutation of the inputs (@pxref{shuf invocation}),
++like a random permutation of the inputs (@pxref{shuf}),
+ except that keys with the same value sort together.
+ 
+ If multiple random sort fields are specified, the same random hash
+@@ -3694,7 +3674,7 @@
+ this equivalence does not extend to arbitrary @command{sort} options.
+ For example, @code{sort -n -u} inspects only the value of the initial
+ numeric string when checking for uniqueness, whereas @code{sort -n |
+-uniq} inspects the entire line.  @xref{uniq invocation}.
++uniq} inspects the entire line.  @xref{uniq}.
+ 
+ @item -z
+ @itemx --zero-terminated
+@@ -3895,7 +3875,7 @@
  @end itemize
+ 
+ 
+-@node shuf invocation
++@node shuf
+ @section @command{shuf}: Shuffling text
+ 
+ @pindex shuf
+@@ -4036,7 +4016,7 @@
+ @exitstatus
  
  
 -@node uniq invocation
@@ -686,7 +798,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{uniq}: Uniquify files
  
  @pindex uniq
-@@ -3618,7 +3603,7 @@
+@@ -4058,7 +4038,7 @@
+ The input need not be sorted, but repeated input lines are detected
+ only if they are adjacent.  If you want to discard non-adjacent
+ duplicate lines, perhaps you want to use @code{sort -u}.
+-@xref{sort invocation}.
++@xref{sort}.
+ 
+ @vindex LC_COLLATE
+ Comparisons use the character collating sequence specified by the
+@@ -4179,7 +4159,7 @@
  @exitstatus
  
  
@@ -695,7 +816,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{comm}: Compare two sorted files line by line
  
  @pindex comm
-@@ -3661,7 +3646,7 @@
+@@ -4222,7 +4202,7 @@
  If there is an error it exits with nonzero status.
  
  
@@ -704,7 +825,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{tsort}: Topological sort
  
  @pindex tsort
-@@ -3815,7 +3800,7 @@
+@@ -4376,7 +4356,7 @@
  @exitstatus
  
  
@@ -713,7 +834,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{ptx}: Produce permuted indexes
  
  @pindex ptx
-@@ -4284,13 +4269,13 @@
+@@ -4835,13 +4815,13 @@
  @chapter Operating on fields within a line
  
  @menu
@@ -731,7 +852,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{cut}: Print selected parts of lines
  
  @pindex cut
-@@ -4380,7 +4365,7 @@
+@@ -4940,7 +4920,7 @@
  @exitstatus
  
  
@@ -740,7 +861,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{paste}: Merge lines of files
  
  @pindex paste
-@@ -4450,7 +4435,7 @@
+@@ -5010,7 +4990,7 @@
  @exitstatus
  
  
@@ -749,7 +870,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{join}: Join lines on a common field
  
  @pindex join
-@@ -4580,13 +4565,13 @@
+@@ -5153,13 +5133,13 @@
  This commands operate on individual characters.
  
  @menu
@@ -767,8 +888,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{tr}: Translate, squeeze, and/or delete characters
  
  @pindex tr
-@@ -4972,7 +4957,7 @@
- Unix versions, which provide no way to preserve zero bytes.
+@@ -5537,7 +5517,7 @@
+ @end itemize
  
  
 -@node expand invocation
@@ -776,7 +897,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{expand}: Convert tabs to spaces
  
  @pindex expand
-@@ -5027,7 +5012,7 @@
+@@ -5590,7 +5570,7 @@
  @exitstatus
  
  
@@ -785,7 +906,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{unexpand}: Convert spaces to tabs
  
  @pindex unexpand
-@@ -5088,14 +5073,14 @@
+@@ -5651,14 +5631,14 @@
  and @command{vdir}, which list information about files.
  
  @menu
@@ -805,7 +926,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{ls}: List directory contents
  
  @pindex ls
-@@ -5784,7 +5769,7 @@
+@@ -6456,7 +6436,7 @@
  @item +@var{format}
  @vindex LC_TIME
  List timestamps using @var{format}, where @var{format} is interpreted
@@ -814,7 +935,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
  @command{ls} to list timestamps like @samp{2002-03-30 23:45:56}.  As
  with @command{date}, @var{format}'s interpretation is affected by the
-@@ -5968,7 +5953,7 @@
+@@ -6648,7 +6628,7 @@
  @end table
  
  
@@ -823,7 +944,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{dir}: Briefly list directory contents
  
  @pindex dir
-@@ -5978,10 +5963,10 @@
+@@ -6658,10 +6638,10 @@
  -b}; that is, by default files are listed in columns, sorted vertically,
  and special characters are represented by backslash escape sequences.
  
@@ -836,7 +957,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{vdir}: Verbosely list directory contents
  
  @pindex vdir
-@@ -5991,7 +5976,7 @@
+@@ -6671,7 +6651,7 @@
  -b}; that is, by default files are listed in long format and special
  characters are represented by backslash escape sequences.
  
@@ -845,7 +966,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{dircolors}: Color setup for @command{ls}
  
  @pindex dircolors
-@@ -6069,16 +6054,16 @@
+@@ -6749,16 +6729,16 @@
  copying, moving (renaming), and deleting (removing).
  
  @menu
@@ -869,7 +990,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{cp}: Copy files and directories
  
  @pindex cp
-@@ -6407,7 +6392,7 @@
+@@ -7116,7 +7096,7 @@
  @exitstatus
  
  
@@ -878,7 +999,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{dd}: Convert and copy a file
  
  @pindex dd
-@@ -6580,7 +6565,7 @@
+@@ -7435,7 +7415,7 @@
  @exitstatus
  
  
@@ -887,7 +1008,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{install}: Copy files and set attributes
  
  @pindex install
-@@ -6699,7 +6684,7 @@
+@@ -7574,7 +7554,7 @@
  @exitstatus
  
  
@@ -896,7 +1017,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{mv}: Move (rename) files
  
  @pindex mv
-@@ -6801,7 +6786,7 @@
+@@ -7695,7 +7675,7 @@
  @exitstatus
  
  
@@ -905,7 +1026,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{rm}: Remove files or directories
  
  @pindex rm
-@@ -6916,7 +6901,7 @@
+@@ -7831,7 +7811,7 @@
  @exitstatus
  
  
@@ -914,7 +1035,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{shred}: Remove files more securely
  
  @pindex shred
-@@ -6926,7 +6911,7 @@
+@@ -7841,7 +7821,7 @@
  @command{shred} overwrites devices or files, to help prevent even
  very expensive hardware from recovering the data.
  
@@ -923,7 +1044,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  not actually destroyed.  Only the index listing where the file is
  stored is destroyed, and the storage is made available for reuse.
  There are undelete utilities that will attempt to reconstruct the index
-@@ -7149,18 +7134,18 @@
+@@ -8073,18 +8053,18 @@
  (FIFOs), symbolic links, sockets, and so-called @dfn{special files}.
  
  @menu
@@ -951,7 +1072,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{link}: Make a hard link via the link syscall
  
  @pindex link
-@@ -7186,7 +7171,7 @@
+@@ -8097,7 +8077,7 @@
+ @code{link} function.  @xref{Hard Links, , , libc,
+ The GNU C Library Reference Manual}.
+ It avoids the bells and whistles of the more commonly-used
+-@command{ln} command (@pxref{ln invocation}).
++@command{ln} command (@pxref{ln}).
+ Synopsis:
+ 
+ @example
+@@ -8118,7 +8098,7 @@
  @exitstatus
  
  
@@ -960,8 +1090,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{ln}: Make links between files
  
  @pindex ln
-@@ -7327,7 +7312,7 @@
- @exitstatus
+@@ -8290,7 +8270,7 @@
+ @end smallexample
  
  
 -@node mkdir invocation
@@ -969,7 +1099,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{mkdir}: Make directories
  
  @pindex mkdir
-@@ -7383,7 +7368,7 @@
+@@ -8352,7 +8332,7 @@
  @exitstatus
  
  
@@ -978,7 +1108,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{mkfifo}: Make FIFOs (named pipes)
  
  @pindex mkfifo
-@@ -7421,7 +7406,7 @@
+@@ -8391,7 +8371,7 @@
  @exitstatus
  
  
@@ -987,7 +1117,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{mknod}: Make block or character special files
  
  @pindex mknod
-@@ -7492,7 +7477,7 @@
+@@ -8463,7 +8443,7 @@
  @exitstatus
  
  
@@ -996,7 +1126,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{readlink}: Print the referent of a symbolic link
  
  @pindex readlink
-@@ -7562,7 +7547,7 @@
+@@ -8550,7 +8530,7 @@
  @exitstatus
  
  
@@ -1005,7 +1135,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{rmdir}: Remove empty directories
  
  @pindex rmdir
-@@ -7610,12 +7595,12 @@
+@@ -8598,12 +8578,12 @@
  
  @end table
  
@@ -1020,7 +1150,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{unlink}: Remove files via the unlink syscall
  
  @pindex unlink
-@@ -7660,14 +7645,14 @@
+@@ -8614,7 +8594,7 @@
+ @code{unlink} function.  @xref{Deleting Files, , , libc,
+ The GNU C Library Reference Manual}.  Synopsis:
+ It avoids the bells and whistles of the more commonly-used
+-@command{rm} command (@pxref{rm invocation}).
++@command{rm} command (@pxref{rm}).
+ 
+ @example
+ unlink @var{filename}
+@@ -8648,14 +8628,14 @@
  These commands change file attributes.
  
  @menu
@@ -1040,8 +1179,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{chown}: Change file owner and group
  
  @pindex chown
-@@ -7864,7 +7849,7 @@
- @exitstatus
+@@ -8868,7 +8848,7 @@
+ @end smallexample
  
  
 -@node chgrp invocation
@@ -1049,8 +1188,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{chgrp}: Change group ownership
  
  @pindex chgrp
-@@ -7972,7 +7957,7 @@
- @exitstatus
+@@ -8986,7 +8966,7 @@
+ @end smallexample
  
  
 -@node chmod invocation
@@ -1058,7 +1197,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{chmod}: Change access permissions
  
  @pindex chmod
-@@ -8057,7 +8042,7 @@
+@@ -9085,7 +9065,7 @@
  @exitstatus
  
  
@@ -1067,28 +1206,28 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{touch}: Change file timestamps
  
  @pindex touch
-@@ -8184,14 +8169,14 @@
- or some such command.)
+@@ -9234,14 +9214,14 @@
+ file status information, and write buffers to disk.
  
  @menu
--* df invocation::               Report filesystem disk space usage.
+-* df invocation::               Report file system disk space usage.
 -* du invocation::               Estimate file space usage.
--* stat invocation::		Report file or filesystem status.
+-* stat invocation::             Report file or file system status.
 -* sync invocation::             Synchronize memory and disk.
-+* df::                          Report filesystem disk space usage.
++* df::                          Report file system disk space usage.
 +* du::                          Estimate file space usage.
-+* stat::                        Report file or filesystem status.
++* stat::                        Report file or file system status.
 +* sync::                        Synchronize memory and disk.
  @end menu
  
  
 -@node df invocation
 +@node df
- @section @command{df}: Report filesystem disk space usage
+ @section @command{df}: Report file system disk space usage
  
  @pindex df
-@@ -8387,7 +8372,7 @@
- @exitstatus
+@@ -9439,7 +9419,7 @@
+ @samp{ext3} or @samp{reiserfs}.
  
  
 -@node du invocation
@@ -1096,16 +1235,25 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{du}: Estimate file space usage
  
  @pindex du
-@@ -8578,7 +8563,7 @@
+@@ -9654,7 +9634,7 @@
+ @item +@var{format}
+ @vindex LC_TIME
+ List timestamps using @var{format}, where @var{format} is interpreted
+-like the format argument of @command{date} (@pxref{date invocation}).
++like the format argument of @command{date} (@pxref{date}).
+ For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
+ @command{du} to list timestamps like @samp{2002-03-30 23:45:56}.  As
+ with @command{date}, @var{format}'s interpretation is affected by the
+@@ -9722,7 +9702,7 @@
  @exitstatus
  
  
 -@node stat invocation
 +@node stat
- @section @command{stat}: Report file or filesystem status
+ @section @command{stat}: Report file or file system status
  
  @pindex stat
-@@ -8679,7 +8664,7 @@
+@@ -9856,7 +9836,7 @@
  @exitstatus
  
  
@@ -1114,7 +1262,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{sync}: Synchronize data on disk with memory
  
  @pindex sync
-@@ -8714,13 +8699,13 @@
+@@ -9892,13 +9872,13 @@
  This section describes commands that display text strings.
  
  @menu
@@ -1132,7 +1280,13 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{echo}: Print a line of text
  
  @pindex echo
-@@ -8778,7 +8763,7 @@
+@@ -9981,12 +9961,12 @@
+ @var{string} contains a backslash or if the first argument is
+ @option{-n}.  Portable programs can use the @command{printf} command
+ if they need to omit trailing newlines or output control characters or
+-backslashes.  @xref{printf invocation}.
++backslashes.  @xref{printf}.
+ 
  @exitstatus
  
  
@@ -1141,7 +1295,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{printf}: Format and print data
  
  @pindex printf
-@@ -8875,7 +8860,7 @@
+@@ -10129,7 +10109,7 @@
  @exitstatus
  
  
@@ -1150,7 +1304,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{yes}: Print a string until interrupted
  
  @pindex yes
-@@ -8904,14 +8889,14 @@
+@@ -10160,14 +10140,14 @@
  pipeline.
  
  @menu
@@ -1170,8 +1324,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{false}: Do nothing, unsuccessfully
  
  @pindex false
-@@ -8937,7 +8922,7 @@
- @option{--help} or @option{--version}.
+@@ -10197,7 +10177,7 @@
+ non-@acronym{GNU} hosts.
  
  
 -@node true invocation
@@ -1179,7 +1333,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{true}: Do nothing, successfully
  
  @pindex true
-@@ -8976,7 +8961,7 @@
+@@ -10233,7 +10213,7 @@
  more secure and faster than a shell script implementation, and may safely
  be used as a dummy shell for the purpose of disabling accounts.
  
@@ -1188,7 +1342,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{test}: Check file types and compare values
  
  @pindex test
-@@ -9287,7 +9272,7 @@
+@@ -10564,7 +10544,7 @@
  @end table
  
  
@@ -1197,7 +1351,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{expr}: Evaluate expressions
  
  @pindex expr
-@@ -9553,11 +9538,11 @@
+@@ -10836,11 +10816,11 @@
  it's described here.
  
  @menu
@@ -1211,7 +1365,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{tee}: Redirect output to multiple files
  
  @pindex tee
-@@ -9608,13 +9593,13 @@
+@@ -10895,13 +10875,13 @@
  This section describes commands that manipulate file names.
  
  @menu
@@ -1229,8 +1383,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{basename}: Strip directory and suffix from a file name
  
  @pindex basename
-@@ -9641,7 +9626,7 @@
- @exitstatus
+@@ -10955,7 +10935,7 @@
+ @end smallexample
  
  
 -@node dirname invocation
@@ -1238,8 +1392,8 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{dirname}: Strip non-directory suffix from a file name
  
  @pindex dirname
-@@ -9665,7 +9650,7 @@
- @exitstatus
+@@ -10996,7 +10976,7 @@
+ @end smallexample
  
  
 -@node pathchk invocation
@@ -1247,7 +1401,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{pathchk}: Check file name portability
  
  @pindex pathchk
-@@ -9729,14 +9714,14 @@
+@@ -11084,14 +11064,14 @@
  so forth.  See also the user-related commands in the next section.
  
  @menu
@@ -1267,7 +1421,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{pwd}: Print working directory
  
  @pindex pwd
-@@ -9761,7 +9746,7 @@
+@@ -11116,7 +11096,7 @@
  @exitstatus
  
  
@@ -1276,7 +1430,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{stty}: Print or change terminal characteristics
  
  @pindex stty
-@@ -10409,7 +10394,7 @@
+@@ -11775,7 +11755,7 @@
  @end table
  
  
@@ -1285,7 +1439,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{printenv}: Print all or some environment variables
  
  @pindex printenv
-@@ -10439,7 +10424,7 @@
+@@ -11805,7 +11785,7 @@
  @end display
  
  
@@ -1294,19 +1448,19 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{tty}: Print file name of terminal on standard input
  
  @pindex tty
-@@ -10489,16 +10474,16 @@
+@@ -11855,16 +11835,16 @@
  logins, groups, and so forth.
  
  @menu
--* id invocation::               Print real and effective uid and gid.
+-* id invocation::               Print user identity.
 -* logname invocation::          Print current login name.
--* whoami invocation::           Print effective user id.
+-* whoami invocation::           Print effective user ID.
 -* groups invocation::           Print group names a user is in.
 -* users invocation::            Print login names of users currently logged in.
 -* who invocation::              Print who is currently logged in.
-+* id::                          Print real and effective uid and gid.
++* id::                          Print user identity.
 +* logname::                     Print current login name.
-+* whoami::                      Print effective user id.
++* whoami::                      Print effective user ID.
 +* groups::                      Print group names a user is in.
 +* users::                       Print login names of users currently logged in.
 +* who::                         Print who is currently logged in.
@@ -1315,10 +1469,10 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  
 -@node id invocation
 +@node id
- @section @command{id}: Print real and effective uid and gid
+ @section @command{id}: Print user identity
  
  @pindex id
-@@ -10561,7 +10546,7 @@
+@@ -11927,7 +11907,7 @@
  @exitstatus
  
  
@@ -1327,16 +1481,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{logname}: Print current login name
  
  @pindex logname
-@@ -10583,7 +10568,7 @@
+@@ -11948,7 +11928,7 @@
  @exitstatus
  
  
 -@node whoami invocation
 +@node whoami
- @section @command{whoami}: Print effective user id
+ @section @command{whoami}: Print effective user ID
  
  @pindex whoami
-@@ -10599,7 +10584,7 @@
+@@ -11964,7 +11944,7 @@
  @exitstatus
  
  
@@ -1345,7 +1499,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{groups}: Print group names a user is in
  
  @pindex groups
-@@ -10623,7 +10608,7 @@
+@@ -11989,7 +11969,7 @@
  @exitstatus
  
  
@@ -1354,7 +1508,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{users}: Print login names of users currently logged in
  
  @pindex users
-@@ -10653,7 +10638,7 @@
+@@ -12020,7 +12000,7 @@
  @exitstatus
  
  
@@ -1363,7 +1517,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{who}: Print who is currently logged in
  
  @pindex who
-@@ -10804,14 +10789,13 @@
+@@ -12167,14 +12147,13 @@
  information.
  
  @menu
@@ -1382,7 +1536,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{date}: Print or set system date and time
  
  @pindex date
-@@ -11323,7 +11307,7 @@
+@@ -12799,7 +12778,7 @@
  @end itemize
  
  
@@ -1391,7 +1545,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{uname}: Print system information
  
  @pindex uname
-@@ -11446,31 +11430,7 @@
+@@ -12928,31 +12907,7 @@
  @exitstatus
  
  
@@ -1407,7 +1561,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -With no arguments, @command{hostname} prints the name of the current host
 -system.  With one argument, it sets the current host name to the
 -specified string.  You must have appropriate privileges to set the host
--name. Synopsis:
+-name.  Synopsis:
 -
 -@example
 -hostname [@var{name}]
@@ -1424,20 +1578,20 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{hostid}: Print numeric host identifier.
  
  @pindex hostid
-@@ -11507,15 +11467,15 @@
+@@ -12989,15 +12944,15 @@
  user, etc.
  
  @menu
 -* chroot invocation::           Modify the root directory.
 -* env invocation::              Modify environment variables.
--* nice invocation::             Modify scheduling priority.
+-* nice invocation::             Modify niceness.
 -* nohup invocation::            Immunize to hangups.
--* su invocation::               Modify user and group id.
+-* su invocation::               Modify user and group ID.
 +* chroot::                      Modify the root directory.
 +* env::                         Modify environment variables.
-+* nice::                        Modify scheduling priority.
++* nice::                        Modify niceness.
 +* nohup::                       Immunize to hangups.
-+* su::                          Modify user and group id.
++* su::                          Modify user and group ID.
  @end menu
  
  
@@ -1446,7 +1600,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{chroot}: Run a command with a different root directory
  
  @pindex chroot
-@@ -11580,7 +11540,7 @@
+@@ -13064,7 +13019,7 @@
  @end display
  
  
@@ -1455,16 +1609,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{env}: Run a command in a modified environment
  
  @pindex env
-@@ -11645,7 +11605,7 @@
+@@ -13142,7 +13097,7 @@
  @end display
  
  
 -@node nice invocation
 +@node nice
- @section @command{nice}: Run a command with modified scheduling priority
+ @section @command{nice}: Run a command with modified niceness
  
  @pindex nice
-@@ -11750,7 +11710,7 @@
+@@ -13267,7 +13222,7 @@
  @end example
  
  
@@ -1473,16 +1627,16 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{nohup}: Run a command immune to hangups
  
  @pindex nohup
-@@ -11802,7 +11762,7 @@
+@@ -13328,7 +13283,7 @@
  @end display
  
  
 -@node su invocation
 +@node su
- @section @command{su}: Run a command with substitute user and group id
+ @section @command{su}: Run a command with substitute user and group ID
  
  @pindex su
-@@ -11959,166 +11919,6 @@
+@@ -13485,167 +13440,6 @@
  might find this idea strange at first.
  
  
@@ -1519,10 +1673,10 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -specify processes to which a signal could be sent.
 -
 -If @var{pid} is positive, the signal is sent to the process with the
--process id @var{pid}.  If @var{pid} is zero, the signal is sent to all
+-process ID @var{pid}.  If @var{pid} is zero, the signal is sent to all
 -processes in the process group of the current process.  If @var{pid}
--is -1, the signal is sent to all processes for which the user has
--permission to send a signal.  If @var{pid} is less than -1, the signal
+-is @minus{}1, the signal is sent to all processes for which the user has
+-permission to send a signal.  If @var{pid} is less than @minus{}1, the signal
 -is sent to all processes in the process group that equals the absolute
 -value of @var{pid}.
 -
@@ -1530,14 +1684,15 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
 -processes is excluded from the list of processes to which the signal
 -is sent.
 -
--If a negative @var{PID} argument is desired as the first one, either a
--signal must be specified as well, or the option parsing
--must be interrupted with `--' before the first @var{pid} argument.
--The following three commands are equivalent:
+-If a negative @var{PID} argument is desired as the first one, it
+-should be preceded by @option{--}.  However, as a common extension to
+-@acronym{POSIX}, @option{--} is not required with @samp{kill
+--@var{signal} -@var{pid}}.  The following commands are equivalent:
 -
 -@example
 -kill -15 -1
 -kill -TERM -1
+-kill -s TERM -- -1
 -kill -- -1
 -@end example
 -
@@ -1649,7 +1804,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @node Delaying
  @chapter Delaying
  
-@@ -12128,11 +11928,11 @@
+@@ -13655,11 +13449,11 @@
  @c Perhaps @command{wait} or other commands should be described here also?
  
  @menu
@@ -1663,7 +1818,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{sleep}: Delay for a specified time
  
  @pindex sleep
-@@ -12179,12 +11979,12 @@
+@@ -13707,12 +13501,12 @@
  These programs do numerically-related operations.
  
  @menu
@@ -1679,7 +1834,7 @@ diff -Nur coreutils-5.2.1.orig/doc/coreutils.texi coreutils-5.2.1/doc/coreutils.
  @section @command{factor}: Print prime factors
  
  @pindex factor
-@@ -12232,7 +12032,7 @@
+@@ -13761,7 +13555,7 @@
  @exitstatus
  
  

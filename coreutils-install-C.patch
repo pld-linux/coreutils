@@ -13,28 +13,27 @@ diff -Nur coreutils-4.5.3.orig/doc/coreutils.texi coreutils-4.5.3/doc/coreutils.
  @item -c
  @opindex -c
  Ignored; for compatibility with old Unix versions of @command{install}.
-diff -Nur coreutils-4.5.3.orig/src/install.c coreutils-4.5.3/src/install.c
---- coreutils-4.5.3.orig/src/install.c	Thu Sep 26 10:39:20 2002
-+++ coreutils-4.5.3/src/install.c	Sun Oct 27 22:48:17 2002
-@@ -25,6 +25,7 @@
+--- coreutils-6.3/src/install.c.orig	2006-09-16 23:47:24.000000000 +0200
++++ coreutils-6.3/src/install.c	2006-10-10 22:23:44.854022500 +0200
+@@ -21,6 +21,7 @@
  #include <stdio.h>
  #include <getopt.h>
  #include <sys/types.h>
 +#include <sys/mman.h>
+ #include <signal.h>
  #include <pwd.h>
  #include <grp.h>
- 
-@@ -113,6 +114,9 @@
-    no effect. */
- static mode_t mode = S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
+@@ -114,6 +115,9 @@
+    or S_ISGID bits.  */
+ static mode_t dir_mode_bits = CHMOD_MODE_BITS;
  
 +/* Compare files before installing (-C) */
 +static int docompare=0;
 +
- /* If nonzero, strip executable files after copying them. */
- static int strip_files;
+ /* If true, strip executable files after copying them. */
+ static bool strip_files;
  
-@@ -136,6 +140,82 @@
+@@ -138,6 +142,82 @@
    {NULL, 0, NULL, 0}
  };
  
@@ -117,16 +116,16 @@ diff -Nur coreutils-4.5.3.orig/src/install.c coreutils-4.5.3/src/install.c
  static void
  cp_option_init (struct cp_options *x)
  {
-@@ -206,7 +286,7 @@
+@@ -242,7 +322,7 @@
       we'll actually use backup_suffix_string.  */
    backup_suffix_string = getenv ("SIMPLE_BACKUP_SUFFIX");
  
--  while ((optc = getopt_long (argc, argv, "bcsDdg:m:o:pvV:S:", long_options,
-+  while ((optc = getopt_long (argc, argv, "bcCsDdg:m:o:pvV:S:", long_options,
+-  while ((optc = getopt_long (argc, argv, "bcsDdg:m:o:pt:TvS:", long_options,
++  while ((optc = getopt_long (argc, argv, "bcCsDdg:m:o:pt:TvS:", long_options,
  			      NULL)) != -1)
      {
        switch (optc)
-@@ -228,6 +308,9 @@
+@@ -254,6 +334,9 @@
  	  break;
  	case 'c':
  	  break;
@@ -134,23 +133,23 @@ diff -Nur coreutils-4.5.3.orig/src/install.c coreutils-4.5.3/src/install.c
 +	  docompare=1;
 +	  break;
  	case 's':
- 	  strip_files = 1;
- 	  break;
-@@ -436,6 +519,12 @@
-       return 1;
-     }
+ 	  strip_files = true;
+ #ifdef SIGCHLD
+@@ -494,6 +577,12 @@
+      However, since !x->recursive, the call to "copy" will fail if FROM
+      is a directory.  */
  
 +  if (docompare)
 +    {
-+      if(compare(from, to)==0) /* Files are identical */
-+	return 0;
++      if(compare(from, to) == 0) /* Files are identical */
++	return true;
 +    }
 +  
-   fail = copy (from, to, nonexistent_dst, x, &copy_into_self, NULL);
+   return copy (from, to, false, x, &copy_into_self, NULL);
+ }
  
-   return fail;
-@@ -613,6 +702,9 @@
-       --backup[=CONTROL] make a backup of each existing destination file\n\
+@@ -667,6 +756,9 @@
+       --backup[=CONTROL]  make a backup of each existing destination file\n\
    -b                  like --backup but does not accept an argument\n\
    -c                  (ignored)\n\
 +  -C                  install file, unless the target already exists and is the\n\
