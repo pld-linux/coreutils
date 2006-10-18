@@ -61,18 +61,17 @@ diff -Nur coreutils-4.5.3.orig/man/pl/getgid.1 coreutils-4.5.3/man/pl/getgid.1
 +warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 +.SH ZOBACZ TAK¯E
 +.BR id (1)
-diff -Nur coreutils-4.5.3.orig/src/Makefile.am coreutils-4.5.3/src/Makefile.am
---- coreutils-4.5.3.orig/src/Makefile.am	Sun Oct 27 21:25:08 2002
-+++ coreutils-4.5.3/src/Makefile.am	Sun Oct 27 21:30:35 2002
-@@ -10,7 +10,7 @@
-   mkfifo mknod mv rm rmdir shred stat sync touch unlink \
+--- coreutils-6.3/src/Makefile.am.orig	2006-10-10 22:11:54.377620500 +0200
++++ coreutils-6.3/src/Makefile.am	2006-10-10 22:12:30.471876250 +0200
+@@ -26,7 +26,7 @@
    cat cksum comm csplit cut expand fmt fold head join md5sum \
-   nl od paste pr ptx sha1sum sort split sum tac tail tr tsort unexpand uniq wc \
+   nl od paste pr ptx sha1sum sha224sum sha256sum sha384sum sha512sum \
+   shuf sort split sum tac tail tr tsort unexpand uniq wc \
 -  basename date dirname echo env expr factor false \
 +  basename date dirname echo env expr factor false getgid \
    hostname id kill logname pathchk printenv printf pwd seq sleep tee \
    test true tty whoami yes \
-   @OPTIONAL_BIN_PROGS@ @DF_PROG@
+   base64 \
 diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 --- coreutils-4.5.3.orig/src/getgid.c	Thu Jan  1 01:00:00 1970
 +++ coreutils-4.5.3/src/getgid.c	Sun Oct 27 21:52:01 2002
@@ -133,11 +132,11 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
  src/head.c
  src/hostid.c
  src/hostname.c
---- coreutils-5.2.1.orig/po/pl.po	Fri Nov  1 02:16:44 2002
-+++ coreutils-5.2.1/po/pl.po	Fri Nov  1 02:28:50 2002
-@@ -2618,6 +2618,15 @@
- msgid "invalid number of columns: `%s'"
- msgstr "b³êdna liczba kolumn: `%s'"
+--- coreutils-6.3/po/pl.po.orig	2006-10-10 22:11:54.373620250 +0200
++++ coreutils-6.3/po/pl.po	2006-10-10 22:13:08.366244500 +0200
+@@ -3592,6 +3592,15 @@
+ msgid "invalid number of columns: %s"
+ msgstr "b³êdna liczba kolumn: %s"
  
 +#: src/getgid.c:37
 +#, c-format
@@ -148,6 +147,6 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +"Sk³adnia:\n"
 +"\t%s nazwa-grupy\n"
 +
- #: src/head.c:117
+ #: src/head.c:113
  msgid ""
- "Print first 10 lines of each FILE to standard output.\n"
+ "Print the first 10 lines of each FILE to standard output.\n"
