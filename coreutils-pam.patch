@@ -518,7 +518,7 @@ diff -Nur coreutils-5.2.1.orig/src/Makefile.am coreutils-5.2.1/src/Makefile.am
 +  env = pam_getenvlist(pamh);
 +  if(env) {
 +    while(*env) {
-+	xputenv(*env);
++	if (putenv (*env) != 0) xalloc_die ();
 +	env++;
 +    }
 +  }
