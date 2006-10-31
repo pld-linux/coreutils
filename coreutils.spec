@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	6.4
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
@@ -102,7 +102,6 @@ Programy zawarte w tym pakiecie to:
 %patch7 -p1
 %patch8 -p1
 %patch10 -p1
-# UPDATEME
 %{?with_selinux:%patch12 -p1}
 #%patch13 -p1	-- obsolete?
 #%patch14 -p1	-- obsolete?
