@@ -26,10 +26,7 @@ Patch5:		%{name}-uname-cpuinfo.patch
 Patch6:		%{name}-date-man.patch
 Patch7:		%{name}-mem.patch
 Patch8:		%{name}-install-C.patch
-Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
-# based on patch from Fedora, based on patches from http://acl.bestbits.at/
-Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
 Patch13:	%{name}-gettext-m4.patch
 Patch14:	%{name}-euidaccess.patch
@@ -104,11 +101,7 @@ Programy zawarte w tym pakiecie to:
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-# UPDATEME
-%patch9 -p1
 %patch10 -p1
-# UPDATEME
-%patch11 -p1
 # UPDATEME
 %{?with_selinux:%patch12 -p1}
 #%patch13 -p1	-- obsolete?
