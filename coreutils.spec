@@ -115,6 +115,7 @@ Programy zawarte w tym pakiecie to:
 %patch14 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
+%{__perl} -pi -e 's/tee \(/tee_files (/' src/tee.c
 
 # no_NO is just an alias for nb_NO in recent glibc
 # no.po is outdated, nb.po is more fresh here (see also patch10)
