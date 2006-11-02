@@ -35,7 +35,7 @@ BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9.6
 %{?with_selinux:BuildRequires:	gcc >= 5:3.2}
-BuildRequires:	gettext-devel >= 0.15
+BuildRequires:	gettext-devel >= 0.16-2
 BuildRequires:	help2man
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	pam-devel
