@@ -35,6 +35,7 @@ Patch10:	%{name}-no-nb.patch
 Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
 Patch13:	%{name}-pam.patch
+Patch14:	%{name}-jm2gl.patch
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.58
 BuildRequires:	automake >= 1:1.8
@@ -109,6 +110,7 @@ Programy zawarte w tym pakiecie to:
 %patch10 -p1
 %patch11 -p1
 %{?with_selinux:%patch12 -p1}
+%patch14 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
