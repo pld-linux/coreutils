@@ -392,57 +392,445 @@ diff -Nur coreutils-6.4/po/POTFILES.in coreutils-6.4.selinux/po/POTFILES.in
  src/seq.c
  src/setuidgid.c
  src/shred.c
-diff -Nur coreutils-6.4/po/pl.po coreutils-6.4.selinux/po/pl.po
---- coreutils-6.4/po/pl.po	2006-10-31 23:38:15.000000000 +0000
-+++ coreutils-6.4.selinux/po/pl.po	2006-10-31 23:39:34.000000000 +0000
-@@ -1716,7 +1716,7 @@
- "z\n"
- "                                 nazw argumentów ¬RÓD£OWYCH\n"
+--- coreutils-6.5/po/pl.po.orig	2006-11-22 11:21:36.559505000 +0100
++++ coreutils-6.5/po/pl.po	2006-11-22 11:43:21.989505000 +0100
+@@ -867,6 +867,95 @@
+ msgid "%s: input file is output file"
+ msgstr "%s: plik wej¶ciowy jest plikiem wyj¶ciowym"
  
--#: src/cp.c:210
-+#: src/cp.c:222
- msgid ""
- "  -s, --symbolic-link          make symbolic links instead of copying\n"
- "  -S, --suffix=SUFFIX          override the usual backup suffix\n"
-@@ -3683,7 +3683,7 @@
- msgid "invalid number of columns: %s"
- msgstr "b³êdna liczba kolumn: %s"
- 
--#: src/getgid.c:37
-+#: src/getgid.c:41
++#: src/chcon.c:101
++#, c-format
++msgid "context of %s changed to %s\n"
++msgstr "kontekst %s zmieniony na %s\n"
++
++#: src/chcon.c:104
++#, c-format
++msgid "failed to change context of %s to %s\n"
++msgstr "nie mo¿na zmieniæ kontekstu %s na %s\n"
++
++#: src/chcon.c:107
++#, c-format
++msgid "context of %s retained as %s\n"
++msgstr "kontekst %s zachowany jako %s\n"
++
++#: src/chcon.c:172
++#, c-format
++msgid "can't apply partial context to unlabeled file %s"
++msgstr "nie mo¿na zastosowaæ czê¶ciowego kontekstu na nieoznakowanym pliku %s"
++
++#: src/chcon.c:180
++#, c-format
++msgid "couldn't compute security context from %s"
++msgstr "nie mo¿na obliczyæ kontekstu bezpieczeñstwa z %s"
++
++#: src/chcon.c:188
++#, c-format
++msgid "invalid context: %s"
++msgstr "b³êdny kontekst: %s"
++
++#: src/chcon.c:210
++#, c-format
++msgid "failed to change context of %s to %s"
++msgstr "nie mo¿na zmieniæ kontekstu %s na %s"
++
++#: src/chcon.c:258
++msgid "virtual memory exhausted"
++msgstr "pamiêæ wirtualna wyczerpana"
++
++#: src/chcon.c:292
++#, c-format
++msgid ""
++"Usage: %s [OPTION]... CONTEXT FILE...\n"
++"  or:  %s [OPTION]... [-u USER] [-r ROLE] [-l RANGE] [-t TYPE] FILE...\n"
++"  or:  %s [OPTION]... --reference=RFILE FILE...\n"
++msgstr ""
++"Sk³adnia: %s [OPCJA]... KONTEKST PLIK...\n"
++"    albo: %s [OPCJA]... [-u U¯YTKOWNIK] [-r ROLA] [-l ZAKRES] [-t TYP] PLIK...\n"
++"    albo: %s [OPCJA]... --reference=PLIK_WZ PLIK...\n"
++
++#: src/chcon.c:298
++#, c-format
++msgid ""
++"Change the security context of each FILE to CONTEXT.\n"
++"\n"
++"  -c, --changes          like verbose but report only when a change is made\n"
++"  -h, --no-dereference   affect symbolic links instead of any referenced file\n"
++"                         (available only on systems with lchown system call)\n"
++"  -f, --silent, --quiet  suppress most error messages\n"
++"      --reference=RFILE  use RFILE's group instead of using a CONTEXT value\n"
++"  -u, --user=USER        set user USER in the target security context\n"
++"  -r, --role=ROLE        set role ROLE in the target security context\n"
++"  -t, --type=TYPE        set type TYPE in the target security context\n"
++"  -l, --range=RANGE      set range RANGE in the target security context\n"
++"  -R, --recursive        change files and directories recursively\n"
++"  -v, --verbose          output a diagnostic for every file processed\n"
++"      --help             display this help and exit\n"
++"      --version          output version information and exit\n"
++msgstr ""
++"Zmiana kontekstu bezpieczeñstwa ka¿dego PLIKU na KONTEKST.\n"
++"\n"
++"  -c, --changes          jak verbose, ale raportowanie tylko wykonanych zmian\n"
++"  -h, --no-dereference   zmiana dowi±zañ symbolicznych zamiast wskazywanych\n"
++"                           plików (dostêpne tylko na systemach z lchown)\n"
++"  -f, --silent, --quiet  pominiêcie wiêkszo¶ci komunikatów o b³êdach\n"
++"      --reference=PLIK   u¿ycie grupy PLIKU zamiast warto¶ci KONTEKSTU\n"
++"  -u, --user=U¯YTKOWNIK  ustawienie U¯YTKOWNIK w kontek¶cie bezpieczeñstwa\n"
++"  -r, --role=ROLA        ustawienie ROLI w kontek¶cie bezpieczeñstwa\n"
++"  -t, --type=TYP         ustawienie TYPU w kontek¶cie bezpieczeñstwa\n"
++"  -l, --range=ZAKRES     ustawienie ZAKRESU w kontek¶cie bezpieczeñstwa\n"
++"  -R, --recursive        zmiana plików i katalogów rekursywnie\n"
++"  -v, --verbose          wypisywanie diagnostyki dla ka¿dego pliku\n"
++"      --help             wy¶wietlenie tego opisu i zakoñczenie\n"
++"      --version          wy¶wietlenie informacji o wersji i zakoñczenie\n"
++
++#: src/chcon.c:393
++msgid "conflicting security context specifiers given"
++msgstr "konflikt miêdzy podanymi okre¶leniami kontekstu bezpieczeñstwa"
++
+ #: src/chgrp.c:95 src/install.c:613
  #, c-format
+ msgid "invalid group %s"
+@@ -1540,6 +1629,21 @@
+ "nie uda³o siê przeniesienie miêdzy urz±dzeniami: %s do %s; nie uda³o siê "
+ "usunaæ pliku docelowego"
+ 
++#: src/copy.c:1305
++#, c-format
++msgid "cannot set setfscreatecon %s"
++msgstr "nie mo¿na ustawiæ setfscreatecon %s"
++
++#: src/copy.c:1315
++#, c-format
++msgid "warning: security context not preserved %s"
++msgstr "uwaga: nie zachowano kontekstu bezpieczeñstwa %s"
++
++#: src/copy.c:1317
++#, c-format
++msgid "cannot lgetfilecon %s"
++msgstr "nie mo¿na wykonaæ lgetfilecon %s"
++
+ #: src/copy.c:1487
+ #, c-format
+ msgid "cannot copy cyclic symbolic link %s"
+@@ -1688,6 +1792,10 @@
+ "                               atrybutów: links (dowi±zania), all "
+ "(wszystkie))\n"
+ 
++#: src/cp.c:202
++msgid "  -c                           same as --preserve=context\n"
++msgstr "  -c                           to samo co --preserve=context\n"
++
+ #: src/cp.c:196
  msgid ""
- "Usage:\n"
-@@ -3863,8 +3863,8 @@
+ "      --no-preserve=ATTR_LIST  don't preserve the specified attributes\n"
+@@ -1740,12 +1848,13 @@
+ "                                 destination file is missing\n"
+ "  -v, --verbose                explain what is being done\n"
+ "  -x, --one-file-system        stay on this file system\n"
++"  -Z, --context=CONTEXT        set security context of copy to CONTEXT\n"
  msgstr ""
- "Wy¶wietla informacjê o U¯YTKOWNIKU lub o aktualnym u¿ytkowniku.\n"
+ "  -u, --update                 kopiowanie tylko plików, dla których ¬RÓD£O\n"
+ "                                 jest nowsze ni¿ CEL albo brakuje CELU\n"
+ "  -v, --verbose                wyja¶nianie co siê dzieje\n"
+ "  -x, --one-file-system        pozostanie w jednym systemie plików\n"
+-"\n"
++"  -Z, --context=KONTEKST       ustawienie KONTEKSTU bezpieczeñstwa kopii\n"
+ 
+ #: src/cp.c:225
+ msgid ""
+@@ -1874,6 +1983,26 @@
+ msgid "multiple target directories specified"
+ msgstr "podano wiele katalogów docelowych"
+ 
++#: src/cp.c:1017
++#, c-format
++msgid "%s: cannot force target context <-- %s and preserve it\n"
++msgstr "%s: nie mo¿na wymusiæ docelowego kontekstu <-- %s i zachowaæ go\n"
++
++#: src/cp.c:1027
++#, c-format
++msgid "Warning:  ignoring --context (-Z). It requires a SELinux enabled kernel.\n"
++msgstr "Uwaga: zignorowano --context (-Z). Ta opcja wymaga j±dra z obs³ug± SELinuksa.\n"
++
++#: src/cp.c:1031 src/install.c:369
++#, c-format
++msgid "%s: cannot force target context to '%s' and preserve it\n"
++msgstr "%s: nie mo¿na wymusiæ docelowego kontekstu na '%s' i zachowaæ go\n"
++
++#: src/cp.c:1038
++#, c-format
++msgid "cannot set default security context %s"
++msgstr "nie mo¿na ustawiæ domy¶lnego kontekstu bezpieczeñstwa %s"
++
+ #: src/cp.c:1009
+ #, c-format
+ msgid "cannot make both hard and symbolic links"
+@@ -3860,6 +3989,7 @@
+ "Print information for USERNAME, or the current user.\n"
  "\n"
--"  -a              ignorowane, dla zachowania kompatybilno¶ci z innymi "
--"wersjami\n"
-+"  -a              ignorowane, dla zachowania kompatybilno¶ci z innymi wersjami\n"
+ "  -a              ignore, for compatibility with other versions\n"
++"  -Z, --context   print only the context\n"
+ "  -g, --group     print only the effective group ID\n"
+ "  -G, --groups    print all group IDs\n"
+ "  -n, --name      print a name instead of a number, for -ugG\n"
+@@ -3870,6 +4000,7 @@
+ "\n"
+ "  -a              ignorowane, dla zachowania kompatybilno¶ci z innymi "
+ "wersjami\n"
 +"  -Z, --context   wy¶wietlenie tylko kontekstu\n"
  "  -g, --group     wy¶wietlenie tylko efektywnego identyfikatora grupy\n"
  "  -G, --groups    wy¶wietlenie pe³nej listy grup\n"
  "  -n, --name      wy¶wietlenie nazw zamiast numerów, dla -ugG\n"
-@@ -5071,7 +5071,7 @@
- "Utworzenie pliku specjalnego o podanej NAZWIE i TYPIE.\n"
- "\n"
+@@ -3886,10 +4017,26 @@
+ "Bez ¿adnych OPCJI wy¶wietla zestaw u¿ytecznych informacji, które uda³o siê\n"
+ "zidentyfikowaæ.\n"
  
--#: src/mknod.c:69
-+#: src/mknod.c:81
+-#: src/id.c:152
++#: src/id.c:165 src/mkdir.c:136 src/mkfifo.c:124 src/mknod.c:135
+ #, c-format
+-msgid "cannot print only user and only group"
+-msgstr "nie mo¿na wypisaæ tylko u¿ytkownika i tylko grupê równocze¶nie"
++msgid "Sorry, --context (-Z) can be used only on a SELinux-enabled kernel.\n"
++msgstr "Niestety --context (-Z) mo¿na u¿ywaæ tylko na j±drze z obs³ug± SELinuksa.\n"
++
++#: src/id.c:198
++msgid ""
++"cannot display context when SELinux not enabled or when displaying the id\n"
++"of a different user"
++msgstr ""
++"nie mo¿na wy¶wietliæ kontekstu kiedy SELinux nie jest w³±czony lub przy\n"
++"wy¶wietlaniu identyfikatora innego u¿ytkownika"
++
++#: src/id.c:209
++msgid "can't get process context"
++msgstr "nie mo¿na uzyskaæ kontekstu procesu"
++
++#: src/id.c:214
++msgid "cannot print \"only\" of more than one choice"
++msgstr "nie mo¿na wypisaæ \"tylko czego¶\" dla wiêcej ni¿ jednej rzeczy"
+ 
+ #: src/id.c:156
+ #, c-format
+@@ -3921,6 +4068,31 @@
+ msgid " groups="
+ msgstr " grupy="
+ 
++#: src/id.c:458
++#, c-format
++msgid " context=%s"
++msgstr " kontekst=%s"
++
++#: src/install.c:365
++#, c-format
++msgid "Warning:  ignoring --preserve_context (-P) because the kernel is not SELinux-enabled.\n"
++msgstr "Uwaga: zignorowano --preserve_context (-P), poniewa¿ j±dro nie ma obs³ugi SELinuksa.\n"
++
++#: src/install.c:377
++#, c-format
++msgid "Warning:  ignoring --context (-Z) because the kernel is not SELinux-enabled.\n"
++msgstr "Uwaga: zignorowano --context (-Z), poniewa¿ j±dro nie ma obs³ugi SELinuksa.\n"
++
++#: src/install.c:382
++#, c-format
++msgid "%s: cannot force target context == '%s' and preserve it\n"
++msgstr "%s: nie mo¿na wymusiæ docelowego kontekstu '%s' i zachowaæ go\n"
++
++#: src/install.c:387
++#, c-format
++msgid "%s: cannot setup default context == '%s'\n"
++msgstr "%s: nie mo¿na ustawiæ domy¶lnego kontekstu '%s'\n"
++
+ #: src/install.c:318
+ #, c-format
+ msgid "the strip option may not be used when installing a directory"
+@@ -4059,6 +4231,14 @@
+ "  -T, --no-target-directory  traktowanie CELU jak zwyk³ego pliku\n"
+ "  -v, --verbose       wypisanie nazwy ka¿dego tworzonego katalogu\n"
+ 
++#: src/install.c:773
++msgid ""
++"  -P, --preserve_context (SELinux) Preserve security context\n"
++"  -Z, --context=CONTEXT  (SELinux) Set security context of files and directories\n"
++msgstr ""
++"  -P, --preserve_context (SELinux) zachowanie kontekstu bezpieczeñstwa\n"
++"  -Z, --context=KONTEKST (SELinux) ustawienie kontekstu plików i katalogów\n"
++
+ #: src/install.c:694 src/ln.c:365 src/mv.c:318
  msgid ""
  "\n"
- "Both MAJOR and MINOR must be specified when TYPE is b, c, or u, and they\n"
-@@ -5086,7 +5086,7 @@
- "szesnastkowa. Je¿eli zaczyna siê od 0 - jako ósemkowa. W innych wypadkach -\n"
- "jako dziêsi±tkowa. TYP mo¿e byæ:\n"
+@@ -4448,6 +4628,11 @@
+ msgid "no login name"
+ msgstr "brak nazwy u¿ytkownika"
  
--#: src/mknod.c:76
-+#: src/mknod.c:88
++#: src/ls.c:129
++#, c-format
++msgid "Sorry, this option can only be used on a SELinux-enabled kernel.\n"
++msgstr "Niestety tej opcji mo¿na u¿yæ tylko na j±drze z obs³ug± SELinuksa.\n"
++
+ #: src/ls.c:677
+ msgid "%b %e  %Y"
+ msgstr "%b %e  %Y"
+@@ -4812,6 +4997,34 @@
+ "  -X                         sortowanie alfabetyczne wg rozszerzeñ\n"
+ "  -1                         listowanie po jednym pliku w linii\n"
+ 
++#: src/ls.c:4134
++#, c-format
++msgid ""
++"\n"
++"SELinux options:\n"
++"\n"
++"      --lcontext             Display security context.   Enable -l. Lines\n"
++"                               will probably be too wide for most displays.\n"
++"      -Z, --context          Display security context so it fits on most\n"
++"                               displays.  Displays only mode, user, group,\n"
++"                               security context and file name.\n"
++"      --scontext             Display only security context and file name.\n"
++"\n"
++"\n"
++msgstr ""
++"\n"
++"Opcje dla SELinuksa:\n"
++"\n"
++"      --lcontext             wy¶wietlanie kontekstu bezpieczeñstwa; w³±cza -l,\n"
++"                               linie mog± byæ zbyt d³ugie dla wielu terminali\n"
++"      --context              wy¶wietlanie kontekstu tak, ¿eby zmie¶ci³ siê na\n"
++"                               wiêkszo¶ci terminali; wy¶wietlane s± tylko\n"
++"                               uprawnienia, w³a¶ciciel, grupa, kontekst\n"
++"                               bezpieczeñstwa i nazwa pliku\n"
++"      --scontext             wy¶wietlanie tylko kontekstu i nazwy pliku\n"
++"\n"
++"\n"
++
+ #: src/ls.c:4356
  msgid ""
  "\n"
- "  b      create a block (buffered) special file\n"
-@@ -7699,6 +7699,7 @@
+@@ -5014,6 +5227,11 @@
+ "Utworzenie KATALOGU/ÓW, je¿eli jeszcze nie istniej±.\n"
+ "\n"
+ 
++#: src/mkdir.c:74
++#, c-format
++msgid "  -Z, --context=CONTEXT (SELinux) set security context to CONTEXT\n"
++msgstr "  -Z, --context=KONTEKST (SELinux) ustawienie KONTEKSTU bezpieczeñstwa\n"
++
+ #: src/mkdir.c:67
+ msgid ""
+ "  -m, --mode=MODE   set file mode (as in chmod), not a=rwx - umask\n"
+@@ -5030,6 +5248,11 @@
+ msgid "created directory %s"
+ msgstr "utworzony katalog %s"
+ 
++#: src/mkdir.c:170 src/mkfifo.c:128 src/mknod.c:139
++#, c-format
++msgid "Sorry, cannot set default context to %s.\n"
++msgstr "Niestety nie mo¿na ustawiæ domy¶lnego kontekstu na %s.\n"
++
+ #: src/mkfifo.c:54
+ #, c-format
+ msgid "Usage: %s [OPTION] NAME...\n"
+@@ -5043,6 +5266,11 @@
+ "Tworzenie nazwanych potoków (pipes, FIFOs) o podanych NAZWACH.\n"
+ "\n"
+ 
++#: src/mkfifo.c:68 src/mknod.c:69
++#, c-format
++msgid "  -Z, --context=CONTEXT   set security context (quoted string)\n"
++msgstr "  -Z, --context=KONTEKST  ustawienie kontekstu bezpieczeñstwa (³añcuch cytowany)\n"
++
+ #: src/mkfifo.c:62 src/mknod.c:64
+ msgid ""
+ "  -m, --mode=MODE   set file permission bits to MODE, not a=rw - umask\n"
+@@ -6771,6 +6999,72 @@
+ "  -v, --verbose   informacja diagnostyczna o ka¿dym przetworzonym\n"
+ "                  katalogu\n"
+ 
++#: src/runcon.c:42
++#, c-format
++msgid ""
++"Usage: %s [OPTION]... command [args]\n"
++"Run a program in a different security context.\n"
++"\n"
++"  context       Complete security context\n"
++"  -t            type (for same role as parent)\n"
++"  -u            user identity\n"
++"  -r            role\n"
++"  -l            levelrange\n"
++"    --help      display this help and exit\n"
++msgstr ""
++"Sk³adnia: %s [OPCJA]... polecenie [argumenty]\n"
++"Uruchomienie programu w innym kontek¶cie bezpieczeñstwa.\n"
++"\n"
++"  kontekst      pe³ny kontekst bezpieczeñstwa\n"
++"  -t            typ (dla tej samej roli jako rodzica)\n"
++"  -u            identyfikator u¿ytkownika\n"
++"  -r            rola\n"
++"  -l            zakres poziomów\n"
++"    --help      wy¶wietlenie tego opisu i zakoñczenie\n"
++
++#: src/runcon.c:90
++#, c-format
++msgid "multiple roles\n"
++msgstr "wiele ról\n"
++
++#: src/runcon.c:97
++#, c-format
++msgid "multiple types\n"
++msgstr "wiele typów\n"
++
++#: src/runcon.c:104
++#, c-format
++msgid "multiple users\n"
++msgstr "wielu u¿ytkowników\n"
++
++#: src/runcon.c:111
++#, c-format
++msgid "multiple levelranges\n"
++msgstr "wiele zakresów poziomów\n"
++
++#: src/runcon.c:117
++#, c-format
++msgid "unrecognised option %c\n"
++msgstr "nierozpoznana opcja %c\n"
++
++#: src/runcon.c:125
++msgid "must specify -t, -u, -l, -r, or context"
++msgstr "trzeba podaæ -t, -u, -l, -r albo kontekst"
++
++#: src/runcon.c:131
++msgid "no command found"
++msgstr "nie znaleziono polecenia"
++
++#: src/runcon.c:137 src/runcon.c:145
++#, c-format
++msgid "%s is not a valid context\n"
++msgstr "%s nie jest poprawnym kontekstem\n"
++
++#: src/runcon.c:163
++#, c-format
++msgid "unable to setup security context %s\n"
++msgstr "nie mo¿na ustawiæ kontekstu bezpieczeñstwa %s\n"
++
+ #: src/seq.c:74
+ #, c-format
+ msgid ""
+@@ -7640,6 +7934,7 @@
+ "      --printf=FORMAT   like --format, but interpret backslash escapes,\n"
+ "                          and do not output a mandatory trailing newline.\n"
+ "                          If you want a newline, include \\n in FORMAT.\n"
++"  -Z, --context         print the security context\n"
+ "  -t, --terse           print the information in terse form\n"
+ msgstr ""
+ "  -c  --format=FORMAT   u¿ycie podanego FORMATU zamiast domy¶lnego; po\n"
+@@ -7650,6 +7945,7 @@
+ "                          uko¶nikiem odwrotnym i bez wypisywania znaku "
+ "nowej\n"
+ "                          linii. ¯eby go wypisaæ u¿yj \\n w FORMACIE.\n"
++"  -Z, --context         wypisywanie kontekstu bezpieczeñstwa\n"
+ "  -t, --terse           wypisywanie informacji w skróconej formie\n"
+ 
+ #: src/stat.c:849
+@@ -7737,6 +8033,7 @@
  "  %c   Total file nodes in file system\n"
  "  %d   Free file nodes in file system\n"
  "  %f   Free blocks in file system\n"
@@ -450,6 +838,25 @@ diff -Nur coreutils-6.4/po/pl.po coreutils-6.4.selinux/po/pl.po
  msgstr ""
  "Prawid³owe specyfikacje formatu dla systemów plików:\n"
  "\n"
+@@ -7745,6 +8042,7 @@
+ "  %c   ca³kowita liczba i-wêz³ów w systemie plików\n"
+ "  %d   liczba wolnych i-wêz³ów w systemie plików\n"
+ "  %f   liczba wolnych bloków w systemie plików\n"
++"  %C   kontekst bezpieczeñstwa w SELinuksie\n"
+ 
+ #: src/stat.c:896
+ msgid ""
+@@ -7764,6 +8062,10 @@
+ "  %t   typ szesnastkowo\n"
+ "  %T   typ w formie czytelnej dla cz³owieka\n"
+ 
++#: src/stat.c:900
++msgid "Kernel is not SELinux enabled"
++msgstr "J±dro nie ma obs³ugi SELinuksa"
++
+ #: src/stty.c:511
+ #, c-format
+ msgid ""
 diff -Nur coreutils-6.4/src/Makefile.am coreutils-6.4.selinux/src/Makefile.am
 --- coreutils-6.4/src/Makefile.am	2006-10-31 23:38:15.000000000 +0000
 +++ coreutils-6.4.selinux/src/Makefile.am	2006-10-31 23:39:34.000000000 +0000
