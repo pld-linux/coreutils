@@ -1,110 +1,200 @@
---- coreutils-5.2.1/po/pl.po.orig	Fri Mar 12 14:56:32 2004
-+++ coreutils-5.2.1/po/pl.po	Thu Mar 18 16:47:11 2004
-@@ -10,10 +10,10 @@
+--- coreutils-6.5/po/pl.po.orig	2006-11-19 11:11:48.000000000 +0100
++++ coreutils-6.5/po/pl.po	2006-11-22 10:40:58.559505000 +0100
+@@ -7,13 +7,14 @@
+ # fileutils: Andrzej Krzysztofowicz <ankry@mif.pg.gda.pl>, 2002.
+ # Thanks for help and 246+ remarks to Jakub Bogusz, 2003.
+ # 4 corrections: jurget@infocoig.pl via garski@poczta.onet.pl, 2004.
++# 3 corrections: Andrzej Krzysztofowicz <ankry@green.mif.pg.gda.pl>, 2006
  #
  msgid ""
  msgstr ""
--"Project-Id-Version: coreutils 5.2.0\n"
-+"Project-Id-Version: coreutils 5.2.1\n"
+-"Project-Id-Version: coreutils 6.4\n"
++"Project-Id-Version: coreutils 6.5\n"
  "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
- "POT-Creation-Date: 2004-03-12 14:56+0100\n"
--"PO-Revision-Date: 2004-02-21 15:00+0200\n"
-+"PO-Revision-Date: 2004-03-14 00:30+0200\n"
+ "POT-Creation-Date: 2006-11-19 11:11+0100\n"
+-"PO-Revision-Date: 2006-11-14 01:30+0100\n"
++"PO-Revision-Date: 2006-11-21 10:20+0100\n"
  "Last-Translator: Rafa³ Maszkowski <rzm@icm.edu.pl>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
  "MIME-Version: 1.0\n"
-@@ -965,7 +965,7 @@
+@@ -319,10 +320,10 @@
+ msgid "Invalid regular expression"
+ msgstr "B³êdne wyra¿enie regularne"
  
- #: src/comm.c:76
- msgid "Compare sorted files FILE1 and FILE2 line by line.\n"
--msgstr ""
-+msgstr "Porównanie posortowanych plików PLIK1 i PLIK2 linia po linii.\n"
- 
- #: src/comm.c:79
- msgid ""
-@@ -974,19 +974,21 @@
- "lines unique to FILE1, column two contains lines unique to FILE2,\n"
- "and column three contains lines common to both files.\n"
- msgstr ""
-+"\n"
-+"Bez opcji wypisuje wyniki w trzech kolumnach. Pierwsza zawiera linie\n"
-+"wystêpuj±ce tylko w PLIKU1, druga - tylko w PLIKU2, trzecia - wystêpuj±ce w\n"
-+"obu plikach.\n"
- 
- #: src/comm.c:85
++# ? - rzm
+ #: lib/regcomp.c:140
 -#, fuzzy
- msgid ""
- "\n"
- "  -1              suppress lines unique to FILE1\n"
- "  -2              suppress lines unique to FILE2\n"
- "  -3              suppress lines that appear in both files\n"
- msgstr ""
--"Porównanie posortowanych plików LEWY_PLIK i PRAWY_PLIK linia po linii.\n"
- "\n"
--"  -1              bez pokazania linii, które s± tylko w lewym pliku\n"
--"  -2              bez pokazania linii, które s± tylko w prawym pliku\n"
-+"  -1              bez pokazania linii, które s± tylko w PLIKU1\n"
-+"  -2              bez pokazania linii, które s± tylko w PLIKU2\n"
- "  -3              bez pokazania linii, które s± w obu plikach\n"
+ msgid "Invalid collation character"
+-msgstr "b³êdna klasa znaków %s"
++msgstr "B³êdny znak sortowany"
  
- #: src/copy.c:222 src/fmt.c:435 src/head.c:866 src/tail.c:1268
-@@ -2523,7 +2525,6 @@
- "  -D, --dereference-args  rozwijanie PLIKÓW - dowi±zañ symbolicznych\n"
- 
- #: src/du.c:186
--#, fuzzy
- msgid ""
- "  -H                    like --si, but also evokes a warning; will soon\n"
- "                        change to be equivalent to --dereference-args (-D)\n"
-@@ -2533,10 +2534,14 @@
- "  -k                    like --block-size=1K\n"
- "  -l, --count-links     count sizes many times if hard linked\n"
- msgstr ""
-+"  -H                    to samo co --si, ale wypisuje ostrze¿enie; "
-+"znaczenie\n"
-+"                          bêdzie nied³ugo zmienione na równowa¿ne\n"
-+"                          --dereference-args (-D)\n"
- "  -h, --human-readable  rozmiary w formacie czytelnym dla ludzi (np. 1K "
- "234M\n"
- "                          2G)\n"
--"  -H, --si              podobnie, ale z u¿yciem potêg 1000, nie 1024\n"
-+"      --si              podobnie, ale z u¿yciem potêg 1000, nie 1024\n"
- "                          (przestarza³e)\n"
- "  -k, --kilobytes       to samo co --block-size=1K\n"
- "  -l, --count-links     liczenie rozmiaru wielokrotnie je¿eli plik ma\n"
-@@ -4724,6 +4729,7 @@
- #: src/nohup.c:155
- msgid "failed to set the copy of stderr to close on exec"
- msgstr ""
-+"nie uda³o siê zamkn±æ kopii standardowego wyj¶cia przy wykonywaniu exec"
- 
- #: src/nohup.c:158
- msgid "failed to redirect standard error"
-@@ -6041,7 +6047,7 @@
- "  -w, --equal-width        wype³nienie zerami do równej szeroko¶ci\n"
- 
- #: src/seq.c:96
--#, fuzzy, c-format
-+#, c-format
- msgid ""
- "\n"
- "If FIRST or INCREMENT is omitted, it defaults to 1.  That is, an\n"
-@@ -6053,14 +6059,13 @@
- "the printf-style, floating point output formats %e, %f, %g\n"
- msgstr ""
- "\n"
--"Je¿eli PIERWSZA lub KROK s± pominiête, maj± warto¶æ 1. Tzn. je¿eli KROK "
--"jest\n"
--"pominiêty, domy¶lnie ma warto¶æ 1, nawet je¿eli OSTATNIA jest mniejsza od\n"
--"PIERWSZEJ.\n"
-+"Je¿eli PIERWSZA lub KROK s± pominiête, maj± domy¶ln± warto¶æ 1. Tzn. je¿eli\n"
-+"KROK jest pominiêty, domy¶lnie ma warto¶æ 1, nawet je¿eli OSTATNIA jest\n"
-+"mniejsza od PIERWSZEJ.\n"
- "PIERWSZA, KROK i OSTATNIA s± interpretowane jako liczby zmiennoprzecinkowe.\n"
- "KROK powinien byæ dodatni, je¶li PIERWSZA jest mniejsza od OSTATNIEJ lub\n"
- "ujemny w przeciwnym wypadku. Podany FORMAT musi zawieraæ dok³adnie jeden\n"
--"ze zmiennoprzecinkowych formatów wyj¶cia: %e, %f lub %g\n"
-+"ze zmiennoprzecinkowych formatów wyj¶cia w stylu printf: %e, %f lub %g\n"
- 
- #: src/seq.c:121
+ #: lib/regcomp.c:143
+ msgid "Invalid character class name"
+@@ -6571,7 +6572,7 @@
+ #: src/remove.c:1376
  #, c-format
+ msgid "skipping %s, since it's on a different device"
+-msgstr ""
++msgstr "pominiêto %s, bo jest na innym urz±dzeniu"
+ 
+ #: src/remove.c:1425 src/remove.c:1466
+ #, c-format
+@@ -6642,6 +6643,11 @@
+ "                          directory that is on a file system different from\n"
+ "                          that of the corresponding command line argument\n"
+ msgstr ""
++"      --one-file-system  poddczas rekurencyjnego usuwania katalogu pomijane\n"
++"                          s± katalogi znajduj±ce siê na innym systemie "
++"plików\n"
++"                          ni¿ ten, na którym znajduje siê argument "
++"polecenia\n"
+ 
+ #: src/rm.c:179
+ msgid ""
+@@ -9737,146 +9743,3 @@
+ msgstr ""
+ "Powtarzanie na wyj¶ciu linii ze wszystkimi podanymi £AÑCUCH(AMI) albo `y'\n"
+ "\n"
+-
+-#~ msgid "cannot change owner and/or group of %s"
+-#~ msgstr "nie mo¿na zmieniæ u¿ytkownika i/lub grupy %s"
+-
+-#~ msgid "cannot chdir to directory %s"
+-#~ msgstr "nie mo¿na przej¶æ do katalogu %s"
+-
+-#~ msgid "cannot get the login group of a numeric UID"
+-#~ msgstr "Nie mo¿na ustaliæ grupy identyfikatora numerycznego UID"
+-
+-#~ msgid ""
+-#~ "      --no-preserve-root do not treat `/' specially (the default)\n"
+-#~ "      --preserve-root    fail to operate recursively on `/'\n"
+-#~ msgstr ""
+-#~ "      --no-preserve-root bez traktowania katalogu '/' w specjalny sposób\n"
+-#~ "                           (domy¶lnie)\n"
+-#~ "      --preserve-root    odmowa rekusywnego dzia³ania na '/'\n"
+-
+-#~ msgid "symbolic links are not supported on this system"
+-#~ msgstr "ten system nie rozumie dowi±zañ symbolicznych"
+-
+-#~ msgid ""
+-#~ "  -e             enable interpretation of backslash escapes\n"
+-#~ "  -E             disable interpretation of backslash escapes (default)\n"
+-#~ msgstr ""
+-#~ "  -e             w³±czenie interpretacji sekwencji z uko¶nikiem "
+-#~ "odwrotnym\n"
+-#~ "  -E             wy³±czenie interpretacji sekwencji z uko¶nikiem "
+-#~ "odwrotnym\n"
+-#~ "                   (domy¶lnie)\n"
+-
+-# trochê niezrêczne -pk
+-#~ msgid ""
+-#~ "warning: unportable BRE: %s: using `^' as the first character\n"
+-#~ "of the basic regular expression is not portable; it is being ignored"
+-#~ msgstr ""
+-#~ "uwaga: nieprzeno¶ne PWR (Basic Regular Expression): `%s': u¿ycie `^' "
+-#~ "jako\n"
+-#~ "pierwszego znaku podstawowego wyra¿enia regularnego nie jest przeno¶ne;\n"
+-#~ "zosta³o zignorowane"
+-
+-#~ msgid "unrecognized option `-%c'"
+-#~ msgstr "nierozpoznana opcja `-%c'"
+-
+-#~ msgid "cannot return to working directory"
+-#~ msgstr "nie uda³o siê wróciæ do pocz±tkowego katalogu roboczego"
+-
+-#~ msgid "cannot return to current directory"
+-#~ msgstr "nie mo¿na wróciæ do bie¿±cego katalogu"
+-
+-#~ msgid "create symbolic link %s to %s"
+-#~ msgstr "tworzenie dowi±zania symbolicznego %s do %s"
+-
+-#~ msgid "create hard link %s to %s"
+-#~ msgstr "tworzenie dowi±zania zwyk³ego %s do %s"
+-
+-#~ msgid "cannot set permissions of directory %s"
+-#~ msgstr "nie mo¿na ustawiæ uprawnieñ katalogu %s"
+-
+-#~ msgid "fifo files not supported"
+-#~ msgstr "potoki nie s± obs³ugiwane przez ten system"
+-
+-#~ msgid "cannot set permissions of fifo %s"
+-#~ msgstr "nie mo¿na ustawiæ uprawnieñ potoku %s"
+-
+-#~ msgid "cannot set permissions of %s"
+-#~ msgstr "nie mo¿na ustawiæ uprawnieñ do %s"
+-
+-#~ msgid ""
+-#~ "This program is free software; you can redistribute it and/or modify\n"
+-#~ "it under the terms of the GNU General Public License as published by\n"
+-#~ "the Free Software Foundation; either version 2, or (at your option)\n"
+-#~ "any later version.\n"
+-#~ "\n"
+-#~ msgstr ""
+-#~ "Ten program jest darmowy; mo¿na go rozprowadzaæ i/lub modyfikowaæ\n"
+-#~ "przestrzegaj±c warunków Powszechnej Licencji Publicznej GNU (General "
+-#~ "Public\n"
+-#~ "Licence) opublikowanej przez Free Software Foundation, w wersji 2 lub, "
+-#~ "do\n"
+-#~ "wyboru, dowolnej po¼niejszej.\n"
+-#~ "\n"
+-
+-#~ msgid ""
+-#~ "This program is distributed in the hope that it will be useful,\n"
+-#~ "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+-#~ "GNU General Public License for more details.\n"
+-#~ "\n"
+-#~ msgstr ""
+-#~ "Ten program ten jest rozprowadzany w nadziei, ¿e bêdzie przydatny,\n"
+-#~ "ale BEZ ¯ADNEJ GWARANCJI, nawet bez domy¶lnej gwarancji JAKO¦CI\n"
+-#~ "lub PRZYDATNO¦CI DO KONKRETNYCH ZASTOSOWAÑ. Szczegó³y znajduj± siê\n"
+-#~ "w Powszechnej Licencji Publicznej GNU.\n"
+-#~ "\n"
+-
+-#~ msgid ""
+-#~ "You should have received a copy of the GNU General Public License\n"
+-#~ "along with this program; if not, write to the Free Software Foundation,\n"
+-#~ "Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n"
+-#~ msgstr ""
+-#~ "Kopia Powszechnej Licencji Publicznej GNU powinna byæ dostarczona wraz\n"
+-#~ "z tym programem. Je¶li nie, mo¿na napisaæ do Free Software Foundation,\n"
+-#~ "Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n"
+-
+-#~ msgid "cannot chdir from %s to .."
+-#~ msgstr "nie mo¿na przej¶æ z %s do .."
+-
+-#~ msgid "cannot lstat `.' in %s"
+-#~ msgstr "nie mo¿na wykonaæ lstat `.' w %s"
+-
+-#~ msgid "cannot lstat %s"
+-#~ msgstr "nie mo¿na wykonaæ lstat na %s"
+-
+-#~ msgid "cannot chdir from %s to %s"
+-#~ msgstr "nie mo¿na przej¶æ z %s do %s"
+-
+-#~ msgid "cannot remove `.' or `..'"
+-#~ msgstr "nie mo¿na usun±æ `.' lub `..'"
+-
+-#~ msgid ""
+-#~ "Remove (unlink) the FILE(s).\n"
+-#~ "\n"
+-#~ "  -d, --directory       unlink FILE, even if it is a non-empty directory\n"
+-#~ "                          (super-user only; this works only if your "
+-#~ "system\n"
+-#~ "                           supports `unlink' for nonempty directories)\n"
+-#~ "  -f, --force           ignore nonexistent files, never prompt\n"
+-#~ "  -i, --interactive     prompt before any removal\n"
+-#~ msgstr ""
+-#~ "Usuwanie (unlink) PLIKU/ÓW.\n"
+-#~ "\n"
+-#~ "  -d, --directory       usuniêcie PLIKU, nawet je¿eli jest to niepusty "
+-#~ "katalog\n"
+-#~ "                          (tylko super-user; dzia³a tylko je¿li twój "
+-#~ "system\n"
+-#~ "                           umo¿liwia `unlink' dla niepustych katalogów)\n"
+-#~ "  -f, --force           zignorowanie nieistniej±cych plików, wy³±czenie "
+-#~ "pytañ\n"
+-#~ "  -i, --interactive     pytanie przed ka¿dym usuniêciem pliku\n"
+-
+-#~ msgid "Exit with a status code indicating failure."
+-#~ msgstr "Wyj¶cie z kodem oznaczaj±cym niepowodzenie."
