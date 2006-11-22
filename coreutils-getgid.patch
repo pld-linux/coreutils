@@ -1,14 +1,13 @@
-diff -Nur coreutils-4.5.3.orig/man/Makefile.am coreutils-4.5.3/man/Makefile.am
---- coreutils-4.5.3.orig/man/Makefile.am	Fri Aug  9 08:12:29 2002
-+++ coreutils-4.5.3/man/Makefile.am	Sun Oct 27 21:38:26 2002
-@@ -10,6 +10,7 @@
-   su.1 sum.1 sync.1 tac.1 tail.1 tee.1 test.1 touch.1 tr.1 true.1 tsort.1 \
-   tty.1 uname.1 unexpand.1 uniq.1 unlink.1 uptime.1 users.1 vdir.1 wc.1 \
-   who.1 whoami.1 yes.1
+--- coreutils-6.5/man/Makefile.am.orig	2006-11-16 09:49:56.000000000 +0100
++++ coreutils-6.5/man/Makefile.am	2006-11-22 10:46:38.209505000 +0100
+@@ -33,6 +33,7 @@
+   whoami.1 yes.1 $(MAN)
+ optional_mans = \
+   chroot.1 hostid.1 nice.1 pinky.1 stty.1 uname.1 uptime.1 users.1 who.1
 +man_MANS = getgid.1
  
- man_aux = $(dist_man_MANS:.1=.x)
  
+ man_aux = $(dist_man_MANS:.1=.x) $(optional_mans:.1=.x)
 diff -Nur coreutils-4.5.3.orig/man/getgid.1 coreutils-4.5.3/man/getgid.1
 --- coreutils-4.5.3.orig/man/getgid.1	Thu Jan  1 01:00:00 1970
 +++ coreutils-4.5.3/man/getgid.1	Sun Oct 27 21:40:54 2002
