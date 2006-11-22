@@ -45,19 +45,18 @@ diff -Nur coreutils-6.4/lib/config.hin coreutils-6.4.selinux/lib/config.hin
  /* Define to 1 if your processor stores words with the most significant byte
     first (like Motorola and SPARC, unlike Intel and VAX). */
  #undef WORDS_BIGENDIAN
-diff -Nur coreutils-6.4/man/Makefile.am coreutils-6.4.selinux/man/Makefile.am
---- coreutils-6.4/man/Makefile.am	2006-10-31 23:38:15.000000000 +0000
-+++ coreutils-6.4.selinux/man/Makefile.am	2006-10-31 23:39:34.000000000 +0000
+--- coreutils-6.5/man/Makefile.am.orig	2006-11-22 10:47:32.569505000 +0100
++++ coreutils-6.5/man/Makefile.am	2006-11-22 10:48:11.669505000 +0100
 @@ -30,7 +30,7 @@
-   shred.1 shuf.1 sleep.1 sort.1 split.1 stat.1 stty.1 \
+   shred.1 shuf.1 sleep.1 sort.1 split.1 stat.1 \
    su.1 sum.1 sync.1 tac.1 tail.1 tee.1 test.1 touch.1 tr.1 true.1 tsort.1 \
-   tty.1 uname.1 unexpand.1 uniq.1 unlink.1 uptime.1 users.1 vdir.1 wc.1 \
--  who.1 whoami.1 yes.1
-+  who.1 whoami.1 yes.1 chcon.1 runcon.1
+   tty.1 unexpand.1 uniq.1 unlink.1 vdir.1 wc.1 \
+-  whoami.1 yes.1 $(MAN)
++  whoami.1 yes.1 chcon.1 runcon.1 $(MAN)
+ optional_mans = \
+   chroot.1 hostid.1 nice.1 pinky.1 stty.1 uname.1 uptime.1 users.1 who.1
  man_MANS = getgid.1
- 
- man_aux = $(dist_man_MANS:.1=.x)
-@@ -139,6 +139,8 @@
+@@ -142,6 +142,8 @@
  who.1:		$(common_dep)	$(srcdir)/who.x		../src/who.c
  whoami.1:	$(common_dep)	$(srcdir)/whoami.x	../src/whoami.c
  yes.1:		$(common_dep)	$(srcdir)/yes.x		../src/yes.c
