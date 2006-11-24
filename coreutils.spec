@@ -28,9 +28,7 @@ Patch7:		%{name}-mem.patch
 Patch8:		%{name}-install-C.patch
 Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
-Patch12:	%{name}-selinux.patch
-Patch13:	%{name}-gettext-m4.patch
-Patch14:	%{name}-euidaccess.patch
+Patch11:	%{name}-selinux.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.60
@@ -104,9 +102,7 @@ Programy zawarte w tym pakiecie to:
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%{?with_selinux:%patch12 -p1}
-#%patch13 -p1	-- obsolete?
-#%patch14 -p1	-- obsolete?
+%{?with_selinux:%patch11 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
