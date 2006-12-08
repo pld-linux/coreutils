@@ -1,717 +1,580 @@
---- coreutils-5.2.1/po/da.po.orig	Wed Mar 12 23:59:41 2003
-+++ coreutils-5.2.1/po/da.po	Wed Mar 19 21:50:19 2003
-@@ -2034,27 +2034,27 @@
- #: src/df.c:154
+--- coreutils-6.5/po/da.po.orig	2006-11-19 11:11:40.000000000 +0100
++++ coreutils-6.5/po/da.po	2006-11-22 13:43:00.489505000 +0100
+@@ -2737,27 +2737,27 @@
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "    Inoder   IBrugt  IFri  IBrug%%"
 +msgstr "    Inoder  IBrugt   IFri IBrug%%"
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "   Størr Brugt  Tilb Brug%%"
 +msgstr "   Størr Brugt Tilb Brug%%"
  
- #: src/df.c:160
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "    Størr  Brugt   Tilb Brug"
 +msgstr "    Størr  Brugt  Tilb Brug%%"
  
- #: src/df.c:163
- #, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ #: src/df.c:165
+-#, fuzzy, c-format
++#, c-format
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " %4s-blokke     Brugt   Tilbage Kapacitet"
-+msgstr " %4s-blokke     Brugt  Tilbage Kapacitet"
++msgstr " %s-blokke     Brugt  Tilbage Kapacitet"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr " %4s-blokke     Brugt   Tilbage Brug%%"
 +msgstr " %4s-blokke     Brugt  Tilbage Brug%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/es.po.orig	Wed Mar 12 23:59:45 2003
-+++ coreutils-5.2.1/po/es.po	Wed Mar 19 21:53:04 2003
-@@ -2364,12 +2364,12 @@
- #: src/df.c:163
+ #: src/df.c:200
  #, c-format
- msgid " %4s-blocks      Used Available Capacity"
+--- coreutils-6.5/po/es.po.orig	2006-11-19 11:11:41.000000000 +0100
++++ coreutils-6.5/po/es.po	2006-11-22 13:44:53.439505000 +0100
+@@ -3139,9 +3139,9 @@
+ # El espacio inicial es necesario para que la palabra Bloques no aparezca
+ # pegada a la palabra Tipo cuando se usa df -T.
+ #: src/df.c:165
+-#, fuzzy, c-format
++#, c-format
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " Bloques de %-4s Usado    Dispon  Ocupado"
-+msgstr " Bloques de %-4s Usado   Dispon  Ocupado"
++msgstr " Bloques de %s Usado    Dispon  Ocupado"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
- msgid " %4s-blocks      Used Available Use%%"
--msgstr " Bloques de %-4s Usado    Dispon Uso%%"
-+msgstr " Bloques de %-4s Usado   Dispon Uso%%"
- 
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/et.po.orig	Wed Mar 12 23:59:46 2003
-+++ coreutils-5.2.1/po/et.po	Wed Mar 19 21:54:23 2003
-@@ -2008,7 +2008,7 @@
- #: src/df.c:154
+--- coreutils-6.5/po/et.po.orig	2006-11-19 11:11:42.000000000 +0100
++++ coreutils-6.5/po/et.po	2006-11-22 13:53:50.179505000 +0100
+@@ -2796,7 +2796,7 @@
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "  I-kirjeid  IKasut   IVaba IKas%%"
 +msgstr " I-kirjeid  IKasut   IVaba IKas%%"
  
- #: src/df.c:162
- #, c-format
-@@ -2018,17 +2018,17 @@
  #: src/df.c:160
+ #, c-format
+@@ -2806,17 +2806,17 @@
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "     Maht Kasut  Vaba Kas%%"
 +msgstr "     Maht  Kasut   Vaba Kas%%"
  
- #: src/df.c:163
+ #: src/df.c:165
  #, c-format
- msgid " %4s-blocks      Used Available Capacity"
--msgstr " %4s-plokki      Kasut Vaba    Maht"
-+msgstr " %4s-plokki     Kasut      Vaba     Maht"
+ msgid " %s-blocks      Used Available Capacity"
+-msgstr " %s-plokki      Kasut Vaba    Maht"
++msgstr " %s-plokki     Kasut      Vaba     Maht"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr "%4s-blokke     Kasut      Vaba Kas%%"
 +msgstr " %4s-blokke     Kasut      Vaba Kas%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/fi.po.orig	Mon Mar 31 10:45:36 2003
-+++ coreutils-5.2.1/po/fi.po	Mon Apr  7 20:25:14 2003
-@@ -1853,7 +1853,7 @@
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/fi.po.orig	2006-11-19 11:11:43.000000000 +0100
++++ coreutils-6.5/po/fi.po	2006-11-22 13:55:33.839505000 +0100
+@@ -2813,7 +2813,7 @@
  
- #: src/df.c:151
+ #: src/df.c:153
  msgid "Filesystem        "
 -msgstr "TiedostojÃ¤rjestelmÃ¤"
 +msgstr "Tied.jÃ¤rj.        "
  
- #: src/df.c:154
+ #: src/df.c:156
  #, c-format
-@@ -1863,25 +1863,25 @@
- #: src/df.c:158
+@@ -2823,25 +2823,25 @@
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "   Koko  KÃ¤yt Vapaa KÃ¤y%%"
 +msgstr "    Koko  KÃ¤yt Vapaa KÃ¤y%%"
  
  # "KÃ¤y%" on epÃ¤selvÃ¤, mutta tilaa ei ole sarakkeessa yhtÃ¤Ã¤n enempÃ¤Ã¤.
- #: src/df.c:160
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "     Koko   KÃ¤yt Vapaa KÃ¤y%%"
 +msgstr "     Koko   KÃ¤yt  Vapaa KÃ¤y%%"
  
  # Vaikka "KÃ¤ytetty" vaikuttaa vÃ¤Ã¤rÃ¤ltÃ¤ suomennokselta Capacitylle,
- # juuri samaa se tarkoittaa. Vertaa "df":n ja "df -P":n tulostetta.
- #: src/df.c:163
- #, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ # juuri samaa se nÃ¤htÃ¤vÃ¤sti tarkoittaa. Vertaa "df":n ja "df -P":n tulostetta.
+ #: src/df.c:165
+-#, fuzzy, c-format
++#, c-format
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr "%4s-lohkot  KÃ¤ytetty   Vapaana KÃ¤ytetty"
-+msgstr " %4s-lohkot  KÃ¤ytetty   Vapaana KÃ¤ytetty"
++msgstr " %s-lohkot  KÃ¤ytetty   Vapaana KÃ¤ytetty"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr "%4s-lohkot  KÃ¤ytetty   Vapaana KÃ¤y%%"
 +msgstr " %4s-lohkot  KÃ¤ytetty   Vapaana KÃ¤y%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/fr.po.orig	Mon Mar 31 10:45:37 2003
-+++ coreutils-5.2.1/po/fr.po	Mon Apr  7 20:32:02 2003
-@@ -2079,7 +2079,7 @@
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/fr.po.orig	2006-11-19 11:11:44.000000000 +0100
++++ coreutils-6.5/po/fr.po	2006-11-22 13:56:59.599505000 +0100
+@@ -2897,7 +2897,7 @@
  
- #: src/df.c:149
+ #: src/df.c:151
  msgid "Filesystem    Type"
 -msgstr "Sys. de fich. Type "
 +msgstr "Sys. de fich. Type"
  
- #: src/df.c:151
+ #: src/df.c:153
  msgid "Filesystem        "
-@@ -2088,27 +2088,27 @@
- #: src/df.c:154
+@@ -2906,27 +2906,27 @@
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "    Inodes   IUtil.  ILib. %%IUti."
 +msgstr "    Inodes  IUtil.   ILib. %%IUti."
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "    Tail. Occ. Disp. %%Occ."
 +msgstr "   Tail.  Occ. Disp. %%Occ."
  
- #: src/df.c:160
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "     Tail.  Occ.  Disp. %%Occ."
 +msgstr "    Tail.   Occ.  Disp. %%Occ."
  
- #: src/df.c:163
- #, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ #: src/df.c:165
+-#, fuzzy, c-format
++#, c-format
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " %4s-blocs    Occupé Disponible Capacité"
-+msgstr "  %4s-blocs   Occupé Disponible Capacité"
++msgstr "  %s-blocs   Occupé Disponible Capacité"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr " %4s-blocs       Occupé Disponible Capacité"
-+msgstr "  %4s-blocs   Occupé Disponible Uti%%"
++msgstr " %4s-blocs    Occupé Disponible Uti%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/gl.po.orig	Wed Mar 12 23:59:51 2003
-+++ coreutils-5.2.1/po/gl.po	Wed Mar 19 21:46:50 2003
-@@ -1931,14 +1931,12 @@
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/gl.po.orig	2006-11-19 11:11:44.000000000 +0100
++++ coreutils-6.5/po/gl.po	2006-11-22 14:00:43.899505000 +0100
+@@ -2640,14 +2640,12 @@
  msgstr "avanzando os pasados %s bytes no ficheiro de saída %s"
  
- #: src/df.c:149
+ #: src/df.c:151
 -#, fuzzy
  msgid "Filesystem    Type"
 -msgstr "Sist. Fich "
 +msgstr "Sist. Fich    Tipo"
  
- #: src/df.c:151
+ #: src/df.c:153
 -#, fuzzy
  msgid "Filesystem        "
 -msgstr "Sist. Fich "
 +msgstr "Sist. Fich        "
  
- #: src/df.c:154
+ #: src/df.c:156
  #, c-format
-@@ -1951,14 +1949,14 @@
+@@ -2660,14 +2658,14 @@
  msgstr "  Tamaño Usado  Disp Uso%%"
  
- #: src/df.c:160
+ #: src/df.c:162
 -#, fuzzy, c-format
 +#, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "  Tamaño Usado  Disp Uso%%"
 +msgstr "   Tamaño  Usado   Disp Uso%%"
  
- #: src/df.c:163
+ #: src/df.c:165
 -#, fuzzy, c-format
 +#, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr "bloques-%4d     Usado  Dispoñib  Capacid"
-+msgstr "bloques-%4s     Usado  Dispoñib  Capacid"
++msgstr "bloques-%s     Usado  Dispoñib  Capacid"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
---- coreutils-5.2.1/po/hu.po.orig	Wed Mar 12 23:59:52 2003
-+++ coreutils-5.2.1/po/hu.po	Wed Mar 19 21:46:50 2003
-@@ -1886,39 +1886,37 @@
- msgstr "%s bájtnál továbbléptünk a következõ kimeneti fájlban: %s"
- 
- #: src/df.c:149
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "Fájlrendszer "
-+msgstr "Fájlrendszer Típus"
+--- coreutils-6.5/po/hu.po.orig	2006-11-19 11:11:45.000000000 +0100
++++ coreutils-6.5/po/hu.po	2006-11-22 14:02:43.519505000 +0100
+@@ -2873,36 +2873,36 @@
  
  #: src/df.c:151
--#, fuzzy
- msgid "Filesystem        "
--msgstr "Fájlrendszer "
-+msgstr "Fájlrendszer      "
+ msgid "Filesystem    Type"
+-msgstr "FÃ¡jlrendszer    TÃ­pus"
++msgstr "FÃ¡jlrendszer TÃ­pus"
  
- #: src/df.c:154
+ #: src/df.c:153
+ msgid "Filesystem        "
+-msgstr "FÃ¡jlrendszer        "
++msgstr "FÃ¡jlrendszer      "
+ 
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "Inode-ok  IFogl.  ISzab. IFo.%%"
 +msgstr "  Inode-ok  IFogl.  ISzab. IFo.%%"
  
- #: src/df.c:158
- #, c-format
- msgid "    Size  Used Avail Use%%"
--msgstr " Méret  Fogl. Szab.   %%"
-+msgstr "   Méret Fogl. Szab. Fo.%%"
- 
  #: src/df.c:160
  #, c-format
+ msgid "    Size  Used Avail Use%%"
+-msgstr " MÃ©ret  Fogl. Szab. Fo.%%"
++msgstr "   MÃ©ret Fogl. Szab. Fo.%%"
+ 
+ #: src/df.c:162
+ #, c-format
  msgid "     Size   Used  Avail Use%%"
--msgstr "  Méret  Fogl.  Szab.    %%"
-+msgstr "    Méret  Fogl.  Szab. Fo.%%"
+-msgstr "  MÃ©ret  Fogl.  Szab.  Fo.%%"
++msgstr "    MÃ©ret  Fogl.  Szab. Fo.%%"
  
- #: src/df.c:163
- #, fuzzy, c-format
- msgid " %4s-blocks      Used Available Capacity"
--msgstr " %4d-blokk  Foglalt    Szabad   Fogl.%%"
-+msgstr "  %4s-blokk   Foglalt    Szabad   Fogl.%%"
+ #: src/df.c:165
+ #, c-format
+ msgid " %s-blocks      Used Available Capacity"
+-msgstr " %s-blokk       Fogl. Szabad KapacitÃ¡s"
++msgstr "  %s-blokk     Fogl.   Szabad KapacitÃ¡s"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
--msgstr " %4s-blokk  Foglalt    Szabad    %%"
+-msgstr "%4s-blokk   Foglalt    Szabad Fo.%%"
 +msgstr "  %4s-blokk   Foglalt    Szabad Fo.%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/it.po.orig	Wed Mar 12 23:59:53 2003
-+++ coreutils-5.2.1/po/it.po	Wed Mar 19 21:46:50 2003
-@@ -2039,19 +2039,17 @@
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/it.po.orig	2006-11-19 11:11:45.000000000 +0100
++++ coreutils-6.5/po/it.po	2006-11-22 14:05:32.549505000 +0100
+@@ -2712,19 +2712,17 @@
  msgstr "avanzamento di %s byte nel file di output %s"
  
- #: src/df.c:149
+ #: src/df.c:151
 -#, fuzzy
  msgid "Filesystem    Type"
 -msgstr "Filesystem "
-+msgstr "Filesystem   Tipo "
++msgstr "Filesystem    Tipo"
  
- #: src/df.c:151
+ #: src/df.c:153
 -#, fuzzy
  msgid "Filesystem        "
 -msgstr "Filesystem "
 +msgstr "Filesystem        "
  
- #: src/df.c:154
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "     Inode   IUsati  ILib. IUso%%"
 +msgstr "     Inode  IUsati   ILib. IUso%%"
  
- #: src/df.c:158
- #, c-format
-@@ -2066,17 +2063,17 @@
  #: src/df.c:160
+ #, c-format
+@@ -2734,17 +2732,17 @@
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "    Dimens. Usati Disp. Uso%%"
 +msgstr "  Dimens.  Usati  Disp. Uso%%"
  
- #: src/df.c:163
+ #: src/df.c:165
 -#, fuzzy, c-format
 +#, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr "blocchi di %d     Usati Disponib. CapacitÃ "
-+msgstr "blocchi di %4s  Usati Disponib. CapacitÃ "
++msgstr "blocchi di %s  Usati Disponib. CapacitÃ "
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr "blocchi di %4s   Usati Disponib. Uso%%"
 +msgstr "blocchi di %4s  Usati Disponib. Uso%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/ja.po.orig	Wed Mar 12 23:59:54 2003
-+++ coreutils-5.2.1/po/ja.po	Wed Mar 19 21:46:50 2003
-@@ -2021,34 +2021,32 @@
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/ja.po.orig	2006-11-19 11:11:46.000000000 +0100
++++ coreutils-6.5/po/ja.po	2006-11-22 14:07:28.289505000 +0100
+@@ -2709,34 +2709,32 @@
  msgstr "½ĞÎÏ¥Õ¥¡¥¤¥ë %s ¤ÎÄ¾Á° %s ¥Ğ¥¤¥È¤ò¿Ê¤á¤Ş¤¹"
  
- #: src/df.c:149
+ #: src/df.c:151
 -#, fuzzy
  msgid "Filesystem    Type"
 -msgstr "Filesystem "
 +msgstr "Filesystem  ¥¿¥¤¥×"
  
- #: src/df.c:151
+ #: src/df.c:153
 -#, fuzzy
  msgid "Filesystem        "
 -msgstr "Filesystem "
 +msgstr "Filesystem        "
  
- #: src/df.c:154
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "    I¥Î¡¼¥É  I»ÈÍÑ   I»Ä¤ê I»ÈÍÑ%%"
 +msgstr "   I¥Î¡¼¥É   I»ÈÍÑ  I»Ä¤ê I»ÈÍÑ%%"
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "  ¥µ¥¤¥º  »ÈÍÑ  »Ä¤ê »ÈÍÑ%%"
 +msgstr "  ¥µ¥¤¥º  »ÈÍÑ »Ä¤ê »ÈÍÑ%%"
  
- #: src/df.c:160
+ #: src/df.c:162
 -#, fuzzy, c-format
 +#, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "  ¥µ¥¤¥º  »ÈÍÑ  »Ä¤ê »ÈÍÑ%%"
 +msgstr "   ¥µ¥¤¥º   »ÈÍÑ  »Ä¤ê »ÈÍÑ%%"
  
- #: src/df.c:163
+ #: src/df.c:165
 -#, fuzzy, c-format
 +#, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " %4d-blocks      Used Available Capacity"
-+msgstr " %4s-blocks      Used Available Capacity"
++msgstr " %s-blocks      Used Available Capacity"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
---- coreutils-5.2.1/po/pt_BR.po.orig	Fri Mar 12 14:56:32 2004
-+++ coreutils-5.2.1/po/pt_BR.po	Tue Apr 27 16:53:44 2004
-@@ -2115,7 +2115,7 @@
+--- coreutils-6.5/po/pt_BR.po.orig	2006-11-19 11:11:49.000000000 +0100
++++ coreutils-6.5/po/pt_BR.po	2006-11-22 14:08:59.299505000 +0100
+@@ -2651,7 +2651,7 @@
  
- #: src/df.c:149
+ #: src/df.c:151
  msgid "Filesystem    Type"
 -msgstr "Sist. Arq.    Tipo "
 +msgstr "Sist. Arq.    Tipo"
  
- #: src/df.c:151
+ #: src/df.c:153
  msgid "Filesystem        "
-@@ -2124,27 +2124,27 @@
- #: src/df.c:154
+@@ -2660,27 +2660,27 @@
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "    Inodes   IUsados ILivr IUso%%"
 +msgstr "    Inodes IUsados   ILivr IUso%%"
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "    Tam   Usad Disp  Uso%%"
 +msgstr "     Tam  Usad  Disp Uso%%"
  
- #: src/df.c:160
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "     Tam    Usado Disp  Uso%%"
 +msgstr "      Tam  Usado   Disp Uso%%"
  
- #: src/df.c:163
- #, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ #: src/df.c:165
+-#, fuzzy, c-format
++#, c-format
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " %4s-blocos      Usad Dispon.   Capacidade"
-+msgstr " %4s-blocos      Usad Dispon. Capacidade"
++msgstr " %s-blocos      Usad Dispon. Capacidade"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr " %4s-blocos      Usad Dispon.   Uso%%"
 +msgstr " %4s-blocos      Usad   Dispon. Uso%%"
  
- #: src/df.c:198
+ #: src/df.c:200
  #, c-format
---- coreutils-5.2.1/po/ru.po.orig	Thu Mar 13 00:00:05 2003
-+++ coreutils-5.2.1/po/ru.po	Wed Mar 19 22:00:54 2003
-@@ -2053,7 +2053,7 @@
+--- coreutils-6.5/po/ru.po.orig	2006-11-19 11:11:50.000000000 +0100
++++ coreutils-6.5/po/ru.po	2006-11-22 14:10:19.389505000 +0100
+@@ -2858,7 +2858,7 @@
  
- #: src/df.c:149
+ #: src/df.c:151
  msgid "Filesystem    Type"
 -msgstr "æ. ÓÉÓÔÅÍÁ    ôÉĞ "
 +msgstr "æ. ÓÉÓÔÅÍÁ     ôÉĞ"
  
- #: src/df.c:151
+ #: src/df.c:153
  msgid "Filesystem        "
-@@ -2062,27 +2062,27 @@
- #: src/df.c:154
+@@ -2867,27 +2867,27 @@
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "    éÎÏÄÏ×   éÓĞÏÌ   ó×ÏÂ  éÓĞ %%"
 +msgstr "    éÎÏÄÏ×   éÓĞÏÌ    ó×ÏÂ  éÓĞ%%"
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "    òÁÚÍ  éÓĞ  äÏÓÔ  éÓĞ%%"
 +msgstr "    òÁÚÍ   éÓĞ  äÏÓÔ éÓĞ%%"
  
- #: src/df.c:160
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "     òÁÚÍ   éÓĞ   äÏÓÔ  éÓĞ%%"
 +msgstr "     òÁÚÍ    éÓĞ   äÏÓÔ éÓĞ%%"
  
- #: src/df.c:163
- #, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ #: src/df.c:165
+-#, fuzzy, c-format
++#, c-format
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " %4s-ÂÌÏËÏ×      éÓĞ  äÏÓÔÕĞÎÏ  ÷ÓÅÇÏ"
-+msgstr " %4s-ÂÌÏËÏ×       éÓĞ  äÏÓÔÕĞÎÏ    ÷ÓÅÇÏ"
++msgstr " %s-ÂÌÏËÏ×       éÓĞ  äÏÓÔÕĞÎÏ    ÷ÓÅÇÏ"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr " %4s-ÂÌÏËÏ×      éÓĞ  äÏÓÔÕĞÎÏ  éÓĞ%%"
 +msgstr " %4s-ÂÌÏËÏ×       éÓĞ  äÏÓÔÕĞÎÏ éÓĞ%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/sk.po.orig	Thu Mar 13 00:00:06 2003
-+++ coreutils-5.2.1/po/sk.po	Wed Mar 19 21:46:50 2003
-@@ -1927,39 +1927,37 @@
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/sk.po.orig	2006-11-19 11:11:50.000000000 +0100
++++ coreutils-6.5/po/sk.po	2006-11-22 14:12:15.969505000 +0100
+@@ -2636,39 +2636,37 @@
  msgstr "presúvam sa za %s bajtov vo vıstupnom súbore %s"
  
- #: src/df.c:149
+ #: src/df.c:151
 -#, fuzzy
  msgid "Filesystem    Type"
 -msgstr "Súborovı systém "
 +msgstr "Súborovı syst. Typ"
  
- #: src/df.c:151
+ #: src/df.c:153
 -#, fuzzy
  msgid "Filesystem        "
 -msgstr "Súborovı systém "
 +msgstr "Súborovı systém   "
  
- #: src/df.c:154
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "    I-uzly   IPou¾   IVoµ  IPou%%"
 +msgstr "    I-uzly   IPou¾    IVoµ IPou%%"
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "    Veµk  Pou¾ Dost  Pou%%"
 +msgstr "    Veµk  Pou¾  Dost Pou%%"
  
- #: src/df.c:160
+ #: src/df.c:162
 -#, fuzzy, c-format
 +#, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "    Veµk  Pou¾ Dost  Pou%%"
 +msgstr "     Veµk   Pou¾   Dost Pou%%"
  
- #: src/df.c:163
+ #: src/df.c:165
 -#, fuzzy, c-format
 +#, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " %4d-blokov      Pou¾ Dostupné  Kapacita"
-+msgstr " %4s-blokov      Pou¾  Dostupné Kapacita"
++msgstr " %s-blokov      Pou¾  Dostupné Kapacita"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr " %4s-bloky       Pou¾ Dostupné  Pou%%"
 +msgstr "  %4s-bloky      Pou¾  Dostupné Pou%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/tr.po.orig	Fri Mar 12 14:56:34 2004
-+++ coreutils-5.2.1/po/tr.po	Tue Apr 27 17:10:31 2004
-@@ -2265,7 +2265,7 @@
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/tr.po.orig	2006-11-19 11:11:51.000000000 +0100
++++ coreutils-6.5/po/tr.po	2006-11-22 14:13:46.319505000 +0100
+@@ -2839,7 +2839,7 @@
  
- #: src/df.c:149
+ #: src/df.c:151
  msgid "Filesystem    Type"
 -msgstr "Dosyasistemi TÃ¼rÃ¼"
 +msgstr "Dosyasistemi  TÃ¼rÃ¼"
  
- #: src/df.c:151
+ #: src/df.c:153
  msgid "Filesystem        "
-@@ -2274,32 +2274,32 @@
- #: src/df.c:154
+@@ -2848,32 +2848,32 @@
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
 -msgstr "Dosyaindeksi Dolu    BoÅŸ   Kull%%"
 +msgstr "Dosyaindeksi  Dolu     BoÅŸ Kull%%"
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
  msgid "    Size  Used Avail Use%%"
 -msgstr "    Boy   Dolu BoÅŸ   Kull%%"
 +msgstr "     Boy  Dolu  BoÅŸ Kull%%"
  
- #: src/df.c:160
+ #: src/df.c:162
  #, c-format
  msgid "     Size   Used  Avail Use%%"
 -msgstr "    Boy   Dolu BoÅŸ   Kull%%"
-+msgstr "     Boy    Dolu   BoÅŸ Kull%%"
++msgstr "      Boy   Dolu   BoÅŸ Kull%%"
  
- #: src/df.c:163
- #, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ #: src/df.c:165
+-#, fuzzy, c-format
++#, c-format
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr " %4s-blok        Dolu BoÅŸ       Kapasite"
-+msgstr " %4s-blok        Dolu       BoÅŸ Kapasite"
++msgstr "   %s-blok      Dolu       BoÅŸ Kapasite"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr " %4s-blok        Dolu BoÅŸ       Kull%%"
-+msgstr " %4s-blok        Dolu      BoÅŸ Kull%%"
++msgstr "   %4s-blok      Dolu      BoÅŸ Kull%%"
  
- #: src/df.c:198
+ #: src/df.c:200
  #, c-format
  msgid " Mounted on\n"
 -msgstr "BaÄŸlanÄ±lan yer\n"
 +msgstr " BaÄŸlanÄ±lan yer\n"
  
- #: src/df.c:448 src/pwd.c:78 src/remove.c:980
- msgid "cannot get current directory"
---- coreutils-5.2.1/po/zh_CN.po.orig	Thu Mar 13 00:00:11 2003
-+++ coreutils-5.2.1/po/zh_CN.po	Wed Mar 19 21:47:08 2003
-@@ -1853,19 +1853,17 @@
- msgstr "ç•¥è¿‡è¾“å‡ºæ–‡ä»¶ %2$s çš„æœ€åˆ %1$s ä¸ªå­—èŠ‚"
- 
- #: src/df.c:149
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "æ–‡ä»¶ç³»ç»Ÿ   "
-+msgstr "æ–‡ä»¶ç³»ç»Ÿ      ç±»å‹"
- 
- #: src/df.c:151
--#, fuzzy
- msgid "Filesystem        "
--msgstr "æ–‡ä»¶ç³»ç»Ÿ   "
-+msgstr "æ–‡ä»¶ç³»ç»Ÿ          "
- 
- #: src/df.c:154
+ #: src/df.c:468
  #, c-format
- msgid "    Inodes   IUsed   IFree IUse%%"
--msgstr "     Inode (I)å·²ç”¨ (I)å¯ç”¨ (I)å·²ç”¨%%"
-+msgstr "     Inode (I)å·²ç”¨  Iå¯ç”¨ Iå·²ç”¨%%"
- 
- #: src/df.c:158
- #, c-format
-@@ -1878,14 +1876,14 @@
+--- coreutils-6.5/po/zh_CN.po.orig	2006-11-19 11:11:52.000000000 +0100
++++ coreutils-6.5/po/zh_CN.po	2006-11-22 14:15:16.409505000 +0100
+@@ -2624,14 +2624,14 @@
  msgstr "     å®¹é‡   å·²ç”¨  å¯ç”¨ å·²ç”¨%%"
  
- #: src/df.c:163
+ #: src/df.c:165
 -#, fuzzy, c-format
 +#, c-format
- msgid " %4s-blocks      Used Available Capacity"
+ msgid " %s-blocks      Used Available Capacity"
 -msgstr "   %4d-å—        å·²ç”¨      å¯ç”¨ å®¹é‡"
-+msgstr "     %4s-å—      å·²ç”¨      å¯ç”¨     å®¹é‡"
++msgstr "     %s-å—      å·²ç”¨      å¯ç”¨     å®¹é‡"
  
- #: src/df.c:194
+ #: src/df.c:196
  #, c-format
  msgid " %4s-blocks      Used Available Use%%"
 -msgstr "   %4s-å—        å·²ç”¨     å¯ç”¨ å·²ç”¨%%"
 +msgstr "     %4s-å—      å·²ç”¨     å¯ç”¨ å·²ç”¨%%"
  
- #: src/df.c:198
- msgid " Mounted on\n"
---- coreutils-5.2.1/po/zh_TW.po.orig	Thu Mar 13 00:00:12 2003
-+++ coreutils-5.2.1/po/zh_TW.po	Wed Mar 19 21:47:08 2003
-@@ -1909,19 +1909,17 @@
- msgstr "ç•¥éè¼¸å‡ºæª”%2$sçš„æœ€åˆ %1$s å€‹ä½å…ƒçµ„"
- 
- #: src/df.c:149
--#, fuzzy
- msgid "Filesystem    Type"
--msgstr "æª”æ¡ˆç³»çµ±   "
-+msgstr "æª”æ¡ˆç³»çµ±      é¡å‹"
- 
- #: src/df.c:151
--#, fuzzy
- msgid "Filesystem        "
--msgstr "æª”æ¡ˆç³»çµ±   "
-+msgstr "æª”æ¡ˆç³»çµ±          "
- 
- #: src/df.c:154
+ #: src/df.c:200
+ #, c-format
+--- coreutils-6.5/po/zh_TW.po.orig	2006-11-19 11:11:52.000000000 +0100
++++ coreutils-6.5/po/zh_TW.po	2006-11-22 14:16:07.009505000 +0100
+@@ -2666,7 +2666,7 @@
+ #: src/df.c:156
  #, c-format
  msgid "    Inodes   IUsed   IFree IUse%%"
--msgstr "     Inode (I)å·²ç”¨ (I)å¯ç”¨ (I)å·²ç”¨%%"
-+msgstr "     Inode (I)å·²ç”¨  Iå¯ç”¨ Iå·²ç”¨%%"
+-msgstr "    Inode    Iå·²ç”¨  Iå¯ç”¨ Iå·²ç”¨%%"
++msgstr "     Inode   Iå·²ç”¨  Iå¯ç”¨ Iå·²ç”¨%%"
  
- #: src/df.c:158
+ #: src/df.c:160
  #, c-format
-@@ -1934,9 +1932,9 @@
+@@ -2679,9 +2679,9 @@
  msgstr "     å®¹é‡   å·²ç”¨  å¯ç”¨ å·²ç”¨%%"
  
- #: src/df.c:163
+ #: src/df.c:165
 -#, fuzzy, c-format
 +#, c-format
- msgid " %4s-blocks      Used Available Capacity"
--msgstr "   %4d-å€æ®µ      å·²ç”¨      å¯ç”¨ å®¹é‡"
-+msgstr "   %4s-å€æ®µ      å·²ç”¨      å¯ç”¨     å®¹é‡"
+ msgid " %s-blocks      Used Available Capacity"
+-msgstr "   %4s-å€æ®µ      å·²ç”¨      å¯ç”¨ å®¹é‡"
++msgstr "   %s-å€æ®µ      å·²ç”¨      å¯ç”¨     å®¹é‡"
  
- #: src/df.c:194
- #, c-format
-diff -ur coreutils-5.2.1.orig/po/da.po coreutils-5.2.1/po/da.po
---- coreutils-5.2.1.orig/po/da.po	2006-07-29 22:00:42.000000000 +0000
-+++ coreutils-5.2.1/po/da.po	2006-07-29 22:09:08.000000000 +0000
-@@ -8382,15 +8382,15 @@
- #, c-format
- msgid "%d day"
- msgid_plural "%d days"
--msgstr[0] "dage"
--msgstr[1] "dag"
-+msgstr[0] "%d dage"
-+msgstr[1] "%d dag"
- 
- #: src/uptime.c:146
- #, c-format
- msgid "%d user"
- msgid_plural "%d users"
--msgstr[0] "brugere"
--msgstr[1] "bruger"
-+msgstr[0] "%d brugere"
-+msgstr[1] "%d bruger"
- 
- #: src/uptime.c:159
- #, c-format
-diff -ur coreutils-5.2.1.orig/po/fr.po coreutils-5.2.1/po/fr.po
---- coreutils-5.2.1.orig/po/fr.po	2006-07-29 22:00:42.000000000 +0000
-+++ coreutils-5.2.1/po/fr.po	2006-07-29 22:09:26.000000000 +0000
-@@ -8798,8 +8798,8 @@
- #, c-format
- msgid "%d day"
- msgid_plural "%d days"
--msgstr[0] "jour"
--msgstr[1] "jours"
-+msgstr[0] "%d jour"
-+msgstr[1] "%d jours"
- 
- #: src/uptime.c:146
- #, c-format
-diff -ur coreutils-5.2.1.orig/po/it.po coreutils-5.2.1/po/it.po
---- coreutils-5.2.1.orig/po/it.po	2006-07-29 22:00:42.000000000 +0000
-+++ coreutils-5.2.1/po/it.po	2006-07-29 22:09:49.000000000 +0000
-@@ -7993,15 +7993,15 @@
- #, c-format
- msgid "%d day"
- msgid_plural "%d days"
--msgstr[0] "giorni"
--msgstr[1] "giorno"
-+msgstr[0] "%d giorni"
-+msgstr[1] "%d giorno"
- 
- #: src/uptime.c:146
- #, c-format
- msgid "%d user"
- msgid_plural "%d users"
--msgstr[0] "utenti"
--msgstr[1] "utente"
-+msgstr[0] "%d utenti"
-+msgstr[1] "%d utente"
- 
- #: src/uptime.c:159
- #, c-format
-diff -ur coreutils-5.2.1.orig/po/ja.po coreutils-5.2.1/po/ja.po
---- coreutils-5.2.1.orig/po/ja.po	2006-07-29 22:00:42.000000000 +0000
-+++ coreutils-5.2.1/po/ja.po	2006-07-29 22:10:31.000000000 +0000
-@@ -8310,8 +8310,7 @@
- #, c-format
- msgid "%d day"
- msgid_plural "%d days"
--msgstr[0] "%dÆü"
--msgstr[1] "%dÆü"
-+msgstr[0] "%d Æü"
- 
- #: src/uptime.c:146
- #, fuzzy, c-format
-diff -ur coreutils-5.2.1.orig/po/ru.po coreutils-5.2.1/po/ru.po
---- coreutils-5.2.1.orig/po/ru.po	2006-07-29 22:00:42.000000000 +0000
-+++ coreutils-5.2.1/po/ru.po	2006-07-29 22:11:34.000000000 +0000
-@@ -8554,17 +8554,17 @@
- #, c-format
- msgid "%d day"
- msgid_plural "%d days"
--msgstr[0] "ÄÅÎØ"
--msgstr[1] "ÄÎÑ"
--msgstr[2] "ÄÎÅÊ"
-+msgstr[0] "%d ÄÅÎØ"
-+msgstr[1] "%d ÄÎÑ"
-+msgstr[2] "%d ÄÎÅÊ"
- 
- #: src/uptime.c:146
- #, c-format
- msgid "%d user"
- msgid_plural "%d users"
--msgstr[0] "ĞÏÌØÚÏ×ÁÔÅÌØ"
--msgstr[1] "ĞÏÌØÚÏ×ÁÔÅÌÑ"
--msgstr[2] "ĞÏÌØÚÏ×ÁÔÅÌÅÊ"
-+msgstr[0] "%d ĞÏÌØÚÏ×ÁÔÅÌØ"
-+msgstr[1] "%d ĞÏÌØÚÏ×ÁÔÅÌÑ"
-+msgstr[2] "%d ĞÏÌØÚÏ×ÁÔÅÌÅÊ"
- 
- #: src/uptime.c:159
+ #: src/df.c:196
  #, c-format
