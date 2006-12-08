@@ -5,15 +5,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
-Version:	5.2.1
-Release:	9
+Version:	6.6
+Release:	0.1
 License:	GPL
 Group:		Applications/System
-# devel versions:
-#Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
-# final versions:
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	172ee3c315af93d3385ddfbeb843c53f
+# Source0-md5:	64f1589af7d9a879c9bdc0af41e19ff1
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -21,7 +18,7 @@ Source3:	fileutils.sh
 Source4:	fileutils.csh
 Source5:	su.pamd
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-pl.po-update.patch
+#Patch1 reserved for %{name}-pl.po-update.patch
 Patch2:		%{name}-pam.patch
 Patch3:		%{name}-getgid.patch
 Patch4:		%{name}-su-paths.patch
@@ -31,17 +28,13 @@ Patch7:		%{name}-mem.patch
 Patch8:		%{name}-install-C.patch
 Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
-# based on patch from Fedora, based on patches from http://acl.bestbits.at/
-Patch11:	%{name}-acl.patch
-Patch12:	%{name}-selinux.patch
-Patch13:	%{name}-gettext-m4.patch
-Patch14:	%{name}-euidaccess.patch
+Patch11:	%{name}-selinux.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
-BuildRequires:	autoconf >= 2.58
-BuildRequires:	automake >= 1:1.8
+BuildRequires:	autoconf >= 2.60
+BuildRequires:	automake >= 1:1.9.6
 %{?with_selinux:BuildRequires:	gcc >= 5:3.2}
-BuildRequires:	gettext-devel >= 0.11.5
+BuildRequires:	gettext-devel >= 0.16-2
 BuildRequires:	help2man
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	pam-devel
@@ -99,7 +92,6 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -a1
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -109,13 +101,9 @@ Programy zawarte w tym pakiecie to:
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
-%{?with_selinux:%patch12 -p1}
-%patch13 -p1
-%patch14 -p1
+%{?with_selinux:%patch11 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
-%{__perl} -pi -e 's/tee \(/tee_files (/' src/tee.c
 
 # no_NO is just an alias for nb_NO in recent glibc
 # no.po is outdated, nb.po is more fresh here (see also patch10)
@@ -123,9 +111,10 @@ rm -f po/no.*
 # allow rebuilding *.gmo
 rm -f po/stamp-po
 
+# missing, added to gettext.m4 by ./bootstrap
+echo 'AC_DEFUN([gl_LOCK_EARLY],[])' > m4/gllock.m4
+
 %build
-# jm's inttypes.m4 and inttypes.m4 from gettext are really different files
-mv -f m4/{inttypes.m4,jm-inttypes.m4}
 %{__gettextize}
 %{__aclocal} -I m4
 %{__autoconf}
