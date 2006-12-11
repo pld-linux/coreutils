@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	6.7
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
@@ -29,6 +29,7 @@ Patch8:		%{name}-install-C.patch
 Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
 Patch11:	%{name}-selinux.patch
+Patch12:	%{name}-system-openat.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.60
@@ -103,6 +104,7 @@ Programy zawarte w tym pakiecie to:
 %patch9 -p1
 %patch10 -p1
 %{?with_selinux:%patch11 -p1}
+%patch12 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
@@ -152,7 +154,7 @@ install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/shrc.d
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/pam.d/su
 
-mv -f man/pt_BR man/pt
+cp -a man/pt_BR man/pt
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
 	install man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
