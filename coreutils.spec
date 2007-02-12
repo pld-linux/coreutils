@@ -3,7 +3,7 @@
 %bcond_without	selinux		# build without SELinux support
 #
 Summary:	GNU Core-utils - basic command line utilities
-Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
+Summary(pl.UTF-8):   GNU Core-utils - podstawowe narzÄ™dzia dziaÅ‚ajÄ…ce z linii poleceÅ„
 Name:		coreutils
 Version:	6.7
 Release:	1
@@ -72,13 +72,13 @@ The programs that can be built with this package are:
   su sum sync tac tail tee test touch tr true tsort tty uname unexpand
   uniq unlink users vdir wc who whoami yes
 
-%description -l pl
-Narzêdzia podstawowe (core utilities) GNU to po³±czone paczki GNU
+%description -l pl.UTF-8
+NarzÄ™dzia podstawowe (core utilities) GNU to poÅ‚Ä…czone paczki GNU
 fileutils, sh-utils i textutils.
 
-Wiêkszo¶æ z zawartych programów jest znacznie ulepszona w porównaniu
-z ich uniksowymi odpowiednikami, np. szybciej dzia³aj±, maj± dodatkowe
-opcje i mniej ograniczeñ.
+WiÄ™kszoÅ›Ä‡ z zawartych programÃ³w jest znacznie ulepszona w porÃ³wnaniu
+z ich uniksowymi odpowiednikami, np. szybciej dziaÅ‚ajÄ…, majÄ… dodatkowe
+opcje i mniej ograniczeÅ„.
 
 Programy zawarte w tym pakiecie to:
 
