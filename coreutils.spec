@@ -3,7 +3,7 @@
 %bcond_without	selinux		# build without SELinux support
 #
 Summary:	GNU Core-utils - basic command line utilities
-Summary(pl.UTF-8):   GNU Core-utils - podstawowe narzędzia działające z linii poleceń
+Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	6.7
 Release:	1
