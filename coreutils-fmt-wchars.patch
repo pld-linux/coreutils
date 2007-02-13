@@ -1,5 +1,5 @@
 --- coreutils-6.7/src/fmt.c.orig	2006-10-22 18:54:15.000000000 +0200
-+++ coreutils-6.7/src/fmt.c	2007-02-13 16:51:44.000000000 +0100
++++ coreutils-6.7/src/fmt.c	2007-02-13 17:20:22.000000000 +0100
 @@ -18,6 +18,7 @@
  /* Written by Ross Paterson <rap@doc.ic.ac.uk>.  */
  
@@ -184,11 +184,13 @@
  
  void
  usage (int status)
-@@ -289,6 +313,7 @@
+@@ -288,7 +312,8 @@
+ 	     stdout);
        fputs (_("\
    -t, --tagged-paragraph    indentation of first line different from second\n\
-   -u, --uniform-spacing     one space between words, two after sentences\n\
-+  -n, --single-spacing      one space between words and after sentences\n\
+-  -u, --uniform-spacing     one space between words, two after sentences\n\
++  -u, --uniform-spacing     one space between words, two between sentences\n\
++  -n, --single-spaces       single spaces between sentences\n\
    -w, --width=WIDTH         maximum line width (default of 75 columns)\n\
  "), stdout);
        fputs (HELP_OPTION_DESCRIPTION, stdout);
@@ -196,13 +198,15 @@
    {"split-only", no_argument, NULL, 's'},
    {"tagged-paragraph", no_argument, NULL, 't'},
    {"uniform-spacing", no_argument, NULL, 'u'},
-+  {"single-spacing", no_argument, NULL, 'n'},
++  {"single-spaces", no_argument, NULL, 'n'},
    {"width", required_argument, NULL, 'w'},
    {GETOPT_HELP_OPTION_DECL},
    {GETOPT_VERSION_OPTION_DECL},
-@@ -334,8 +360,8 @@
+@@ -333,9 +359,10 @@
+   atexit (close_stdout);
  
    crown = tagged = split = uniform = false;
++  sentence_space = 2;
    max_width = WIDTH;
 -  prefix = "";
 -  prefix_length = prefix_lead_space = prefix_full_length = 0;
@@ -211,7 +215,7 @@
  
    if (argc > 1 && argv[1][0] == '-' && ISDIGIT (argv[1][1]))
      {
-@@ -348,7 +374,7 @@
+@@ -348,7 +375,7 @@
        argc--;
      }
  
@@ -220,20 +224,18 @@
  				 long_options, NULL))
  	 != -1)
      switch (optchar)
-@@ -374,6 +400,12 @@
- 
-       case 'u':
+@@ -376,6 +403,10 @@
  	uniform = true;
-+        sentence_space = 2;
-+	break;
-+
-+      case 'n':
-+	uniform = true;
-+        sentence_space = 1;
  	break;
  
++      case 'n':
++        sentence_space = 1;
++	break;
++
        case 'w':
-@@ -440,26 +472,32 @@
+ 	max_width_option = optarg;
+ 	break;
+@@ -440,26 +471,32 @@
  }
  
  /* Trim space from the front and back of the string P, yielding the prefix,
@@ -276,7 +278,7 @@
  }
  
  /* read file F and send formatted output to stdout.  */
-@@ -528,24 +566,24 @@
+@@ -528,24 +565,24 @@
  static bool
  get_paragraph (FILE *f)
  {
@@ -308,7 +310,7 @@
        c = get_prefix (f);
      }
  
-@@ -601,23 +639,23 @@
+@@ -601,23 +638,23 @@
     that failed to match the prefix.  In the latter, C is \n or EOF.
     Return the character (\n or EOF) ending the line.  */
  
@@ -340,7 +342,7 @@
      }
    return c;
  }
-@@ -627,11 +665,11 @@
+@@ -627,11 +664,11 @@
     otherwise false.  */
  
  static bool
@@ -355,7 +357,7 @@
  }
  
  /* Read a line from input file F, given first non-blank character C
-@@ -642,11 +680,11 @@
+@@ -642,11 +679,11 @@
  
     Return the first non-blank character of the next line.  */
  
@@ -370,7 +372,7 @@
    WORD *end_of_word;
  
    end_of_parabuf = &parabuf[MAXCHARS];
-@@ -658,6 +696,7 @@
+@@ -658,6 +695,7 @@
        /* Scan word.  */
  
        word_limit->text = wptr;
@@ -378,7 +380,7 @@
        do
  	{
  	  if (wptr == end_of_parabuf)
-@@ -666,10 +705,12 @@
+@@ -666,10 +704,12 @@
  	      flush_paragraph ();
  	    }
  	  *wptr++ = c;
@@ -394,7 +396,7 @@
        check_punctuation (word_limit);
  
        /* Scan inter-word space.  */
-@@ -677,48 +718,48 @@
+@@ -677,48 +717,48 @@
        start = in_column;
        c = get_space (f, c);
        word_limit->space = in_column - start;
@@ -458,7 +460,7 @@
  	}
        c = get_space (f, c);
      }
-@@ -728,21 +769,21 @@
+@@ -728,21 +768,21 @@
  /* Read blank characters from input file F, starting with C, and keeping
     in_column up-to-date.  Return first non-blank character.  */
  
@@ -485,7 +487,7 @@
      }
  }
  
-@@ -751,9 +792,9 @@
+@@ -751,9 +791,9 @@
  static void
  check_punctuation (WORD *w)
  {
@@ -498,7 +500,7 @@
  
    w->paren = isopen (*start);
    w->punct = !! ispunct (fin);
-@@ -777,7 +818,9 @@
+@@ -777,7 +817,9 @@
  
    if (word_limit == word)
      {
@@ -509,7 +511,7 @@
        wptr = parabuf;
        return;
      }
-@@ -809,7 +852,8 @@
+@@ -809,7 +851,8 @@
    /* Copy text of words down to start of parabuf -- we use memmove because
       the source and target may overlap.  */
  
@@ -519,7 +521,7 @@
    shift = split_point->text - parabuf;
    wptr -= shift;
  
-@@ -833,53 +877,53 @@
+@@ -833,53 +876,53 @@
  fmt_paragraph (void)
  {
    WORD *start, *w;
@@ -589,7 +591,7 @@
  }
  
  /* Return the constant component of the cost of breaking before the
-@@ -904,33 +948,33 @@
+@@ -904,33 +947,33 @@
        else if ((this - 1)->punct)
  	cost -= PUNCT_BONUS;
        else if (this > word + 1 && (this - 2)->final)
@@ -629,7 +631,7 @@
        cost += RAGGED_COST (n);
      }
    return cost;
-@@ -959,8 +1003,8 @@
+@@ -959,8 +1002,8 @@
  
    out_column = 0;
    put_space (prefix_indent);
@@ -640,7 +642,7 @@
    put_space (indent - out_column);
  
    endline = w->next_break - 1;
-@@ -970,8 +1014,8 @@
+@@ -970,8 +1013,8 @@
        put_space (w->space);
      }
    put_word (w);
@@ -651,7 +653,7 @@
  }
  
  /* Output to stdout the word W.  */
-@@ -979,13 +1023,13 @@
+@@ -979,13 +1022,13 @@
  static void
  put_word (WORD *w)
  {
@@ -668,7 +670,7 @@
  }
  
  /* Output to stdout SPACE spaces, or equivalent tabs.  */
-@@ -1002,13 +1046,13 @@
+@@ -1002,13 +1045,13 @@
        if (out_column + 1 < tab_target)
  	while (out_column < tab_target)
  	  {
@@ -684,3 +686,21 @@
        out_column++;
      }
  }
+--- coreutils-6.7/po/pl.po~	2007-02-13 17:23:15.000000000 +0100
++++ coreutils-6.7/po/pl.po	2007-02-13 17:32:43.000000000 +0100
+@@ -3788,12 +3788,14 @@
+ #: src/fmt.c:289
+ msgid ""
+ "  -t, --tagged-paragraph    indentation of first line different from second\n"
+-"  -u, --uniform-spacing     one space between words, two after sentences\n"
++"  -u, --uniform-spacing     one space between words, two between sentences\n"
++"  -n, --single-spaces       single spaces between sentences\n"
+ "  -w, --width=WIDTH         maximum line width (default of 75 columns)\n"
+ msgstr ""
+ "  -t, --tagged-paragraph    wciêcie pierwszej linii inne ni¿ drugiej\n"
+ "  -u, --uniform-spacing     jedna spacja miêdzy s³owami, dwie miêdzy "
+ "zdaniami\n"
++"  -n, --single-spaces       pojedyncze spacje miêdzy zdaniami\n"
+ "  -w, --width=ILE           maksymalna szeroko¶æ linii (domy¶lnie 75 "
+ "kolumn)\n"
+ 
