@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	6.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
@@ -30,6 +30,7 @@ Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
 Patch11:	%{name}-selinux.patch
 Patch12:	%{name}-system-openat.patch
+Patch13:	%{name}-fmt-wchars.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.60
@@ -105,6 +106,7 @@ Programy zawarte w tym pakiecie to:
 %patch10 -p1
 %{?with_selinux:%patch11 -p1}
 %patch12 -p1
+%patch13 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
