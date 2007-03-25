@@ -5,12 +5,13 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	6.7
-Release:	3
+Version:	6.9
+# DO NOT PUT INT RELEASE HERE UNTIL 1, 9, 11, 12, 13 PATCHES FIXED
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	a16465d0856cd011a1acc1c21040b7f4
+# Source0-md5:	c9607d8495f16e98906e7ed2d9751a06
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -94,7 +95,8 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -a1
 %patch0 -p1
-%patch1 -p1
+# huuge uptade PO
+#%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -102,11 +104,15 @@ Programy zawarte w tym pakiecie to:
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1
+# PO
+#%patch9 -p1
 %patch10 -p1
-%{?with_selinux:%patch11 -p1}
-%patch12 -p1
-%patch13 -p1
+# FIXME
+#%{?with_selinux:%patch11 -p1}
+# OBSOLETE
+#%patch12 -p1
+# ?
+#%patch13 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
