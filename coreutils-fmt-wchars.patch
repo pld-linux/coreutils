@@ -310,7 +310,7 @@
        c = get_prefix (f);
      }
  
-@@ -601,23 +638,23 @@
+@@ -601,26 +638,26 @@
     that failed to match the prefix.  In the latter, C is \n or EOF.
     Return the character (\n or EOF) ending the line.  */
  
@@ -323,14 +323,20 @@
 +  const wchar_t *s;
  
    out_column = 0;
--  if (in_column > next_prefix_indent && c != '\n' && c != EOF)
-+  if (in_column > next_prefix_indent && c != L'\n' && c != WEOF)
+-  if (in_column > next_prefix_indent || (c != '\n' && c != EOF))
++  if (in_column > next_prefix_indent || (c != L'\n' && c != WEOF))
      {
        put_space (next_prefix_indent);
        for (s = prefix; out_column != in_column && *s; out_column++)
 -	putchar (*s++);
+-      if (c != EOF && c != '\n')
 +	putwchar (*s++);
-       put_space (in_column - out_column);
++      if (c != WEOF && c != L'\n')
+ 	put_space (in_column - out_column);
+-      if (c == EOF && in_column >= next_prefix_indent + prefix_length)
+-	putchar ('\n');
++      if (c == WEOF && in_column >= next_prefix_indent + prefix_length)
++	putwchar (L'\n');
      }
 -  while (c != '\n' && c != EOF)
 +  while (c != L'\n' && c != WEOF)
@@ -396,7 +402,7 @@
        check_punctuation (word_limit);
  
        /* Scan inter-word space.  */
-@@ -677,48 +717,48 @@
+@@ -677,46 +717,46 @@
        start = in_column;
        c = get_space (f, c);
        word_limit->space = in_column - start;
@@ -415,13 +421,9 @@
  	  flush_paragraph ();
  	}
        word_limit++;
--      if (c == EOF)
--	return EOF;
-+      if (c == WEOF)
-+	return WEOF;
      }
--  while (c != '\n');
-+  while (c != L'\n');
+-  while (c != '\n' && c != EOF);
++  while (c != L'\n' && c != WEOF);
    return get_prefix (f);
  }
  
