@@ -419,10 +419,9 @@
 +msgstr "     Разм    Исп   Дост Исп%%"
  
  #: src/df.c:165
--#, fuzzy, c-format
-+#, c-format
+ #, c-format
  msgid " %s-blocks      Used Available Capacity"
--msgstr " %4s-блоков      Исп  Доступно  Всего"
+-msgstr " %s-блоков      Исп  Доступно  Всего"
 +msgstr " %s-блоков       Исп  Доступно    Всего"
  
  #: src/df.c:196
