@@ -6,7 +6,6 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	6.9
-# DO NOT PUT INT RELEASE HERE UNTIL 1, 9, 11, 12, 13 PATCHES FIXED
 Release:	0.1
 License:	GPL
 Group:		Applications/System
@@ -18,20 +17,23 @@ Source2:	DIR_COLORS
 Source3:	fileutils.sh
 Source4:	fileutils.csh
 Source5:	su.pamd
+Source6:	su-l.pamd
+Source7:	runuser.pamd
+Source8:	runuser-l.pamd
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-pl.po-update.patch
-Patch2:		%{name}-pam.patch
-Patch3:		%{name}-getgid.patch
-Patch4:		%{name}-su-paths.patch
-Patch5:		%{name}-uname-cpuinfo.patch
-Patch6:		%{name}-date-man.patch
-Patch7:		%{name}-mem.patch
-Patch8:		%{name}-install-C.patch
-Patch9:		%{name}-po.patch
-Patch10:	%{name}-no-nb.patch
-Patch11:	%{name}-selinux.patch
-Patch12:	%{name}-system-openat.patch
-Patch13:	%{name}-fmt-wchars.patch
+Patch1:		%{name}-pam.patch
+Patch2:		%{name}-getgid.patch
+Patch3:		%{name}-su-paths.patch
+Patch4:		%{name}-uname-cpuinfo.patch
+Patch5:		%{name}-date-man.patch
+Patch6:		%{name}-mem.patch
+Patch7:		%{name}-install-C.patch
+Patch8:		%{name}-po.patch
+Patch9:		%{name}-no-nb.patch
+Patch10:	%{name}-fmt-wchars.patch
+Patch11:	%{name}-runuser.patch
+Patch12:	%{name}-split-pam.patch
+Patch13:	%{name}-selinux.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.60
@@ -95,8 +97,7 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -a1
 %patch0 -p1
-# huuge uptade PO
-#%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -104,15 +105,11 @@ Programy zawarte w tym pakiecie to:
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-# PO
-#%patch9 -p1
+%patch9 -p1
 %patch10 -p1
-# FIXME
-#%{?with_selinux:%patch11 -p1}
-# OBSOLETE
-#%patch12 -p1
-# ?
-#%patch13 -p1
+%patch11 -p1
+%patch12 -p1
+%{?with_selinux:%patch13 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
@@ -161,6 +158,9 @@ install src/su $RPM_BUILD_ROOT/bin
 install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/shrc.d
 install %{SOURCE5} $RPM_BUILD_ROOT/etc/pam.d/su
+install %{SOURCE6} $RPM_BUILD_ROOT/etc/pam.d/su-l
+install %{SOURCE7} $RPM_BUILD_ROOT/etc/pam.d/runuser
+install %{SOURCE8} $RPM_BUILD_ROOT/etc/pam.d/runuser-l
 
 cp -a man/pt_BR man/pt
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN ; do
@@ -186,9 +186,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/[!s]*
 %attr(755,root,root) /bin/s[!u]*
 %attr(4755,root,root) /bin/su
+%attr(755,root,root) /sbin/runuser
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/*
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
 /etc/shrc.d/*
 %{_mandir}/man1/*
