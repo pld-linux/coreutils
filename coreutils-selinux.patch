@@ -487,7 +487,7 @@ diff -Nur coreutils-6.4/po/POTFILES.in coreutils-6.4.selinux/po/POTFILES.in
 +msgid "conflicting security context specifiers given"
 +msgstr "konflikt miêdzy podanymi okre¶leniami kontekstu bezpieczeñstwa"
 +
- #: src/chgrp.c:95 src/install.c:612
+ #: src/chgrp.c:95 src/install.c:611
  #, c-format
  msgid "invalid group %s"
 @@ -1540,6 +1629,21 @@
@@ -509,7 +509,7 @@ diff -Nur coreutils-6.4/po/POTFILES.in coreutils-6.4.selinux/po/POTFILES.in
 +msgid "cannot lgetfilecon %s"
 +msgstr "nie mo¿na wykonaæ lgetfilecon %s"
 +
- #: src/copy.c:1534
+ #: src/copy.c:1553
  #, c-format
  msgid "cannot copy cyclic symbolic link %s"
 @@ -1688,6 +1792,10 @@
@@ -562,7 +562,7 @@ diff -Nur coreutils-6.4/po/POTFILES.in coreutils-6.4.selinux/po/POTFILES.in
 +msgid "cannot set default security context %s"
 +msgstr "nie mo¿na ustawiæ domy¶lnego kontekstu bezpieczeñstwa %s"
 +
- #: src/cp.c:1016
+ #: src/cp.c:1030
  #, c-format
  msgid "cannot make both hard and symbolic links"
 @@ -3880,6 +4009,7 @@
@@ -655,7 +655,7 @@ diff -Nur coreutils-6.4/po/POTFILES.in coreutils-6.4.selinux/po/POTFILES.in
 +"  -P, --preserve_context (SELinux) zachowanie kontekstu bezpieczeñstwa\n"
 +"  -Z, --context=KONTEKST (SELinux) ustawienie kontekstu plików i katalogów\n"
 +
- #: src/install.c:693 src/ln.c:365 src/mv.c:318
+ #: src/install.c:692 src/ln.c:365 src/mv.c:318
  msgid ""
  "\n"
 @@ -4468,6 +4648,11 @@
@@ -667,7 +667,7 @@ diff -Nur coreutils-6.4/po/POTFILES.in coreutils-6.4.selinux/po/POTFILES.in
 +msgid "Sorry, this option can only be used on a SELinux-enabled kernel.\n"
 +msgstr "Niestety tej opcji mo¿na u¿yæ tylko na j±drze z obs³ug± SELinuksa.\n"
 +
- #: src/ls.c:677
+ #: src/ls.c:684
  msgid "%b %e  %Y"
  msgstr "%b %e  %Y"
 @@ -4841,6 +5026,34 @@
@@ -1375,23 +1375,17 @@ diff -Nur coreutils-6.4/src/copy.c coreutils-6.4.selinux/src/copy.c
    if (S_ISDIR (src_mode))
      {
        struct dir_list *dir;
-@@ -1544,8 +1577,14 @@
- 	}
- 
-       /* Are we crossing a file system boundary?  */
--      if (x->one_file_system && device != 0 && device != src_sb.st_dev)
--	return true;
-+
-+      if (x->one_file_system && device != 0 && device != src_sb.st_dev) {
+@@ -1544,6 +1577,10 @@
+ 	{
+ 	  /* Here, we are crossing a file system boundary and cp's -x option
+ 	     is in effect: so don't copy the contents of this directory. */
 +#ifdef WITH_SELINUX
 +	if (x->preserve_security_context && selinux_enabled)
 +	  setfscreatecon(NULL);
 +#endif
-+  	return true;
-+      }      
- 
-       /* Copy the contents of the directory.  */
- 
+ 	}
+       else
+ 	{
 @@ -1689,6 +1728,11 @@
  	    }
  	}
@@ -2017,19 +2011,19 @@ diff -Nur coreutils-6.4/src/ls.c coreutils-6.4.selinux/src/ls.c
  	default:
  	  usage (LS_FAILURE);
  	}
-@@ -2485,6 +2560,12 @@
-     {
-       free (files[i].name);
-       free (files[i].linkname);
+@@ -2485,6 +2558,12 @@
+       struct fileinfo *f = sorted_file[i];
+       free (f->name);
+       free (f->linkname);
 +#ifdef WITH_SELINUX
-+      if (files[i].scontext) {
-+	freecon (files[i].scontext);
-+	files[i].scontext=NULL;
++      if (f->scontext) {
++	freecon (f->scontext);
++	f->scontext=NULL;
 +      }
 +#endif
      }
  
-   files_index = 0;
+   cwd_n_used = 0;
 @@ -2527,6 +2608,9 @@
    memset (f, '\0', sizeof *f);
    f->stat.st_ino = inode;
