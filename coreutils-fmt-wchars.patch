@@ -335,7 +335,7 @@
  	put_space (in_column - out_column);
 -      if (c == EOF && in_column >= next_prefix_indent + prefix_length)
 -	putchar ('\n');
-+      if (c == WEOF && in_column >= next_prefix_indent + prefix_length)
++      if (c == WEOF && in_column >= next_prefix_indent + prefix_width)
 +	putwchar (L'\n');
      }
 -  while (c != '\n' && c != EOF)
