@@ -2067,9 +2067,9 @@ diff -Nur coreutils-6.4/src/ls.c coreutils-6.4.selinux/src/ls.c
 +
 +#ifdef WITH_SELINUX
 +    case security_format:
-+      for (i = 0; i < files_index; i++)
++      for (i = 0; i < cwd_n_used; i++)
 +      {
-+        print_scontext_format (files + i);
++        print_scontext_format (sorted_file[i]);
 +        DIRED_PUTCHAR ('\n');
 +      }
 +      break;
