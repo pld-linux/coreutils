@@ -269,7 +269,7 @@
  
 +runuser_SOURCES = su.c
 +runuser_CFLAGS = -DRUNUSER -DAUTHORS="\"David MacKenzie, Dan Walsh\""
-+runuser_LDADD = $(LDADD) $(LIB_CRYPT) @LIB_PAM@
++runuser_LDADD = $(LDADD) $(LIB_CRYPT) $(LIB_PAM)
 +
  $(PROGRAMS): ../lib/libcoreutils.a
  
