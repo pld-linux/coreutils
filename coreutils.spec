@@ -34,6 +34,7 @@ Patch10:	%{name}-fmt-wchars.patch
 Patch11:	%{name}-runuser.patch
 Patch12:	%{name}-split-pam.patch
 Patch13:	%{name}-selinux.patch
+Patch14:	%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.60
@@ -96,6 +97,7 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
+%patch14 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
