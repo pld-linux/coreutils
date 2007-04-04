@@ -390,3 +390,22 @@
 +.B info coreutils su
 +.PP
 +should give you access to the complete manual.
+--- coreutils-6.9/po/pl.po.orig	2007-04-04 12:53:38.193586000 +0200
++++ coreutils-6.9/po/pl.po	2007-04-04 13:09:35.172121819 +0200
+@@ -8794,6 +8794,16 @@
+ msgid "warning: cannot change directory to %s"
+ msgstr "uwaga: nie mo¿na zmieniæ katalogu na %s"
+ 
++#: src/su.c:runuser
++#, c-format
++msgid "group %s does not exist"
++msgstr "grupa %d nie istnieje"
++
++#: src/su.c:runuser
++#, c-format
++msgid "Can't specify more than %d supplemental groups"
++msgstr "Nie mo¿na okre¶liæ wiêcej ni¿ %d grup dodatkowych"
++
+ #: src/sum.c:63
+ msgid ""
+ "Print checksum and block counts for each FILE.\n"
