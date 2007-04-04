@@ -399,7 +399,7 @@
 +#: src/su.c:runuser
 +#, c-format
 +msgid "group %s does not exist"
-+msgstr "grupa %d nie istnieje"
++msgstr "grupa %s nie istnieje"
 +
 +#: src/su.c:runuser
 +#, c-format
