@@ -35,6 +35,7 @@ Patch11:	%{name}-runuser.patch
 Patch12:	%{name}-split-pam.patch
 Patch13:	%{name}-selinux.patch
 Patch14:	%{name}-pl.po-update.patch
+Patch15:	%{name}-futimens.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.60
@@ -111,6 +112,7 @@ Programy zawarte w tym pakiecie to:
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch15 -p1
 %{?with_selinux:%patch13 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
