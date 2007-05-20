@@ -5,15 +5,15 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
-Version:	5.2.1
-Release:	3
+Version:	6.9
+Release:	1
 License:	GPL
 Group:		Applications/System
 # devel versions:
 #Source0:	ftp://alpha.gnu.org/gnu/fetish/%{name}-%{version}.tar.bz2
 # final versions:
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	172ee3c315af93d3385ddfbeb843c53f
+# Source0-md5:	c9607d8495f16e98906e7ed2d9751a06
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -31,11 +31,10 @@ Patch7:		%{name}-mem.patch
 Patch8:		%{name}-install-C.patch
 Patch9:		%{name}-po.patch
 Patch10:	%{name}-no-nb.patch
-# based on patch from Fedora, based on patches from http://acl.bestbits.at/
-Patch11:	%{name}-acl.patch
 Patch12:	%{name}-selinux.patch
+Patch13:	%{name}-pam.patch
 BuildRequires:	acl-devel
-BuildRequires:	autoconf >= 2.58
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.8
 %{?with_selinux:BuildRequires:	gcc >= 5:3.2}
 BuildRequires:	gettext-devel >= 0.11.5
@@ -106,10 +105,11 @@ Programy zawarte w tym pakiecie to:
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
 %{?with_selinux:%patch12 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
+
+sed -i -e 's#\[external\]#[]#g' configure.ac
 
 # no_NO is just an alias for nb_NO in recent glibc
 # no.po is outdated, nb.po is more fresh here (see also patch10)
