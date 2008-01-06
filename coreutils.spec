@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii p
 Name:		coreutils
 Version:	6.9
 Release:	2
-License:	GPL
+License:	GPL v2+
 Group:		Applications/System
 Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
 # Source0-md5:	c9607d8495f16e98906e7ed2d9751a06
@@ -45,6 +45,7 @@ BuildRequires:	gettext-devel >= 0.16-2
 BuildRequires:	help2man
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	pam-devel
+BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	texinfo >= 4.2
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
