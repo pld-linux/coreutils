@@ -180,11 +180,11 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+%post	-p	/sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+%postun	-p	/sbin/postshell
+-/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
