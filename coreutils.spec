@@ -138,8 +138,8 @@ install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/shr
 	DESTDIR=$RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/{arch,basename,cat,chgrp,chmod,chown,cp,date,dd,df,\
-echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,printf,pwd,rm,rmdir,sleep,sort,stty,\
-sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
+echo,false,id,link,ln,ls,mkdir,mknod,mktemp,mv,nice,printf,pwd,rm,rmdir,sleep,sort,\
+stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 
