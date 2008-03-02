@@ -13,9 +13,9 @@ diff -Nur coreutils-4.5.3.orig/doc/coreutils.texi coreutils-4.5.3/doc/coreutils.
  @item -c
  @opindex -c
  Ignored; for compatibility with old Unix versions of @command{install}.
---- coreutils-6.3/src/install.c.orig	2006-09-16 23:47:24.000000000 +0200
-+++ coreutils-6.3/src/install.c	2006-10-10 22:23:44.854022500 +0200
-@@ -21,6 +21,7 @@
+--- coreutils-6.10/src/install.c.orig	2008-01-05 23:59:11.000000000 +0100
++++ coreutils-6.10/src/install.c	2008-03-02 02:21:08.251625392 +0100
+@@ -20,6 +20,7 @@
  #include <stdio.h>
  #include <getopt.h>
  #include <sys/types.h>
@@ -23,7 +23,7 @@ diff -Nur coreutils-4.5.3.orig/doc/coreutils.texi coreutils-4.5.3/doc/coreutils.
  #include <signal.h>
  #include <pwd.h>
  #include <grp.h>
-@@ -114,6 +115,9 @@
+@@ -123,6 +124,9 @@
     or S_ISGID bits.  */
  static mode_t dir_mode_bits = CHMOD_MODE_BITS;
  
@@ -33,7 +33,7 @@ diff -Nur coreutils-4.5.3.orig/doc/coreutils.texi coreutils-4.5.3/doc/coreutils.
  /* If true, strip executable files after copying them. */
  static bool strip_files;
  
-@@ -138,6 +142,82 @@
+@@ -160,6 +164,82 @@
    {NULL, 0, NULL, 0}
  };
  
@@ -116,16 +116,16 @@ diff -Nur coreutils-4.5.3.orig/doc/coreutils.texi coreutils-4.5.3/doc/coreutils.
  static void
  cp_option_init (struct cp_options *x)
  {
-@@ -242,7 +322,7 @@
+@@ -345,7 +425,7 @@
       we'll actually use backup_suffix_string.  */
    backup_suffix_string = getenv ("SIMPLE_BACKUP_SUFFIX");
  
--  while ((optc = getopt_long (argc, argv, "bcsDdg:m:o:pt:TvS:", long_options,
-+  while ((optc = getopt_long (argc, argv, "bcCsDdg:m:o:pt:TvS:", long_options,
+-  while ((optc = getopt_long (argc, argv, "bcsDdg:m:o:pt:TvS:Z:", long_options,
++  while ((optc = getopt_long (argc, argv, "bCcsDdg:m:o:pt:TvS:Z:", long_options,
  			      NULL)) != -1)
      {
        switch (optc)
-@@ -254,6 +334,9 @@
+@@ -357,6 +437,9 @@
  	  break;
  	case 'c':
  	  break;
@@ -135,7 +135,7 @@ diff -Nur coreutils-4.5.3.orig/doc/coreutils.texi coreutils-4.5.3/doc/coreutils.
  	case 's':
  	  strip_files = true;
  #ifdef SIGCHLD
-@@ -494,6 +577,12 @@
+@@ -627,6 +710,12 @@
       However, since !x->recursive, the call to "copy" will fail if FROM
       is a directory.  */
  
@@ -148,7 +148,7 @@ diff -Nur coreutils-4.5.3.orig/doc/coreutils.texi coreutils-4.5.3/doc/coreutils.
    return copy (from, to, false, x, &copy_into_self, NULL);
  }
  
-@@ -667,6 +756,9 @@
+@@ -805,6 +894,9 @@
        --backup[=CONTROL]  make a backup of each existing destination file\n\
    -b                  like --backup but does not accept an argument\n\
    -c                  (ignored)\n\

@@ -9,9 +9,9 @@
  
  dir_LDADD += $(LIB_ACL)
  ls_LDADD += $(LIB_ACL)
---- coreutils-6.7/src/su.c.pam	2007-01-09 17:00:01.000000000 +0000
-+++ coreutils-6.7/src/su.c	2007-01-09 17:16:43.000000000 +0000
-@@ -38,6 +38,16 @@
+--- coreutils-6.10/src/su.c.orig	2007-11-25 14:23:31.000000000 +0100
++++ coreutils-6.10/src/su.c	2008-03-02 02:07:13.568059486 +0100
+@@ -37,6 +37,16 @@
     restricts who can su to UID 0 accounts.  RMS considers that to
     be fascist.
  
@@ -28,7 +28,7 @@
     Compile-time options:
     -DSYSLOG_SUCCESS	Log successful su's (by default, to root) with syslog.
     -DSYSLOG_FAILURE	Log failed su's (by default, to root) with syslog.
-@@ -59,6 +69,15 @@
+@@ -58,6 +68,15 @@
     prototype (returning `int') in <unistd.h>.  */
  #define getusershell _getusershell_sys_proto_
  
@@ -44,7 +44,7 @@
  #include "system.h"
  #include "getpass.h"
  
-@@ -128,15 +147,22 @@
+@@ -118,15 +137,22 @@
  /* The user to become if none is specified.  */
  #define DEFAULT_USER "root"
  
@@ -68,7 +68,7 @@
  
  /* The name this program was run with.  */
  char *program_name;
-@@ -225,7 +251,26 @@
+@@ -215,7 +241,26 @@
  }
  #endif
  
@@ -95,7 +95,7 @@
     Return true if the user gives the correct password for entry PW,
     false if not.  Return true without asking for a password if run by UID 0
     or if PW has an empty password.  */
-@@ -233,6 +278,44 @@
+@@ -223,6 +268,44 @@
  static bool
  correct_password (const struct passwd *pw)
  {
@@ -140,7 +140,7 @@
    char *unencrypted, *encrypted, *correct;
  #if HAVE_GETSPNAM && HAVE_STRUCT_SPWD_SP_PWDP
    /* Shadow passwd stuff for SVR3 and maybe other systems.  */
-@@ -257,6 +340,7 @@
+@@ -247,6 +330,7 @@
    encrypted = crypt (unencrypted, correct);
    memset (unencrypted, 0, strlen (unencrypted));
    return STREQ (encrypted, correct);
@@ -148,7 +148,7 @@
  }
  
  /* Update `environ' for the new shell based on PW, with SHELL being
-@@ -270,12 +354,18 @@
+@@ -260,12 +344,18 @@
        /* Leave TERM unchanged.  Set HOME, SHELL, USER, LOGNAME, PATH.
           Unset all other environment variables.  */
        char const *term = getenv ("TERM");
@@ -167,7 +167,7 @@
        xsetenv ("HOME", pw->pw_dir);
        xsetenv ("SHELL", shell);
        xsetenv ("USER", pw->pw_name);
-@@ -308,8 +398,13 @@
+@@ -298,8 +388,13 @@
  {
  #ifdef HAVE_INITGROUPS
    errno = 0;
@@ -177,13 +177,13 @@
 +    pam_close_session(pamh, 0);
 +    pam_end(pamh, PAM_ABORT);
 +#endif
-     error (EXIT_FAIL, errno, _("cannot set groups"));
+     error (EXIT_FAILURE, errno, _("cannot set groups"));
 +  }
    endgrent ();
  #endif
    if (setgid (pw->pw_gid))
-@@ -318,6 +413,31 @@
-     error (EXIT_FAIL, errno, _("cannot set user id"));
+@@ -308,6 +403,31 @@
+     error (EXIT_FAILURE, errno, _("cannot set user id"));
  }
  
 +#ifdef USE_PAM
@@ -214,7 +214,7 @@
  /* Run SHELL, or DEFAULT_SHELL if SHELL is empty.
     If COMMAND is nonzero, pass it to the shell with the -c option.
     Pass ADDITIONAL_ARGS to the shell as more arguments; there
-@@ -325,17 +445,49 @@
+@@ -315,17 +435,49 @@
  
  static void
  run_shell (char const *shell, char const *command, char **additional_args,
@@ -265,7 +265,7 @@
        shell_basename = last_component (shell);
        arg0 = xmalloc (strlen (shell_basename) + 2);
        arg0[0] = '-';
-@@ -360,6 +512,66 @@
+@@ -350,6 +502,66 @@
      error (0, errno, "%s", shell);
      exit (exit_status);
    }
@@ -332,7 +332,7 @@
  }
  
  /* Return true if SHELL is a restricted shell (one not returned by
-@@ -527,9 +739,9 @@
+@@ -517,9 +729,9 @@
    shell = xstrdup (shell ? shell : pw->pw_shell);
    modify_environment (pw, shell);
  
@@ -394,9 +394,9 @@
  
  @node Delaying
  @chapter Delaying
---- coreutils-6.7/configure.ac.pam	2006-12-07 21:30:24.000000000 +0000
-+++ coreutils-6.7/configure.ac	2007-01-09 17:18:04.000000000 +0000
-@@ -39,6 +39,13 @@
+--- coreutils-6.10/configure.ac.orig	2008-01-13 09:14:23.000000000 +0100
++++ coreutils-6.10/configure.ac	2008-03-02 02:08:10.027276914 +0100
+@@ -44,6 +44,13 @@
  gl_INIT
  coreutils_MACROS
  
@@ -407,10 +407,10 @@
 +LIB_PAM="-ldl -lpam -lpam_misc"
 +)
 +
- AC_CHECK_FUNCS(uname,
- 	OPTIONAL_BIN_PROGS="$OPTIONAL_BIN_PROGS uname\$(EXEEXT)"
- 	MAN="$MAN uname.1")
-@@ -249,6 +256,13 @@
+ AC_FUNC_FORK
+ 
+ optional_bin_progs=
+@@ -332,6 +339,13 @@
  AM_GNU_GETTEXT([external], [need-formatstring-macros])
  AM_GNU_GETTEXT_VERSION([0.15])
  
@@ -424,15 +424,15 @@
  AC_CONFIG_FILES(
    Makefile
    doc/Makefile
---- coreutils-6.3/po/pl.po.orig	2006-09-30 11:11:04.000000000 +0200
-+++ coreutils-6.3/po/pl.po	2006-10-10 22:07:14.416124000 +0200
-@@ -8149,6 +8149,49 @@
+--- coreutils-6.10/po/pl.po.orig	2008-01-16 21:22:08.000000000 +0100
++++ coreutils-6.10/po/pl.po	2008-03-02 02:09:23.671473657 +0100
+@@ -8875,6 +8875,49 @@
  msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
  msgstr "Sk³adnia: %s [OPCJA]... [-] [U¯YTKOWNIK [ARGUMENT]...]\n"
  
 +#: src/su.c:300
 +msgid "standard in must be a tty\n\n"
-+msgstr "standartowe wej¶cie musi byæ terminalem\n"
++msgstr "standardowe wej¶cie musi byæ terminalem\n"
 +
 +#: src/su.c:425
 +msgid "could not open session\n"
@@ -444,7 +444,7 @@
 +
 +#: src/su.c:450
 +msgid "could not set PAM credentials\n"
-+msgstr "b³±d podczas ustawiania uwierzytelnieñ PAM\n"
++msgstr "b³±d podczas ustawiania uwierzytelnienia PAM\n"
 +
 +#: src/su.c:471
 +#, c-format
@@ -473,9 +473,9 @@
 +msgid " killed.\n"
 +msgstr " zabito.\n"
 +
- #: src/su.c:386
- #, fuzzy
+ #: src/su.c:385
  msgid ""
+ "Change the effective user id and group id to that of USER.\n"
 diff -Nur coreutils-5.2.1.orig/man/es/su.1 coreutils-5.2.1/man/es/su.1
 --- coreutils-5.2.1.orig/man/es/su.1	Mon Apr 12 14:26:19 1999
 +++ coreutils-5.2.1/man/es/su.1	Thu Mar 18 17:05:55 2004

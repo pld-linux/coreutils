@@ -1,24 +1,24 @@
---- coreutils-6.7/tests/help-version.runuser	2006-12-07 09:06:04.000000000 +0000
-+++ coreutils-6.7/tests/help-version	2007-01-09 17:31:44.000000000 +0000
-@@ -168,6 +168,7 @@
- seq_args=10
- sleep_args=0
- su_args=--version
-+runuser_args=--version
+--- coreutils-6.10/README.orig	2008-01-18 09:26:09.000000000 +0100
++++ coreutils-6.10/README	2008-03-02 14:24:55.578407708 +0100
+@@ -12,7 +12,7 @@
+   factor false fmt fold groups head hostid hostname id install join kill
+   link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup
+   od paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir
+-  runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf
++  runcon runuser seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf
+   sleep sort split stat stty su sum sync tac tail tee test touch tr true
+   tsort tty uname unexpand uniq unlink uptime users vdir wc who whoami yes
  
- # I'd rather not run sync, since it spins up disks that I've
- # deliberately caused to spin down (but not unmounted).
---- coreutils-6.7/README.runuser	2006-11-24 21:28:27.000000000 +0000
-+++ coreutils-6.7/README	2007-01-09 17:32:16.000000000 +0000
-@@ -11,7 +11,7 @@
-   dd df dir dircolors dirname du echo env expand expr factor false fmt fold
-   ginstall groups head hostid hostname id join kill link ln logname ls
-   md5sum mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr
--  printenv printf ptx pwd readlink rm rmdir seq sha1sum sha224sum sha256sum
-+  printenv printf ptx pwd readlink rm rmdir runuser seq sha1sum sha224sum sha256sum
-   sha384sum sha512sum shred shuf sleep sort split stat stty su sum sync tac
-   tail tee test touch tr true tsort tty uname unexpand uniq unlink uptime
-   users vdir wc who whoami yes
+--- coreutils-6.10/AUTHORS.orig	2008-01-05 23:58:24.000000000 +0100
++++ coreutils-6.10/AUTHORS	2008-03-02 14:25:23.908022120 +0100
+@@ -64,6 +64,7 @@
+ rm: Paul Rubin, David MacKenzie, Richard Stallman, Jim Meyering
+ rmdir: David MacKenzie
+ runcon: Russell Coker
++runuser: David MacKenzie, Dan Walsh
+ seq: Ulrich Drepper
+ sha1sum: Ulrich Drepper, Scott Miller, David Madore
+ sha224sum: Ulrich Drepper, Scott Miller, David Madore
 --- coreutils-6.7/src/su.c.runuser	2007-01-09 17:27:56.000000000 +0000
 +++ coreutils-6.7/src/su.c	2007-01-09 17:30:12.000000000 +0000
 @@ -110,9 +110,15 @@
@@ -92,7 +92,7 @@
 +#ifdef RUNUSER
 +  if (getuid() != geteuid())
 +    /* safety net: deny operation if we are suid by accident */
-+    error(EXIT_FAIL, 1, "runuser may not be setuid");
++    error(EXIT_FAILURE, 1, "runuser may not be setuid");
 +#else
    retval = pam_authenticate(pamh, 0);
    PAM_BAIL_P;
@@ -190,7 +190,7 @@
 +	case 'g':
 +	  gr = getgrnam(optarg);
 +	  if (!gr)
-+	    error (EXIT_FAIL, 0, _("group %s does not exist"), optarg);
++	    error (EXIT_FAILURE, 0, _("group %s does not exist"), optarg);
 +	  use_gid = 1;
 +	  groups[0] = gr->gr_gid;
 +	  break;
@@ -198,12 +198,12 @@
 +	case 'G':
 +	  num_supp_groups++;
 +	  if (num_supp_groups >= NGROUPS_MAX)
-+	    error (EXIT_FAIL, 0,
++	    error (EXIT_FAILURE, 0,
 +		   _("Can't specify more than %d supplemental groups"),
 +		   NGROUPS_MAX - 1);
 +	  gr = getgrnam(optarg);
 +	  if (!gr)
-+	    error (EXIT_FAIL, 0, _("group %s does not exist"), optarg);
++	    error (EXIT_FAILURE, 0, _("group %s does not exist"), optarg);
 +	  groups[num_supp_groups] = gr->gr_gid;
 +	  break;
 +#endif
@@ -252,20 +252,20 @@
 +#endif
 +	     );
  }
---- coreutils-6.7/src/Makefile.am.runuser	2007-01-09 17:27:56.000000000 +0000
-+++ coreutils-6.7/src/Makefile.am	2007-01-09 17:27:56.000000000 +0000
-@@ -17,7 +17,7 @@
- ## along with this program; if not, write to the Free Software Foundation,
- ## Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+--- coreutils-6.10/src/Makefile.am.orig	2008-03-02 14:22:53.223435095 +0100
++++ coreutils-6.10/src/Makefile.am	2008-03-02 14:25:58.317983032 +0100
+@@ -24,7 +24,7 @@
+   arch hostname su
  
--EXTRA_PROGRAMS = chroot df hostid nice pinky stty su uname uptime users who
-+EXTRA_PROGRAMS = chroot df hostid nice pinky stty su runuser uname uptime users who
+ build_if_possible__progs = \
+-  chroot df hostid nice pinky stty su uname uptime users who
++  chroot df hostid nice pinky stty su runuser uname uptime users who
  
- bin_SCRIPTS = groups
- bin_PROGRAMS = [ chgrp chown chmod cp dd dircolors du \
-@@ -112,6 +112,10 @@
- mv_LDADD += $(LIB_ACL)
- ginstall_LDADD += $(LIB_ACL)
+ EXTRA_PROGRAMS = \
+   $(no_install__progs) \
+@@ -135,6 +135,10 @@
+ 
+ stat_LDADD = $(LDADD) $(LIB_SELINUX)
  
 +runuser_SOURCES = su.c
 +runuser_CFLAGS = -DRUNUSER -DAUTHORS="\"David MacKenzie, Dan Walsh\""
@@ -273,41 +273,22 @@
 +
  $(PROGRAMS): ../lib/libcoreutils.a
  
- SUFFIXES = .sh
-@@ -126,7 +130,7 @@
+ # Get the release year from ../lib/version-etc.c.
+@@ -156,7 +160,7 @@
  	chmod +x $@-t
  	mv $@-t $@
  
 -all-local: su$(EXEEXT)
-+all-local: su$(EXEEXT) runuser
++all-local: su$(EXEEXT) runuser$(EXEEXT)
  
  installed_su = $(DESTDIR)$(bindir)/`echo su|sed '$(transform)'`
  
---- coreutils-6.7/AUTHORS.runuser	2006-10-22 17:54:15.000000000 +0100
-+++ coreutils-6.7/AUTHORS	2007-01-09 17:27:56.000000000 +0000
-@@ -60,6 +60,7 @@
- readlink: Dmitry V. Levin
- rm: Paul Rubin, David MacKenzie, Richard Stallman, Jim Meyering
- rmdir: David MacKenzie
-+runuser: David MacKenzie, Dan Walsh
- seq: Ulrich Drepper
- sha1sum: Ulrich Drepper, Scott Miller, David Madore
- sha224sum: Ulrich Drepper, Scott Miller, David Madore
---- coreutils-6.7/man/Makefile.am.runuser	2006-11-16 08:49:56.000000000 +0000
-+++ coreutils-6.7/man/Makefile.am	2007-01-09 17:32:38.000000000 +0000
-@@ -26,7 +26,7 @@
-   link.1 ln.1 logname.1 \
-   ls.1 md5sum.1 mkdir.1 mkfifo.1 mknod.1 mv.1 nl.1 nohup.1 od.1 \
-   paste.1 pathchk.1 pr.1 printenv.1 printf.1 ptx.1 pwd.1 readlink.1 \
--  rm.1 rmdir.1 seq.1 sha1sum.1 sha224sum.1 sha256sum.1 sha384sum.1 sha512sum.1 \
-+  rm.1 rmdir.1 runuser.1 seq.1 sha1sum.1 sha224sum.1 sha256sum.1 sha384sum.1 sha512sum.1 \
-   shred.1 shuf.1 sleep.1 sort.1 split.1 stat.1 \
-   su.1 sum.1 sync.1 tac.1 tail.1 tee.1 test.1 touch.1 tr.1 true.1 tsort.1 \
-   tty.1 unexpand.1 uniq.1 unlink.1 vdir.1 wc.1 \
-@@ -105,6 +105,7 @@
- readlink.1:	$(common_dep)	$(srcdir)/readlink.x	../src/readlink.c
+--- coreutils-6.10/man/Makefile.am.orig	2008-03-02 14:22:53.175432360 +0100
++++ coreutils-6.10/man/Makefile.am	2008-03-02 14:26:36.980186266 +0100
+@@ -94,6 +94,7 @@
  rm.1:		$(common_dep)	$(srcdir)/rm.x		../src/rm.c
  rmdir.1:	$(common_dep)	$(srcdir)/rmdir.x	../src/rmdir.c
+ runcon.1:	$(common_dep)	$(srcdir)/runcon.x	../src/runcon.c
 +runuser.1:	$(common_dep)	$(srcdir)/runuser.x	../src/su.c
  seq.1:		$(common_dep)	$(srcdir)/seq.x		../src/seq.c
  sha1sum.1:	$(common_dep)	$(srcdir)/sha1sum.x	../src/md5sum.c
@@ -390,9 +371,9 @@
 +.B info coreutils su
 +.PP
 +should give you access to the complete manual.
---- coreutils-6.9/po/pl.po.orig	2007-04-04 12:53:38.193586000 +0200
-+++ coreutils-6.9/po/pl.po	2007-04-04 13:09:35.172121819 +0200
-@@ -8794,6 +8794,16 @@
+--- coreutils-6.10/po/pl.po.orig	2008-03-02 14:22:54.123486386 +0100
++++ coreutils-6.10/po/pl.po	2008-03-02 14:28:35.858960780 +0100
+@@ -8986,6 +8986,16 @@
  msgid "warning: cannot change directory to %s"
  msgstr "uwaga: nie mo¿na zmieniæ katalogu na %s"
  
@@ -406,6 +387,6 @@
 +msgid "Can't specify more than %d supplemental groups"
 +msgstr "Nie mo¿na okre¶liæ wiêcej ni¿ %d grup dodatkowych"
 +
- #: src/sum.c:63
+ #: src/sum.c:62
  msgid ""
  "Print checksum and block counts for each FILE.\n"
