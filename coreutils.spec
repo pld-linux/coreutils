@@ -2,7 +2,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	6.10
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.lzma
@@ -44,7 +44,7 @@ BuildRequires:	texinfo >= 4.2
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	fileutils
-Provides:	mktemp
+Provides:	mktemp = %{version}-%{release}
 Provides:	sh-utils
 Provides:	stat
 Provides:	textutils
