@@ -1,16 +1,12 @@
-#
-# Conditional build:
-%bcond_without	selinux		# build without SELinux support
-#
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	6.9
-Release:	2
-License:	GPL v2+
+Version:	6.10
+Release:	1
+License:	GPL v3+
 Group:		Applications/System
-Source0:	ftp://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.bz2
-# Source0-md5:	c9607d8495f16e98906e7ed2d9751a06
+Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.lzma
+# Source0-md5:	23582a4e8b21e837cfbafbc3834a8a4b
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -20,6 +16,7 @@ Source5:	su.pamd
 Source6:	su-l.pamd
 Source7:	runuser.pamd
 Source8:	runuser-l.pamd
+Source9:	mktemp.1.pl
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pam.patch
 Patch2:		%{name}-getgid.patch
@@ -29,36 +26,36 @@ Patch5:		%{name}-date-man.patch
 Patch6:		%{name}-mem.patch
 Patch7:		%{name}-install-C.patch
 Patch8:		%{name}-po.patch
-Patch9:		%{name}-no-nb.patch
-Patch10:	%{name}-fmt-wchars.patch
-Patch11:	%{name}-runuser.patch
-Patch12:	%{name}-split-pam.patch
-Patch13:	%{name}-selinux.patch
-Patch14:	%{name}-pl.po-update.patch
-Patch15:	%{name}-futimens.patch
+Patch9:		%{name}-fmt-wchars.patch
+Patch10:	%{name}-runuser.patch
+Patch11:	%{name}-split-pam.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
-BuildRequires:	autoconf >= 2.60
-BuildRequires:	automake >= 1:1.9.6
-%{?with_selinux:BuildRequires:	gcc >= 5:3.2}
+BuildRequires:	autoconf >= 2.61
+BuildRequires:	automake >= 1:1.10
+BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-devel >= 0.16-2
 BuildRequires:	help2man
-%{?with_selinux:BuildRequires:	libselinux-devel}
+BuildRequires:	libselinux-devel
+BuildRequires:	lzma
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	texinfo >= 4.2
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	fileutils
+Provides:	mktemp
 Provides:	sh-utils
 Provides:	stat
 Provides:	textutils
 Obsoletes:	fileutils
+Obsoletes:	mktemp
 Obsoletes:	sh-utils
 Obsoletes:	stat
 Obsoletes:	textutils
 Conflicts:	shadow < 1:4.0.3-6
 Conflicts:	tetex < 1:2.0.2
+Conflicts:	util-linux < 2.13-0.pre7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -98,8 +95,8 @@ Programy zawarte w tym pakiecie to:
   uniq unlink users vdir wc who whoami yes
 
 %prep
-%setup -q -a1
-%patch14 -p1
+%setup -q -c -T -a1
+lzma -dc %{SOURCE0} | tar xf - -C ..
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -112,20 +109,11 @@ Programy zawarte w tym pakiecie to:
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
-%patch12 -p1
-%patch15 -p1
-%{?with_selinux:%patch13 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
-# no_NO is just an alias for nb_NO in recent glibc
-# no.po is outdated, nb.po is more fresh here (see also patch10)
-rm -f po/no.*
 # allow rebuilding *.gmo
 rm -f po/stamp-po
-
-# missing, added to gettext.m4 by ./bootstrap
-echo 'AC_DEFUN([gl_LOCK_EARLY],[])' > m4/gllock.m4
 
 %build
 %{__gettextize}
@@ -136,7 +124,8 @@ echo 'AC_DEFUN([gl_LOCK_EARLY],[])' > m4/gllock.m4
 %configure \
 	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
 	DEFAULT_POSIX2_VERSION=199209 \
-	%{?with_selinux:--enable-selinux} \
+	--enable-install-program=arch \
+	--enable-no-install-program=hostname,kill,uptime \
 	--enable-pam
 
 %{__make}
@@ -148,16 +137,13 @@ install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/shr
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_bindir}/{hostname,kill,uptime}
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{hostname,kill,uptime}.1*
-
-mv -f $RPM_BUILD_ROOT%{_bindir}/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,\
+mv -f $RPM_BUILD_ROOT%{_bindir}/{arch,basename,cat,chgrp,chmod,chown,cp,date,dd,df,\
 echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,printf,pwd,rm,rmdir,sleep,sort,stty,\
 sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 
-# su is missed by "make install"
+# su is missed by "make install" called by non-root
 install src/su $RPM_BUILD_ROOT/bin
 install src/runuser $RPM_BUILD_ROOT/sbin
 
@@ -173,6 +159,8 @@ for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN ; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
 	install man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
 done
+install %{SOURCE9} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
+# unwanted
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 
 %find_lang %{name}
@@ -180,10 +168,10 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p	/sbin/postshell
+%post	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun	-p	/sbin/postshell
+%postun	-p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files -f %{name}.lang
@@ -194,13 +182,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4755,root,root) /bin/su
 %attr(755,root,root) /sbin/runuser
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_sbindir}/chroot
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
-/etc/shrc.d/*
+/etc/shrc.d/fileutils.csh
+/etc/shrc.d/fileutils.sh
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(da) %{_mandir}/da/man1/*
