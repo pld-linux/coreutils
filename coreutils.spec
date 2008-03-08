@@ -37,7 +37,7 @@ BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-devel >= 0.16-2
 BuildRequires:	help2man
 BuildRequires:	libselinux-devel
-BuildRequires:	lzma
+BuildRequires:	lzma >= 1:4.42
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	texinfo >= 4.2
