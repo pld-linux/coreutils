@@ -1,0 +1,12 @@
+--- coreutils-6.10/src/Makefile.am.orig	2008-04-11 17:38:22.000000000 +0000
++++ coreutils-6.10/src/Makefile.am	2008-04-11 17:40:55.000000000 +0000
+@@ -135,6 +135,9 @@
+ 
+ stat_LDADD = $(LDADD) $(LIB_SELINUX)
+ 
++# stupid sparc64 workaround
++tac_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME)
++
+ runuser_SOURCES = su.c
+ runuser_CFLAGS = -DRUNUSER -DAUTHORS="\"David MacKenzie, Dan Walsh\""
+ runuser_LDADD = $(LDADD) $(LIB_CRYPT) $(LIB_PAM)
