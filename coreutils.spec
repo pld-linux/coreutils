@@ -29,6 +29,7 @@ Patch8:		%{name}-po.patch
 Patch9:		%{name}-fmt-wchars.patch
 Patch10:	%{name}-runuser.patch
 Patch11:	%{name}-split-pam.patch
+Patch12:	%{name}-sparc64.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.61
@@ -109,6 +110,9 @@ lzma -dc %{SOURCE0} | tar xf - -C ..
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%ifarch sparc64
+%patch12 -p1
+%endif
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
