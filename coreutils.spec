@@ -2,7 +2,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	6.10
-Release:	2
+Release:	3
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.lzma
@@ -42,7 +42,6 @@ BuildRequires:	lzma >= 1:4.42
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	texinfo >= 4.2
-Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	fileutils
 Provides:	mktemp = %{version}-%{release}
@@ -74,8 +73,8 @@ The programs that can be built with this package are:
   fold install groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
   printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
-  su sum sync tac tail tee test touch tr true tsort tty uname unexpand
-  uniq unlink users vdir wc who whoami yes
+  sum sync tac tail tee test touch tr true tsort tty uname unexpand uniq
+  unlink users vdir wc who whoami yes
 
 %description -l pl.UTF-8
 Narzędzia podstawowe (core utilities) GNU to połączone paczki GNU
@@ -94,6 +93,19 @@ Programy zawarte w tym pakiecie to:
   printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
   su sum sync tac tail tee test touch tr true tsort tty uname unexpand
   uniq unlink users vdir wc who whoami yes
+
+%package su
+Summary:	GNU Core-utils - su and runuser
+Summary(pl.UTF-8):	GNU Core-utils - narzędzia su i runuser
+Group:		Applications/System
+Requires:	pam >= 0.77.3
+Requires:	%{name} = %{version}-%{release}
+
+%description su
+This package contains the su and runuser utilities.
+
+%description su -l pl.UTF-8
+Ten pakiet zawiera narzędzia su oraz runuser.
 
 %prep
 %setup -q -c -T -a1
@@ -183,14 +195,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS THANKS-to-translators TODO
 %attr(755,root,root) /bin/[!s]*
 %attr(755,root,root) /bin/s[!u]*
-%attr(4755,root,root) /bin/su
-%attr(755,root,root) /sbin/runuser
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/chroot
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
 /etc/shrc.d/fileutils.csh
 /etc/shrc.d/fileutils.sh
@@ -212,3 +218,12 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_mandir}/ru/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
 %{_infodir}/coreutils.info*
+
+%files su
+%defattr(644,root,root,755)
+%attr(4755,root,root) /bin/su
+%attr(755,root,root) /sbin/runuser
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
