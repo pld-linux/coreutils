@@ -2,7 +2,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	6.10
-Release:	4
+Release:	5
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.lzma
@@ -42,19 +42,20 @@ BuildRequires:	lzma >= 1:4.42
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	texinfo >= 4.2
+Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
+Provides:	coreutils-su
 Provides:	fileutils
 Provides:	mktemp = %{version}-%{release}
 Provides:	sh-utils
 Provides:	stat
 Provides:	textutils
+Obsoletes:	coreutils-su
 Obsoletes:	fileutils
 Obsoletes:	mktemp
 Obsoletes:	sh-utils
 Obsoletes:	stat
 Obsoletes:	textutils
-# upgrading should not remove /bin/su
-Conflicts:	rc-scripts < 0.4.1.23-3
 Conflicts:	shadow < 1:4.0.3-6
 Conflicts:	tetex < 1:2.0.2
 Conflicts:	util-linux < 2.13-0.pre7
@@ -74,9 +75,9 @@ The programs that can be built with this package are:
   dd df dir dircolors dirname du echo env expand expr factor false fmt
   fold install groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
-  printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
-  sum sync tac tail tee test touch tr true tsort tty uname unexpand uniq
-  unlink users vdir wc who whoami yes
+  printf ptx pwd rm rmdir runuser seq sha1sum shred sleep sort split
+  stat stty su sum sync tac tail tee test touch tr true tsort tty uname
+  unexpand uniq unlink users vdir wc who whoami yes
 
 %description -l pl.UTF-8
 Narzędzia podstawowe (core utilities) GNU to połączone paczki GNU
@@ -92,22 +93,9 @@ Programy zawarte w tym pakiecie to:
   dd df dir dircolors dirname du echo env expand expr factor false fmt
   fold ginstall groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
-  printf ptx pwd rm rmdir seq sha1sum shred sleep sort split stat stty
-  su sum sync tac tail tee test touch tr true tsort tty uname unexpand
-  uniq unlink users vdir wc who whoami yes
-
-%package su
-Summary:	GNU Core-utils - su and runuser
-Summary(pl.UTF-8):	GNU Core-utils - narzędzia su i runuser
-Group:		Applications/System
-Requires:	pam >= 0.77.3
-Requires:	%{name} = %{version}-%{release}
-
-%description su
-This package contains the su and runuser utilities.
-
-%description su -l pl.UTF-8
-Ten pakiet zawiera narzędzia su oraz runuser.
+  printf ptx pwd rm rmdir runuser seq sha1sum shred sleep sort split
+  stat stty su sum sync tac tail tee test touch tr true tsort tty uname
+  unexpand uniq unlink users vdir wc who whoami yes
 
 %prep
 %setup -q -c -T -a1
@@ -197,9 +185,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS THANKS-to-translators TODO
 %attr(755,root,root) /bin/[!s]*
 %attr(755,root,root) /bin/s[!u]*
+%attr(4755,root,root) /bin/su
+%attr(755,root,root) /sbin/runuser
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/chroot
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
 /etc/shrc.d/fileutils.csh
 /etc/shrc.d/fileutils.sh
 %{_mandir}/man1/*
@@ -220,12 +214,3 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_mandir}/ru/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
 %{_infodir}/coreutils.info*
-
-%files su
-%defattr(644,root,root,755)
-%attr(4755,root,root) /bin/su
-%attr(755,root,root) /sbin/runuser
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
