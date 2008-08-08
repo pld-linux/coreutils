@@ -108,9 +108,8 @@ lzma -dc %{SOURCE0} | tar xf - -C ..
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-# just reordering white space?
-# %patch8 -p1
-#%patch9 -p1
+%patch8 -p1
+%patch9 -p1
 %patch10 -p1
 %patch11 -p1
 %ifarch sparc64
