@@ -1,13 +1,13 @@
 --- coreutils-6.10/man/Makefile.am.orig	2008-01-11 11:34:22.000000000 +0100
 +++ coreutils-6.10/man/Makefile.am	2008-03-02 02:14:20.884410857 +0100
-@@ -16,6 +16,7 @@
- # along with this program.  If not, see <http://www.gnu.org/licenses/>.
- 
- dist_man_MANS = groups.1 $(MAN)
-+man_MANS = getgid.1
- 
- man_aux = $(dist_man_MANS:.1=.x)
- 
+@@ -59,6 +59,7 @@
+ false.1:	$(common_dep)	$(srcdir)/false.x	../src/false.c
+ fmt.1:		$(common_dep)	$(srcdir)/fmt.x		../src/fmt.c
+ fold.1:		$(common_dep)	$(srcdir)/fold.x	../src/fold.c
++getgid.1:	$(common_dep)	$(srcdir)/getgid.x	../src/getgid.c
+ groups.1:	$(common_dep)	$(srcdir)/groups.x	../src/groups.c
+ head.1:		$(common_dep)	$(srcdir)/head.x	../src/head.c
+ hostid.1:	$(common_dep)	$(srcdir)/hostid.x	../src/hostid.c
 diff -Nur coreutils-4.5.3.orig/man/getgid.1 coreutils-4.5.3/man/getgid.1
 --- coreutils-4.5.3.orig/man/getgid.1	Thu Jan  1 01:00:00 1970
 +++ coreutils-4.5.3/man/getgid.1	Sun Oct 27 21:40:54 2002
@@ -123,14 +123,14 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +
 --- coreutils-4.5.3/po/POTFILES.in.orig	Mon Jul  1 23:26:55 2002
 +++ coreutils-4.5.3/po/POTFILES.in	Fri Nov  1 02:25:41 2002
-@@ -50,6 +50,7 @@
+@@ -61,6 +61,7 @@
  src/false.c
  src/fmt.c
  src/fold.c
 +src/getgid.c
+ src/group-list.c
+ src/groups.c
  src/head.c
- src/hostid.c
- src/hostname.c
 --- coreutils-6.10/po/pl.po.orig	2008-03-02 02:12:29.526064907 +0100
 +++ coreutils-6.10/po/pl.po	2008-03-02 02:15:20.139787629 +0100
 @@ -3885,6 +3885,15 @@
@@ -146,6 +146,6 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +"Sk³adnia:\n"
 +"\t%s nazwa-grupy\n"
 +
- #: src/head.c:112
- msgid ""
- "Print the first 10 lines of each FILE to standard output.\n"
+ #: src/group-list.c:68 src/id.c:313 src/setuidgid.c:186
+ #, c-format
+ msgid "failed to get groups for user %s"

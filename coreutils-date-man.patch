@@ -1,9 +1,9 @@
 --- coreutils-4.5.3.orig/man/date.x	Tue Nov  2 15:07:36 1999
 +++ coreutils-4.5.3/man/date.x	Sun Oct 27 22:37:24 2002
-@@ -2,3 +2,8 @@
- date \- print or set the system date and time
- [DESCRIPTION]
- .\" Add any additional description here
+@@ -11,3 +11,8 @@
+ relative date, and numbers.  An empty string indicates the beginning
+ of the day.  The date string format is more complex than is easily
+ documented here but is fully described in the info documentation.
 +[ENVIRONMENT]
 +.TP
 +TZ
