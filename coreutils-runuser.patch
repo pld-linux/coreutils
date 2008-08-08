@@ -21,7 +21,7 @@
  sha224sum: Ulrich Drepper, Scott Miller, David Madore
 --- coreutils-6.7/src/su.c.runuser	2007-01-09 17:27:56.000000000 +0000
 +++ coreutils-6.7/src/su.c	2007-01-09 17:30:12.000000000 +0000
-@@ -110,9 +110,15 @@
+@@ -109,9 +109,15 @@
  #include "error.h"
  
  /* The official name of this program (e.g., no `g' prefix).  */
@@ -32,7 +32,7 @@
 +#endif
  
 +#ifndef AUTHORS
- #define AUTHORS "David MacKenzie"
+ #define AUTHORS proper_name ("David MacKenzie")
 +#endif
  
  #if HAVE_PATHS_H
@@ -387,6 +387,6 @@
 +msgid "Can't specify more than %d supplemental groups"
 +msgstr "Nie mo¿na okre¶liæ wiêcej ni¿ %d grup dodatkowych"
 +
- #: src/sum.c:62
- msgid ""
- "Print checksum and block counts for each FILE.\n"
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/sum.c:36
+ msgid "Kayvan Aghaiepour"
