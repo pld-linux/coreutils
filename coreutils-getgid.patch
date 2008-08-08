@@ -81,9 +81,9 @@ diff -Nur coreutils-4.5.3.orig/man/pl/getgid.1 coreutils-4.5.3/man/pl/getgid.1
 diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 --- coreutils-4.5.3.orig/src/getgid.c	Thu Jan  1 01:00:00 1970
 +++ coreutils-4.5.3/src/getgid.c	Sun Oct 27 21:52:01 2002
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,80 @@
 +/* getgid - print GID of given group
-+   Copyright (C) 1999 Artur Frysiak <wiget@pld.org.pl>
++   Copyright (C) 1999 Artur Frysiak <wiget@pld-linux.org>
 +
 +   This program is free software; you can redistribute it and/or modify
 +   it under the terms of the GNU General Public License as published by
@@ -104,14 +104,49 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +#include <sys/types.h>
 +#include "system.h"
 +
++#define PROGRAM_NAME "getgid"
++
++#define AUTHORS proper_name ("Artur Frysiak")
++
++/* The name by which this program was run. */
++char *program_name;
++
++void
++usage (int status)
++{
++  if (status != EXIT_SUCCESS)
++    fprintf (stderr, _("Try `%s --help' for more information.\n"),
++             program_name);
++  else
++    {
++      printf (_("\
++Usage: %s [OPTION]... [FILE]...\n\
++"),
++              program_name);
++      fputs (_("\
++Prints ID of given group name.\
++\n\
++"), stdout);
++      fputs (HELP_OPTION_DESCRIPTION, stdout);
++      fputs (VERSION_OPTION_DESCRIPTION, stdout);
++      emit_bug_reporting_address ();
++    }
++  exit (status);
++}
++
 +int main(int argc, char **argv)
 +{
 +	struct group 	*gr;
 +	int		retval;
 +
++	initialize_main (&argc, &argv);
++	program_name = argv[0];
++
 +	setlocale (LC_ALL, "");
 +	bindtextdomain (PACKAGE, LOCALEDIR);
 +	textdomain (PACKAGE);
++
++	atexit (close_stdout);
 +
 +	if (argc > 1) {
 +		gr = getgrnam(argv[1]);
@@ -122,10 +157,9 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +			retval = 1;
 +		}
 +	} else {
-+		printf(_("Usage:\n\t%s groupname\n"),argv[0]);
-+		retval = 1;
++		usage(retval);
 +	}
-+	return retval;
++	return (retval ? EXIT_FAILURE : EXIT_SUCCESS);
 +}
 +
 --- coreutils-4.5.3/po/POTFILES.in.orig	Mon Jul  1 23:26:55 2002
