@@ -1,12 +1,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	6.10
-Release:	5
+Version:	6.12
+Release:	0.1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.lzma
-# Source0-md5:	23582a4e8b21e837cfbafbc3834a8a4b
+# Source0-md5:	c10ccd62490cac4de3bff5022468c9b5
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -108,8 +108,9 @@ lzma -dc %{SOURCE0} | tar xf - -C ..
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
-%patch9 -p1
+# just reordering white space?
+# %patch8 -p1
+#%patch9 -p1
 %patch10 -p1
 %patch11 -p1
 %ifarch sparc64
