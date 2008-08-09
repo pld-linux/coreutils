@@ -202,7 +202,7 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +++ coreutils-6.10/po/pl.po	2008-03-02 02:15:20.139787629 +0100
 @@ -3885,6 +3885,15 @@
  msgid "invalid number of columns: %s"
- msgstr "b³êdna liczba kolumn: %s"
+ msgstr "bÅ‚Ä™dna liczba kolumn: %s"
  
 +#: src/getgid.c:37
 +#, c-format
@@ -210,7 +210,7 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +"Usage:\n"
 +"\t%s groupname\n"
 +msgstr ""
-+"Sk³adnia:\n"
++"SkÅ‚adnia:\n"
 +"\t%s nazwa-grupy\n"
 +
  #: src/group-list.c:68 src/id.c:313 src/setuidgid.c:186

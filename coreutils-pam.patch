@@ -428,38 +428,38 @@
 +++ coreutils-6.10/po/pl.po	2008-03-02 02:09:23.671473657 +0100
 @@ -8875,6 +8875,49 @@
  msgid "Usage: %s [OPTION]... [-] [USER [ARG]...]\n"
- msgstr "Sk≥adnia: %s [OPCJA]... [-] [UØYTKOWNIK [ARGUMENT]...]\n"
+ msgstr "Sk≈Çadnia: %s [OPCJA]... [-] [U≈ªYTKOWNIK [ARGUMENT]...]\n"
  
 +#: src/su.c:300
 +msgid "standard in must be a tty\n\n"
-+msgstr "standardowe wej∂cie musi byÊ terminalem\n"
++msgstr "standardowe wej≈õcie musi byƒá terminalem\n"
 +
 +#: src/su.c:425
 +msgid "could not open session\n"
-+msgstr "nie moøna otworzyÊ sesji\n"
++msgstr "nie mo≈ºna otworzyƒá sesji\n"
 +
 +#: src/su.c:433
 +msgid "error copying PAM environment\n"
-+msgstr "b≥±d podczas kopiowania ∂rodowiska PAM\n"
++msgstr "b≈ÇƒÖd podczas kopiowania ≈õrodowiska PAM\n"
 +
 +#: src/su.c:450
 +msgid "could not set PAM credentials\n"
-+msgstr "b≥±d podczas ustawiania uwierzytelnienia PAM\n"
++msgstr "b≈ÇƒÖd podczas ustawiania uwierzytelnienia PAM\n"
 +
 +#: src/su.c:471
 +#, c-format
 +msgid "cannot fork user shell: %s"
-+msgstr "nie moøna utworzyÊ procesu pow≥oki uøytkownika: %s"
++msgstr "nie mo≈ºna utworzyƒá procesu pow≈Çoki u≈ºytkownika: %s"
 +
 +#: src/su.c:477
 +#, c-format
 +msgid "%s: signal malfunction\n"
-+msgstr "%s: b≥Ídne dzia≥anie sygna≥Ûw\n"
++msgstr "%s: b≈Çƒôdne dzia≈Çanie sygna≈Ç√≥w\n"
 +
 +#: src/su.c:490
 +#, c-format
 +msgid "%s: signal masking malfunction\n"
-+msgstr "%s: b≥Ídne dzia≥anie maskowania sygna≥Ûw\n"
++msgstr "%s: b≈Çƒôdne dzia≈Çanie maskowania sygna≈Ç√≥w\n"
 +
 +#: src/su.c:509
 +msgid ""
@@ -467,7 +467,7 @@
 +"Session terminated, killing shell..."
 +msgstr ""
 +"\n"
-+"Sesja zakoÒczona, zabijanie pow≥oki..."
++"Sesja zako≈Ñczona, zabijanie pow≈Çoki..."
 +
 +#: src/su.c:519
 +msgid " killed.\n"

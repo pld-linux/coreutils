@@ -375,7 +375,7 @@
 +++ coreutils-6.10/po/pl.po	2008-03-02 14:28:35.858960780 +0100
 @@ -8986,6 +8986,16 @@
  msgid "warning: cannot change directory to %s"
- msgstr "uwaga: nie mo¿na zmieniæ katalogu na %s"
+ msgstr "uwaga: nie moÅ¼na zmieniÄ‡ katalogu na %s"
  
 +#: src/su.c:runuser
 +#, c-format
@@ -385,7 +385,7 @@
 +#: src/su.c:runuser
 +#, c-format
 +msgid "Can't specify more than %d supplemental groups"
-+msgstr "Nie mo¿na okre¶liæ wiêcej ni¿ %d grup dodatkowych"
++msgstr "Nie moÅ¼na okreÅ›liÄ‡ wiÄ™cej niÅ¼ %d grup dodatkowych"
 +
  #. This is a proper name. See the gettext manual, section Names.
  #: src/sum.c:36
