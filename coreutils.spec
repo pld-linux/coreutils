@@ -30,6 +30,7 @@ Patch9:		%{name}-fmt-wchars.patch
 Patch10:	%{name}-runuser.patch
 Patch11:	%{name}-split-pam.patch
 Patch12:	%{name}-sparc64.patch
+Patch13:	%{name}-pl.po-update.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	autoconf >= 2.61
@@ -100,6 +101,7 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -c -T -a1
 lzma -dc %{SOURCE0} | tar xf - -C ..
+%patch13 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
