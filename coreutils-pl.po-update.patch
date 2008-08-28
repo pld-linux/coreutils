@@ -1,0 +1,631 @@
+--- coreutils-6.12/po/pl.po.orig	2008-05-26 14:44:19.000000000 +0200
++++ coreutils-6.12/po/pl.po	2008-08-28 23:45:30.190120063 +0200
+@@ -15,11 +15,11 @@
+ #
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: coreutils 6.9.92\n"
++"Project-Id-Version: coreutils 6.12\n"
+ "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
+ "POT-Creation-Date: 2008-05-26 14:44+0200\n"
+-"PO-Revision-Date: 2008-01-12 17:30+0100\n"
+-"Last-Translator: Rafał Maszkowski <rzm@icm.edu.pl>\n"
++"PO-Revision-Date: 2008-08-28 23:01+0200\n"
++"Last-Translator: Jakub Bogusz <qboosh@pld-linux.org>\n"
+ "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+@@ -643,7 +643,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/base64.c:38
+ msgid "Simon Josefsson"
+-msgstr ""
++msgstr "Simon Josefsson"
+ 
+ #: src/base64.c:57 src/basename.c:49 src/cat.c:91 src/chcon.c:361
+ #: src/chgrp.c:109 src/chmod.c:346 src/chown.c:90 src/chroot.c:42
+@@ -766,7 +766,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/basename.c:40 src/echo.c:27
+ msgid "FIXME unknown"
+-msgstr ""
++msgstr "FIXME nieznany"
+ 
+ #: src/basename.c:53
+ #, c-format
+@@ -814,12 +814,12 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/cat.c:47 src/cp.c:56 src/df.c:41 src/du.c:53 src/split.c:44
+ msgid "Torbjorn Granlund"
+-msgstr ""
++msgstr "Torbjorn Granlund"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/cat.c:48 src/split.c:45 src/tee.c:33
+ msgid "Richard M. Stallman"
+-msgstr ""
++msgstr "Richard M. Stallman"
+ 
+ #: src/cat.c:95
+ #, c-format
+@@ -890,7 +890,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/chcon.c:35 src/runcon.c:62
+ msgid "Russell Coker"
+-msgstr ""
++msgstr "Russell Coker"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/chcon.c:36 src/chgrp.c:39 src/chmod.c:39 src/chown.c:48 src/cp.c:58
+@@ -899,7 +899,7 @@
+ #: src/pathchk.c:41 src/pwd.c:33 src/rm.c:67 src/setuidgid.c:38 src/sleep.c:35
+ #: src/sync.c:31 src/tail.c:55 src/tr.c:35 src/true.c:33
+ msgid "Jim Meyering"
+-msgstr ""
++msgstr "Jim Meyering"
+ 
+ #: src/chcon.c:122 src/runcon.c:206 src/runcon.c:237
+ #, c-format
+@@ -966,7 +966,6 @@
+ "    albo: %s [OPCJA]... --reference=PLIK_WZ PLIK...\n"
+ 
+ #: src/chcon.c:371
+-#, fuzzy
+ msgid ""
+ "Change the security context of each FILE to CONTEXT.\n"
+ "With --reference, change the security context of each FILE to that of "
+@@ -976,17 +975,15 @@
+ "  -h, --no-dereference   affect symbolic links instead of any referenced "
+ "file\n"
+ msgstr ""
+-"Zmiana kontekstu bezpieczeństwa każdego PLIKU na KONTEKST. Z opcją --"
+-"reference\n"
+-"zmiana kontekstu bezpieczeństwa każdego PLIKU na taki jaki ma PLIK_WZ.\n"
++"Zmiana kontekstu bezpieczeństwa każdego PLIKU na KONTEKST.\n"
++"Z opcją --reference zmiana kontekstu bezpieczeństwa każdego PLIKU na taki\n"
++"jaki ma PLIK_WZ.\n"
+ "\n"
+ "  -c, --changes          jak verbose, ale informowanie tylko gdy zaszła "
+ "zmiana\n"
+-"      --dereference      zmiany mają dotyczyć samych dowiązań symbolicznych, "
++"  -h, --no-dereference   zmiany mają dotyczyć samych dowiązań symbolicznych, "
+ "a\n"
+-"                         nie plików przez nie wskazywanych (dostępne tylko "
+-"w\n"
+-"                         systemach z wywołaniem systemowym lchown)\n"
++"                         nie plików przez nie wskazywanych\n"
+ 
+ #: src/chcon.c:378
+ msgid ""
+@@ -1088,7 +1085,7 @@
+ #: src/touch.c:44 src/tty.c:43 src/uname.c:61 src/unexpand.c:49 src/uniq.c:41
+ #: src/uptime.c:45 src/users.c:36 src/wc.c:47 src/who.c:45 src/yes.c:32
+ msgid "David MacKenzie"
+-msgstr ""
++msgstr "David MacKenzie"
+ 
+ #: src/chgrp.c:96
+ #, c-format
+@@ -1436,7 +1433,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/chroot.c:33
+ msgid "Roland McGrath"
+-msgstr ""
++msgstr "Roland McGrath"
+ 
+ #: src/chroot.c:46
+ #, c-format
+@@ -1482,7 +1479,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/cksum.c:40
+ msgid "Q. Frank Xia"
+-msgstr ""
++msgstr "Q. Frank Xia"
+ 
+ #: src/cksum.c:216
+ #, c-format
+@@ -1507,7 +1504,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/comm.c:35 src/ls.c:114 src/rm.c:66 src/uniq.c:40
+ msgid "Richard Stallman"
+-msgstr ""
++msgstr "Richard Stallman"
+ 
+ #: src/comm.c:74 src/join.c:160
+ #, c-format
+@@ -2114,7 +2111,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/csplit.c:53 src/dd.c:46
+ msgid "Stuart Kemp"
+-msgstr ""
++msgstr "Stuart Kemp"
+ 
+ #: src/csplit.c:542
+ #, c-format
+@@ -2312,7 +2309,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/cut.c:43
+ msgid "David Ihnat"
+-msgstr ""
++msgstr "David Ihnat"
+ 
+ #: src/cut.c:63
+ msgid "fields and positions are numbered from 1"
+@@ -2751,7 +2748,7 @@
+ #: src/dd.c:44 src/factor.c:39 src/rm.c:64 src/tail.c:52 src/touch.c:41
+ #: src/wc.c:46
+ msgid "Paul Rubin"
+-msgstr ""
++msgstr "Paul Rubin"
+ 
+ #: src/dd.c:425
+ #, c-format
+@@ -3016,24 +3013,20 @@
+ msgstr "nierozpoznany argument %s"
+ 
+ #: src/dd.c:934
+-#, fuzzy
+ msgid "invalid conversion"
+-msgstr "błędna konwersja: %s"
++msgstr "błędna konwersja"
+ 
+ #: src/dd.c:937
+-#, fuzzy
+ msgid "invalid input flag"
+-msgstr "błędna flaga wejściowa: %s"
++msgstr "błędna flaga wejściowa"
+ 
+ #: src/dd.c:940
+-#, fuzzy
+ msgid "invalid output flag"
+-msgstr "błędna flaga wyjściowa: %s"
++msgstr "błędna flaga wyjściowa"
+ 
+ #: src/dd.c:943
+-#, fuzzy
+ msgid "invalid status flag"
+-msgstr "błędna flaga stanu: %s"
++msgstr "błędna flaga stanu"
+ 
+ #: src/dd.c:984
+ #, c-format
+@@ -3127,7 +3120,7 @@
+ #: src/df.c:43 src/du.c:55 src/kill.c:42 src/pathchk.c:39 src/shuf.c:37
+ #: src/sleep.c:36 src/sort.c:60
+ msgid "Paul Eggert"
+-msgstr ""
++msgstr "Paul Eggert"
+ 
+ #: src/df.c:149
+ msgid "Filesystem    Type"
+@@ -3276,7 +3269,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/dircolors.c:35
+ msgid "H. Peter Anvin"
+-msgstr ""
++msgstr "H. Peter Anvin"
+ 
+ #: src/dircolors.c:100
+ #, c-format
+@@ -3638,7 +3631,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/env.c:92 src/printenv.c:46 src/whoami.c:36
+ msgid "Richard Mlynarik"
+-msgstr ""
++msgstr "Richard Mlynarik"
+ 
+ #: src/env.c:119
+ #, c-format
+@@ -3724,7 +3717,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/expr.c:46 src/ln.c:39 src/mv.c:41 src/tee.c:32
+ msgid "Mike Parker"
+-msgstr ""
++msgstr "Mike Parker"
+ 
+ #: src/expr.c:100
+ #, c-format
+@@ -3918,7 +3911,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/fmt.c:36
+ msgid "Ross Paterson"
+-msgstr ""
++msgstr "Ross Paterson"
+ 
+ #: src/fmt.c:272
+ #, c-format
+@@ -4007,9 +4000,9 @@
+ msgstr "nie udało się odczytać grupy użytkownika %s"
+ 
+ #: src/group-list.c:73 src/id.c:318
+-#, fuzzy, c-format
++#, c-format
+ msgid "failed to get groups for the current process"
+-msgstr "nie udało się odczytać grupy użytkownika %s"
++msgstr "nie udało się odczytać grup dla bieżącego procesu"
+ 
+ #: src/group-list.c:104
+ #, c-format
+@@ -4019,7 +4012,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/groups.c:40
+ msgid "James Youngman"
+-msgstr ""
++msgstr "James Youngman"
+ 
+ #: src/groups.c:58 src/id.c:85
+ #, c-format
+@@ -4032,6 +4025,9 @@
+ "the current process (which is different if the groups database has "
+ "changed).\n"
+ msgstr ""
++"Wypisanie informacji o UŻYTKOWNIKU lub, jeśli nie podano UŻYTKOWNIKA,\n"
++"o bieżącym procesie (co może się różnić, jeśli baza danych grup się\n"
++"zmieniła)\n"
+ 
+ #: src/groups.c:118 src/id.c:205
+ #, c-format
+@@ -4198,7 +4194,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/id.c:38 src/touch.c:42
+ msgid "Arnold Robbins"
+-msgstr ""
++msgstr "Arnold Robbins"
+ 
+ #: src/id.c:86
+ msgid ""
+@@ -4478,7 +4474,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/join.c:39 src/sort.c:59
+ msgid "Mike Haertel"
+-msgstr ""
++msgstr "Mike Haertel"
+ 
+ #: src/join.c:164
+ msgid ""
+@@ -4515,7 +4511,6 @@
+ "  -t ZNAK           użycie ZNAKU jako separatora pól linii wej. i wyj.\n"
+ 
+ #: src/join.c:179
+-#, fuzzy
+ msgid ""
+ "  -v FILENUM        like -a FILENUM, but suppress joined output lines\n"
+ "  -1 FIELD          join on this FIELD of file 1\n"
+@@ -4528,9 +4523,11 @@
+ "wyjśc.\n"
+ "  -1 POLE           połączenie plików na tym POLU pliku 1\n"
+ "  -2 POLE           połączenie plików na tym POLU pliku 2\n"
++"  --check-order     sprawdzenie czy wejście jest poprawnie posortowane,\n"
++"                      nawet jeśli wszystkie linie wejścia są sparowane\n"
++"  --nocheck-order   nie sprawdzanie czy wejście jest poprawnie posortowane\n"
+ 
+ #: src/join.c:189
+-#, fuzzy
+ msgid ""
+ "\n"
+ "Unless -t CHAR is given, leading blanks separate fields and are ignored,\n"
+@@ -4553,13 +4550,15 @@
+ "`NUMER.POLE' albo `0'. Domyślny format wypisuje pole łączące, pozostałe\n"
+ "pola z PLIKU1 i pozostałe pola z PLIKU2, wszystkie oddzielone ZNAKIEM.\n"
+ "\n"
+-"Uwaga: PLIK1 i PLIK2 musza byc posortowane po polu łączącym.\n"
+-"Np. dla `join-a' bez opcji użyj `sort -k 1b,1'.\n"
++"Uwaga: PLIK1 i PLIK2 muszą być posortowane po polu łączącym.\n"
++"Np. dla `join'a bez opcji należy użyć `sort -k 1b,1'.\n"
++"Jeśli wejście nie jest posortowane, a niektórych linii nie da się\n"
++"połączyć, wypisane zostanie ostrzeżenie.\n"
+ 
+ #: src/join.c:386
+ #, c-format
+ msgid "File %d is not in sorted order"
+-msgstr ""
++msgstr "Plik %d nie jest posortowany"
+ 
+ #: src/join.c:770 src/join.c:969
+ #, c-format
+@@ -4688,7 +4687,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/link.c:36 src/unlink.c:36 src/who.c:46
+ msgid "Michael Stone"
+-msgstr ""
++msgstr "Michael Stone"
+ 
+ #: src/link.c:49
+ #, c-format
+@@ -4848,7 +4847,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/logname.c:30
+ msgid "FIXME: unknown"
+-msgstr ""
++msgstr "FIXME: nieznany"
+ 
+ #: src/logname.c:43 src/pwd.c:53 src/sync.c:44
+ #, c-format
+@@ -5043,6 +5042,10 @@
+ "                               augment with a --sort option, but any\n"
+ "                               use of --sort=none (-U) disables grouping\n"
+ msgstr ""
++"      --group-directories-first\n"
++"                             zgrupowanie katalogów przed plikami.\n"
++"                               współpracuje z opcją --sort, ale każde\n"
++"                               użycie --sort=none (-U) wyłącza grupowanie\n"
+ 
+ #: src/ls.c:4379
+ msgid ""
+@@ -5279,17 +5282,17 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/md5sum.c:92 src/seq.c:41
+ msgid "Ulrich Drepper"
+-msgstr ""
++msgstr "Ulrich Drepper"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/md5sum.c:93
+ msgid "Scott Miller"
+-msgstr ""
++msgstr "Scott Miller"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/md5sum.c:94
+ msgid "David Madore"
+-msgstr ""
++msgstr "David Madore"
+ 
+ #: src/md5sum.c:150
+ #, c-format
+@@ -5800,7 +5803,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/nl.c:39
+ msgid "Scott Bartram"
+-msgstr ""
++msgstr "Scott Bartram"
+ 
+ #: src/nl.c:182
+ msgid ""
+@@ -6264,7 +6267,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/paste.c:51
+ msgid "David M. Ihnat"
+-msgstr ""
++msgstr "David M. Ihnat"
+ 
+ #: src/paste.c:221
+ #, c-format
+@@ -6294,7 +6297,7 @@
+ #: src/paste.c:510
+ #, c-format
+ msgid "delimiter list ends with an unescaped backslash: %s"
+-msgstr ""
++msgstr "lista ograniczników kończy się niechronionym backslashem: %s"
+ 
+ #: src/pathchk.c:100
+ #, c-format
+@@ -6350,12 +6353,12 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/pinky.c:37 src/uptime.c:44 src/users.c:35 src/who.c:44
+ msgid "Joseph Arceneaux"
+-msgstr ""
++msgstr "Joseph Arceneaux"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/pinky.c:39 src/uptime.c:46
+ msgid "Kaveh Ghazi"
+-msgstr ""
++msgstr "Kaveh Ghazi"
+ 
+ #: src/pinky.c:329
+ #, c-format
+@@ -6473,12 +6476,12 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/pr.c:329
+ msgid "Pete TerMaat"
+-msgstr ""
++msgstr "Pete TerMaat"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/pr.c:330
+ msgid "Roland Huebner"
+-msgstr ""
++msgstr "Roland Huebner"
+ 
+ #: src/pr.c:917
+ #, c-format
+@@ -6927,9 +6930,8 @@
+ #. set and encoding.
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/ptx.c:40
+-#, fuzzy
+ msgid "F. Pinard"
+-msgstr "F. Pinard"
++msgstr "François Pinard"
+ 
+ #: src/ptx.c:427
+ #, c-format
+@@ -7061,7 +7063,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/readlink.c:33
+ msgid "Dmitry V. Levin"
+-msgstr ""
++msgstr "Dmitry V. Levin"
+ 
+ #: src/readlink.c:66
+ #, c-format
+@@ -7564,14 +7566,14 @@
+ msgstr "błędny argument zmiennoprzecinkowy: %s"
+ 
+ #: src/seq.c:201
+-#, fuzzy, c-format
++#, c-format
+ msgid "no %% directive in format string %s"
+-msgstr "błędny format: %s"
++msgstr "brak dyrektywy %% w łańcuchu formatującym %s"
+ 
+ #: src/seq.c:205
+-#, fuzzy, c-format
++#, c-format
+ msgid "too many %% directives in format string %s"
+-msgstr "za dużo określeń konwersji %% w rozszerzeniu"
++msgstr "za dużo dyrektyw %% w łańcuchu formatującym %s"
+ 
+ #: src/seq.c:450
+ #, c-format
+@@ -7649,7 +7651,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/shred.c:85
+ msgid "Colin Plumb"
+-msgstr ""
++msgstr "Colin Plumb"
+ 
+ #: src/shred.c:162
+ #, c-format
+@@ -8057,7 +8059,6 @@
+ "  -f, --ignore-case           traktowanie małych liter jak wielkich\n"
+ 
+ #: src/sort.c:327
+-#, fuzzy
+ msgid ""
+ "  -g, --general-numeric-sort  compare according to general numerical value\n"
+ "  -i, --ignore-nonprinting    consider only printable characters\n"
+@@ -8079,6 +8080,9 @@
+ "łańcuchów\n"
+ "  -R, --random-sort           sortowanie wg losowego skrótu kluczy\n"
+ "      --random-source=PLIK    losowe bajty z PLIKU (domyślnie /dev/urandom)\n"
++"      --sort=SŁOWO            sortowanie zgodnie ze SŁOWEM:\n"
++"                                general-numeric -g, month -M, numeric -n,\n"
++"                                random -R\n"
+ "  -r, --reverse               odwrotny porządek sortowania\n"
+ "\n"
+ 
+@@ -8364,14 +8368,12 @@
+ "  -l, --lines=ILE         zapis ILU linii do każdego pliku wyjściowego\n"
+ 
+ #: src/split.c:126
+-#, fuzzy
+ msgid ""
+ "      --verbose           print a diagnostic just before each\n"
+ "                            output file is opened\n"
+ msgstr ""
+-"      --verbose           przed otwarciem każdego pliku wypisanie "
+-"komunikatów\n"
+-"                            diagnostycznych na standardowe wyjście błędów\n"
++"      --verbose           przed otwarciem każdego pliku wyjściowego wypisanie\n"
++"                            komunikatów diagnostycznych\n"
+ 
+ #: src/split.c:132
+ msgid ""
+@@ -8428,7 +8430,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/stat.c:153
+ msgid "Michael Meskes"
+-msgstr ""
++msgstr "Michael Meskes"
+ 
+ #: src/stat.c:721
+ #, c-format
+@@ -9179,7 +9181,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/sum.c:36
+ msgid "Kayvan Aghaiepour"
+-msgstr ""
++msgstr "Kayvan Aghaiepour"
+ 
+ #: src/sum.c:65
+ msgid ""
+@@ -9243,7 +9245,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/tac.c:56
+ msgid "Jay Lepreau"
+-msgstr ""
++msgstr "Jay Lepreau"
+ 
+ #: src/tac.c:139
+ msgid ""
+@@ -9300,7 +9302,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/tail.c:54
+ msgid "Ian Lance Taylor"
+-msgstr ""
++msgstr "Ian Lance Taylor"
+ 
+ #: src/tail.c:222
+ #, c-format
+@@ -9791,12 +9793,12 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/test.c:789
+ msgid "Kevin Braunsdorf"
+-msgstr ""
++msgstr "Kevin Braunsdorf"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/test.c:790
+ msgid "Matthew Bradburn"
+-msgstr ""
++msgstr "Matthew Bradburn"
+ 
+ #: src/test.c:834
+ msgid "missing `]'"
+@@ -9810,12 +9812,12 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/touch.c:43
+ msgid "Jim Kingdon"
+-msgstr ""
++msgstr "Jim Kingdon"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/touch.c:45
+ msgid "Randy Smith"
+-msgstr ""
++msgstr "Randy Smith"
+ 
+ #: src/touch.c:115 src/touch.c:324
+ #, c-format
+@@ -10167,7 +10169,7 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/tsort.c:39
+ msgid "Mark Kettenis"
+-msgstr ""
++msgstr "Mark Kettenis"
+ 
+ #: src/tsort.c:85
+ #, c-format
+@@ -10346,15 +10348,14 @@
+ msgstr "  -w, --check-chars=N   porównanie najwyżej N znaków w liniach\n"
+ 
+ #: src/uniq.c:168
+-#, fuzzy
+ msgid ""
+ "\n"
+ "A field is a run of blanks (usually spaces and/or TABs), then non-blank\n"
+ "characters.  Fields are skipped before chars.\n"
+ msgstr ""
+ "\n"
+-"Pole to ciąg znaków odstępu, za którym są znaki nie będące znakami odstepu.\n"
+-"Pola są przeskakiwane przed przeskakiwaniem znaków. \n"
++"Pole to ciąg znaków odstępu (zwykle spacji lub tabulacji), za którym są znaki\n"
++"nie będące znakami odstepu. Pola są przeskakiwane przed przeskakiwaniem znaków.\n"
+ 
+ #: src/uniq.c:173
+ msgid ""
+@@ -10692,22 +10693,3 @@
+ msgstr ""
+ "Powtarzanie na wyjściu linii ze wszystkimi podanymi NAPIS(AMI) albo `y'\n"
+ "\n"
+-
+-#, fuzzy
+-#~ msgid ""
+-#~ "Usage: %s [OPTION] NUMBER[SUFFIX] COMMAND [ARG]...\n"
+-#~ "  or:  %s [OPTION]\n"
+-#~ msgstr ""
+-#~ "Składnia: %s OPCJA UŻYTKOWNIK POLECENIE [ARGUMENT]...\n"
+-#~ "    albo: %s OPCJA\n"
+-
+-#~ msgid "unrecognized operand %s=%s"
+-#~ msgstr "nierozpoznany argument %s=%s"
+-
+-#~ msgid ""
+-#~ "      --group-directories-first\n"
+-#~ "                             group directories before files\n"
+-#~ msgstr ""
+-#~ "      --group-directories-first\n"
+-#~ "                             pokazywane są najpierw katalogi, potem "
+-#~ "pliki\n"
