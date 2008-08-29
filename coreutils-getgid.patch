@@ -130,7 +130,7 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +  else
 +    {
 +      printf (_("\
-+Usage: %s [OPTION]... [FILE]...\n\
++Usage: %s [OPTION]... [GROUPNAME]...\n\
 +"),
 +              program_name);
 +      fputs (_("\
