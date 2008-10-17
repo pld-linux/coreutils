@@ -26,7 +26,7 @@ diff -Nur coreutils-4.5.3.orig/man/getgid.1 coreutils-4.5.3/man/getgid.1
 +.SH AUTHOR
 +Written by Artur Frysiak.
 +.SH "REPORTING BUGS"
-+Report bugs to <feedback@pld.org.pl>.
++Report bugs to <feedback@pld-linux.org>.
 +.SH COPYRIGHT
 +Copyright \(co 1999 Artur Frysiak.
 +.br
@@ -59,7 +59,7 @@ diff -Nur coreutils-4.5.3.orig/man/pl/getgid.1 coreutils-4.5.3/man/pl/getgid.1
 +.SH AUTOR
 +Napisane przez Artura Frysiaka.
 +.SH "ZG£ASZANIE B£ÊDÓW"
-+B³êdy proszê zg³aszaæ (w jêz. polskim lub angielskim) pod <feedback@pld.org.pl>.
++B³êdy proszê zg³aszaæ (w jêz. polskim lub angielskim) pod <feedback@pld-linux.org>.
 +.SH COPYRIGHT
 +Copyright \(co 1999 Artur Frysiak.
 +.br
