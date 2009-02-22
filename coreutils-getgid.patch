@@ -210,7 +210,7 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +"Usage:\n"
 +"\t%s groupname\n"
 +msgstr ""
-+"Sk≥adnia:\n"
++"Sk≈Çadnia:\n"
 +"\t%s nazwa-grupy\n"
 +
  #. This is a proper name. See the gettext manual, section Names.
