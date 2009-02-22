@@ -2,12 +2,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	6.12
-Release:	3
+Version:	7.1
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
-Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.lzma
-# Source0-md5:	c10ccd62490cac4de3bff5022468c9b5
+Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
+# Source0-md5:	36f37073aefb63195519819b486a7643
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -25,23 +25,26 @@ Patch3:		%{name}-su-paths.patch
 Patch4:		%{name}-uname-cpuinfo.patch
 Patch5:		%{name}-date-man.patch
 Patch6:		%{name}-mem.patch
-Patch7:		%{name}-install-C.patch
-Patch8:		%{name}-po.patch
+
+
 Patch9:		%{name}-fmt-wchars.patch
 Patch10:	%{name}-runuser.patch
 Patch11:	%{name}-split-pam.patch
 Patch12:	%{name}-sparc64.patch
 Patch13:	%{name}-pl.po-update.patch
-Patch14:	%{name}-utimens.patch
+
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
+BuildRequires:	attr-devel
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-devel >= 0.16-2
+BuildRequires:	gmp-devel
 BuildRequires:	help2man
+BuildRequires:	libcap-devel
 BuildRequires:	libselinux-devel
-BuildRequires:	lzma >= 1:4.42
+BuildRequires:	xz
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	texinfo >= 4.2
@@ -103,28 +106,30 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -c -T -a1
 lzma -dc %{SOURCE0} | tar xf - -C ..
-%patch13 -p1
-%patch0 -p1
+# currently obsolete
+# %patch13 -p1
+# ?
+# %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch8 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
 %ifarch sparc64
 %patch12 -p1
 %endif
-%patch14 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
 # allow rebuilding *.gmo
 rm -f po/stamp-po
+
+# drop when our automake supports dist-xz
+sed -i -e 's#1.10a dist-xz#1.10#g' configure.ac
 
 %build
 %{__gettextize}
