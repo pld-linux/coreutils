@@ -112,7 +112,7 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +#define AUTHORS proper_name ("Artur Frysiak")
 +
 +/* The name by which this program was run. */
-+char *program_name;
++const char *program_name;
 +
 +static struct option const longopts[] =
 +{
@@ -195,14 +195,14 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
  src/fmt.c
  src/fold.c
 +src/getgid.c
+ src/getlimits.c
  src/group-list.c
  src/groups.c
- src/head.c
 --- coreutils-6.10/po/pl.po.orig	2008-03-02 02:12:29.526064907 +0100
 +++ coreutils-6.10/po/pl.po	2008-03-02 02:15:20.139787629 +0100
-@@ -3885,6 +3885,15 @@
+@@ -4152,6 +4152,15 @@
  msgid "invalid number of columns: %s"
- msgstr "bÅ‚Ä™dna liczba kolumn: %s"
+ msgstr "b³êdna liczba kolumn: %s"
  
 +#: src/getgid.c:37
 +#, c-format
@@ -210,9 +210,10 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
 +"Usage:\n"
 +"\t%s groupname\n"
 +msgstr ""
-+"SkÅ‚adnia:\n"
++"Sk³adnia:\n"
 +"\t%s nazwa-grupy\n"
 +
- #: src/group-list.c:68 src/id.c:313 src/setuidgid.c:186
- #, c-format
- msgid "failed to get groups for user %s"
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/getlimits.c:29 src/timeout.c:74 src/truncate.c:42
+ msgid "Padraig Brady"
+

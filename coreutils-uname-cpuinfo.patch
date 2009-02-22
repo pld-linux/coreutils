@@ -7,9 +7,9 @@ diff -urN coreutils-5.2.1-orig/src/uname.c coreutils-5.2.1/src/uname.c
  
 +void __sysinfo_processor_type(char*);
 +
- /* The name this program was run with, for error messages. */
- char *program_name;
- 
+ static struct option const uname_long_options[] =
+ {
+   {"all", no_argument, NULL, 'a'},
 @@ -243,13 +245,9 @@
    if (toprint & PRINT_PROCESSOR)
      {

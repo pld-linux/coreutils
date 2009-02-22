@@ -6,9 +6,9 @@
    od paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir
 -  runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf
 +  runcon runuser seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf
-   sleep sort split stat stty su sum sync tac tail tee test touch tr true
-   tsort tty uname unexpand uniq unlink uptime users vdir wc who whoami yes
- 
+   sleep sort split stat stty su sum sync tac tail tee test timeout touch tr
+   true truncate tsort tty uname unexpand uniq unlink uptime users vdir wc who
+   whoami yes
 --- coreutils-6.10/AUTHORS.orig	2008-01-05 23:58:24.000000000 +0100
 +++ coreutils-6.10/AUTHORS	2008-03-02 14:25:23.908022120 +0100
 @@ -64,6 +64,7 @@
@@ -39,15 +39,15 @@
  # include <paths.h>
 @@ -150,6 +156,10 @@
  #ifndef USE_PAM
- char *crypt ();
+ char *crypt (char const *key, char const *salt);
  #endif
 +#ifndef CHECKPASSWD
 +#define CHECKPASSWD 1
 +#endif
 +
- char *getusershell ();
- void endusershell ();
- void setusershell ();
+ char *getusershell (void);
+ void endusershell (void);
+ void setusershell (void);
 @@ -157,7 +167,11 @@
  extern char **environ;
  
