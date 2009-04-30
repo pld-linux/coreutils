@@ -206,8 +206,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
-/etc/shrc.d/fileutils.csh
-/etc/shrc.d/fileutils.sh
+%config(noreplace) /etc/shrc.d/fileutils.*sh
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(da) %{_mandir}/da/man1/*
