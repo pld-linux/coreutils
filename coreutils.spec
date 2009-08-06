@@ -3,7 +3,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	7.4
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -25,7 +25,7 @@ Patch3:		%{name}-su-paths.patch
 Patch4:		%{name}-uname-cpuinfo.patch
 Patch5:		%{name}-date-man.patch
 Patch6:		%{name}-mem.patch
-
+Patch7:		%{name}-7.4-sttytcsadrain.patch
 
 Patch9:		%{name}-fmt-wchars.patch
 Patch10:	%{name}-runuser.patch
@@ -116,6 +116,7 @@ lzma -dc %{SOURCE0} | tar xf - -C ..
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
