@@ -2,12 +2,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	7.4
-Release:	2
+Version:	7.5
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	e8d906c153f271430e3efb2b9a35a35f
+# Source0-md5:	ca9219c5b7efa533d552f61a3880f458
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -44,10 +44,10 @@ BuildRequires:	gmp-devel
 BuildRequires:	help2man
 BuildRequires:	libcap-devel
 BuildRequires:	libselinux-devel
-BuildRequires:	xz
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	texinfo >= 4.2
+BuildRequires:	xz
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	coreutils-su
@@ -226,3 +226,4 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_mandir}/ru/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
 %{_infodir}/coreutils.info*
+%{_libdir}/coreutils/libstdbuf.so
