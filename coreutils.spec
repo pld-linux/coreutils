@@ -226,4 +226,5 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_mandir}/ru/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
 %{_infodir}/coreutils.info*
-%{_libdir}/coreutils/libstdbuf.so
+%dir %{_libdir}/coreutils
+%attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
