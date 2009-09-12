@@ -2,12 +2,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	7.5
+Version:	7.6
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	ca9219c5b7efa533d552f61a3880f458
+# Source0-md5:	a9fb9368e40205d70fc37b9fe441e8ec
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -105,7 +105,7 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -c -T -a1
-lzma -dc %{SOURCE0} | tar xf - -C ..
+xz -dc %{SOURCE0} | tar xf - -C ..
 # currently obsolete
 # %patch13 -p1
 # ?

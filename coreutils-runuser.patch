@@ -134,12 +134,12 @@
  
  static void
  run_shell (char const *shell, char const *command, char **additional_args,
--	   size_t n_additional_args, const struct passwd *pw)
-+	   size_t n_additional_args, const struct passwd *pw
+-           size_t n_additional_args, const struct passwd *pw)
++           size_t n_additional_args, const struct passwd *pw
 +#ifdef RUNUSER
-+	   , gid_t *groups, int num_groups
++           , gid_t *groups, int num_groups
 +#endif
-+	)
++  )
  {
    size_t n_args = 1 + fast_startup + 2 * !!command + n_additional_args + 1;
    char const **args = xnmalloc (n_args, sizeof *args);
@@ -183,8 +183,8 @@
        switch (optc)
  	{
 @@ -701,6 +756,28 @@
- 	  shell = optarg;
- 	  break;
+           shell = optarg;
+           break;
  
 +#ifdef RUNUSER
 +	case 'g':
@@ -208,11 +208,11 @@
 +	  break;
 +#endif
 +
- 	case_GETOPT_HELP_CHAR;
+         case_GETOPT_HELP_CHAR;
  
- 	case_GETOPT_VERSION_CHAR (PROGRAM_NAME, AUTHORS);
+         case_GETOPT_VERSION_CHAR (PROGRAM_NAME, AUTHORS);
 @@ -739,7 +816,20 @@
- 			  : DEFAULT_SHELL);
+                           : DEFAULT_SHELL);
    endpwent ();
  
 -  if (!correct_password (pw))

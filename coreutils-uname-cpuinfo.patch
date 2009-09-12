@@ -16,9 +16,9 @@ diff -urN coreutils-5.2.1-orig/src/uname.c coreutils-5.2.1/src/uname.c
        char const *element = unknown;
 -#if HAVE_SYSINFO && defined SI_ARCHITECTURE
 -      {
--	static char processor[257];
--	if (0 <= sysinfo (SI_ARCHITECTURE, processor, sizeof processor))
--	  element = processor;
+-        static char processor[257];
+-        if (0 <= sysinfo (SI_ARCHITECTURE, processor, sizeof processor))
+-          element = processor;
 -      }
 -#endif
 +      char processor[BUFSIZ];
