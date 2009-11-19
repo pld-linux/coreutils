@@ -1,14 +1,14 @@
 --- coreutils-6.7/src/Makefile.am.pam	2006-11-24 21:28:10.000000000 +0000
 +++ coreutils-6.7/src/Makefile.am	2007-01-09 17:00:01.000000000 +0000
-@@ -103,7 +103,7 @@
- # If necessary, add -lm to resolve use of pow in lib/strtod.c.
- uptime_LDADD = $(LDADD) $(POW_LIB) $(GETLOADAVG_LIBS)
+@@ -359,7 +359,7 @@
+ uptime_LDADD += $(GETLOADAVG_LIBS)
  
--su_LDADD = $(LDADD) $(LIB_CRYPT)
-+su_LDADD = $(LDADD) $(LIB_CRYPT) $(LIB_PAM)
+ # for crypt
+-su_LDADD += $(LIB_CRYPT)
++su_LDADD += $(LIB_CRYPT) $(LIB_PAM)
  
- dir_LDADD += $(LIB_ACL)
- ls_LDADD += $(LIB_ACL)
+ # for various ACL functions
+ copy_LDADD += $(LIB_ACL)
 --- coreutils-6.10/src/su.c.orig	2007-11-25 14:23:31.000000000 +0100
 +++ coreutils-6.10/src/su.c	2008-03-02 02:07:13.568059486 +0100
 @@ -37,6 +37,16 @@
@@ -43,31 +43,26 @@
 +
  #include "system.h"
  #include "getpass.h"
- 
-@@ -118,15 +137,22 @@
+
+@@ -130,10 +130,17 @@
  /* The user to become if none is specified.  */
  #define DEFAULT_USER "root"
  
 +#ifndef USE_PAM
  char *crypt (char const *key, char const *salt);
 +#endif
- char *getusershell (void);
- void endusershell (void);
- void setusershell (void);
- 
- extern char **environ;
  
 -static void run_shell (char const *, char const *, char **, size_t)
 +static void run_shell (char const *, char const *, char **, size_t,
-+	const struct passwd *)
++		const struct passwd *)
 +#ifdef USE_PAM
 +	;
 +#else
       ATTRIBUTE_NORETURN;
 +#endif
  
- /* The name this program was run with.  */
- char *program_name;
+ /* If true, pass the `-f' option to the subshell.  */
+ static bool fast_startup;
 @@ -215,7 +241,26 @@
  }
  #endif
@@ -167,17 +162,17 @@
        xsetenv ("HOME", pw->pw_dir);
        xsetenv ("SHELL", shell);
        xsetenv ("USER", pw->pw_name);
-@@ -298,8 +388,13 @@
+@@ -373,8 +373,13 @@
  {
  #ifdef HAVE_INITGROUPS
    errno = 0;
 -  if (initgroups (pw->pw_name, pw->pw_gid) == -1)
 +  if (initgroups (pw->pw_name, pw->pw_gid) == -1) {
 +#ifdef USE_PAM
-+    pam_close_session(pamh, 0);
-+    pam_end(pamh, PAM_ABORT);
++      pam_close_session(pamh, 0);
++      pam_end(pamh, PAM_ABORT);
 +#endif
-     error (EXIT_FAILURE, errno, _("cannot set groups"));
+     error (EXIT_CANCELED, errno, _("cannot set groups"));
 +  }
    endgrent ();
  #endif
@@ -332,7 +327,7 @@
  }
  
  /* Return true if SHELL is a restricted shell (one not returned by
-@@ -517,9 +729,9 @@
+@@ -714,9 +714,9 @@
    shell = xstrdup (shell ? shell : pw->pw_shell);
    modify_environment (pw, shell);
  
@@ -341,6 +336,12 @@
 -  if (simulate_login && chdir (pw->pw_dir) != 0)
 -    error (0, errno, _("warning: cannot change directory to %s"), pw->pw_dir);
 +#endif
+ 
+   /* error() flushes stderr, but does not check for write failure.
+      Normally, we would catch this via our atexit() hook of
+@@ -726,5 +726,5 @@
+   if (ferror (stderr))
+     exit (EXIT_CANCELED);
  
 -  run_shell (shell, command, argv + optind, MAX (0, argc - optind));
 +  run_shell (shell, command, argv + optind, MAX (0, argc - optind), pw);
