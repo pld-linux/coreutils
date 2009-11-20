@@ -6,7 +6,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl):	GNU Core-utils - podstawowe narzêdzia dzia³aj±ce z linii poleceñ
 Name:		coreutils
 Version:	6.9
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 # devel versions:
@@ -143,7 +143,7 @@ rm -f $RPM_BUILD_ROOT%{_bindir}/{hostname,kill,uptime}
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/{hostname,kill,uptime}.1*
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/{basename,cat,chgrp,chmod,chown,cp,date,dd,df,\
-echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,printf,pwd,rm,rmdir,sleep,sort,stty,\
+echo,false,id,link,ln,ls,mkdir,mknod,mv,nice,printf,pwd,rm,rmdir,sleep,sort,stat,stty,\
 sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
