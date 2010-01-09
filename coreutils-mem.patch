@@ -24,12 +24,13 @@
    }
  #endif
  
-@@ -52,7 +60,7 @@
- 	double pages = pss.physical_memory;
- 	double pagesize = pss.page_size;
- 	if (0 <= pages && 0 <= pagesize)
--	  return pages * pagesize;
-+	  return physmem_cap(pages * pagesize);
+@@ -106,7 +106,7 @@
+         double pages = pss.physical_memory;
+         double pagesize = pss.page_size;
+         if (0 <= pages && 0 <= pagesize)
+-          return pages * pagesize;
++          return physmem_cap(pages * pagesize);
        }
    }
  #endif
+
