@@ -1,4 +1,6 @@
 %bcond_without	tests
+%bcond_with bar # adds progress bar to cp command
+#
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
@@ -32,6 +34,8 @@ Patch10:	%{name}-runuser.patch
 Patch11:	%{name}-split-pam.patch
 Patch12:	%{name}-sparc64.patch
 Patch13:	%{name}-pl.po-update.patch
+# from http://www.beatex.org/web/advancedcopy.html
+Patch14:	%{name}-advcopy.patch
 
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
@@ -123,6 +127,7 @@ xz -dc %{SOURCE0} | tar xf - -C ..
 %ifarch sparc64
 %patch12 -p1
 %endif
+%{?with_bar:%patch14 -p1}
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
