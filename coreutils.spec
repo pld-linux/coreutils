@@ -37,7 +37,7 @@ URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
 BuildRequires:	autoconf >= 2.61
-BuildRequires:	automake >= 1:1.11
+BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-devel >= 0.16-2
 BuildRequires:	gmp-devel
