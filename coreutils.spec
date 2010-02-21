@@ -49,6 +49,7 @@ BuildRequires:	libcap-devel
 BuildRequires:	libselinux-devel
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.2
 BuildRequires:	xz
 Requires:	pam >= 0.77.3
@@ -107,8 +108,7 @@ Programy zawarte w tym pakiecie to:
   unexpand uniq unlink users vdir wc who whoami yes
 
 %prep
-%setup -q -c -T -a1
-xz -dc %{SOURCE0} | tar xf - -C ..
+%setup -q -a1
 # currently obsolete
 # %patch13 -p1
 # ?
