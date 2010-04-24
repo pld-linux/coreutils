@@ -3,12 +3,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.4
-Release:	3
+Version:	8.5
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	1fde97f144b4699b18f36c2ec18b1f18
+# Source0-md5:	55170ed640e300f5b81640c6f4641513
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -133,9 +133,6 @@ Programy zawarte w tym pakiecie to:
 
 # allow rebuilding *.gmo
 rm -f po/stamp-po
-
-# drop when our automake supports dist-xz
-sed -i -e 's#1.10a dist-xz#1.10#g' configure.ac
 
 %build
 %{__gettextize}
