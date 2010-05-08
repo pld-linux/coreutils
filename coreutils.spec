@@ -1,10 +1,12 @@
+#
+# Conditional build:
 %bcond_without	tests
 #
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	8.5
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -35,11 +37,10 @@ Patch12:	%{name}-sparc64.patch
 Patch13:	%{name}-pl.po-update.patch
 # from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
 Patch14:	%{name}-advcopy.patch
-
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
-BuildRequires:	autoconf >= 2.61
+BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-devel >= 0.16-2
@@ -109,10 +110,8 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-# currently obsolete
-# %patch13 -p1
-# ?
-# %patch0 -p1
+%patch13 -p1
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -143,6 +142,7 @@ rm -f po/stamp-po
 %configure \
 	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
 	DEFAULT_POSIX2_VERSION=199209 \
+	--disable-silent-rules \
 	--enable-install-program=arch \
 	--enable-no-install-program=hostname,kill,uptime \
 	--enable-pam
@@ -210,6 +210,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
 %config(noreplace) /etc/shrc.d/fileutils.*sh
+%dir %{_libdir}/coreutils
+%attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
 %{_mandir}/man1/*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(da) %{_mandir}/da/man1/*
@@ -228,5 +230,3 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_mandir}/ru/man1/*
 %lang(zh_CN) %{_mandir}/zh_CN/man1/*
 %{_infodir}/coreutils.info*
-%dir %{_libdir}/coreutils
-%attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
