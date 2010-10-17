@@ -216,3 +216,14 @@ diff -Nur coreutils-4.5.3.orig/src/getgid.c coreutils-4.5.3/src/getgid.c
  #: src/getlimits.c:29 src/timeout.c:74 src/truncate.c:42
  msgid "Padraig Brady"
 
+--- coreutils-8.6/README~	2010-10-17 21:37:11.589739007 +0200
++++ coreutils-8.6/README	2010-10-17 21:42:27.222782339 +0200
+@@ -9,7 +9,7 @@
+ 
+   [ arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp
+   csplit cut date dd df dir dircolors dirname du echo env expand expr
+-  factor false fmt fold groups head hostid hostname id install join kill
++  factor false fmt fold getgid groups head hostid hostname id install join kill
+   link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup
+   nproc od paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir
+   runcon runuser seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf

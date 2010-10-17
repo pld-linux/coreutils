@@ -724,15 +724,6 @@
  @section @command{md5sum}: Print or check MD5 digests
  
  @pindex md5sum
-@@ -3419,7 +3401,7 @@
- considered infeasible at the moment, it is known how to produce
- different files with identical MD5 (a ``collision''), something which
- can be a security issue in certain contexts.  For more secure hashes,
--consider using SHA-1 or SHA-2.  @xref{sha1sum invocation}, and
-+consider using SHA-1 or SHA-2.  @xref{sha1sum}, and
- @ref{sha2 utilities}.
- 
- If a @var{file} is specified as @samp{-} or if no files are given
 @@ -3527,7 +3509,7 @@
  @exitstatus
  
@@ -793,6 +784,15 @@
  except that keys with the same value sort together.
  
  If multiple random sort fields are specified, the same random hash
+@@ -4060,7 +4060,7 @@
+ Limit the number of sorts run in parallel to @var{n}. By default,
+ @var{n} is set to the number of available processors, and values
+ greater than that are reduced to that limit. Also see
+-@ref{nproc invocation}.
++@ref{nproc}.
+ 
+ @item -u
+ @itemx --unique
 @@ -4077,7 +4059,7 @@
  this equivalence does not extend to arbitrary @command{sort} options.
  For example, @code{sort -n -u} inspects only the value of the initial

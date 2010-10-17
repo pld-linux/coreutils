@@ -491,7 +491,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
 +static wint_t
 +get_space (FILE *f, wint_t c)
  {
-   for (;;)
+   while (true)
      {
 -      if (c == ' ')
 +      if (c == L' ')

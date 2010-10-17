@@ -126,7 +126,7 @@ diff -ru coreutils-8.4.orig/src/copy.c coreutils-8.4/src/copy.c
 +      int last_size = g_iTotalWritten;
 +      /* END progress mod */
 +
-       for (;;)
+       while (true)
          {
 +          if (progress) {
 +          /* BEGIN progress mod */
