@@ -182,7 +182,7 @@ for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN ; do
 done
 install %{SOURCE9} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
 # unwanted
-%{__rm} $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
+rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 
 %find_lang %{name}
 
