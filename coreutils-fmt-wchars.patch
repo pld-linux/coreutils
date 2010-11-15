@@ -1,8 +1,8 @@
 diff -ur coreutils-7.6.org/po/pl.po coreutils-7.6/po/pl.po
 --- coreutils-7.6.org/po/pl.po	2009-09-12 20:25:34.788233704 +0200
 +++ coreutils-7.6/po/pl.po	2009-09-12 20:25:11.898026716 +0200
-@@ -4202,12 +4202,14 @@
- #: src/fmt.c:285
+@@ -4202,10 +4202,12 @@
+ #: src/fmt.c:286
  msgid ""
  "  -t, --tagged-paragraph    indentation of first line different from second\n"
 -"  -u, --uniform-spacing     one space between words, two after sentences\n"
@@ -11,11 +11,9 @@ diff -ur coreutils-7.6.org/po/pl.po coreutils-7.6/po/pl.po
  "  -w, --width=WIDTH         maximum line width (default of 75 columns)\n"
  msgstr ""
  "  -t, --tagged-paragraph    wcięcie pierwszej linii inne niż drugiej\n"
- "  -u, --uniform-spacing     jedna spacja między słowami, dwie między "
- "zdaniami\n"
+ "  -u, --uniform-spacing     jedna spacja między słowami, dwie między zdaniami\n"
 +"  -n, --single-spaces       pojedyncze spacje między zdaniami\n"
- "  -w, --width=ILE           maksymalna szerokość linii (domyślnie 75 "
- "kolumn)\n"
+ "  -w, --width=ILE           maksymalna szerokość linii (domyślnie 75 kolumn)\n"
  
 diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
 --- coreutils-7.6.org/src/fmt.c	2009-09-01 13:01:16.000000000 +0200

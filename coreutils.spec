@@ -5,12 +5,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.6
+Version:	8.7
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	17d693d282ac57c62b241a045e7b511c
+# Source0-md5:	6e21df02e7f5c5d86372de4c6d873275
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -34,6 +34,7 @@ Patch9:		%{name}-fmt-wchars.patch
 Patch10:	%{name}-runuser.patch
 Patch11:	%{name}-split-pam.patch
 Patch12:	%{name}-sparc64.patch
+# http://translationproject.org/latest/coreutils/pl.po
 Patch13:	%{name}-pl.po-update.patch
 # from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
 Patch14:	%{name}-advcopy.patch

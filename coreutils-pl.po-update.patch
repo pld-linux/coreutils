@@ -1,667 +1,3357 @@
---- coreutils-8.6/po/pl.po.orig	2010-10-15 16:53:59.000000000 +0200
-+++ coreutils-8.6/po/pl.po	2010-10-23 15:58:16.127979887 +0200
-@@ -14,13 +14,12 @@
+diff -urN coreutils-8.7.org/po/pl.po coreutils-8.7/po/pl.po
+--- coreutils-8.7.org/po/pl.po	2010-11-13 17:23:27.000000000 +0100
++++ coreutils-8.7/po/pl.po	2010-11-15 08:57:03.000000000 +0100
+@@ -14,18 +14,16 @@
  # 2 format strings: Jakub Bogusz <qboosh@pld-linux.org>, 2007.
  msgid ""
  msgstr ""
--"Project-Id-Version: coreutils 8.4.10081926\n"
-+"Project-Id-Version: coreutils 8.6\n"
+-"Project-Id-Version: coreutils 8.6.24\n"
++"Project-Id-Version: coreutils 8.7\n"
  "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
- "POT-Creation-Date: 2010-10-15 16:53+0200\n"
--"PO-Revision-Date: 2010-04-24 12:10+0200\n"
-+"PO-Revision-Date: 2010-10-18 13:30+0200\n"
+ "POT-Creation-Date: 2010-11-13 17:23+0100\n"
+-"PO-Revision-Date: 2010-11-08 12:30+0100\n"
++"PO-Revision-Date: 2010-11-15 09:00+0100\n"
  "Last-Translator: Rafał Maszkowski <rzm@icm.edu.pl>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 -"Language: pl\n"
  "MIME-Version: 1.0\n"
  "Content-Type: text/plain; charset=UTF-8\n"
  "Content-Transfer-Encoding: 8-bit\n"
-@@ -1034,7 +1033,6 @@
- msgstr "Składnia: %s [OPCJA]... [PLIK]...\n"
+-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+-"|| n%100>=20) ? 1 : 2);\n"
++"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
  
- #: src/cat.c:92
--#, fuzzy
+ #: lib/argmatch.c:133
+ #, c-format
+@@ -630,15 +628,13 @@
+ #: lib/version-etc.c:86
  msgid ""
- "Concatenate FILE(s), or standard input, to standard output.\n"
  "\n"
-@@ -1045,7 +1043,7 @@
- "  -n, --number             number all output lines\n"
- "  -s, --squeeze-blank      suppress repeated empty output lines\n"
+-"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl."
+-"html>.\n"
++"License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\n"
+ "This is free software: you are free to change and redistribute it.\n"
+ "There is NO WARRANTY, to the extent permitted by law.\n"
+ "\n"
  msgstr ""
--"Połączenie PLIKU(ÓW) albo przekazanie ze standardowego wejścia na wyjście.\n"
-+"Połączenie PLIKU(ÓW) albo standardowego wejścia i przekazanie na wyjście.\n"
  "\n"
- "  -A, --show-all           równoważne -vET\n"
- "  -b, --number-nonblank    numerowanie niepustych linii na wyjściu\n"
-@@ -1790,7 +1788,7 @@
- "przez `LC_COLLATE'.\n"
- 
- #: src/comm.c:139
--#, fuzzy, c-format
-+#, c-format
+-"Licencja GPLv3+: GNU GPL wersja 3 albo późniejsza http://gnu.org/licenses/"
+-"gpl.html\n"
++"Licencja GPLv3+: GNU GPL wersja 3 albo późniejsza http://gnu.org/licenses/gpl.html\n"
+ "To jest wolne oprogramowanie: masz prawo je zmieniać i rozpowszechniać.\n"
+ "Autorzy nie dają ŻADNYCH GWARANCJI w granicach dozwolonych prawem.\n"
+ "\n"
+@@ -886,16 +882,13 @@
  msgid ""
+ "  -d, --decode          decode data\n"
+ "  -i, --ignore-garbage  when decoding, ignore non-alphabet characters\n"
+-"  -w, --wrap=COLS       wrap encoded lines after COLS character (default "
+-"76).\n"
++"  -w, --wrap=COLS       wrap encoded lines after COLS character (default 76).\n"
+ "                          Use 0 to disable line wrapping\n"
  "\n"
- "Examples:\n"
-@@ -1799,9 +1797,10 @@
+ msgstr ""
+ "  -d, --decode          rozkodowanie danych\n"
+-"  -i, --ignore-garbage  zignorowanie znaków niealfabetycznych przy "
+-"dekodowaniu\n"
+-"  -w, --wrap=KOLUMNY    zawijanie zakodowanych linii po KOLUMNACH "
+-"(domyślnie\n"
++"  -i, --ignore-garbage  zignorowanie znaków niealfabetycznych przy dekodowaniu\n"
++"  -w, --wrap=KOLUMNY    zawijanie zakodowanych linii po KOLUMNACH (domyślnie\n"
+ "                        76), 0 wyłącza zawijanie\n"
+ "\n"
+ 
+@@ -919,8 +912,7 @@
+ "\n"
+ "Dane są kodowane według opisu dla alfabetu o podstawie 64 (base64) w\n"
+ "RFC 3548. Przy dekodowaniu oprócz znaków formalnego alfabetu base64 można\n"
+-"napotkać znaki nowej linii. Program wywołany z opcją --ignore-garbage "
+-"będzie\n"
++"napotkać znaki nowej linii. Program wywołany z opcją --ignore-garbage będzie\n"
+ "próbował opuścić jakiekolwiek inne znaki nie z alfabetu base64.\n"
+ 
+ #: src/base64.c:172 src/base64.c:209 src/csplit.c:263 src/csplit.c:1427
+@@ -1170,31 +1162,25 @@
+ "  or:  %s [OPTION]... --reference=RFILE FILE...\n"
+ msgstr ""
+ "Składnia: %s [OPCJA]... KONTEKST PLIK...\n"
+-"    albo: %s [OPCJA]... [-u UŻYTKOWNIK] [-r ROLA] [-l ZAKRES] [-t TYP] "
+-"PLIK...\n"
++"    albo: %s [OPCJA]... [-u UŻYTKOWNIK] [-r ROLA] [-l ZAKRES] [-t TYP] PLIK...\n"
+ "    albo: %s [OPCJA]... --reference=PLIK_WZ PLIK...\n"
+ 
+ #: src/chcon.c:358
+ msgid ""
+ "Change the security context of each FILE to CONTEXT.\n"
+-"With --reference, change the security context of each FILE to that of "
+-"RFILE.\n"
++"With --reference, change the security context of each FILE to that of RFILE.\n"
+ "\n"
+-"  -h, --no-dereference   affect symbolic links instead of any referenced "
+-"file\n"
++"  -h, --no-dereference   affect symbolic links instead of any referenced file\n"
+ msgstr ""
+-"Zmiana kontekstu bezpieczeństwa każdego PLIKU na KONTEKST. Z opcją --"
+-"reference:\n"
++"Zmiana kontekstu bezpieczeństwa każdego PLIKU na KONTEKST. Z opcją --reference:\n"
+ "zmiana kontekstu bezpieczeństwa każdego PLIKU na taki jaki ma PLIK_WZ.\n"
+ "\n"
+-"  -h, --no-dereference   zmiany mają dotyczyć samych dowiązań symbolicznych, "
+-"a\n"
++"  -h, --no-dereference   zmiany mają dotyczyć samych dowiązań symbolicznych, a\n"
+ "                         nie plików przez nie wskazywanych\n"
+ 
+ #: src/chcon.c:364
+ msgid ""
+-"      --reference=RFILE  use RFILE's security context rather than "
+-"specifying\n"
++"      --reference=RFILE  use RFILE's security context rather than specifying\n"
+ "                         a CONTEXT value\n"
+ "  -R, --recursive        operate on files and directories recursively\n"
+ "  -v, --verbose          output a diagnostic for every file processed\n"
+@@ -1241,8 +1227,7 @@
+ "                         katalogu - będzie przetworzony\n"
+ "  -L                     przetworzenie każdego katalogu, do którego jest\n"
+ "                         dowiązanie symboliczne\n"
+-"  -P                     bez przetwarzania dowiązań symbolicznych "
+-"(domyślnie)\n"
++"  -P                     bez przetwarzania dowiązań symbolicznych (domyślnie)\n"
+ "\n"
+ 
+ #: src/chcon.c:505 src/chgrp.c:260 src/chown.c:262
+@@ -1305,24 +1290,20 @@
+ "Zmiana grupy każdego PLIKU na GRUPĘ.\n"
+ "Z opcją --reference zmiana grupy każdego PLIKU na taką jaką ma PLIK_WZ.\n"
+ "\n"
+-"  -c, --changes          jak verbose, ale informowanie tylko gdy zaszła "
+-"zmiana\n"
++"  -c, --changes          jak verbose, ale informowanie tylko gdy zaszła zmiana\n"
+ "      --dereference      zmiany mają dotyczyć plików wskazywanych\n"
+ "                         przez dowiązania symboliczne, a nie samych\n"
+ "                         dowiązań (domyślnie)\n"
+ 
+ #: src/chgrp.c:123 src/chown.c:93
+ msgid ""
+-"  -h, --no-dereference   affect each symbolic link instead of any "
+-"referenced\n"
++"  -h, --no-dereference   affect each symbolic link instead of any referenced\n"
+ "                         file (useful only on systems that can change the\n"
+ "                         ownership of a symlink)\n"
+ msgstr ""
+-"  -h, --no-dereference   operowanie na dowiązaniach symbolicznych zamiast "
+-"na\n"
++"  -h, --no-dereference   operowanie na dowiązaniach symbolicznych zamiast na\n"
+ "                         wskazywanych plikach (tylko dla systemów, które\n"
+-"                         umieją zmienić właściciela dowiązania "
+-"symbolicznego)\n"
++"                         umieją zmienić właściciela dowiązania symbolicznego)\n"
+ 
+ #: src/chgrp.c:128 src/chown.c:105
+ msgid ""
+@@ -1369,8 +1350,7 @@
+ #: src/chmod.c:148 src/chown-core.c:119
+ #, c-format
+ msgid "neither symbolic link %s nor referent has been changed\n"
+-msgstr ""
+-"nie zostało zmienione ani dowiązanie symboliczne %s ani wskazywany plik\n"
++msgstr "nie zostało zmienione ani dowiązanie symboliczne %s ani wskazywany plik\n"
+ 
+ #: src/chmod.c:158
+ #, c-format
+@@ -1390,9 +1370,7 @@
+ #: src/chmod.c:228
+ #, c-format
+ msgid "cannot operate on dangling symlink %s"
+-msgstr ""
+-"operacji nie można wykonać na dowiązaniu symbolicznym %s, które nie wskazuje "
+-"na istniejący plik"
++msgstr "operacji nie można wykonać na dowiązaniu symbolicznym %s, które nie wskazuje na istniejący plik"
+ 
+ #: src/chmod.c:268
+ #, c-format
+@@ -1419,8 +1397,7 @@
+ msgid ""
+ "Change the mode of each FILE to MODE.\n"
+ "\n"
+-"  -c, --changes           like verbose but report only when a change is "
+-"made\n"
++"  -c, --changes           like verbose but report only when a change is made\n"
+ msgstr ""
+ "Zmiana uprawnień do każdego PLIKU na UPRAWN.\n"
+ "\n"
+@@ -1445,8 +1422,7 @@
+ "Zmienia uprawnienia do każdego PLIKU do UPRAWN.\n"
+ "  -f, --silent, --quiet   wyłączenie większości komunikatów o błędach\n"
+ "  -v, --verbose           wypisanie informacji o każdym przetwarzanym pliku\n"
+-"      --reference=PLIK_WZ użycie uprawnień pliku PLIK_WZ zamiast wartości "
+-"UPRAWN\n"
++"      --reference=PLIK_WZ użycie uprawnień pliku PLIK_WZ zamiast wartości UPRAWN\n"
+ "  -R, --recursive         zmiany też w plikach w podkatalogach\n"
+ 
+ #: src/chmod.c:387
+@@ -1539,16 +1515,14 @@
+ #: src/chown.c:85
+ msgid ""
+ "Change the owner and/or group of each FILE to OWNER and/or GROUP.\n"
+-"With --reference, change the owner and group of each FILE to those of "
+-"RFILE.\n"
++"With --reference, change the owner and group of each FILE to those of RFILE.\n"
+ "\n"
+ "  -c, --changes          like verbose but report only when a change is made\n"
+ "      --dereference      affect the referent of each symbolic link (this is\n"
+ "                         the default), rather than the symbolic link itself\n"
+ msgstr ""
+ "Zmiana właściciela i/lub grupy każdego PLIKU na WŁAŚCICIELA i/lub GRUPĘ.\n"
+-"Z opcją --reference zmiana właściciela i grupy każdego PLIKU na taką jaką "
+-"ma\n"
++"Z opcją --reference zmiana właściciela i grupy każdego PLIKU na taką jaką ma\n"
+ "PLIK_WZ.\n"
+ "\n"
+ "  -c, --changes          jak verbose, ale podanie tylko kiedy zaszła zmiana\n"
+@@ -1560,19 +1534,14 @@
+ msgid ""
+ "      --from=CURRENT_OWNER:CURRENT_GROUP\n"
+ "                         change the owner and/or group of each file only if\n"
+-"                         its current owner and/or group match those "
+-"specified\n"
+-"                         here.  Either may be omitted, in which case a "
+-"match\n"
++"                         its current owner and/or group match those specified\n"
++"                         here.  Either may be omitted, in which case a match\n"
+ "                         is not required for the omitted attribute\n"
+ msgstr ""
+ "      --from=BIEŻĄCY_WŁAŚCICIEL:BIEŻĄCA_GRUPA\n"
+-"                         zmiana właściciela i/lub grupy każdego pliku, "
+-"jeżeli\n"
+-"                         bieżący właściciel i /lub grupa są takie jak "
+-"podane.\n"
+-"                         Atrybut nie jest porównywany jeżeli został "
+-"pominięty\n"
++"                         zmiana właściciela i/lub grupy każdego pliku, jeżeli\n"
++"                         bieżący właściciel i /lub grupa są takie jak podane.\n"
++"                         Atrybut nie jest porównywany jeżeli został pominięty\n"
+ "                         w opcji.\n"
+ 
+ #: src/chown.c:109
+@@ -1585,8 +1554,7 @@
+ "\n"
+ msgstr ""
+ "  -f, --silent, --quiet  wyłączenie większości komunikatów o błędach\n"
+-"      --reference=PLIK_WZ  użycie właściciela i grupy PLIK_WZ zamiast "
+-"podanych\n"
++"      --reference=PLIK_WZ  użycie właściciela i grupy PLIK_WZ zamiast podanych\n"
+ "                         wartości WŁAŚCICIEL:GRUPA\n"
+ "  -R, --recursive        zmiany też w plikach w podkatalogach\n"
+ "  -v, --verbose          wypisanie informacji o każdym przetwarzanym pliku\n"
+@@ -1601,10 +1569,8 @@
+ msgstr ""
+ "\n"
+ "Właściciel nie będzie zmieniony, jeżeli nie został podany. Grupa nie będzie\n"
+-"zmieniona, jeżeli nie została podana; będzie zmieniona na grupę główną, "
+-"jeżeli\n"
+-"po WŁAŚCICIELU został podany `:'. WŁAŚCICIEL i GRUPA mogą być podane "
+-"zarówno\n"
++"zmieniona, jeżeli nie została podana; będzie zmieniona na grupę główną, jeżeli\n"
++"po WŁAŚCICIELU został podany `:'. WŁAŚCICIEL i GRUPA mogą być podane zarówno\n"
+ "numerycznie jak symbolicznie.\n"
+ 
+ #: src/chown.c:137
+@@ -1769,8 +1735,7 @@
+ "  --nocheck-order   do not check that the input is correctly sorted\n"
+ msgstr ""
+ "\n"
+-"  --check-order     sprawdzenie czy dane wejściowe są prawidłowo "
+-"posortowane,\n"
++"  --check-order     sprawdzenie czy dane wejściowe są prawidłowo posortowane,\n"
+ "                      nawet jeżeli wszystkie linie mogą być sparowane\n"
+ "  --nocheck-order   bez sprawdzenia czy dane wejściowe są prawidłowo\n"
+ "                      posortowane\n"
+@@ -1798,8 +1763,7 @@
  msgstr ""
  "\n"
  "Przykłady:\n"
--"  %s -12 plik1 plik2  Wypisanie tylko linii obecnych zarówno w pliku1 jak w\n"
-+"  %s -12 plik1 plik2  Wypisanie tylko linii obecnych zarówno w pliku1, jak "
-+"w\n"
+-"  %s -12 plik1 plik2  Wypisanie tylko linii obecnych zarówno w pliku1, jak "
+-"w\n"
++"  %s -12 plik1 plik2  Wypisanie tylko linii obecnych zarówno w pliku1, jak w\n"
  "                        pliku2\n"
--"  %s -3  plik1 plik2  Wypisanie linie, które są w pliku1, a nie ma ich w\n"
-+"  %s -3  plik1 plik2  Wypisanie linii, które są w pliku1, a nie ma ich w\n"
+ "  %s -3  plik1 plik2  Wypisanie linii, które są w pliku1, a nie ma ich w\n"
  "                        pliku2 i odwrotnie\n"
+@@ -1881,9 +1845,7 @@
+ #: src/copy.c:599
+ #, c-format
+ msgid "not writing through dangling symlink %s"
+-msgstr ""
+-"bez zapisu przez dowiązanie symboliczne %s, które nie wskazuje na istniejący "
+-"plik"
++msgstr "bez zapisu przez dowiązanie symboliczne %s, które nie wskazuje na istniejący plik"
  
- #: src/comm.c:224 src/join.c:381
-@@ -2133,7 +2132,6 @@
- "Argumenty obowiązkowe dla opcji długich obowiązują również dla krótkich.\n"
+ #: src/copy.c:612
+ #, c-format
+@@ -1944,8 +1906,7 @@
+ #: src/copy.c:1207
+ #, c-format
+ msgid "failed to restore the default file creation context"
+-msgstr ""
+-"nie udało się odtworzyć domyślnego kontekstu bezpieczeństwa tworzenia pliku"
++msgstr "nie udało się odtworzyć domyślnego kontekstu bezpieczeństwa tworzenia pliku"
+ 
+ #: src/copy.c:1263
+ #, c-format
+@@ -1985,15 +1946,12 @@
+ #: src/copy.c:1485
+ #, c-format
+ msgid "backing up %s would destroy source;  %s not moved"
+-msgstr ""
+-"utworzenie kopii zapasowej %s zniszczyłoby żródło;  %s nie został "
+-"przeniesiony"
++msgstr "utworzenie kopii zapasowej %s zniszczyłoby żródło;  %s nie został przeniesiony"
+ 
+ #: src/copy.c:1486
+ #, c-format
+ msgid "backing up %s would destroy source;  %s not copied"
+-msgstr ""
+-"utworzenie kopii zapasowej %s zniszczyłoby żródło;  %s nie został skopiowany"
++msgstr "utworzenie kopii zapasowej %s zniszczyłoby żródło;  %s nie został skopiowany"
+ 
+ #: src/copy.c:1505 src/ln.c:242
+ #, c-format
+@@ -2003,9 +1961,7 @@
+ #: src/copy.c:1569
+ #, c-format
+ msgid "will not copy %s through just-created symlink %s"
+-msgstr ""
+-"plik %s nie będzie skopiowany poprzez właśnie utworzone dowiązanie "
+-"symboliczne %s"
++msgstr "plik %s nie będzie skopiowany poprzez właśnie utworzone dowiązanie symboliczne %s"
+ 
+ #: src/copy.c:1646
+ #, c-format
+@@ -2035,9 +1991,7 @@
+ #: src/copy.c:1791
+ #, c-format
+ msgid "inter-device move failed: %s to %s; unable to remove target"
+-msgstr ""
+-"nie udało się przeniesienie między urządzeniami: %s do %s; nie udało się "
+-"usunać pliku docelowego"
++msgstr "nie udało się przeniesienie między urządzeniami: %s do %s; nie udało się usunać pliku docelowego"
+ 
+ #: src/copy.c:1825 src/install.c:587 src/mkdir.c:190 src/mkfifo.c:115
+ #: src/mknod.c:168
+@@ -2053,8 +2007,7 @@
+ #: src/copy.c:1964
+ #, c-format
+ msgid "%s: can make relative symbolic links only in current directory"
+-msgstr ""
+-"%s: można zrobić tylko względne dowiązanie symboliczne w bieżącym katalogu"
++msgstr "%s: można zrobić tylko względne dowiązanie symboliczne w bieżącym katalogu"
+ 
+ #: src/copy.c:1971
+ #, c-format
+@@ -2127,28 +2080,21 @@
+ #: src/pr.c:2779 src/ptx.c:1895 src/shred.c:164 src/shuf.c:58 src/sort.c:387
+ #: src/split.c:112 src/stdbuf.c:97 src/tac.c:142 src/tail.c:268
+ #: src/touch.c:226 src/truncate.c:108 src/unexpand.c:124 src/uniq.c:146
+-msgid ""
+-"Mandatory arguments to long options are mandatory for short options too.\n"
+-msgstr ""
+-"Argumenty obowiązkowe dla opcji długich obowiązują również dla krótkich.\n"
++msgid "Mandatory arguments to long options are mandatory for short options too.\n"
++msgstr "Argumenty obowiązkowe dla opcji długich obowiązują również dla krótkich.\n"
  
  #: src/cp.c:170
--#, fuzzy
  msgid ""
  "  -a, --archive                same as -dR --preserve=all\n"
- "      --attributes-only        don't copy the file data, just the "
-@@ -2147,6 +2145,7 @@
+-"      --attributes-only        don't copy the file data, just the "
+-"attributes\n"
+-"      --backup[=CONTROL]       make a backup of each existing destination "
+-"file\n"
+-"  -b                           like --backup but does not accept an "
+-"argument\n"
+-"      --copy-contents          copy contents of special files when "
+-"recursive\n"
++"      --attributes-only        don't copy the file data, just the attributes\n"
++"      --backup[=CONTROL]       make a backup of each existing destination file\n"
++"  -b                           like --backup but does not accept an argument\n"
++"      --copy-contents          copy contents of special files when recursive\n"
  "  -d                           same as --no-dereference --preserve=links\n"
  msgstr ""
  "  -a, --archive                to samo co -dR --preserve=all\n"
-+"      --attributes-only        bez kopiowania danych, same atrybuty\n"
- "      --backup[=TRYB]          robienie kopii zapasowej każdego "
- "istniejącego\n"
+ "      --attributes-only        bez kopiowania danych, same atrybuty\n"
+-"      --backup[=TRYB]          robienie kopii zapasowej każdego "
+-"istniejącego\n"
++"      --backup[=TRYB]          robienie kopii zapasowej każdego istniejącego\n"
  "                               pliku docelowego\n"
-@@ -3451,16 +3450,14 @@
- msgstr "ustawienie flag dla %s"
+ "  -b                           jak --backup, ale bez podawania argumentu\n"
+ "      --copy-contents          kopiowanie zawartości pliku specjalnego w\n"
+@@ -2158,11 +2104,9 @@
+ #: src/cp.c:178
+ msgid ""
+ "  -f, --force                  if an existing destination file cannot be\n"
+-"                                 opened, remove it and try again (redundant "
+-"if\n"
++"                                 opened, remove it and try again (redundant if\n"
+ "                                 the -n option is used)\n"
+-"  -i, --interactive            prompt before overwrite (overrides a previous "
+-"-n\n"
++"  -i, --interactive            prompt before overwrite (overrides a previous -n\n"
+ "                                  option)\n"
+ "  -H                           follow command-line symbolic links in SOURCE\n"
+ msgstr ""
+@@ -2189,11 +2133,9 @@
+ "                                 a previous -i option)\n"
+ "  -P, --no-dereference         never follow symbolic links in SOURCE\n"
+ msgstr ""
+-"  -n, --no-clobber             bez nadpisywania istniejących plików "
+-"(wyłącza\n"
++"  -n, --no-clobber             bez nadpisywania istniejących plików (wyłącza\n"
+ "                                 opcję -i)\n"
+-"  -P, --no-dereference         bez podążania za dowiązaniami symbolicznymi "
+-"w\n"
++"  -P, --no-dereference         bez podążania za dowiązaniami symbolicznymi w\n"
+ "                                 ŹRÓDLE\n"
  
- #: src/dd.c:1606
--#, fuzzy, c-format
-+#, c-format
- msgid "memory exhausted by input buffer of size %zu bytes (%s)"
--msgstr ""
--"nie udało się zaalokować %<PRIuMAX> bajtu bufora standardowego wejścia\n"
-+msgstr "pamieć wyczerpana przez bufor wejściowy o rozmiarze %zu bajtów (%s)"
+ #: src/cp.c:195
+@@ -2201,21 +2143,15 @@
+ "  -p                           same as --preserve=mode,ownership,timestamps\n"
+ "      --preserve[=ATTR_LIST]   preserve the specified attributes (default:\n"
+ "                                 mode,ownership,timestamps), if possible\n"
+-"                                 additional attributes: context, links, "
+-"xattr,\n"
++"                                 additional attributes: context, links, xattr,\n"
+ "                                 all\n"
+ msgstr ""
+-"  -p                           to samo co --preserve=mode,ownership,"
+-"timestamps\n"
+-"      --preserve[=LISTA_ATR]   zachowanie podanych atrybutów (domyślnie: "
+-"mode\n"
+-"                                 (uprawnienia), ownership (właściciel, "
+-"grupa),\n"
++"  -p                           to samo co --preserve=mode,ownership,timestamps\n"
++"      --preserve[=LISTA_ATR]   zachowanie podanych atrybutów (domyślnie: mode\n"
++"                                 (uprawnienia), ownership (właściciel, grupa),\n"
+ "                                 timestamps (czasy)); jeżeli możliwe, to\n"
+-"                                 również dodatkowych atrybutów: context, "
+-"links\n"
+-"                                 (dowiązania), xattr (rozszerzone "
+-"atrybuty),\n"
++"                                 również dodatkowych atrybutów: context, links\n"
++"                                 (dowiązania), xattr (rozszerzone atrybuty),\n"
+ "                                 all (wszystkie)\n"
  
- #: src/dd.c:1620
--#, fuzzy, c-format
-+#, c-format
- msgid "memory exhausted by output buffer of size %zu bytes (%s)"
--msgstr ""
--"nie udało się zaalokować %<PRIuMAX> bajtu bufora standardowego wejścia\n"
-+msgstr "pamieć wyczerpana przez bufor wyjściowy o rozmiarze %zu bajtów (%s)"
+ #: src/cp.c:202
+@@ -2231,40 +2167,33 @@
+ "  -R, -r, --recursive          copy directories recursively\n"
+ "      --reflink[=WHEN]         control clone/CoW copies. See below\n"
+ "      --remove-destination     remove each existing destination file before\n"
+-"                                 attempting to open it (contrast with --"
+-"force)\n"
++"                                 attempting to open it (contrast with --force)\n"
+ msgstr ""
+ "  -R, -r, --recursive          rekursywnie kopiowanie podkatalogów\n"
+-"      --reflink                ustawienia kopiowania CoW/clone. Zobacz "
+-"poniżej.\n"
+-"      --remove-destination     usunięcie każdego istniejącego pliku "
+-"docelowego\n"
++"      --reflink                ustawienia kopiowania CoW/clone. Zobacz poniżej.\n"
++"      --remove-destination     usunięcie każdego istniejącego pliku docelowego\n"
+ "                                 przed próbą jego otwarcia (por. z --force)\n"
  
- #: src/dd.c:1646
- #, c-format
-@@ -3556,7 +3553,6 @@
+ #: src/cp.c:212
+ msgid ""
+ "      --sparse=WHEN            control creation of sparse files. See below\n"
+-"      --strip-trailing-slashes  remove any trailing slashes from each "
+-"SOURCE\n"
++"      --strip-trailing-slashes  remove any trailing slashes from each SOURCE\n"
+ "                                 argument\n"
+ msgstr ""
+-"      --sparse=GDY             sterowanie tworzeniem plików rzadkich. "
+-"Zobacz\n"
++"      --sparse=GDY             sterowanie tworzeniem plików rzadkich. Zobacz\n"
+ "                                 poniżej.\n"
+-"      --strip-trailing-slashes  skasowanie ewentualnych końcowych ukośników "
+-"z\n"
++"      --strip-trailing-slashes  skasowanie ewentualnych końcowych ukośników z\n"
+ "                                 nazw argumentów ŹRÓDŁOWYCH\n"
+ 
+ #: src/cp.c:217
+ msgid ""
+ "  -s, --symbolic-link          make symbolic links instead of copying\n"
+ "  -S, --suffix=SUFFIX          override the usual backup suffix\n"
+-"  -t, --target-directory=DIRECTORY  copy all SOURCE arguments into "
+-"DIRECTORY\n"
++"  -t, --target-directory=DIRECTORY  copy all SOURCE arguments into DIRECTORY\n"
+ "  -T, --no-target-directory    treat DEST as a normal file\n"
+ msgstr ""
+ "  -s, --symbolic-link          dowiązywanie symboliczne zamiast kopiowania\n"
+-"  -S, --suffix=ROZSZERZENIE    zmiana domyślnego rozszerz. kopii zapasowej\n"
++"  -S, --suffix=ROZSZERZENIE    zmiana domyślnego ROZSZERZ. kopii zapasowej\n"
+ "  -t, --target-directory=KATALOG  skopiowanie wszystkich ŹRÓDEŁ do KATALOGU\n"
+ "  -T, --no-target-directory    traktowanie CELU jak zwykłego pliku\n"
+ 
+@@ -2288,48 +2217,38 @@
+ "By default, sparse SOURCE files are detected by a crude heuristic and the\n"
+ "corresponding DEST file is made sparse as well.  That is the behavior\n"
+ "selected by --sparse=auto.  Specify --sparse=always to create a sparse DEST\n"
+-"file whenever the SOURCE file contains a long enough sequence of zero "
+-"bytes.\n"
++"file whenever the SOURCE file contains a long enough sequence of zero bytes.\n"
+ "Use --sparse=never to inhibit creation of sparse files.\n"
+ "\n"
+ "When --reflink[=always] is specified, perform a lightweight copy, where the\n"
+-"data blocks are copied only when modified.  If this is not possible the "
+-"copy\n"
++"data blocks are copied only when modified.  If this is not possible the copy\n"
+ "fails, or if --reflink=auto is specified, fall back to a standard copy.\n"
+ msgstr ""
+ "\n"
+-"Domyślnie ŹRÓDŁOWE pliki rzadkie są wykrywane prostą heurystyką i "
+-"odpowiedni\n"
++"Domyślnie ŹRÓDŁOWE pliki rzadkie są wykrywane prostą heurystyką i odpowiedni\n"
+ "plik CEL jest tworzony też jako rzadki. Takie zachowanie jest wybierane\n"
+ "przez --sparse=auto. Podaj --sparse=always (zawsze) żeby utworzyć rzadki\n"
+-"plik CEL zawsze gdy plik ŹRÓDŁOWY zawiera wystarczająco długą sekwencję "
+-"zer.\n"
++"plik CEL zawsze gdy plik ŹRÓDŁOWY zawiera wystarczająco długą sekwencję zer.\n"
+ "Użyj --sparse=never (nigdy) żeby zakazać tworzenia plików rzadkich.\n"
+ "\n"
+-"Jeżeli podane jest --reflink[=always] zostanie wykonane lekkie kopiowanie, "
+-"co\n"
++"Jeżeli podane jest --reflink[=always] zostanie wykonane lekkie kopiowanie, co\n"
+ "oznacza, że bloki z danymi będą skopiowane w inne miejsce tylko gdy zostaną\n"
+-"później zmodyfikowane. Jeżeli takie kopiowanie nie jest możliwe, polecenie "
+-"nie\n"
++"później zmodyfikowane. Jeżeli takie kopiowanie nie jest możliwe, polecenie nie\n"
+ "wykona kopiowania i zwróci błąd. Jeżeli podane jest --reflink=auto, w razie\n"
+-"niemożności wykonania lekkiego kopiowania zostanie wykonane kopiowanie "
+-"zwykłe.\n"
++"niemożności wykonania lekkiego kopiowania zostanie wykonane kopiowanie zwykłe.\n"
+ 
+ #: src/cp.c:244 src/install.c:994 src/ln.c:381 src/mv.c:321
+ msgid ""
+ "\n"
+ "The backup suffix is `~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.\n"
+-"The version control method may be selected via the --backup option or "
+-"through\n"
++"The version control method may be selected via the --backup option or through\n"
+ "the VERSION_CONTROL environment variable.  Here are the values:\n"
+ "\n"
+ msgstr ""
+ "\n"
+ "Rozszerzenie nazwy kopii zapasowej to `~', jeżeli nie jest ustawione\n"
+-"inaczej przez --suffix albo SIMPLE_BACKUP_SUFFIX. Traktowanie wersji może "
+-"być\n"
+-"ustawione przez opcję --backup albo przez zmienną środowiska "
+-"VERSION_CONTROL.\n"
++"inaczej przez --suffix albo SIMPLE_BACKUP_SUFFIX. Traktowanie wersji może być\n"
++"ustawione przez opcję --backup albo przez zmienną środowiska VERSION_CONTROL.\n"
+ "Możliwe wartości:\n"
  "\n"
  
- #: src/df.c:712
--#, fuzzy
+@@ -2340,8 +2259,7 @@
+ "  existing, nil   numbered if numbered backups exist, simple otherwise\n"
+ "  simple, never   always make simple backups\n"
+ msgstr ""
+-"  none, off       nigdy nie są tworzone kopie zapasowe (nawet gdy jest "
+-"podana\n"
++"  none, off       nigdy nie są tworzone kopie zapasowe (nawet gdy jest podana\n"
+ "                  opcja --backup)\n"
+ "  numbered, t     tworzenie numerowanych kopii zapasowych\n"
+ "  existing, nil   numerowane jeżeli takie już istnieją, jeżeli nie - proste\n"
+@@ -2399,8 +2317,7 @@
+ #: src/cp.c:600 src/install.c:607 src/mv.c:443
+ #, c-format
+ msgid "cannot combine --target-directory (-t) and --no-target-directory (-T)"
+-msgstr ""
+-"nie można używać razem --target-directory (-t) i --no-target-directory (-T)"
++msgstr "nie można używać razem --target-directory (-t) i --no-target-directory (-T)"
+ 
+ #: src/cp.c:614 src/cp.c:1064 src/install.c:407 src/install.c:524
+ #: src/install.c:620 src/ln.c:119 src/ln.c:475 src/ln.c:531 src/mv.c:401
+@@ -2441,16 +2358,12 @@
+ #: src/cp.c:1148
+ #, c-format
+ msgid "cannot preserve security context without an SELinux-enabled kernel"
+-msgstr ""
+-"nie można zachować kontekstu bezpieczeństwa bez jądra systemu z włączonym "
+-"SELinuksem"
++msgstr "nie można zachować kontekstu bezpieczeństwa bez jądra systemu z włączonym SELinuksem"
+ 
+ #: src/cp.c:1154
+ #, c-format
+ msgid "cannot preserve extended attributes, cp is built without xattr support"
+-msgstr ""
+-"nie można zachować atrybutów rozszerzonych, cp jest zbudowane bez obsługi "
+-"xattr"
++msgstr "nie można zachować atrybutów rozszerzonych, cp jest zbudowane bez obsługi xattr"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/csplit.c:41 src/dd.c:48
+@@ -2553,9 +2466,9 @@
+ msgstr "błędne określenie konwersji w rozszerzeniu: \\%.3o"
+ 
+ #: src/csplit.c:1259
+-#, fuzzy, c-format
++#, c-format
+ msgid "invalid flags in conversion specification: %%%c%c"
+-msgstr "%.*s: błędna specyfikacja przekształcenia"
++msgstr "błędne flagi w specyfikacji przekształcenia: %%%c%c"
+ 
+ #: src/csplit.c:1276
+ #, c-format
+@@ -2583,8 +2496,7 @@
+ "and output byte counts of each piece to standard output.\n"
+ "\n"
+ msgstr ""
+-"Zapisanie kawałków PLIKU oddzielonych przez WZORCE do plików `xx01', "
+-"`xx02',\n"
++"Zapisanie kawałków PLIKU oddzielonych przez WZORCE do plików `xx01', `xx02',\n"
+ "..., i podanie na standardowym wyjściu liczby bajtów w każdym kawałku.\n"
+ "\n"
+ 
+@@ -2597,8 +2509,7 @@
+ msgstr ""
+ "  -b, --suffix-format=FORMAT użycie FORMATU sprintf zamiast %02d\n"
+ "  -f, --prefix=PRZEDROSTEK   użycie PRZEDROSTKA zamiast `xx'\n"
+-"  -k, --keep-files           bez kasowania plików wyjściowych w razie "
+-"błędów\n"
++"  -k, --keep-files           bez kasowania plików wyjściowych w razie błędów\n"
+ 
+ #: src/csplit.c:1459
  msgid ""
- "  -a, --all             include dummy file systems\n"
- "  -B, --block-size=SIZE  scale sizes by SIZE before printing them.  E.g.,\n"
-@@ -3567,8 +3563,10 @@
- "2G)\n"
+@@ -2607,8 +2518,7 @@
+ "  -z, --elide-empty-files    remove empty output files\n"
+ msgstr ""
+ "  -n, --digits=CYFRY         użycie podanej liczby CYFR zamiast dwóch\n"
+-"  -s, --quiet, --silent      bez podawania liczby bajtów w plikach "
+-"wyjściowych\n"
++"  -s, --quiet, --silent      bez podawania liczby bajtów w plikach wyjściowych\n"
+ "  -z, --elide-empty-files    usunięcie pustych plików wyjściowych\n"
+ 
+ #: src/csplit.c:1466
+@@ -2632,16 +2542,12 @@
+ "A line OFFSET is a required `+' or `-' followed by a positive integer.\n"
+ msgstr ""
+ "\n"
+-"  LICZBA_CAŁKOWITA         kopiowanie do podanej linii o numerze "
+-"LICZBA_CAŁKOWITA,\n"
++"  LICZBA_CAŁKOWITA         kopiowanie do podanej linii o numerze LICZBA_CAŁKOWITA,\n"
+ "                           oprócz tej linii\n"
+ "  /REGEXP/[PRZESUNIĘCIE]   kopiowanie do pasującej linii, oprócz tej linii\n"
+-"  %REGEXP%[PRZESUNIĘCIE]   przeskoczenie do pasującej linii, ale bez niej "
+-"samej\n"
+-"  {LICZBA_CAŁKOWITA}       powtórzenie poprzedniego wzorca podaną liczbę "
+-"razy\n"
+-"  {*}                      powtórzenie poprzedniego wzorca tyle razy ile się "
+-"da\n"
++"  %REGEXP%[PRZESUNIĘCIE]   przeskoczenie do pasującej linii, ale bez niej samej\n"
++"  {LICZBA_CAŁKOWITA}       powtórzenie poprzedniego wzorca podaną liczbę razy\n"
++"  {*}                      powtórzenie poprzedniego wzorca tyle razy ile się da\n"
+ "\n"
+ "PRZESUNIĘCIE linii musi się składać z `+' albo `-' oraz liczby całkowitej.\n"
+ 
+@@ -2675,8 +2581,7 @@
+ msgstr ""
+ "  -b, --bytes=LISTA       wypisanie tylko tych bajtów\n"
+ "  -c, --characters=LISTA  wypisanie tylko tych znaków\n"
+-"  -d, --delimiter=OGRANICZNIK  użycie OGRANICZNIKA zamiast TABa jako "
+-"separatora\n"
++"  -d, --delimiter=OGRANICZNIK  użycie OGRANICZNIKA zamiast TABa jako separatora\n"
+ 
+ #: src/cut.c:206
+ msgid ""
+@@ -2686,8 +2591,7 @@
+ "  -n                      (ignored)\n"
+ msgstr ""
+ "  -f, --fields=LISTA      wypisanie tylko tych pól oraz linii, które nie\n"
+-"                            zawierają znaku ogranicznika, chyba że podana "
+-"jest\n"
++"                            zawierają znaku ogranicznika, chyba że podana jest\n"
+ "                            opcja -s\n"
+ "  -n                      (ignorowane)\n"
+ 
+@@ -2696,8 +2600,7 @@
+ "      --complement        complement the set of selected bytes, characters\n"
+ "                            or fields\n"
+ msgstr ""
+-"      --complement        użycie dopełnienia zbioru wybranych bajtów, "
+-"znaków\n"
++"      --complement        użycie dopełnienia zbioru wybranych bajtów, znaków\n"
+ "                            albo pól\n"
+ 
+ #: src/cut.c:216
+@@ -2706,8 +2609,7 @@
+ "      --output-delimiter=STRING  use STRING as the output delimiter\n"
+ "                            the default is to use the input delimiter\n"
+ msgstr ""
+-"  -s, --only-delimited    bez wypisywania linii nie zawierających "
+-"ogranicznika\n"
++"  -s, --only-delimited    bez wypisywania linii nie zawierających ogranicznika\n"
+ "      --output-delimiter=NAPIS  użycie NAPISU jako separatora danych\n"
+ "                            wyjściowych, domyślnie używany jest separator\n"
+ "                            danych wejściowych\n"
+@@ -2816,10 +2718,8 @@
+ "  -d, --date=STRING         display time described by STRING, not `now'\n"
+ "  -f, --file=DATEFILE       like --date once for each line of DATEFILE\n"
+ msgstr ""
+-"Wypisanie bieżącego czasu w podanym formacie albo ustawienie czasu "
+-"systemowego.\n"
+-"  -d, --date=SPECYFIKACJA   wypisanie czasu podanego przez SPECYFIKACJĘ, "
+-"nie\n"
++"Wypisanie bieżącego czasu w podanym formacie albo ustawienie czasu systemowego.\n"
++"  -d, --date=SPECYFIKACJA   wypisanie czasu podanego przez SPECYFIKACJĘ, nie\n"
+ "                              bieżącego (now)\n"
+ "  -f, --file=PLIKDAT        jak --date, dla każdej linii PLIKUDAT\n"
+ 
+@@ -2983,8 +2883,7 @@
+ "  %z   +hhmm numeric time zone (e.g., -0400)\n"
+ "  %:z  +hh:mm numeric time zone (e.g., -04:00)\n"
+ "  %::z  +hh:mm:ss numeric time zone (e.g., -04:00:00)\n"
+-"  %:::z  numeric time zone with : to necessary precision (e.g., -04, "
+-"+05:30)\n"
++"  %:::z  numeric time zone with : to necessary precision (e.g., -04, +05:30)\n"
+ "  %Z   alphabetic time zone abbreviation (e.g., EDT)\n"
+ "\n"
+ "By default, date pads numeric fields with zeroes.\n"
+@@ -2992,8 +2891,7 @@
+ "  %z   strefa czasowa liczbowo +hhmm (np. -0400)\n"
+ "  %:z  strefa czasowa liczbowo +hh:mm (np. -04:00)\n"
+ "  %::z  strefa czasowa liczbowo +hh:mm:ss (np. -04:00:00)\n"
+-"  %:::z  strefa czasowa liczbowo z : dla sprecyzowania dokładności (np. "
+-"-04,\n"
++"  %:::z  strefa czasowa liczbowo z : dla sprecyzowania dokładności (np. -04,\n"
+ "         +05:30)\n"
+ "  %Z   literowy skrót strefy czasowej (np. EDT)\n"
+ "\n"
+@@ -3026,8 +2924,7 @@
+ "O to use the locale's alternate numeric symbols if available.\n"
+ msgstr ""
+ "\n"
+-"Po dowolnej fladze może opcjonalnie wystąpić szerokość pola w postaci "
+-"liczby\n"
++"Po dowolnej fladze może opcjonalnie wystąpić szerokość pola w postaci liczby\n"
+ "dziesiętnej, potem opcjonalny modyfikator:\n"
+ "E - żeby użyć alternatywnej reprezentacji lokalnej albo\n"
+ "O - żeby użyć alternatywnych symboli numerycznych, jeżeli są dostepne\n"
+@@ -3208,8 +3105,7 @@
+ "\n"
+ "Each FLAG symbol may be:\n"
+ "\n"
+-"  append    append mode (makes sense only for output; conv=notrunc "
+-"suggested)\n"
++"  append    append mode (makes sense only for output; conv=notrunc suggested)\n"
+ msgstr ""
+ "\n"
+ "Do FLAG należą:\n"
+@@ -3477,12 +3373,8 @@
+ 
+ #: src/dd.c:1921
+ #, c-format
+-msgid ""
+-"offset too large: cannot truncate to a length of seek=%<PRIuMAX> (%lu-byte) "
+-"blocks"
+-msgstr ""
+-"za duża wartośc pozycji w pliku: nie można obciąć pliku do długości seek="
+-"%<PRIuMAX> (%lu bajtowych) bloków"
++msgid "offset too large: cannot truncate to a length of seek=%<PRIuMAX> (%lu-byte) blocks"
++msgstr "za duża wartośc pozycji w pliku: nie można obciąć pliku do długości seek=%<PRIuMAX> (%lu bajtowych) bloków"
+ 
+ #: src/dd.c:1942
+ #, c-format
+@@ -3543,8 +3435,7 @@
+ "or all file systems by default.\n"
+ "\n"
+ msgstr ""
+-"Pokazuje informacje o systemie plików, w którym jest każdy z PLIKÓW, "
+-"domyślnie\n"
++"Pokazuje informacje o systemie plików, w którym jest każdy z PLIKÓW, domyślnie\n"
+ "o wszystkich systemach plików.\n"
+ "\n"
+ 
+@@ -3555,8 +3446,7 @@
+ "                           `-BM' prints sizes in units of 1,048,576 bytes.\n"
+ "                           See SIZE format below.\n"
+ "      --total           produce a grand total\n"
+-"  -h, --human-readable  print sizes in human readable format (e.g., 1K 234M "
+-"2G)\n"
++"  -h, --human-readable  print sizes in human readable format (e.g., 1K 234M 2G)\n"
  "  -H, --si              likewise, but use powers of 1000 not 1024\n"
  msgstr ""
--"  -a, --all             pokazanie specjalnych systemów plików\n"
--"  -B, --block-size=ROZMIAR  użycie bloków o podanym ROZMIARZE w bajtach\n"
-+"  -a, --all             pokazanie też specjalnych systemów plików\n"
-+"  -B, --block-size=ROZMIAR  Skala rozmiarów, np. `-BM' powoduje wypisanie\n"
-+"                           rozmiarów w jednostkach po 1048576 bajtów.\n"
-+"                           Zobacz infomacje o formacie ROZMIARÓW poniżej.\n"
+ "  -a, --all             pokazanie też specjalnych systemów plików\n"
+@@ -3564,8 +3454,7 @@
+ "                           rozmiarów w jednostkach po 1048576 bajtów.\n"
+ "                           Zobacz infomacje o formacie ROZMIARÓW poniżej.\n"
  "      --total           wypisanie podsumowania całości\n"
- "  -h, --human-readable  rozmiary w formacie czytelnym dla ludzi (np. 1K 234M "
- "2G)\n"
-@@ -3704,19 +3702,18 @@
- "    albo: %s OPCJA\n"
+-"  -h, --human-readable  rozmiary w formacie czytelnym dla ludzi (np. 1K 234M "
+-"2G)\n"
++"  -h, --human-readable  rozmiary w formacie czytelnym dla ludzi (np. 1K 234M 2G)\n"
+ "  -H, --si              podobnie, ale z użyciem potęg 1000, nie 1024\n"
  
- #: src/dirname.c:50
--#, fuzzy
- msgid ""
- "Output NAME with its last non-slash component and trailing slashes removed;\n"
- "if NAME contains no /'s, output `.' (meaning the current directory).\n"
- "\n"
+ #: src/df.c:721
+@@ -3573,8 +3462,7 @@
+ "  -i, --inodes          list inode information instead of block usage\n"
+ "  -k                    like --block-size=1K\n"
+ "  -l, --local           limit listing to local file systems\n"
+-"      --no-sync         do not invoke sync before getting usage info "
+-"(default)\n"
++"      --no-sync         do not invoke sync before getting usage info (default)\n"
  msgstr ""
--"Wyświetlenie NAZWY bez ostatniego /składnika; jeśli NAZWA nie zawiera "
--"znaków\n"
--"`/', wyświetla `.' (co oznacza katalog bieżący).\n"
-+"Wyświetlenie NAZWY bez ostatniego składnika bez ukośnika albo bez końcowego\n"
-+"ukośnika; jeśli NAZWA nie zawiera znaków `/', wyświetlenie `.' (co oznacza\n"
-+"katalog bieżący).\n"
- "\n"
+ "  -i, --inodes          wypisanie informacji o i-węzłach zamiast o blokach\n"
+ "  -k                    jak --block-size=1K\n"
+@@ -3680,8 +3568,7 @@
  
- #: src/dirname.c:57
--#, fuzzy, c-format
-+#, c-format
+ #: src/dircolors.c:451
+ msgid "file operands cannot be combined with --print-database (-p)"
+-msgstr ""
+-"argumenty plikowe nie mogą być użyte razem z opcją --print-database (-p)."
++msgstr "argumenty plikowe nie mogą być użyte razem z opcją --print-database (-p)."
+ 
+ #: src/dircolors.c:474
+ #, c-format
+@@ -3741,20 +3628,16 @@
+ #: src/du.c:268
  msgid ""
- "\n"
- "Examples:\n"
-@@ -3725,7 +3722,7 @@
+ "  -a, --all             write counts for all files, not just directories\n"
+-"      --apparent-size   print apparent sizes, rather than disk usage; "
+-"although\n"
++"      --apparent-size   print apparent sizes, rather than disk usage; although\n"
+ "                          the apparent size is usually smaller, it may be\n"
+ "                          larger due to holes in (`sparse') files, internal\n"
+ "                          fragmentation, indirect blocks, and the like\n"
  msgstr ""
- "\n"
- "Przykłady:\n"
--"  %s /usr/bin/sort  Wynik: \"/usr/bin\".\n"
-+"  %s /usr/bin/      Wynik: \"/usr\".\n"
- "  %s stdio.h        Wynik: \".\".\n"
- 
- #: src/du.c:257 src/sort.c:378 src/wc.c:113
-@@ -3765,7 +3762,6 @@
+-"  -a, --all             podanie podliczenia dla plików, nie samych "
+-"katalogów\n"
++"  -a, --all             podanie podliczenia dla plików, nie samych katalogów\n"
+ "      --apparent-size   podanie rozmiarów pozornych zamiast zużycia dysku;\n"
+-"                          chociaż rozmiar pozorny jest zwykle mniejszy, "
+-"może\n"
++"                          chociaż rozmiar pozorny jest zwykle mniejszy, może\n"
+ "                          być też większy z powodu dziur (plików rzadkich -\n"
+-"                          sparse), wewnętrznej fragmentacji, bloków "
+-"pośrednich\n"
++"                          sparse), wewnętrznej fragmentacji, bloków pośrednich\n"
  "                          itp.\n"
  
  #: src/du.c:275
--#, fuzzy
- msgid ""
- "  -B, --block-size=SIZE  scale sizes by SIZE before printing them.  E.g.,\n"
- "                           `-BM' prints sizes in units of 1,048,576 bytes.\n"
-@@ -3775,7 +3771,9 @@
- "  -D, --dereference-args  dereference only symlinks that are listed on the\n"
- "                          command line\n"
+@@ -3781,18 +3664,15 @@
+ "                          names specified in file F;\n"
+ "                          If F is - then read names from standard input\n"
+ "  -H                    equivalent to --dereference-args (-D)\n"
+-"  -h, --human-readable  print sizes in human readable format (e.g., 1K 234M "
+-"2G)\n"
++"  -h, --human-readable  print sizes in human readable format (e.g., 1K 234M 2G)\n"
+ "      --si              like -h, but use powers of 1000 not 1024\n"
  msgstr ""
--"  -B, --block-size=ROZM  użycie bloków o podanym ROZMIARZE w bajtach\n"
-+"  -B, --block-size=ROZMIAR  Skala rozmiarów, np. `-BM' powoduje wypisanie\n"
-+"                           rozmiarów w jednostkach po 1048576 bajtów.\n"
-+"                           Zobacz infomacje o formacie ROZMIARÓW poniżej.\n"
- "  -b, --bytes           równoważne `--apparent-size --block-size=1'\n"
- "  -c, --total           wypisanie podsumowania całości\n"
- "  -D, --dereference-args  rozwijanie dowiązań symbolicznych podanych jako\n"
-@@ -3830,7 +3828,6 @@
- "  -s, --summarize       wypisanie tylko podsumowań dla każdego argumentu\n"
+ "      --files0-from=PLIK  podsumowanie zajętości dysku przez pliki podane w\n"
+ "                          PLIKU (nazwy zakończone przez NUL)\n"
+-"                          Jeżeli PLIK to -, nazwy czytane są ze "
+-"standardowego\n"
++"                          Jeżeli PLIK to -, nazwy czytane są ze standardowego\n"
+ "                          wejścia\n"
+ "  -H                    to samo co --dereference-args (-D)\n"
+-"  -h, --human-readable  rozmiary w formacie czytelnym dla ludzi (np. 1K "
+-"234M\n"
++"  -h, --human-readable  rozmiary w formacie czytelnym dla ludzi (np. 1K 234M\n"
+ "                          2G)\n"
+ "      --si              podobnie, ale z użyciem potęg 1000, nie 1024\n"
  
- #: src/du.c:304
--#, fuzzy
+@@ -3810,10 +3690,8 @@
+ #: src/du.c:297
  msgid ""
+ "  -L, --dereference     dereference all symbolic links\n"
+-"  -P, --no-dereference  don't follow any symbolic links (this is the "
+-"default)\n"
+-"  -0, --null            end each output line with 0 byte rather than "
+-"newline\n"
++"  -P, --no-dereference  don't follow any symbolic links (this is the default)\n"
++"  -0, --null            end each output line with 0 byte rather than newline\n"
+ "  -S, --separate-dirs   do not include size of subdirectories\n"
+ "  -s, --summarize       display only a total for each argument\n"
+ msgstr ""
+@@ -3828,8 +3706,7 @@
  "  -x, --one-file-system    skip directories on different file systems\n"
  "  -X, --exclude-from=FILE  exclude files that match any pattern in FILE\n"
-@@ -3845,7 +3842,7 @@
- "                          plików\n"
- "  -X --exclude-from=PLIK  pominięcie plików pasujących do wzorców w PLIKU\n"
- "      --exclude=WZÓR      pominięcie plików pasujących do WZORU\n"
--"      --max-depth=N     wypisanie podsumowania dla katalogu (lub pliku -\n"
-+"  -d, --max-depth=N     wypisanie podsumowania dla katalogu (lub pliku -\n"
- "                          z --all) tylko jeżeli jest N lub mniej poziomów\n"
- "                          poniżej podanego jako argument komendy;\n"
- "                          --max-depth=0 jest tym samym co -summarize\n"
-@@ -5231,29 +5228,29 @@
- msgstr "%s: zastąpić %s? "
+ "      --exclude=PATTERN    exclude files that match PATTERN\n"
+-"  -d, --max-depth=N     print the total for a directory (or file, with --"
+-"all)\n"
++"  -d, --max-depth=N     print the total for a directory (or file, with --all)\n"
+ "                          only if it is N or fewer levels below the command\n"
+ "                          line argument;  --max-depth=0 is the same as\n"
+ "                          --summarize\n"
+@@ -3845,8 +3722,7 @@
  
- #: src/ln.c:307
--#, fuzzy, c-format
-+#, c-format
- msgid "failed to create symbolic link %s"
--msgstr "nie można utworzyć dowiązania symbolicznego %s"
-+msgstr "nie udało się utworzyć dowiązania symbolicznego %s"
+ #: src/du.c:313
+ msgid ""
+-"      --time            show time of the last modification of any file in "
+-"the\n"
++"      --time            show time of the last modification of any file in the\n"
+ "                          directory, or any of its subdirectories\n"
+ "      --time=WORD       show time as WORD instead of modification time:\n"
+ "                          atime, access, use, ctime or status\n"
+@@ -3854,10 +3730,8 @@
+ "                          full-iso, long-iso, iso, +FORMAT\n"
+ "                          FORMAT is interpreted like `date'\n"
+ msgstr ""
+-"      --time            pokazanie czasu ostatniej modyfikacji dowolnego "
+-"pliku\n"
+-"                          w katalogu albo dowolnego podkatalogu tego "
+-"katalogu\n"
++"      --time            pokazanie czasu ostatniej modyfikacji dowolnego pliku\n"
++"                          w katalogu albo dowolnego podkatalogu tego katalogu\n"
+ "      --time=SŁOWO      zamiast czasu modyfikacji pokazuje czas wg SŁOWA:\n"
+ "                          atime, access, use, ctime albo status\n"
+ "      --time-style=STYL  pokazanie czasu w STYLU:\n"
+@@ -3886,8 +3760,7 @@
  
- #: src/ln.c:308
--#, fuzzy, c-format
-+#, c-format
- msgid "failed to create symbolic link %s -> %s"
--msgstr "nie można utworzyć dowiązania symbolicznego %s do %s"
-+msgstr "nie udało się utworzyć dowiązania symbolicznego %s -> %s"
+ #: src/du.c:874 src/sort.c:4378 src/wc.c:667
+ msgid "file operands cannot be combined with --files0-from"
+-msgstr ""
+-"nie można podawać argumentów plikowych i opcji --files0-from równocześnie"
++msgstr "nie można podawać argumentów plikowych i opcji --files0-from równocześnie"
  
- #: src/ln.c:310
--#, fuzzy, c-format
-+#, c-format
- msgid "failed to create hard link to %.0s%s"
--msgstr "tworzenie dowiązania zwykłego %.0s%s"
-+msgstr "nie udało się utworzyć dowiązania zwykłego do %.0s%s"
- 
- #: src/ln.c:313
--#, fuzzy, c-format
-+#, c-format
- msgid "failed to create hard link %s"
--msgstr "nie można utworzyć dowiązania zwykłego %s do %s"
-+msgstr "nie udało się utworzyć dowiązania zwykłego %s"
- 
- #: src/ln.c:314
--#, fuzzy, c-format
-+#, c-format
- msgid "failed to create hard link %s => %s"
--msgstr "nie można utworzyć dowiązania zwykłego %s do %s"
-+msgstr "nie udało się utworzyć dowiązania zwykłego %s => %s"
- 
- #: src/ln.c:336
+ #: src/du.c:927 src/md5sum.c:557 src/od.c:903 src/tac.c:239 src/tac.c:350
+ #: src/tac.c:481 src/tac.c:557 src/wc.c:729
+@@ -4013,8 +3886,7 @@
+ #: src/env.c:53
  #, c-format
-@@ -5509,7 +5506,6 @@
+ msgid "Usage: %s [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]\n"
+-msgstr ""
+-"Składnia: %s [OPCJA]... [-] [NAZWA=WARTOŚĆ]... [POLECENIE [ARGUMENT]...]\n"
++msgstr "Składnia: %s [OPCJA]... [-] [NAZWA=WARTOŚĆ]... [POLECENIE [ARGUMENT]...]\n"
+ 
+ #: src/env.c:56
+ msgid ""
+@@ -4038,8 +3910,7 @@
+ "A mere - implies -i.  If no COMMAND, print the resulting environment.\n"
+ msgstr ""
+ "\n"
+-"Argument - implikuje -i. Jeśli nie podano POLECENIA, wyświetla otrzymane "
+-"środowisko.\n"
++"Argument - implikuje -i. Jeśli nie podano POLECENIA, wyświetla otrzymane środowisko.\n"
+ 
+ #: src/env.c:121
+ #, c-format
+@@ -4062,8 +3933,7 @@
+ "With no FILE, or when FILE is -, read standard input.\n"
+ "\n"
+ msgstr ""
+-"Zamiana TAB-ów we wszystkich PLIKACH na spacje, wynik na standardowym "
+-"wyjściu.\n"
++"Zamiana TAB-ów we wszystkich PLIKACH na spacje, wynik na standardowym wyjściu.\n"
+ "Jeżeli PLIK nie jest podany albo podany jako  -, czytane jest standardowe\n"
+ "wejście.\n"
+ "\n"
+@@ -4073,15 +3943,12 @@
+ "  -i, --initial       do not convert tabs after non blanks\n"
+ "  -t, --tabs=NUMBER   have tabs NUMBER characters apart, not 8\n"
+ msgstr ""
+-"  -i, --initial       bez zamiany znaków tabulacji po znaku innym niż "
+-"odstęp\n"
++"  -i, --initial       bez zamiany znaków tabulacji po znaku innym niż odstęp\n"
+ "  -t, --tabs=ILE      użycie znaków tabulacji co ILE znaków, nie co 8\n"
+ 
+ #: src/expand.c:121
+-msgid ""
+-"  -t, --tabs=LIST     use comma separated list of explicit tab positions\n"
+-msgstr ""
+-"  -t, --tabs=LISTA    użycie listy pozycji TABów oddzielanych przecinkami\n"
++msgid "  -t, --tabs=LIST     use comma separated list of explicit tab positions\n"
++msgstr "  -t, --tabs=LISTA    użycie listy pozycji TABów oddzielanych przecinkami\n"
+ 
+ #: src/expand.c:174 src/unexpand.c:193
+ #, c-format
+@@ -4144,8 +4011,7 @@
+ "\n"
+ "  ARG1 | ARG2       ARG1 jeśli nie jest pusty ani równy 0, inaczej ARG2\n"
+ "\n"
+-"  ARG1 & ARG2       ARG1 jeśli żaden argument nie jest pusty ani 0, inaczej "
+-"0\n"
++"  ARG1 & ARG2       ARG1 jeśli żaden argument nie jest pusty ani 0, inaczej 0\n"
+ 
+ #: src/expr.c:221
+ msgid ""
+@@ -4225,30 +4091,25 @@
+ "Beware that many operators need to be escaped or quoted for shells.\n"
+ "Comparisons are arithmetic if both ARGs are numbers, else lexicographical.\n"
+ "Pattern matches return the string matched between \\( and \\) or null; if\n"
+-"\\( and \\) are not used, they return the number of characters matched or "
+-"0.\n"
++"\\( and \\) are not used, they return the number of characters matched or 0.\n"
+ msgstr ""
+ "\n"
+ "Większość operatorów musi być chroniona przed interpretacją przez powłokę\n"
+ "znakiem `\\' lub cudzysłowami. Porównania są arytmetyczne, jeśli obydwa\n"
+ "ARGUMENTY są liczbami, w przeciwnym wypadku - leksykograficzne.\n"
+ "Dopasowania zwracają napis zgodny ze wzorcem zawartym pomiędzy \\( i \\)\n"
+-"lub 0; jeśli \\( i \\) nie zostały użyte, dopasowanie zwraca liczbę "
+-"zgodnych\n"
++"lub 0; jeśli \\( i \\) nie zostały użyte, dopasowanie zwraca liczbę zgodnych\n"
+ "znaków lub 0.\n"
+ 
+ #: src/expr.c:265
+ msgid ""
+ "\n"
+-"Exit status is 0 if EXPRESSION is neither null nor 0, 1 if EXPRESSION is "
+-"null\n"
++"Exit status is 0 if EXPRESSION is neither null nor 0, 1 if EXPRESSION is null\n"
+ "or 0, 2 if EXPRESSION is syntactically invalid, and 3 if an error occurred.\n"
+ msgstr ""
+ "\n"
+-"Status wyjściowy jest zerem jeżeli WYRAŻENIE nie ma wartości null ani 0, 1 "
+-"-\n"
+-"jeżeli WYRAŻENIE ma wartośc null albo 0, 2 - jeżeli WYRAŻENIE ma błąd "
+-"składni,\n"
++"Status wyjściowy jest zerem jeżeli WYRAŻENIE nie ma wartości null ani 0, 1 -\n"
++"jeżeli WYRAŻENIE ma wartośc null albo 0, 2 - jeżeli WYRAŻENIE ma błąd składni,\n"
+ "3 - jeżeli został wykryty inny błąd\n"
+ 
+ #: src/expr.c:279
+@@ -4361,10 +4222,8 @@
+ "  -s, --split-only          split long lines, but do not refill\n"
+ msgstr ""
+ "  -c, --crown-margin        zachowanie wcięć w pierwszych dwóch liniach\n"
+-"  -p, --prefix=ZNAKI        przeformatowanie tylko linii mających "
+-"przedrostek\n"
+-"                              ZNAKI, dołączenie ZNAKÓW do przeformatowych "
+-"linii\n"
++"  -p, --prefix=ZNAKI        przeformatowanie tylko linii mających przedrostek\n"
++"                              ZNAKI, dołączenie ZNAKÓW do przeformatowych linii\n"
+ "  -s, --split-only          podzielenie długich linii, ale bez wyrównania\n"
+ 
+ #: src/fmt.c:286
+@@ -4374,10 +4233,8 @@
+ "  -w, --width=WIDTH         maximum line width (default of 75 columns)\n"
+ msgstr ""
+ "  -t, --tagged-paragraph    wcięcie pierwszej linii inne niż drugiej\n"
+-"  -u, --uniform-spacing     jedna spacja między słowami, dwie między "
+-"zdaniami\n"
+-"  -w, --width=ILE           maksymalna szerokość linii (domyślnie 75 "
+-"kolumn)\n"
++"  -u, --uniform-spacing     jedna spacja między słowami, dwie między zdaniami\n"
++"  -w, --width=ILE           maksymalna szerokość linii (domyślnie 75 kolumn)\n"
+ 
+ #: src/fmt.c:355
+ #, c-format
+@@ -4385,8 +4242,7 @@
+ "invalid option -- %c; -WIDTH is recognized only when it is the first\n"
+ "option; use -w N instead"
+ msgstr ""
+-"błędna opcja -- %c; opcja -WIDTH jest rozpoznawana tylko jako pierwsza, "
+-"użyj\n"
++"błędna opcja -- %c; opcja -WIDTH jest rozpoznawana tylko jako pierwsza, użyj\n"
+ "-w N zamiast"
+ 
+ #: src/fmt.c:397
+@@ -4460,8 +4316,7 @@
+ 
+ #: src/groups.c:55
+ msgid ""
+-"Print group memberships for each USERNAME or, if no USERNAME is specified, "
+-"for\n"
++"Print group memberships for each USERNAME or, if no USERNAME is specified, for\n"
+ "the current process (which may differ if the groups database has changed).\n"
+ msgstr ""
+ "Wypisuje przynależność do grup każdego UŻYTKOWNIKA, a gdy UŻYTKOWNIK nie\n"
+@@ -4610,8 +4465,7 @@
+ #: src/hostname.c:98
+ #, c-format
+ msgid "cannot set hostname; this system lacks the functionality"
+-msgstr ""
+-"ustawienie nazwy systemu jest niemożliwe; ten system nie ma takiej możliwości"
++msgstr "ustawienie nazwy systemu jest niemożliwe; ten system nie ma takiej możliwości"
+ 
+ #: src/hostname.c:106
+ #, c-format
+@@ -4644,10 +4498,8 @@
+ "Wyświetla informację o UŻYTKOWNIKU lub o aktualnym użytkowniku albo\n"
+ "o bieżącym użytkowniku, jeżeli nie podano identyfikatora.\n"
+ "\n"
+-"  -a              ignorowane, dla zachowania kompatybilności z innymi "
+-"wersjami\n"
+-"  -Z, --context   wypisanie tylko kontekstu bezpieczeństwa bieżącego "
+-"użytkownika\n"
++"  -a              ignorowane, dla zachowania kompatybilności z innymi wersjami\n"
++"  -Z, --context   wypisanie tylko kontekstu bezpieczeństwa bieżącego użytkownika\n"
+ "  -g, --group     wypisanie tylko efektywnego identyfikatora grupy\n"
+ "  -G, --groups    wypisanie pełnej listy grup\n"
+ "  -n, --name      wypisanie nazw zamiast numerów, dla -ugG\n"
+@@ -4666,14 +4518,12 @@
+ #: src/id.c:141
+ #, c-format
+ msgid "--context (-Z) works only on an SELinux-enabled kernel"
+-msgstr ""
+-"opcja --context (-Z) działa tylko z jądrem systemu z włączonym SELinuksem."
++msgstr "opcja --context (-Z) działa tylko z jądrem systemu z włączonym SELinuksem."
+ 
+ #: src/id.c:175
+ #, c-format
+ msgid "cannot print security context when user specified"
+-msgstr ""
+-"nie można wypisać kontekstu bezpieczeństwa gdy został podany użytkownik"
++msgstr "nie można wypisać kontekstu bezpieczeństwa gdy został podany użytkownik"
+ 
+ #: src/id.c:184
+ #, c-format
+@@ -4688,8 +4538,7 @@
+ #: src/id.c:192
+ #, c-format
+ msgid "cannot print only names or real IDs in default format"
+-msgstr ""
+-"nie da się wypisać tylko nazw lub rzeczywistych ID w domyślnym formacie"
++msgstr "nie da się wypisać tylko nazw lub rzeczywistych ID w domyślnym formacie"
+ 
+ #: src/id.c:249
+ #, c-format
+@@ -4732,25 +4581,18 @@
+ 
+ #: src/install.c:534
+ #, c-format
+-msgid ""
+-"WARNING: --preserve_context is deprecated; use --preserve-context instead"
+-msgstr ""
+-"UWAGA: opcja --preserve_context jest przestarzała, zamiast niej używaj --"
+-"preserve-context"
++msgid "WARNING: --preserve_context is deprecated; use --preserve-context instead"
++msgstr "UWAGA: opcja --preserve_context jest przestarzała, zamiast niej używaj --preserve-context"
+ 
+ #: src/install.c:540
+ #, c-format
+-msgid ""
+-"WARNING: ignoring --preserve-context; this kernel is not SELinux-enabled"
+-msgstr ""
+-"UWAGA: zignorowana opcja --preserve-context, to jądro nie ma włączonego "
+-"SELinuksa"
++msgid "WARNING: ignoring --preserve-context; this kernel is not SELinux-enabled"
++msgstr "UWAGA: zignorowana opcja --preserve-context, to jądro nie ma włączonego SELinuksa"
+ 
+ #: src/install.c:550
+ #, c-format
+ msgid "WARNING: ignoring --context (-Z); this kernel is not SELinux-enabled"
+-msgstr ""
+-"UWAGA: zignorowana opcja --context (-Z), to jądro nie ma włączonego SELinuksa"
++msgstr "UWAGA: zignorowana opcja --context (-Z), to jądro nie ma włączonego SELinuksa"
+ 
+ #: src/install.c:567
+ #, c-format
+@@ -4765,8 +4607,7 @@
+ #: src/install.c:574
+ #, c-format
+ msgid "cannot force target context to %s and preserve it"
+-msgstr ""
+-"nie można wymusić ustawienia kontekstu pliku docelowego na %s i go zachować"
++msgstr "nie można wymusić ustawienia kontekstu pliku docelowego na %s i go zachować"
+ 
+ #: src/install.c:628 src/mkdir.c:203 src/stdbuf.c:327
+ #, c-format
+@@ -4776,9 +4617,7 @@
+ #: src/install.c:635
+ #, c-format
+ msgid "WARNING: ignoring --strip-program option as -s option was not specified"
+-msgstr ""
+-"UWAGA: opcja --strip-program została zignorowana, bo nie została podana "
+-"opcja -s"
++msgstr "UWAGA: opcja --strip-program została zignorowana, bo nie została podana opcja -s"
+ 
+ #: src/install.c:640
+ #, c-format
+@@ -4792,12 +4631,8 @@
+ 
+ #: src/install.c:653
+ #, c-format
+-msgid ""
+-"the --compare (-C) option is ignored when you specify a mode with non-"
+-"permission bits"
+-msgstr ""
+-"opcja --compare (-C) jest ignorowana jeżeli został podany tryb z bitami nie "
+-"będącymi bitami praw dostępu"
++msgid "the --compare (-C) option is ignored when you specify a mode with non-permission bits"
++msgstr "opcja --compare (-C) jest ignorowana jeżeli został podany tryb z bitami nie będącymi bitami praw dostępu"
+ 
+ #: src/install.c:805
+ #, c-format
+@@ -4857,8 +4692,7 @@
+ "\n"
+ "This install program copies files (often just compiled) into destination\n"
+ "locations you choose.  If you want to download and install a ready-to-use\n"
+-"package on a GNU/Linux system, you should instead be using a package "
+-"manager\n"
++"package on a GNU/Linux system, you should instead be using a package manager\n"
+ "like yum(1) or apt-get(1).\n"
+ "\n"
+ "In the first three forms, copy SOURCE to DEST or multiple SOURCE(s) to\n"
+@@ -4867,18 +4701,13 @@
+ "\n"
+ msgstr ""
+ "\n"
+-"Program install kopiuje pliki (często dopiero co skompilowane) do "
+-"docelowych\n"
+-"lokalizacji wybranych przez użytkownika. Zamiast programu install można "
+-"użyć\n"
+-"programu do zarządzania pakietami takiego jak np. yum(1) albo apt-get(1), "
+-"który\n"
++"Program install kopiuje pliki (często dopiero co skompilowane) do docelowych\n"
++"lokalizacji wybranych przez użytkownika. Zamiast programu install można użyć\n"
++"programu do zarządzania pakietami takiego jak np. yum(1) albo apt-get(1), który\n"
+ "może skopiować z sieci i zainstalować gotowy do użytku pakiet programów.\n"
+ "\n"
+-"W pierwszych trzech formatach kopiowane jest ŹRÓDŁO do CELU lub wiele "
+-"ŹRÓDEŁ\n"
+-"do istniejącego KATALOGU i ustawiane są uprawnienia oraz właściciel i "
+-"grupa.\n"
++"W pierwszych trzech formatach kopiowane jest ŹRÓDŁO do CELU lub wiele ŹRÓDEŁ\n"
++"do istniejącego KATALOGU i ustawiane są uprawnienia oraz właściciel i grupa.\n"
+ "W czwartym formacie tworzone są wszystkie katalogi składowe podanej ścieżki\n"
+ "KATALOGU/ÓW.\n"
+ "\n"
+@@ -4888,8 +4717,7 @@
+ "      --backup[=CONTROL]  make a backup of each existing destination file\n"
+ "  -b                  like --backup but does not accept an argument\n"
+ "  -c                  (ignored)\n"
+-"  -C, --compare       compare each pair of source and destination files, "
+-"and\n"
++"  -C, --compare       compare each pair of source and destination files, and\n"
+ "                        in some cases, do not modify the destination at all\n"
+ "  -d, --directory     treat all arguments as directory names; create all\n"
+ "                        components of the specified directories\n"
+@@ -4900,38 +4728,31 @@
+ "  -C, --compare       porównanie wszystkich par plików źródłowych i\n"
+ "                        docelowych i, w niektórych przypadkach, odstapienie\n"
+ "                        od modyfikacji pliku docelowego\n"
+-"  -d, --directory     traktowanie wszystkich argumentów jako nazw "
+-"katalogów;\n"
++"  -d, --directory     traktowanie wszystkich argumentów jako nazw katalogów;\n"
+ "                        tworzenie katalogów składowych podanych katalogów\n"
+ 
+ #: src/install.c:970
+ msgid ""
+-"  -D                  create all leading components of DEST except the "
+-"last,\n"
++"  -D                  create all leading components of DEST except the last,\n"
+ "                        then copy SOURCE to DEST\n"
+-"  -g, --group=GROUP   set group ownership, instead of process' current "
+-"group\n"
+-"  -m, --mode=MODE     set permission mode (as in chmod), instead of rwxr-xr-"
+-"x\n"
++"  -g, --group=GROUP   set group ownership, instead of process' current group\n"
++"  -m, --mode=MODE     set permission mode (as in chmod), instead of rwxr-xr-x\n"
+ "  -o, --owner=OWNER   set ownership (super-user only)\n"
+ msgstr ""
+ "  -D                  tworzenie wszystkich części składowych CELU, oprócz\n"
+ "                        ostatniej, potem skopiowanie ŹRÓDŁA do CELU\n"
+ "  -g, --group=GRUPA   ustawienie GRUPY zamiast bieżącej grupy\n"
+-"  -m, --mode=UPRAWNIENIA   ustawienie UPRAWNIEŃ (jak w chmod) zamiast rwxr-"
+-"xr-x\n"
++"  -m, --mode=UPRAWNIENIA   ustawienie UPRAWNIEŃ (jak w chmod) zamiast rwxr-xr-x\n"
+ "  -o, --owner=WŁAŚCICIEL   ustawienie WŁAŚCICIELA (tylko super-user)\n"
+ 
+ #: src/install.c:977
+ msgid ""
+-"  -p, --preserve-timestamps   apply access/modification times of SOURCE "
+-"files\n"
++"  -p, --preserve-timestamps   apply access/modification times of SOURCE files\n"
+ "                        to corresponding destination files\n"
+ "  -s, --strip         strip symbol tables\n"
+ "      --strip-program=PROGRAM  program used to strip binaries\n"
+ "  -S, --suffix=SUFFIX  override the usual backup suffix\n"
+-"  -t, --target-directory=DIRECTORY  copy all SOURCE arguments into "
+-"DIRECTORY\n"
++"  -t, --target-directory=DIRECTORY  copy all SOURCE arguments into DIRECTORY\n"
+ "  -T, --no-target-directory  treat DEST as a normal file\n"
+ "  -v, --verbose       print the name of each directory as it is created\n"
+ msgstr ""
+@@ -4947,8 +4768,7 @@
+ #: src/install.c:987
+ msgid ""
+ "      --preserve-context  preserve SELinux security context\n"
+-"  -Z, --context=CONTEXT  set SELinux security context of files and "
+-"directories\n"
++"  -Z, --context=CONTEXT  set SELinux security context of files and directories\n"
+ msgstr ""
+ "      --preserve-context  zachowanie kontekstu bezpieczeństwa SELinux\n"
+ "  -Z, --context=KONTEKST  ustawienie kontekstu bezpieczeństwa SELinux dla\n"
+@@ -4974,8 +4794,7 @@
+ "odstępem. Gdy PLIK1 albo PLIK2 (nie oba) to -, czytane jest standardowe\n"
+ "wejście.\n"
+ "\n"
+-"  -a NUMER          wypisanie linii nie do pary z pliku NUMER, gdzie numer "
+-"to\n"
++"  -a NUMER          wypisanie linii nie do pary z pliku NUMER, gdzie numer to\n"
+ "                      1 albo 2, odpowiadający PLIKOWI1 albi PLIKOWI2\n"
+ "  -e PUSTE          zamiana brakujących pól na wejściu na PUSTE\n"
+ 
+@@ -4986,8 +4805,7 @@
+ "  -o FORMAT         obey FORMAT while constructing output line\n"
+ "  -t CHAR           use CHAR as input and output field separator\n"
+ msgstr ""
+-"  -i, --ignore-case  porównując pola ignoruje różnice między małymi i "
+-"wielkimi\n"
++"  -i, --ignore-case  porównując pola ignoruje różnice między małymi i wielkimi\n"
+ "                      literami\n"
+ "  -j POLE           równoważne `-j 1 POLE -j 2 POLE'\n"
+ "  -o FORMAT         zachowanie FORMATU przy tworzeniu linii wyjściowej\n"
+@@ -5004,12 +4822,10 @@
+ "  --header          treat the first line in each file as field headers,\n"
+ "                      print them without trying to pair them\n"
+ msgstr ""
+-"  -v NUMER          jak -a NUMER, ale bez wypisania połączonych linii "
+-"wyjśc.\n"
++"  -v NUMER          jak -a NUMER, ale bez wypisania połączonych linii wyjśc.\n"
+ "  -1 POLE           połączenie plików na tym POLU pliku 1\n"
+ "  -2 POLE           połączenie plików na tym POLU pliku 2\n"
+-"  --check-order     sprawdzenie czy dane wejściowe są prawidłowo "
+-"posortowane,\n"
++"  --check-order     sprawdzenie czy dane wejściowe są prawidłowo posortowane,\n"
+ "                      nawet jeżeli wszystkie linie mogą być sparowane\n"
+ "  --nocheck-order   bez sprawdzenia czy dane wejściowe są prawidłowo\n"
+ "                      posortowane\n"
+@@ -5042,8 +4858,7 @@
+ "ZNAKIEM.\n"
+ "\n"
+ "Ważne: PLIK1 i PLIK2 muszą być posortowane po polu łączącym.\n"
+-"Np. jeżeli `join' został uruchomiony bez opcji użyj przedtem `sort -k "
+-"1b,1',\n"
++"Np. jeżeli `join' został uruchomiony bez opcji użyj przedtem `sort -k 1b,1',\n"
+ "a jeżeli `sort' był uruchomiony bez opcji użyj ` join -t '' '.\n"
+ "Zauważ, że porównania odbywają się zgodnie z regułami podanymi przez\n"
+ "`LC_COLLATE'.\n"
+@@ -5113,8 +4928,7 @@
+ msgid ""
+ "  -s, --signal=SIGNAL, -SIGNAL\n"
+ "                   specify the name or number of the signal to be sent\n"
+-"  -l, --list       list signal names, or convert signal names to/from "
+-"numbers\n"
++"  -l, --list       list signal names, or convert signal names to/from numbers\n"
+ "  -t, --table      print a table of signal information\n"
+ msgstr ""
+ "  -s, --signal=SYGNAŁ, -SYGNAŁ\n"
+@@ -5167,8 +4981,7 @@
+ #: src/libstdbuf.c:109
+ #, c-format
+ msgid "failed to allocate a %<PRIuMAX> byte stdio buffer\n"
+-msgstr ""
+-"nie udało się zaalokować %<PRIuMAX> bajtu bufora standardowego wejścia\n"
++msgstr "nie udało się zaalokować %<PRIuMAX> bajtu bufora standardowego wejścia\n"
+ 
+ #: src/libstdbuf.c:116
+ #, c-format
+@@ -5199,8 +5012,7 @@
+ "Call the link function to create a link named FILE2 to an existing FILE1.\n"
+ "\n"
+ msgstr ""
+-"Użycie funkcji link do utworzenia dowiązania o nazwie PLIK2 do istniejącego "
+-"PLIKU1.\n"
++"Użycie funkcji link do utworzenia dowiązania o nazwie PLIK2 do istniejącego PLIKU1.\n"
+ "\n"
+ 
+ #: src/link.c:91
+@@ -5285,14 +5097,11 @@
+ 
+ #: src/ln.c:356
+ msgid ""
+-"      --backup[=CONTROL]      make a backup of each existing destination "
+-"file\n"
++"      --backup[=CONTROL]      make a backup of each existing destination file\n"
+ "  -b                          like --backup but does not accept an argument\n"
+ "  -d, -F, --directory         allow the superuser to attempt to hard link\n"
+-"                                directories (note: will probably fail due "
+-"to\n"
+-"                                system restrictions, even for the "
+-"superuser)\n"
++"                                directories (note: will probably fail due to\n"
++"                                system restrictions, even for the superuser)\n"
+ "  -f, --force                 remove existing destination files\n"
+ msgstr ""
+ "      --backup[=TRYB]         zrobienie kopii zapasowej przed skasowaniem\n"
+@@ -5300,8 +5109,7 @@
+ "  -d, -F, --directory         administrator może robić dowiązania zwykłe do\n"
+ "                                katalogów (uwaga: prawdopodobnie bez\n"
+ "                                powodzenia ze względu na ograniczenia\n"
+-"                                systemowe obowiązujące nawet "
+-"administratora)\n"
++"                                systemowe obowiązujące nawet administratora)\n"
+ "  -f, --force                 skasowanie istniejących CELÓW bez pytania\n"
+ 
+ #: src/ln.c:364
+@@ -5314,29 +5122,24 @@
+ "  -s, --symbolic              make symbolic links instead of hard links\n"
+ msgstr ""
+ "  -i, --interactive           program pyta czy usunąć CELE\n"
+-"  -L, --logical               łącza zwykle do plików wskazywanych przez "
+-"łącza\n"
++"  -L, --logical               łącza zwykle do plików wskazywanych przez łącza\n"
+ "                                symboliczne\n"
+ "  -n, --no-dereference        jeżeli CEL jest dowiązaniem symbolicznym do\n"
+ "                                katalogu, traktowany jest jak zwykły plik\n"
+-"  -s, --symbolic              tworzenie dowiązań symbolicznych zamiast "
+-"zwykłych\n"
++"  -s, --symbolic              tworzenie dowiązań symbolicznych zamiast zwykłych\n"
+ 
+ #: src/ln.c:372
+ msgid ""
+ "  -S, --suffix=SUFFIX         override the usual backup suffix\n"
+-"  -t, --target-directory=DIRECTORY  specify the DIRECTORY in which to "
+-"create\n"
++"  -t, --target-directory=DIRECTORY  specify the DIRECTORY in which to create\n"
+ "                                the links\n"
+ "  -T, --no-target-directory   treat LINK_NAME as a normal file\n"
+ "  -v, --verbose               print name of each linked file\n"
+ msgstr ""
+-"  -S, --suffix=ROZSZERZENIE   zmiana domyślnego ROZSZERZENIA kopii "
+-"zapasowej\n"
++"  -S, --suffix=ROZSZERZENIE   zmiana domyślnego ROZSZERZENIA kopii zapasowej\n"
+ "  -t, --target-directory=KATALOG  podanie KATALOGU, w którym mają być\n"
+ "                                tworzone dowiązania\n"
+-"  -T, --no-target-directory   traktowanie NAZWY_DOWIAZANIA jak zwykłego "
+-"pliku\n"
++"  -T, --no-target-directory   traktowanie NAZWY_DOWIAZANIA jak zwykłego pliku\n"
+ "  -v, --verbose               wypisanie nazw plików przed dowiązaniem\n"
+ 
+ #: src/ln.c:388
+@@ -5353,8 +5156,7 @@
+ #: src/ln.c:511
+ #, c-format
+ msgid "cannot combine --target-directory and --no-target-directory"
+-msgstr ""
+-"nie można używać równocześnie --target-directory i --no-target-directory"
++msgstr "nie można używać równocześnie --target-directory i --no-target-directory"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/logname.c:30
+@@ -5491,25 +5293,21 @@
+ "  -a, --all                  do not ignore entries starting with .\n"
+ "  -A, --almost-all           do not list implied . and ..\n"
+ "      --author               with -l, print the author of each file\n"
+-"  -b, --escape               print C-style escapes for nongraphic "
+-"characters\n"
++"  -b, --escape               print C-style escapes for nongraphic characters\n"
+ msgstr ""
+ "  -a, --all                  bez ukrywania plików zaczynających się od .\n"
+ "  -A, --almost-all           bez pokazywania . ani ..\n"
+ "      --author               z -l: wypisanie autora każdego pliku\n"
+-"  -b, --escape               wypisanie znaków niegraficznych ósemkowo (w "
+-"stylu\n"
++"  -b, --escape               wypisanie znaków niegraficznych ósemkowo (w stylu\n"
  "                               języka C, np. \\012)\n"
  
  #: src/ls.c:4584
--#, fuzzy
  msgid ""
- "      --block-size=SIZE      scale sizes by SIZE before printing them.  E."
- "g.,\n"
-@@ -5522,8 +5518,11 @@
+-"      --block-size=SIZE      scale sizes by SIZE before printing them.  E."
+-"g.,\n"
++"      --block-size=SIZE      scale sizes by SIZE before printing them.  E.g.,\n"
+ "                               `--block-size=M' prints sizes in units of\n"
+ "                               1,048,576 bytes.  See SIZE format below.\n"
+ "  -B, --ignore-backups       do not list implied entries ending with ~\n"
+-"  -c                         with -lt: sort by, and show, ctime (time of "
+-"last\n"
++"  -c                         with -lt: sort by, and show, ctime (time of last\n"
+ "                               modification of file status information)\n"
  "                               with -l: show ctime and sort by name\n"
  "                               otherwise: sort by ctime\n"
- msgstr ""
--"      --block-size=ROZMIAR   użycie bloków o podanym w bajtach ROZMIARZE.\n"
--"                               Zobacz też opis formatu ROZMIARU.\n"
-+"      --block-size=ROZMIAR   Skala rozmiarów, np. `--block-size=M' powoduje\n"
-+"                               wypisanie rozmiarów w jednostkach po 1048576\n"
-+"                               bajtów.\n"
-+"                               Zobacz infomacje o formacie ROZMIARÓW "
-+"poniżej.\n"
+@@ -5517,8 +5315,7 @@
+ "      --block-size=ROZMIAR   Skala rozmiarów, np. `--block-size=M' powoduje\n"
+ "                               wypisanie rozmiarów w jednostkach po 1048576\n"
+ "                               bajtów.\n"
+-"                               Zobacz infomacje o formacie ROZMIARÓW "
+-"poniżej.\n"
++"                               Zobacz infomacje o formacie ROZMIARÓW poniżej.\n"
  "  -B, --ignore-backups       bez pokazania plików kończących się na ~\n"
  "  -c                         z -lt: sortowanie wg i wypisanie ctime (czasu\n"
  "                               ostatniej modyfikacji danych o pliku)\n"
-@@ -8681,7 +8680,6 @@
- "                            tymczasowe\n"
+@@ -5528,21 +5325,17 @@
+ #: src/ls.c:4594
+ msgid ""
+ "  -C                         list entries by columns\n"
+-"      --color[=WHEN]         colorize the output.  WHEN defaults to "
+-"`always'\n"
+-"                               or can be `never' or `auto'.  More info "
+-"below\n"
++"      --color[=WHEN]         colorize the output.  WHEN defaults to `always'\n"
++"                               or can be `never' or `auto'.  More info below\n"
+ "  -d, --directory            list directory entries instead of contents,\n"
+ "                               and do not dereference symbolic links\n"
+ "  -D, --dired                generate output designed for Emacs' dired mode\n"
+ msgstr ""
+ "  -C                         wypisanie plików w kolumnach\n"
+-"      --color[=GDY]          kolorowanie informacji. GDY to domyslnie "
+-"'always'\n"
++"      --color[=GDY]          kolorowanie informacji. GDY to domyslnie 'always'\n"
+ "                               (zawsze), może być też `never' (nigdy), albo\n"
+ "                               `auto' (automatyczne)\n"
+-"  -d, --directory            pokazanie katalogów zamiast ich zawartości, "
+-"bez\n"
++"  -d, --directory            pokazanie katalogów zamiast ich zawartości, bez\n"
+ "                               rozwiązywania dowiązań symbolicznych\n"
+ "  -D, --dired                dane wyjściowe dla trybu dired Emacsa\n"
  
+@@ -5592,21 +5385,18 @@
+ "      --si                   likewise, but use powers of 1000 not 1024\n"
+ msgstr ""
+ "  -G, --no-group             bez pokazania informacji o grupach\n"
+-"  -h, --human-readable       z opcją -l podaje rozmiary w formacie "
+-"czytelnym\n"
++"  -h, --human-readable       z opcją -l podaje rozmiary w formacie czytelnym\n"
+ "                               dla ludzi (np. 1K 234M 2G)\n"
+ "      --si                   podobnie, ale z użyciem potęg 1000, nie 1024\n"
+ 
+ #: src/ls.c:4625
+ msgid ""
+ "  -H, --dereference-command-line\n"
+-"                             follow symbolic links listed on the command "
+-"line\n"
++"                             follow symbolic links listed on the command line\n"
+ "      --dereference-command-line-symlink-to-dir\n"
+ "                             follow each command line symbolic link\n"
+ "                             that points to a directory\n"
+-"      --hide=PATTERN         do not list implied entries matching shell "
+-"PATTERN\n"
++"      --hide=PATTERN         do not list implied entries matching shell PATTERN\n"
+ "                               (overridden by -a or -A)\n"
+ msgstr ""
+ "  -H, --dereference-command-line\n"
+@@ -5620,22 +5410,18 @@
+ 
+ #: src/ls.c:4634
+ msgid ""
+-"      --indicator-style=WORD  append indicator with style WORD to entry "
+-"names:\n"
++"      --indicator-style=WORD  append indicator with style WORD to entry names:\n"
+ "                               none (default), slash (-p),\n"
+ "                               file-type (--file-type), classify (-F)\n"
+ "  -i, --inode                print the index number of each file\n"
+-"  -I, --ignore=PATTERN       do not list implied entries matching shell "
+-"PATTERN\n"
++"  -I, --ignore=PATTERN       do not list implied entries matching shell PATTERN\n"
+ "  -k                         like --block-size=1K\n"
+ msgstr ""
+-"      --indicator-style=SŁOWO  dodanie wskaźników typów plików w stylu "
+-"SŁOWO:\n"
++"      --indicator-style=SŁOWO  dodanie wskaźników typów plików w stylu SŁOWO:\n"
+ "                                none (domyślnie), slash (-p), file-type\n"
+ "                                (--file-type), classify (-F)\n"
+ "  -i, --inode                pokazywanie numeru i-węzła każdego pliku\n"
+-"  -I, --ignore=WZÓR          bez pokazywania plików pasujących do shellowego "
+-"WZORU\n"
++"  -I, --ignore=WZÓR          bez pokazywania plików pasujących do shellowego WZORU\n"
+ "  -k                         jak --block-size=1K\n"
+ 
+ #: src/ls.c:4642
+@@ -5644,21 +5430,18 @@
+ "  -L, --dereference          when showing file information for a symbolic\n"
+ "                               link, show information for the file the link\n"
+ "                               references rather than for the link itself\n"
+-"  -m                         fill width with a comma separated list of "
+-"entries\n"
++"  -m                         fill width with a comma separated list of entries\n"
+ msgstr ""
+ "  -l                         użycie długiego formatu wyjściowego\n"
+ "  -L, --dereference          pokazanie informacji o pliku wskazywanym przez\n"
+ "                               dowiązanie symboliczne zamiast informacji o\n"
+ "                               samym dowiązaniu\n"
+-"  -m                         pisanie do pełnej szerokości, oddzielanie "
+-"przecinkami\n"
++"  -m                         pisanie do pełnej szerokości, oddzielanie przecinkami\n"
+ 
+ #: src/ls.c:4649
+ msgid ""
+ "  -n, --numeric-uid-gid      like -l, but list numeric user and group IDs\n"
+-"  -N, --literal              print raw entry names (don't treat e.g. "
+-"control\n"
++"  -N, --literal              print raw entry names (don't treat e.g. control\n"
+ "                               characters specially)\n"
+ "  -o                         like -l, but do not list group information\n"
+ "  -p, --indicator-style=slash\n"
+@@ -5674,43 +5457,34 @@
+ msgid ""
+ "  -q, --hide-control-chars   print ? instead of non graphic characters\n"
+ "      --show-control-chars   show non graphic characters as-is (default\n"
+-"                             unless program is `ls' and output is a "
+-"terminal)\n"
++"                             unless program is `ls' and output is a terminal)\n"
+ "  -Q, --quote-name           enclose entry names in double quotes\n"
+ "      --quoting-style=WORD   use quoting style WORD for entry names:\n"
+-"                               literal, locale, shell, shell-always, c, "
+-"escape\n"
++"                               literal, locale, shell, shell-always, c, escape\n"
+ msgstr ""
+ "  -q, --hide-control-chars   pisanie ? zamiast znaków sterujących\n"
+-"      --show-control-chars   pokazanie znaków niedrukowalnych (domyślnie, "
+-"chyba\n"
+-"                             że program nazywa się `ls' i pisze na "
+-"terminalu)\n"
++"      --show-control-chars   pokazanie znaków niedrukowalnych (domyślnie, chyba\n"
++"                             że program nazywa się `ls' i pisze na terminalu)\n"
+ "  -Q, --quote-name           ujęcie nazw w cudzysłowy\n"
+-"      --quoting-style=SŁOWO  zabezpieczenie znaków specjalnych w stylu "
+-"SŁOWO:\n"
+-"                               literal, locale, shell, shell-always, c, "
+-"escape\n"
++"      --quoting-style=SŁOWO  zabezpieczenie znaków specjalnych w stylu SŁOWO:\n"
++"                               literal, locale, shell, shell-always, c, escape\n"
+ 
+ #: src/ls.c:4665
+ msgid ""
+ "  -r, --reverse              reverse order while sorting\n"
+ "  -R, --recursive            list subdirectories recursively\n"
+-"  -s, --size                 print the allocated size of each file, in "
+-"blocks\n"
++"  -s, --size                 print the allocated size of each file, in blocks\n"
+ msgstr ""
+ "  -r, --reverse              odwrotny porządek sortowania\n"
+ "  -R, --recursive            rekursywne listowanie katalogów\n"
+-"  -s, --size                 wypisanie liczby bloków zajętych przez każdy "
+-"plik\n"
++"  -s, --size                 wypisanie liczby bloków zajętych przez każdy plik\n"
+ 
+ #: src/ls.c:4670
+ msgid ""
+ "  -S                         sort by file size\n"
+ "      --sort=WORD            sort by WORD instead of name: none -U,\n"
+ "                             extension -X, size -S, time -t, version -v\n"
+-"      --time=WORD            with -l, show time as WORD instead of "
+-"modification\n"
++"      --time=WORD            with -l, show time as WORD instead of modification\n"
+ "                             time: atime -u, access -u, use -u, ctime -c,\n"
+ "                             or status -c; use specified time as sort key\n"
+ "                             if --sort=time\n"
+@@ -5718,13 +5492,10 @@
+ "  -S                         sortowanie według rozmiaru\n"
+ "      --sort=SŁOWO           sortowanie wg SŁOWA zamiast wg nazw: none -U\n"
+ "                             (wcale), extension -X (rozszerzenia), size -S\n"
+-"                             (rozmiaru), time -t (czasu), version -v "
+-"(wersji)\n"
+-"      --time=SŁOWO           z opcją -l: pokazanie czasu określonego SŁOWEM, "
+-"a\n"
++"                             (rozmiaru), time -t (czasu), version -v (wersji)\n"
++"      --time=SŁOWO           z opcją -l: pokazanie czasu określonego SŁOWEM, a\n"
+ "                             nie czasu modyfikacji: czas odczytu - atime,\n"
+-"                             access, use - -u, czas zmiany informacji o "
+-"pliku\n"
++"                             access, use - -u, czas zmiany informacji o pliku\n"
+ "                             - ctime, status - -c; użycie podanego czasu do\n"
+ "                             sortowania gdy podano --sort=time\n"
+ 
+@@ -5732,18 +5503,15 @@
+ msgid ""
+ "      --time-style=STYLE     with -l, show times using style STYLE:\n"
+ "                             full-iso, long-iso, iso, locale, +FORMAT.\n"
+-"                             FORMAT is interpreted like `date'; if FORMAT "
+-"is\n"
++"                             FORMAT is interpreted like `date'; if FORMAT is\n"
+ "                             FORMAT1<newline>FORMAT2, FORMAT1 applies to\n"
+ "                             non-recent files and FORMAT2 to recent files;\n"
+ "                             if STYLE is prefixed with `posix-', STYLE\n"
+ "                             takes effect only outside the POSIX locale\n"
+ msgstr ""
+-"      --time-style=STYL      z opcją -l: pokazanie czasów przy użyciu "
+-"STYLU:\n"
++"      --time-style=STYL      z opcją -l: pokazanie czasów przy użyciu STYLU:\n"
+ "                               full-iso, long-iso, iso, locale, +FORMAT\n"
+-"                               FORMAT jest interpretowany jak w `date'. "
+-"Jeżeli\n"
++"                               FORMAT jest interpretowany jak w `date'. Jeżeli\n"
+ "                               FORMAT to FORMAT1<zn.nowej linii>FORMAT2,\n"
+ "                               FORMAT1 dotyczy dawniejszych plików, FORMAT2\n"
+ "                               nowszych. Jeżeli STYL zaczyna się od posix-,\n"
+@@ -5779,14 +5547,12 @@
+ "  -w, --width=COLS           assume screen width instead of current value\n"
+ "  -x                         list entries by lines instead of by columns\n"
+ "  -X                         sort alphabetically by entry extension\n"
+-"  -Z, --context              print any SELinux security context of each "
+-"file\n"
++"  -Z, --context              print any SELinux security context of each file\n"
+ "  -1                         list one file per line\n"
+ msgstr ""
+ "  -w, --width=KOLUMNY        przyjęcie takiej szerokości ekranu zamiast\n"
+ "                             wartości bieżącej\n"
+-"  -x                         wypisanie nazw w kolejnych liniach, nie "
+-"kolumnach\n"
++"  -x                         wypisanie nazw w kolejnych liniach, nie kolumnach\n"
+ "  -X                         sortowanie alfabetyczne wg rozszerzeń\n"
+ "  -Z, --context              wypisanie kontekstu bezpieczeństwa SELinuksa\n"
+ "  -1                         listowanie po jednym pliku w linii\n"
+@@ -5848,12 +5614,9 @@
+ "Bez podanego PLIKU albo gdy jest podany jako -, czyta standardowe wejście.\n"
+ 
+ #: src/md5sum.c:164
+-msgid ""
+-"  -b, --binary            read in binary mode (default unless reading tty "
+-"stdin)\n"
++msgid "  -b, --binary            read in binary mode (default unless reading tty stdin)\n"
+ msgstr ""
+-"  -b, --binary            czytanie plików w trybie binarnym (domyślne "
+-"jeżeli\n"
++"  -b, --binary            czytanie plików w trybie binarnym (domyślne jeżeli\n"
+ "                            nie jest czytane tty przez standardowe wejście)\n"
+ 
+ #: src/md5sum.c:168
+@@ -5866,24 +5629,20 @@
+ msgstr "  -c, --check             sprawdzanie sum %s zapisanych w PLIKACH\n"
+ 
+ #: src/md5sum.c:175
+-msgid ""
+-"  -t, --text              read in text mode (default if reading tty stdin)\n"
++msgid "  -t, --text              read in text mode (default if reading tty stdin)\n"
+ msgstr ""
+-"  -t, --text              czytanie plików w trybie tekstowym (domyślne "
+-"jeżeli\n"
++"  -t, --text              czytanie plików w trybie tekstowym (domyślne jeżeli\n"
+ "                            czytane jest tty przez standardowe wejście)\n"
+ 
+ #: src/md5sum.c:179
+ msgid "  -t, --text              read in text mode (default)\n"
+-msgstr ""
+-"  -t, --text              czytanie plików w trybie tekstowym (domyślnie)\n"
++msgstr "  -t, --text              czytanie plików w trybie tekstowym (domyślnie)\n"
+ 
+ #: src/md5sum.c:182
+ msgid ""
+ "\n"
+ "The following three options are useful only when verifying checksums:\n"
+-"      --quiet             don't print OK for each successfully verified "
+-"file\n"
++"      --quiet             don't print OK for each successfully verified file\n"
+ "      --status            don't output anything, status code shows success\n"
+ "  -w, --warn              warn about improperly formatted checksum lines\n"
+ "\n"
+@@ -5892,10 +5651,8 @@
+ "Następujące opcje są przydatne tylko przy sprawdzaniu sum kontrolnych:\n"
+ "      --quiet             bez wypisywania OK dla każdego pozytywnie\n"
+ "                            zweryfikowanego pliku\n"
+-"      --status            bez wypisywania niczego, kod wyjścia przekazuje "
+-"wynik\n"
+-"  -w, --warn              ostrzeganie o niepoprawnie sformatowanych liniach "
+-"sum\n"
++"      --status            bez wypisywania niczego, kod wyjścia przekazuje wynik\n"
++"  -w, --warn              ostrzeganie o niepoprawnie sformatowanych liniach sum\n"
+ "\n"
+ 
+ #: src/md5sum.c:192
+@@ -5967,8 +5724,7 @@
+ 
+ #: src/md5sum.c:667
+ #, c-format
+-msgid ""
+-"the --binary and --text options are meaningless when verifying checksums"
++msgid "the --binary and --text options are meaningless when verifying checksums"
+ msgstr ""
+ "opcje --binary i --text nie mają znaczenia przy weryfikacji sum\n"
+ "kontrolnych"
+@@ -6010,8 +5766,7 @@
+ "                      directory to CTX\n"
+ msgstr ""
+ "  -m, --mode=UPRAWN ustawienie uprawnień (jak w chmod), nie a=rwx - umask\n"
+-"  -p, --parents     bez błędu gdy istnieje, utworzenie całej ścieżki "
+-"katalogów\n"
++"  -p, --parents     bez błędu gdy istnieje, utworzenie całej ścieżki katalogów\n"
+ "  -v, --verbose     wypisanie komunikatu o każdym utworzonym katalogu\n"
+ "  -Z, --context=KONT  ustawienie kontekstu bezpieczeństwa SELinuksa dla\n"
+ "                      każdego tworzonego katalogu\n"
+@@ -6035,13 +5790,11 @@
+ "\n"
+ 
+ #: src/mkfifo.c:60 src/mknod.c:62
+-msgid ""
+-"  -m, --mode=MODE    set file permission bits to MODE, not a=rw - umask\n"
++msgid "  -m, --mode=MODE    set file permission bits to MODE, not a=rw - umask\n"
+ msgstr "  -m, --mode=UPRAWN  ustawienie UPRAWNIEŃ zamiast a=rw - umask\n"
+ 
+ #: src/mkfifo.c:63
+-msgid ""
+-"  -Z, --context=CTX  set the SELinux security context of each NAME to CTX\n"
++msgid "  -Z, --context=CTX  set the SELinux security context of each NAME to CTX\n"
+ msgstr ""
+ "  -Z, --context=KONT ustawienie kontekstu bezpieczeństwa SELinux dla każdej\n"
+ "                     NAZWY jako KONT\n"
+@@ -6104,8 +5857,7 @@
+ 
+ #: src/mknod.c:152
+ msgid "Special files require major and minor device numbers."
+-msgstr ""
+-"Plik specjalny powinien mieć podane większy i mniejszy numer urządzenia"
++msgstr "Plik specjalny powinien mieć podane większy i mniejszy numer urządzenia"
+ 
+ #: src/mknod.c:162
+ msgid "Fifos do not have major and minor device numbers."
+@@ -6157,12 +5909,9 @@
+ "TEMPLATE must contain at least 3 consecutive `X's in last component.\n"
+ "If TEMPLATE is not specified, use tmp.XXXXXXXXXX, and --tmpdir is implied.\n"
+ msgstr ""
+-"Bezpieczne utworzenie tymczasowego pliku albo katalogu i wypisanie jego "
+-"nazwy.\n"
+-"WZORZEC musi zawierać co najmniej trzy kolejne znaki 'X' w ostatniej "
+-"części.\n"
+-"Jeżeli WZORZEC nie jest podany, użyty będzie wzorzec tmp.XXXXXXXXXX i "
+-"domyślna\n"
++"Bezpieczne utworzenie tymczasowego pliku albo katalogu i wypisanie jego nazwy.\n"
++"WZORZEC musi zawierać co najmniej trzy kolejne znaki 'X' w ostatniej części.\n"
++"Jeżeli WZORZEC nie jest podany, użyty będzie wzorzec tmp.XXXXXXXXXX i domyślna\n"
+ "wartość --tmpdir .\n"
+ 
+ #: src/mktemp.c:76
+@@ -6179,10 +5928,8 @@
+ 
+ #: src/mktemp.c:81
+ msgid ""
+-"      --suffix=SUFF   append SUFF to TEMPLATE.  SUFF must not contain "
+-"slash.\n"
+-"                        This option is implied if TEMPLATE does not end in "
+-"X.\n"
++"      --suffix=SUFF   append SUFF to TEMPLATE.  SUFF must not contain slash.\n"
++"                        This option is implied if TEMPLATE does not end in X.\n"
+ msgstr ""
+ "      --suffix=PRZYR  dodanie PRZYROSTKA do WZORCA. PRZYROSTEK nie może\n"
+ "                        zawierać ukośnika. Ta opcja jest domyślnie używana\n"
+@@ -6196,15 +5943,12 @@
+ "                        Unlike with -t, TEMPLATE may contain slashes, but\n"
+ "                        mktemp creates only the final component\n"
+ msgstr ""
+-"  --tmpdir[=KATALOG]  WZORZEC będzie interpretowany względem KATALOGU. "
+-"Jeżeli\n"
++"  --tmpdir[=KATALOG]  WZORZEC będzie interpretowany względem KATALOGU. Jeżeli\n"
+ "                        KATALOG nie jest podany, zostanie użyty $TMPDIR, a\n"
+ "                        jeżeli ta zmienna nie jest ustawiona - /tmp. Jeżeli\n"
+ "                        jest użyta ta opcja, WZORZEC nie może być ścieżką\n"
+-"                        bezwzględną. Inaczej niż przy użyciu opcji -t, "
+-"WZORZEC\n"
+-"                        może zawierac ukośniki, ale mktemp i tak tworzy "
+-"tylko\n"
++"                        bezwzględną. Inaczej niż przy użyciu opcji -t, WZORZEC\n"
++"                        może zawierac ukośniki, ale mktemp i tak tworzy tylko\n"
+ "                        ostatni składnik nazwy.\n"
+ 
+ #: src/mktemp.c:93
+@@ -6254,9 +5998,7 @@
+ #: src/mktemp.c:303
+ #, c-format
+ msgid "invalid template, %s; with --tmpdir, it may not be absolute"
+-msgstr ""
+-"błędny wzorzec %s; nie może być ścieżką bezwzględną jeżeli została użyta "
+-"opcja --tmpdir"
++msgstr "błędny wzorzec %s; nie może być ścieżką bezwzględną jeżeli została użyta opcja --tmpdir"
+ 
+ #: src/mktemp.c:323
+ #, c-format
+@@ -6279,18 +6021,14 @@
+ 
+ #: src/mv.c:298
+ msgid ""
+-"      --backup[=CONTROL]       make a backup of each existing destination "
+-"file\n"
+-"  -b                           like --backup but does not accept an "
+-"argument\n"
++"      --backup[=CONTROL]       make a backup of each existing destination file\n"
++"  -b                           like --backup but does not accept an argument\n"
+ "  -f, --force                  do not prompt before overwriting\n"
+ "  -i, --interactive            prompt before overwrite\n"
+ "  -n, --no-clobber             do not overwrite an existing file\n"
+-"If you specify more than one of -i, -f, -n, only the final one takes "
+-"effect.\n"
++"If you specify more than one of -i, -f, -n, only the final one takes effect.\n"
+ msgstr ""
+-"      --backup[=TRYB]          zrobienie kopii zapasowej każdego "
+-"istniejącego\n"
++"      --backup[=TRYB]          zrobienie kopii zapasowej każdego istniejącego\n"
+ "                                 pliku docelowego\n"
+ "  -b                           jak --backup, ale bez podawania argumentu\n"
+ "  -f, --force                  bez pytania przed zamazaniem pliku\n"
+@@ -6299,20 +6037,17 @@
+ 
+ #: src/mv.c:306
+ msgid ""
+-"      --strip-trailing-slashes  remove any trailing slashes from each "
+-"SOURCE\n"
++"      --strip-trailing-slashes  remove any trailing slashes from each SOURCE\n"
+ "                                 argument\n"
+ "  -S, --suffix=SUFFIX          override the usual backup suffix\n"
+ msgstr ""
+ "      --strip-trailing-slashes  usunięcie końcowych ukośników z każdego\n"
+ "                                argumentu ZRÓDŁOWEGO\n"
+-"  -S, --suffix=ROZSZERZ        zmiana domyślnego rozszerzenia kopii "
+-"zapasowej\n"
++"  -S, --suffix=ROZSZERZ        zmiana domyślnego rozszerzenia kopii zapasowej\n"
+ 
+ #: src/mv.c:311
+ msgid ""
+-"  -t, --target-directory=DIRECTORY  move all SOURCE arguments into "
+-"DIRECTORY\n"
++"  -t, --target-directory=DIRECTORY  move all SOURCE arguments into DIRECTORY\n"
+ "  -T, --no-target-directory    treat DEST as a normal file\n"
+ "  -u, --update                 move only when the SOURCE file is newer\n"
+ "                                 than the destination file or when the\n"
+@@ -6395,32 +6130,25 @@
+ msgid ""
+ "  -h, --header-numbering=STYLE    use STYLE for numbering header lines\n"
+ "  -i, --line-increment=NUMBER     line number increment at each line\n"
+-"  -l, --join-blank-lines=NUMBER   group of NUMBER empty lines counted as "
+-"one\n"
++"  -l, --join-blank-lines=NUMBER   group of NUMBER empty lines counted as one\n"
+ "  -n, --number-format=FORMAT      insert line numbers according to FORMAT\n"
+-"  -p, --no-renumber               do not reset line numbers at logical "
+-"pages\n"
++"  -p, --no-renumber               do not reset line numbers at logical pages\n"
+ "  -s, --number-separator=STRING   add STRING after (possible) line number\n"
+ msgstr ""
+ "  -h, --header-numbering=STYL     użycie STYLU do numeracji linii nagłówka\n"
+ "  -i, --page-increment=ILE        przyrost numeracji linii dla każdej linii\n"
+-"  -l, --join-blank-lines=ILE      grupa ILU pustych linii liczona jako "
+-"jedna\n"
+-"  -n, --number-format=FORMAT      dopisanie numerów linii zgodnie z "
+-"FORMATEM\n"
+-"  -p, --no-renumber               bez zerowania numeracji na początkach "
+-"stron\n"
++"  -l, --join-blank-lines=ILE      grupa ILU pustych linii liczona jako jedna\n"
++"  -n, --number-format=FORMAT      dopisanie numerów linii zgodnie z FORMATEM\n"
++"  -p, --no-renumber               bez zerowania numeracji na początkach stron\n"
+ "                                    logicznych\n"
+-"  -s, --number-separator=NAPIS    dodanie NAPISU po ewentualnym numerze "
+-"linii\n"
++"  -s, --number-separator=NAPIS    dodanie NAPISU po ewentualnym numerze linii\n"
+ 
+ #: src/nl.c:208
+ msgid ""
+ "  -v, --starting-line-number=NUMBER  first line number on each logical page\n"
+ "  -w, --number-width=NUMBER       use NUMBER columns for line numbers\n"
+ msgstr ""
+-"  -v, --starting-line-number=NUMER  NUMER pierwszej linii na stronie "
+-"logicznej\n"
++"  -v, --starting-line-number=NUMER  NUMER pierwszej linii na stronie logicznej\n"
+ "  -w, --number-width=ILE          ILE kolumn na numery linii\n"
+ 
+ #: src/nl.c:214
+@@ -6493,9 +6221,7 @@
+ #: src/nl.c:518
+ #, c-format
+ msgid "WARNING: --page-increment is deprecated; use --line-increment instead"
+-msgstr ""
+-"UWAGA: opcja --page-increment jest przestarzała, zamiast niej używaj --line-"
+-"increment"
++msgstr "UWAGA: opcja --page-increment jest przestarzała, zamiast niej używaj --line-increment"
+ 
+ #: src/nl.c:525
+ #, c-format
+@@ -6579,15 +6305,12 @@
+ #: src/nohup.c:194
+ #, c-format
+ msgid "failed to set the copy of stderr to close on exec"
+-msgstr ""
+-"nie udało się zamknąć kopii standardowego wyjścia przy wykonywaniu exec"
++msgstr "nie udało się zamknąć kopii standardowego wyjścia przy wykonywaniu exec"
+ 
+ #: src/nohup.c:199
+ #, c-format
+ msgid "ignoring input and redirecting stderr to stdout"
+-msgstr ""
+-"zignorowanie wejścia i przekierowanie standardowego błędu do standardowego "
+-"wyjścia"
++msgstr "zignorowanie wejścia i przekierowanie standardowego błędu do standardowego wyjścia"
+ 
+ #: src/nohup.c:200
+ #, c-format
+@@ -6637,8 +6360,7 @@
+ msgid ""
+ "Usage: %s [OPTION]... [FILE]...\n"
+ "  or:  %s [-abcdfilosx]... [FILE] [[+]OFFSET[.][b]]\n"
+-"  or:  %s --traditional [OPTION]... [FILE] [[+]OFFSET[.][b] [+][LABEL][.]"
+-"[b]]\n"
++"  or:  %s --traditional [OPTION]... [FILE] [[+]OFFSET[.][b] [+][LABEL][.][b]]\n"
+ msgstr ""
+ "Składnia: %s [OPCJA]... [PLIK]...\n"
+ "    albo: %s [-abcdfilosx]... [PLIK] [[+]PRZESUNIĘCIE[.][b]]\n"
+@@ -6670,14 +6392,12 @@
+ "  -j, --skip-bytes=BYTES      skip BYTES input bytes first\n"
+ msgstr ""
+ "  -A, --address-radix=BAZA    postać wypisywania pozycji\n"
+-"  -j, --skip-bytes=BAJTY      ominięcie tylu początkowych BAJTÓW każdego "
+-"pliku\n"
++"  -j, --skip-bytes=BAJTY      ominięcie tylu początkowych BAJTÓW każdego pliku\n"
+ 
+ #: src/od.c:328
+ msgid ""
+ "  -N, --read-bytes=BYTES      limit dump to BYTES input bytes\n"
+-"  -S, --strings[=BYTES]       output strings of at least BYTES graphic "
+-"chars\n"
++"  -S, --strings[=BYTES]       output strings of at least BYTES graphic chars\n"
+ "  -t, --format=TYPE           select output format or formats\n"
+ "  -v, --output-duplicates     do not use * to mark line suppression\n"
+ "  -w, --width[=BYTES]         output BYTES bytes per output line\n"
+@@ -6687,12 +6407,9 @@
+ "  -S, --strings[=BAJTY]       wypisanie przynajmniej tylu BAJTÓW znaków\n"
+ "                              graficznych\n"
+ "  -t, --format=TYP            wybranie formatu/formatów danych wyjściowych\n"
+-"  -v, --output-duplicates     bez używania * do zaznaczania powtórzonych "
+-"linii\n"
+-"  -w, --width[=BAJTY]         wypisanie tylu BAJTÓW w każdej linii "
+-"wyjściowej\n"
+-"      --traditional           akceptowanie argumentów w tradycyjnym "
+-"formacie\n"
++"  -v, --output-duplicates     bez używania * do zaznaczania powtórzonych linii\n"
++"  -w, --width[=BAJTY]         wypisanie tylu BAJTÓW w każdej linii wyjściowej\n"
++"      --traditional           akceptowanie argumentów w tradycyjnym formacie\n"
+ 
+ #: src/od.c:338
+ msgid ""
+@@ -6737,16 +6454,12 @@
+ "suffixes may be . for octal and b for multiply by 512.\n"
+ msgstr ""
+ "\n"
+-"Jeżeli i pierwszy i drugi format pasuje do użytej składni, a ostatni "
+-"argument\n"
+-"zaczyna się od + albo (w przypadku dwóch argumentów) od cyfry, zakłada się, "
+-"że\n"
+-"został użyty format trzeci. PRZESUNIĘCIE oznacza to samo co -j "
+-"PRZESUNIĘCIE.\n"
++"Jeżeli i pierwszy i drugi format pasuje do użytej składni, a ostatni argument\n"
++"zaczyna się od + albo (w przypadku dwóch argumentów) od cyfry, zakłada się, że\n"
++"został użyty format trzeci. PRZESUNIĘCIE oznacza to samo co -j PRZESUNIĘCIE.\n"
+ "ETYKIETA to pseudo-adres wypisanego bajtu, zwiększa się w trakcie pracy\n"
+ "programu. Dla PRZESUNIĘCIA i ETYKIETY przedrostek 0x lub 0X oznacza zapis\n"
+-"szesnastkowy, zapis ósemkowy jest oznaczany przez przyrostek . , a "
+-"przyrostek\n"
++"szesnastkowy, zapis ósemkowy jest oznaczany przez przyrostek . , a przyrostek\n"
+ "b oznacza wielokrotność 512.\n"
+ 
+ #: src/od.c:363
+@@ -6795,17 +6508,14 @@
+ msgid ""
+ "\n"
+ "RADIX is d for decimal, o for octal, x for hexadecimal or n for none.\n"
+-"BYTES is hexadecimal with 0x or 0X prefix, and may have a multiplier "
+-"suffix:\n"
++"BYTES is hexadecimal with 0x or 0X prefix, and may have a multiplier suffix:\n"
+ "b 512, kB 1000, K 1024, MB 1000*1000, M 1024*1024,\n"
+ "GB 1000*1000*1000, G 1024*1024*1024, and so on for T, P, E, Z, Y.\n"
+-"Adding a z suffix to any type displays printable characters at the end of "
+-"each\n"
++"Adding a z suffix to any type displays printable characters at the end of each\n"
+ "output line.\n"
+ msgstr ""
+ "\n"
+-"BAZĘ oznacza się d jeżeli jest dziesiętna, o - ósemkowa, x - szesnastkowa, n "
+-"-\n"
++"BAZĘ oznacza się d jeżeli jest dziesiętna, o - ósemkowa, x - szesnastkowa, n -\n"
+ "żadna. BAJTY są w zapisie szesnastkowym jeżeli maja przedrostek 0x albo 0X;\n"
+ "mogą mieć przyrostek mnożący: b 512, kB 1000, K 1024, MB 1000*1000,\n"
+ "M 1024*1024, GB 1000*1000*1000, G 1024*1024*1024 itd. dla T, P, E, Z, Y.\n"
+@@ -6856,8 +6566,7 @@
+ #: src/od.c:1603
+ #, c-format
+ msgid "invalid output address radix `%c'; it must be one character from [doxn]"
+-msgstr ""
+-"błędna baza danych wyjściowych `%c'; musi to być jeden ze znaków [doxn]"
++msgstr "błędna baza danych wyjściowych `%c'; musi to być jeden ze znaków [doxn]"
+ 
+ #: src/od.c:1729
+ #, c-format
+@@ -6956,8 +6665,7 @@
+ #: src/pathchk.c:417
+ #, c-format
+ msgid "limit %lu exceeded by length %lu of file name component %s"
+-msgstr ""
+-"ograniczenie do %lu przekroczone przez długość %lu składnika nazwy pliku %s"
++msgstr "ograniczenie do %lu przekroczone przez długość %lu składnika nazwy pliku %s"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/pinky.c:36 src/uptime.c:45 src/users.c:35 src/who.c:48
+@@ -7070,10 +6778,8 @@
+ msgstr ""
+ "  -f              pominięcie nagłówków kolumn w formacie skróconym\n"
+ "  -w              pominięcie nazwiska użytkownika w formacie skróconym\n"
+-"  -i              pominięcie nazwiska i zdalnego systemu w formacie "
+-"skróconym\n"
+-"  -q              pominięcie nazwiska, zdalnego system oraz czasu "
+-"bezczynności\n"
++"  -i              pominięcie nazwiska i zdalnego systemu w formacie skróconym\n"
++"  -q              pominięcie nazwiska, zdalnego system oraz czasu bezczynności\n"
+ "                  w formacie skróconym\n"
+ 
+ #: src/pinky.c:525
+@@ -7090,8 +6796,7 @@
+ #: src/pinky.c:609
+ #, c-format
+ msgid "no username specified; at least one must be specified when using -l"
+-msgstr ""
+-"brak nazwy użytkownika - musi być podana chociaż jedna, jeżeli użyto opcji -l"
++msgstr "brak nazwy użytkownika - musi być podana chociaż jedna, jeżeli użyto opcji -l"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/pr.c:330
+@@ -7191,13 +6896,10 @@
+ "                    unless -a is used. Balance number of lines in the\n"
+ "                    columns on each page\n"
+ msgstr ""
+-"  +PIERWSZA_STRONA[:OSTATNIA_STRONA], --pages=PIERWSZA_STRONA[:"
+-"OSTATNIA_STRONA]\n"
+-"                    zaczęcie [zakończenie] od strony PIERWSZA_[OSTATNIA_]"
+-"STRONA\n"
++"  +PIERWSZA_STRONA[:OSTATNIA_STRONA], --pages=PIERWSZA_STRONA[:OSTATNIA_STRONA]\n"
++"                    zaczęcie [zakończenie] od strony PIERWSZA_[OSTATNIA_]STRONA\n"
+ "  -COLUMN, --columns=KOLUMNY\n"
+-"                    wypisywanie danych w tylu KOLUMNACH i drukowanie kolumn "
+-"od\n"
++"                    wypisywanie danych w tylu KOLUMNACH i drukowanie kolumn od\n"
+ "                    góry do dołu, chyba że użyte jest -a. Wyrównanie liczby\n"
+ "                    linii w kolumnach na każdej stronie.\n"
+ 
+@@ -7210,8 +6912,7 @@
+ "  -d, --double-space\n"
+ "                    double space the output\n"
+ msgstr ""
+-"  -a, --across      kolejne linie będą wypisane w kolejnych kolumnach, nie "
+-"po\n"
++"  -a, --across      kolejne linie będą wypisane w kolejnych kolumnach, nie po\n"
+ "                    kolei od góry do dołu; używa się razem z -KOLUMNY\n"
+ "  -c, --show-control-chars\n"
+ "                    użycie zapisu z daszkiem (np. ^G) i ósemkowych numerów\n"
+@@ -7233,30 +6934,25 @@
+ "  -D, --date-format=FORMAT\n"
+ "                    FORMAT daty w nagłówku\n"
+ "  -e[ZNAK[SZER]], --expand-tabs[=ZNAK[SZER]]\n"
+-"                    rozwijanie ZNAKÓW wejściowych (TABów) do tej SZERokości "
+-"(8)\n"
++"                    rozwijanie ZNAKÓW wejściowych (TABów) do tej SZERokości (8)\n"
+ "  -F, -f, --form-feed\n"
+-"                    do odzielania stron będzie użyty znak nowej strony "
+-"zamiast\n"
++"                    do odzielania stron będzie użyty znak nowej strony zamiast\n"
+ "                    znaku nowej linii (przez 3-liniowy nagłówek strony z -F\n"
+ "                    lub 5-liniowy nagłówek i stopkę bez -F)\n"
+ 
+ #: src/pr.c:2808
+ msgid ""
+ "  -h, --header=HEADER\n"
+-"                    use a centered HEADER instead of filename in page "
+-"header,\n"
++"                    use a centered HEADER instead of filename in page header,\n"
+ "                    -h \"\" prints a blank line, don't use -h\"\"\n"
+ "  -i[CHAR[WIDTH]], --output-tabs[=CHAR[WIDTH]]\n"
+ "                    replace spaces with CHARs (TABs) to tab WIDTH (8)\n"
+-"  -J, --join-lines  merge full lines, turns off -W line truncation, no "
+-"column\n"
++"  -J, --join-lines  merge full lines, turns off -W line truncation, no column\n"
+ "                    alignment, --sep-string[=STRING] sets separators\n"
+ msgstr ""
+ "  -h, --header=NAGŁÓWEK\n"
+ "                    użycie wycentrowanego NAGŁÓWKA zamiast nazwy pliku w\n"
+-"                    nagłówkach, -h \"\" drukuje pustą linie, nie używaj -h"
+-"\"\"\n"
++"                    nagłówkach, -h \"\" drukuje pustą linie, nie używaj -h\"\"\n"
+ "  -i[ZNAK[SZER]], --output-tabs[=ZNAK[SZER]]\n"
+ "                    zamiana spacji na ZNAKI (TABy) do tej SZEROKOŚCI (8)\n"
+ "  -J, --join-lines\n"
+@@ -7276,8 +6972,7 @@
+ "                    ustawienie takiej DŁUGOŚCI_STRONY w liniach (66)\n"
+ "                    (domyślna liczba linii tekstu: 56; dla -F 63)\n"
+ "  -m, --merge       wypisanie wszystkich plików równolegle, każdy w jednej\n"
+-"                    kolumnie, linie są obcinane, ale linie o pełnej "
+-"długości\n"
++"                    kolumnie, linie są obcinane, ale linie o pełnej długości\n"
+ "                    są łączone przez -J\n"
+ 
+ #: src/pr.c:2824
+@@ -7294,8 +6989,7 @@
+ "                    (TAB), domyślnie liczone od pierwszej linii pliku\n"
+ "                    wejściowego\n"
+ "  -N, --first-line-number=LICZBA\n"
+-"                    początek liczenia od LICZBY przy pierwszej linii "
+-"pierwszej\n"
++"                    początek liczenia od LICZBY przy pierwszej linii pierwszej\n"
+ "                    drukowanej strony (zob. +PIERWSZA_STRONA)\n"
+ 
+ #: src/pr.c:2832
+@@ -7316,18 +7010,15 @@
+ #: src/pr.c:2839
+ msgid ""
+ "  -s[CHAR], --separator[=CHAR]\n"
+-"                    separate columns by a single character, default for "
+-"CHAR\n"
++"                    separate columns by a single character, default for CHAR\n"
+ "                    is the <TAB> character without -w and 'no char' with -w\n"
+ "                    -s[CHAR] turns off line truncation of all 3 column\n"
+ "                    options (-COLUMN|-a -COLUMN|-m) except -w is set\n"
+ msgstr ""
+ "  -s[ZNAK], --separator[=ZNAK]\n"
+-"                    oddzielanie kolumn pojedynczym ZNAKIEM, domyślnie "
+-"TABem,\n"
++"                    oddzielanie kolumn pojedynczym ZNAKIEM, domyślnie TABem,\n"
+ "                    jeżeli bez opcji -w, 'no char' z opcją -w\n"
+-"                    -s[ZNAK] wyłącza obcinanie linii we wszystkich 3 "
+-"układach\n"
++"                    -s[ZNAK] wyłącza obcinanie linii we wszystkich 3 układach\n"
+ "                    kolumn (-COLUMN|-a -COLUMN|-m), chyba że użyto opcji -w\n"
+ 
+ #: src/pr.c:2846
+@@ -7335,30 +7026,26 @@
+ "  -SSTRING, --sep-string[=STRING]\n"
+ "                    separate columns by STRING,\n"
+ "                    without -S: Default separator <TAB> with -J and <space>\n"
+-"                    otherwise (same as -S\" \"), no effect on column "
+-"options\n"
++"                    otherwise (same as -S\" \"), no effect on column options\n"
+ "  -t, --omit-header  omit page headers and trailers\n"
+ msgstr ""
+ "  -SSTRING, --sep-string[=STRING]\n"
+ "                    oddzielenie kolumn przez NAPIS,\n"
+ "                    bez -S: z opcją -J domyślny separator to TAB, bez -J -\n"
+-"                    spacja (to samo co -S\" \"), nie wpływa na opcje "
+-"dotyczące\n"
++"                    spacja (to samo co -S\" \"), nie wpływa na opcje dotyczące\n"
+ "                    kolumn\n"
+ "  -t, --omit-header  bez wypisywania nagłówków i stopek stron\n"
+ 
+ #: src/pr.c:2853
+ msgid ""
+ "  -T, --omit-pagination\n"
+-"                    omit page headers and trailers, eliminate any "
+-"pagination\n"
++"                    omit page headers and trailers, eliminate any pagination\n"
+ "                    by form feeds set in input files\n"
+ "  -v, --show-nonprinting\n"
+ "                    use octal backslash notation\n"
+ "  -w, --width=PAGE_WIDTH\n"
+ "                    set page width to PAGE_WIDTH (72) characters for\n"
+-"                    multiple text-column output only, -s[char] turns off "
+-"(72)\n"
++"                    multiple text-column output only, -s[char] turns off (72)\n"
+ msgstr ""
+ "  -T, --omit-pagination\n"
+ "                    bez wypisywania nagłówków i stopek stron, wyłączenie\n"
+@@ -7367,8 +7054,7 @@
+ "  -v, --show-nonprinting\n"
+ "                    użycie zapisu ósemkowego z backslashem\n"
+ "  -w, --width=SZEROKOŚĆ_STRONY\n"
+-"                    ustawienie SZEROKOŚCI_STRONY w kolumnach (72), tylko "
+-"dla\n"
++"                    ustawienie SZEROKOŚCI_STRONY w kolumnach (72), tylko dla\n"
+ "                    wydruku wielokolumnowego, -s[ZNAK] wyłącza wartość\n"
+ "                    domyślną (72)\n"
+ 
+@@ -7376,15 +7062,12 @@
+ msgid ""
+ "  -W, --page-width=PAGE_WIDTH\n"
+ "                    set page width to PAGE_WIDTH (72) characters always,\n"
+-"                    truncate lines, except -J option is set, no "
+-"interference\n"
++"                    truncate lines, except -J option is set, no interference\n"
+ "                    with -S or -s\n"
+ msgstr ""
+ "  -W, --page-width=SZEROKOŚĆ_STRONY\n"
+-"                    ustawienie szerokości strony zawsze do "
+-"SZEROKOŚCI_STRONY\n"
+-"                    (72), obcinanie linii, chyba że jest użyta opcja -J; "
+-"nie\n"
++"                    ustawienie szerokości strony zawsze do SZEROKOŚCI_STRONY\n"
++"                    (72), obcinanie linii, chyba że jest użyta opcja -J; nie\n"
+ "                    przeszkadza opcjom -S ani -s.\n"
+ 
+ #: src/pr.c:2871
+@@ -7413,13 +7096,11 @@
+ 
+ #: src/printenv.c:70
+ msgid "  -0, --null     end each output line with 0 byte rather than newline\n"
+-msgstr ""
+-"  -0, --null     zakończenie linii bajtem 0 zamiast znakiem nowej linii\n"
++msgstr "  -0, --null     zakończenie linii bajtem 0 zamiast znakiem nowej linii\n"
+ 
+ #: src/printf.c:79
+ #, c-format
+-msgid ""
+-"warning: %s: character(s) following character constant have been ignored"
++msgid "warning: %s: character(s) following character constant have been ignored"
+ msgstr "uwaga: %s: znaki następujące po stałej znakowej zostały zignorowane"
+ 
+ #: src/printf.c:89
+@@ -7460,8 +7141,7 @@
+ msgstr ""
+ "  \\NNN    bajt o ósemkowej wartości NNN (1 do 3 cyfr)\n"
+ "  \\xHH    bajt szesnastkowej wartości HH (1 do 2 cyfr)\n"
+-"  \\uHHHH  znak Unicode (ISO/IEC 10646) o szesnastkowej wartości HHHH (4 "
+-"cyfry)\n"
++"  \\uHHHH  znak Unicode (ISO/IEC 10646) o szesnastkowej wartości HHHH (4 cyfry)\n"
+ "  \\UHHHHHHHH  znak Unicode o szesnastkowej wartości HHHHHHHH (8 cyfr)\n"
+ 
+ #: src/printf.c:124
+@@ -7545,8 +7225,7 @@
+ 
+ #: src/ptx.c:1891
+ msgid ""
+-"Output a permuted index, including context, of the words in the input "
+-"files.\n"
++"Output a permuted index, including context, of the words in the input files.\n"
+ "\n"
+ msgstr ""
+ "Pokazanie indeksu słów z plików wejściowych razem z kontekstem.\n"
+@@ -7560,10 +7239,8 @@
+ msgstr ""
+ "  -A, --auto-reference           wypisanie automatycznie wygenerowanych\n"
+ "                                 odnośników\n"
+-"  -G, --traditional              zachowanie zgodności z wersją ptx z Systemu "
+-"V\n"
+-"  -F, --flag-truncation=NAPIS    użycie NAPISU do zaznaczania wyciętych "
+-"linii\n"
++"  -G, --traditional              zachowanie zgodności z wersją ptx z Systemu V\n"
++"  -F, --flag-truncation=NAPIS    użycie NAPISU do zaznaczania wyciętych linii\n"
+ 
+ #: src/ptx.c:1903
+ msgid ""
+@@ -7577,10 +7254,8 @@
+ "  -O, --format=roff              wyjście w postaci dyrektyw roff-a\n"
+ "  -R, --right-side-refs          umieszczenie odnośników po prawej, nie\n"
+ "                                 liczone w -w\n"
+-"  -S, --sentence-regexp=REGEXP   REGEXP dla określenia końców linii lub "
+-"zdań\n"
+-"  -T, --format=tex               generowanie wyjścia w postaci dyrektyw TeX-"
+-"a\n"
++"  -S, --sentence-regexp=REGEXP   REGEXP dla określenia końców linii lub zdań\n"
++"  -T, --format=tex               generowanie wyjścia w postaci dyrektyw TeX-a\n"
+ 
+ #: src/ptx.c:1910
+ msgid ""
+@@ -7596,8 +7271,7 @@
+ "  -b, --break-file=PLIK          znaki rozdzielające słowa są w tym PLIKU\n"
+ "  -f, --ignore-case              traktowanie małych liter jak wielkich przy\n"
+ "                                 sortowaniu\n"
+-"  -g, --gap-size=LICZBA          odstęp w kolumnach między polami "
+-"wyjściowymi\n"
++"  -g, --gap-size=LICZBA          odstęp w kolumnach między polami wyjściowymi\n"
+ "  -i, --ignore-file=PLIK         czytanie listy ignorowanych słów z PLIKU\n"
+ "  -o, --only-file=FILE           uwzględnienie tylko słów z PLIKU\n"
+ 
+@@ -7605,14 +7279,11 @@
+ msgid ""
+ "  -r, --references               first field of each line is a reference\n"
+ "  -t, --typeset-mode               - not implemented -\n"
+-"  -w, --width=NUMBER             output width in columns, reference "
+-"excluded\n"
++"  -w, --width=NUMBER             output width in columns, reference excluded\n"
+ msgstr ""
+-"  -r, --references               pierwsze pole każdej linii jest "
+-"odnośnikiem\n"
++"  -r, --references               pierwsze pole każdej linii jest odnośnikiem\n"
+ "  -t, --typeset-mode               - nie zaimplementowane -\n"
+-"  -w, --width=NUMBER             szerokość wyjścia w kolumnach, bez "
+-"odnośników\n"
++"  -w, --width=NUMBER             szerokość wyjścia w kolumnach, bez odnośników\n"
+ 
+ #: src/ptx.c:1925
+ msgid ""
+@@ -7686,33 +7357,27 @@
+ #: src/readlink.c:66
+ msgid ""
+ "  -f, --canonicalize            canonicalize by following every symlink in\n"
+-"                                every component of the given name "
+-"recursively;\n"
++"                                every component of the given name recursively;\n"
+ "                                all but the last component must exist\n"
+ "  -e, --canonicalize-existing   canonicalize by following every symlink in\n"
+-"                                every component of the given name "
+-"recursively,\n"
++"                                every component of the given name recursively,\n"
+ "                                all components must exist\n"
+ msgstr ""
+ "  -f, --canonicalize            doprowadzenie do postaci kanonicznej przez\n"
+ "                                rekursywne rozwiązanie wszystkich łącz\n"
+-"                                symbolicznych we wszystkich składnikach "
+-"danej\n"
++"                                symbolicznych we wszystkich składnikach danej\n"
+ "                                nazwy; muszą istnieć wszystkie składniki\n"
+ "                                oprócz ostatniego\n"
+ "  -e, --canonicalize-existing   doprowadzenie do postaci kanonicznej przez\n"
+ "                                rekursywne rozwiązanie wszystkich łącz\n"
+-"                                symbolicznych we wszystkich składnikach "
+-"danej\n"
++"                                symbolicznych we wszystkich składnikach danej\n"
+ "                                nazwy; muszą istnieć wszystkie składniki\n"
+ 
+ #: src/readlink.c:74
+ msgid ""
+ "  -m, --canonicalize-missing    canonicalize by following every symlink in\n"
+-"                                every component of the given name "
+-"recursively,\n"
+-"                                without requirements on components "
+-"existence\n"
++"                                every component of the given name recursively,\n"
++"                                without requirements on components existence\n"
+ "  -n, --no-newline              do not output the trailing newline\n"
+ "  -q, --quiet,\n"
+ "  -s, --silent                  suppress most error messages\n"
+@@ -7720,8 +7385,7 @@
+ msgstr ""
+ "  -m, --canonicalize-missing    doprowadzenie do postaci kanonicznej przez\n"
+ "                                rekursywne rozwiązanie wszystkich łącz\n"
+-"                                symbolicznych we wszystkich składnikach "
+-"danej\n"
++"                                symbolicznych we wszystkich składnikach danej\n"
+ "                                nazwy; składniki nie muszą istnieć\n"
+ "  -n, --no-newline              bez wypisania końcowego znaku nowej linii\n"
+ "  -q, --quiet,\n"
+@@ -7805,23 +7469,18 @@
+ 
+ #: src/rm.c:142
+ msgid ""
+-"  -I                    prompt once before removing more than three files, "
+-"or\n"
+-"                          when removing recursively.  Less intrusive than -"
+-"i,\n"
+-"                          while still giving protection against most "
+-"mistakes\n"
++"  -I                    prompt once before removing more than three files, or\n"
++"                          when removing recursively.  Less intrusive than -i,\n"
++"                          while still giving protection against most mistakes\n"
+ "      --interactive[=WHEN]  prompt according to WHEN: never, once (-I), or\n"
+ "                          always (-i).  Without WHEN, prompt always\n"
+ msgstr ""
+-"  -I                    pojedyncze pytanie przez usunięciem więcej niż "
+-"trzech\n"
++"  -I                    pojedyncze pytanie przez usunięciem więcej niż trzech\n"
+ "                          plików przy usuwaniu rekursywnym. Mniej\n"
+ "                          przeszkadzające niż -i, ale nadal zabezpieczające\n"
+ "                          przed większością błędów\n"
+ "      --interactive[=KIEDY]  pytania zależnie od KIEDY: never (nigdy), once\n"
+-"                          (raz, -I) albo always (zawsze, -i). Bez KIEDY "
+-"zawsze\n"
++"                          (raz, -I) albo always (zawsze, -i). Bez KIEDY zawsze\n"
+ "                          jest zadawane pytanie\n"
+ 
+ #: src/rm.c:149
+@@ -7831,10 +7490,8 @@
+ "                          that of the corresponding command line argument\n"
+ msgstr ""
+ "      --one-file-system  poddczas rekurencyjnego usuwania katalogu pomijane\n"
+-"                          są katalogi znajdujące się na innym systemie "
+-"plików\n"
+-"                          niż ten, na którym znajduje się argument "
+-"polecenia\n"
++"                          są katalogi znajdujące się na innym systemie plików\n"
++"                          niż ten, na którym znajduje się argument polecenia\n"
+ 
+ #: src/rm.c:154
+ msgid ""
+@@ -7853,8 +7510,7 @@
+ msgid ""
+ "\n"
+ "By default, rm does not remove directories.  Use the --recursive (-r or -R)\n"
+-"option to remove each listed directory, too, along with all of its "
+-"contents.\n"
++"option to remove each listed directory, too, along with all of its contents.\n"
+ msgstr ""
+ "\n"
+ "Domyślnie rm nie usuwa katalogów. Użyj opcji --recursive (albo -r albo -R)\n"
+@@ -7887,8 +7543,7 @@
+ "\n"
+ "Warto zauważyć, że po usunięciu plku przy użyciu `rm', jeżeli dysponuje się\n"
+ "dostateczną wiedzą i czasem istnieje możliwość odtworzenia jego zawartości\n"
+-"lub jej części. Jeżeli chcemy mieć większą pewność, że zawartość pliku "
+-"będzie\n"
++"lub jej części. Jeżeli chcemy mieć większą pewność, że zawartość pliku będzie\n"
+ "rzeczywiście nie do odtworzenia, należy rozważyć użycie programu shred.\n"
+ 
+ #: src/rm.c:336
+@@ -7922,21 +7577,17 @@
+ "Usuwanie pustych KATALOGÓW.\n"
+ "\n"
+ "      --ignore-fail-on-non-empty\n"
+-"                  zignorowanie błędów spowodowanych wyłącznie tym, że "
+-"katalog\n"
++"                  zignorowanie błędów spowodowanych wyłącznie tym, że katalog\n"
+ "                    nie jest pusty\n"
+ 
+ #: src/rmdir.c:173
+ msgid ""
+-"  -p, --parents   remove DIRECTORY and its ancestors; e.g., `rmdir -p a/b/c' "
+-"is\n"
++"  -p, --parents   remove DIRECTORY and its ancestors; e.g., `rmdir -p a/b/c' is\n"
+ "                    similar to `rmdir a/b/c a/b a'\n"
+ "  -v, --verbose   output a diagnostic for every directory processed\n"
+ msgstr ""
+-"  -p, --parents   usunięcie KATALOGU, potem próba usunięcia każdego "
+-"katalogu\n"
+-"                    nadrzędnego tej ścieżki. Np,. `rmdir -p a/b/c jest "
+-"podobne\n"
++"  -p, --parents   usunięcie KATALOGU, potem próba usunięcia każdego katalogu\n"
++"                    nadrzędnego tej ścieżki. Np,. `rmdir -p a/b/c jest podobne\n"
+ "                  do `rmdir a/b/c a/b a'.\n"
+ "  -v, --verbose   informacja diagnostyczna o każdym przetworzonym katalogu\n"
+ 
+@@ -8072,8 +7723,7 @@
+ msgstr ""
+ "Wyświetlenie liczb od PIERWSZEJ do OSTATNIEJ z krokiem KROK.\n"
+ "\n"
+-"  -f, --format=FORMAT      użycie FORMATU w stylu zmiennoprzecinkowego "
+-"formatu\n"
++"  -f, --format=FORMAT      użycie FORMATU w stylu zmiennoprzecinkowego formatu\n"
+ "                           funkcji printf\n"
+ "  -s, --separator=NAPIS    rozdzielenie liczb NAPISEM (domyślnie: \\n)\n"
+ "  -w, --equal-width        wypełnienie zerami do równej szerokości\n"
+@@ -8147,10 +7797,8 @@
+ 
+ #: src/setuidgid.c:56
+ msgid ""
+-"Drop any supplemental groups, assume the user-ID and group-ID of the "
+-"specified\n"
+-"USER (numeric ID or user name), and run COMMAND with any specified "
+-"ARGUMENTs.\n"
++"Drop any supplemental groups, assume the user-ID and group-ID of the specified\n"
++"USER (numeric ID or user name), and run COMMAND with any specified ARGUMENTs.\n"
+ "Exit with status 111 if unable to assume the required user and group ID.\n"
+ "Otherwise, exit with the exit status of COMMAND.\n"
+ "This program is useful only when run by root (user ID zero).\n"
+@@ -8237,8 +7885,7 @@
+ msgstr ""
+ "  -u, --remove   skrócenie i skasowanie pliku po zamazaniu\n"
+ "  -v, --verbose  pokazywanie przebiegu zamazywania\n"
+-"  -x, --exact    bez zaokrąglania rozmiarów plików w górę do pełnych "
+-"bloków,\n"
++"  -x, --exact    bez zaokrąglania rozmiarów plików w górę do pełnych bloków,\n"
+ "                   domyślnie dla plików innych niż zwykłe\n"
+ "  -z, --zero     dodatkowe zamazanie zerami, aby ukryć zamazywanie\n"
+ 
+@@ -8268,14 +7915,12 @@
+ "that the file system overwrites data in place.  This is the traditional\n"
+ "way to do things, but many modern file system designs do not satisfy this\n"
+ "assumption.  The following are examples of file systems on which shred is\n"
+-"not effective, or is not guaranteed to be effective in all file system "
+-"modes:\n"
++"not effective, or is not guaranteed to be effective in all file system modes:\n"
+ "\n"
+ msgstr ""
+ "UWAGA: Należy pamiętać, że shred opiera się na ważnym założeniu: że system\n"
+ "plików zamazuje dane w tym samym miejscu, gdzie je pierwotnie zapisał. Tak\n"
+-"dzieje się tradycyjnie, ale wiele nowoczesnych systemów plików tak nie "
+-"robi.\n"
++"dzieje się tradycyjnie, ale wiele nowoczesnych systemów plików tak nie robi.\n"
+ "Z następującymi systemami plików shred nie działa efektywnie albo nie ma\n"
+ "gwarancji, że działa efektywnie we wszystkich trybach pracy systemu plików:\n"
+ "\n"
+@@ -8328,12 +7973,9 @@
+ "W przypadku systemu plików ext3 powyższe uwagi mają znaczenie (a shred ma\n"
+ "wtedy ograniczona efektywność) tylko w trybie data=journal, w którym\n"
+ "journallingowi podlega oprócz metadanych również zawartość pliku. Zarówno w\n"
+-"trybie data=ordered (domyślny) jak data=writeback shred działa jak "
+-"zazwyczaj.\n"
+-"Tryb jourinallingu ext3 może byc zmieniony przez dodanie opcji data=opcja "
+-"do\n"
+-"opcji mount-a dla danego systemu plików w pliku /etc/fstab, jak podaje "
+-"manual\n"
++"trybie data=ordered (domyślny) jak data=writeback shred działa jak zazwyczaj.\n"
++"Tryb jourinallingu ext3 może byc zmieniony przez dodanie opcji data=opcja do\n"
++"opcji mount-a dla danego systemu plików w pliku /etc/fstab, jak podaje manual\n"
+ "(man mount)\n"
+ "\n"
+ 
+@@ -8343,8 +7985,7 @@
+ "of the file that cannot be removed, and that will allow a shredded file\n"
+ "to be recovered later.\n"
+ msgstr ""
+-"Dodatkowo backupy i zdalne kopie mogą zawierać egzemplarze tego samego "
+-"pliku,\n"
++"Dodatkowo backupy i zdalne kopie mogą zawierać egzemplarze tego samego pliku,\n"
+ "które nie mogą zostać usunięte i plik zamazany schredem może zostać\n"
+ "odtworzony.\n"
+ 
+@@ -8490,8 +8131,7 @@
+ #: src/shuf.c:61
+ msgid ""
+ "  -e, --echo                treat each ARG as an input line\n"
+-"  -i, --input-range=LO-HI   treat each number LO through HI as an input "
+-"line\n"
++"  -i, --input-range=LO-HI   treat each number LO through HI as an input line\n"
+ "  -n, --head-count=COUNT    output at most COUNT lines\n"
+ "  -o, --output=FILE         write result to FILE instead of standard output\n"
+ "      --random-source=FILE  get random bytes from FILE\n"
+@@ -8499,8 +8139,7 @@
+ msgstr ""
+ "  -e, --echo                traktowanie każdego argumentu jako linii\n"
+ "                              wejściowej\n"
+-"  -i, --input-range=LO-HI   traktowanie każdej liczby od LO do HI jako "
+-"linii\n"
++"  -i, --input-range=LO-HI   traktowanie każdej liczby od LO do HI jako linii\n"
+ "                              wejściowej\n"
+ "  -n, --head-lines=LICZBA   najwyżej taka LICZBA linii będzie zapisana na\n"
+ "                              wyjściu\n"
+@@ -8541,8 +8180,7 @@
+ "Usage: %s NUMBER[SUFFIX]...\n"
+ "  or:  %s OPTION\n"
+ "Pause for NUMBER seconds.  SUFFIX may be `s' for seconds (the default),\n"
+-"`m' for minutes, `h' for hours or `d' for days.  Unlike most "
+-"implementations\n"
++"`m' for minutes, `h' for hours or `d' for days.  Unlike most implementations\n"
+ "that require NUMBER be an integer, here NUMBER may be an arbitrary floating\n"
+ "point number.  Given two or more arguments, pause for the amount of time\n"
+ "specified by the sum of their values.\n"
+@@ -8551,10 +8189,8 @@
+ "Składnia: %s ILE[PRZYROSTEK]...\n"
+ "    albo: %s OPCJA\n"
+ "Czekanie przez określoną LICZBĘ sekund. PRZYROSTKIEM może być `s' dla\n"
+-"oznaczenia sekund (domyślnie), m - minut, h - godzin i d - dni. Inaczej niż "
+-"w\n"
+-"większości implementacji, w których ILE musi być liczbą całkowitą, tutaj "
+-"ILE\n"
++"oznaczenia sekund (domyślnie), m - minut, h - godzin i d - dni. Inaczej niż w\n"
++"większości implementacji, w których ILE musi być liczbą całkowitą, tutaj ILE\n"
+ "może być dowolną liczbą zmiennoprzecinkową. Jeżeli podane są dwa lub więcej\n"
+ "argumenty, przerwa trwa tyle ile suma ich wartości.\n"
+ "\n"
+@@ -8574,8 +8210,7 @@
+ "Write sorted concatenation of all FILE(s) to standard output.\n"
+ "\n"
+ msgstr ""
+-"Wypisanie posortowanego połączenia wszystkich PLIK(ÓW) na standardowym "
+-"wyjściu\n"
++"Wypisanie posortowanego połączenia wszystkich PLIK(ÓW) na standardowym wyjściu\n"
+ "\n"
+ 
+ #: src/sort.c:390
+@@ -8589,8 +8224,7 @@
+ #: src/sort.c:394
+ msgid ""
+ "  -b, --ignore-leading-blanks  ignore leading blanks\n"
+-"  -d, --dictionary-order      consider only blanks and alphanumeric "
+-"characters\n"
++"  -d, --dictionary-order      consider only blanks and alphanumeric characters\n"
+ "  -f, --ignore-case           fold lower case to upper case characters\n"
+ msgstr ""
+ "  -b, --ignore-leading-blanks zignorowanie początkowych spacji\n"
+@@ -8609,10 +8243,8 @@
+ "  -M, --month-sort            porządek: (nieznany) < `JAN' < ... < `DEC'\n"
+ 
+ #: src/sort.c:404
+-msgid ""
+-"  -h, --human-numeric-sort    compare human readable numbers (e.g., 2K 1G)\n"
+-msgstr ""
+-"  -h, --human-numeric-sort    porównanie liczb z przyrostkami (np. 2K 1G)\n"
++msgid "  -h, --human-numeric-sort    compare human readable numbers (e.g., 2K 1G)\n"
++msgstr "  -h, --human-numeric-sort    porównanie liczb z przyrostkami (np. 2K 1G)\n"
+ 
+ #: src/sort.c:407
+ msgid ""
+@@ -8621,8 +8253,7 @@
+ "      --random-source=FILE    get random bytes from FILE\n"
+ "  -r, --reverse               reverse the result of comparisons\n"
+ msgstr ""
+-"  -n, --numeric-sort          porównywanie według wartości liczbowych "
+-"napisów\n"
++"  -n, --numeric-sort          porównywanie według wartości liczbowych napisów\n"
+ "  -R, --random-sort           sortowanie wg losowego skrótu kluczy\n"
+ "      --random-source=PLIK    losowe bajty z PLIKU\n"
+ "  -r, --reverse               odwrotny porządek sortowania\n"
+@@ -8630,20 +8261,17 @@
+ #: src/sort.c:413
+ msgid ""
+ "      --sort=WORD             sort according to WORD:\n"
+-"                                general-numeric -g, human-numeric -h, month -"
+-"M,\n"
++"                                general-numeric -g, human-numeric -h, month -M,\n"
+ "                                numeric -n, random -R, version -V\n"
+ "  -V, --version-sort          natural sort of (version) numbers within text\n"
+ "\n"
+ msgstr ""
+ "      --sort=SŁOWO            sortowanie wg SŁOWA:\n"
+-"                                general-numeric (liczbowe) -g, human-"
+-"numeric\n"
++"                                general-numeric (liczbowe) -g, human-numeric\n"
+ "                                (liczbowe ludzkie) -h, month (miesięcy) -M,\n"
+ "                                numeric (liczbowe) -n, random (losowe) -R,\n"
+ "                                version (wersji) -V\n"
+-"  -V, --version-sort          sortowanie wg liczb (numerów wersji) "
+-"zawartych\n"
++"  -V, --version-sort          sortowanie wg liczb (numerów wersji) zawartych\n"
+ "                                w tekście\n"
+ 
+ #: src/sort.c:420
+@@ -8666,8 +8294,7 @@
  #: src/sort.c:428
--#, fuzzy
  msgid ""
  "  -c, --check, --check=diagnose-first  check for sorted input; do not sort\n"
- "  -C, --check=quiet, --check=silent  like -c, but do not report first bad "
-@@ -8696,13 +8694,8 @@
- "      --compress-program=PROG  kompresowanie plików tymczasowych przez "
- "PROG;\n"
- "                              dekompresowanie przez PROG -d\n"
--"      --files0-from=P       dane wejściowe będą czytane z plików\n"
--"                              rozdzielonych znakiem NUL, podanych w pliku P\n"
--"                            Jeżeli PLIK to -, nazwy czytane są ze\n"
--"                            standardowego wejścia\n"
- 
- #: src/sort.c:434
--#, fuzzy
- msgid ""
- "      --debug               annotate the part of the line used to sort,\n"
- "                              and warn about questionable usage to stderr\n"
-@@ -8710,28 +8703,24 @@
- "                            NUL-terminated names in file F;\n"
- "                            If F is - then read names from standard input\n"
+-"  -C, --check=quiet, --check=silent  like -c, but do not report first bad "
+-"line\n"
++"  -C, --check=quiet, --check=silent  like -c, but do not report first bad line\n"
+ "      --compress-program=PROG  compress temporaries with PROG;\n"
+ "                              decompress them with PROG -d\n"
  msgstr ""
--"  -c, --check, --check=diagnose-first  sprawdzenie czy dane są\n"
--"                              posortowane, ale bez sortowania\n"
--"  -C, --check=quiet, --check=silent  jak -c, ale bez informowania o\n"
--"                              pierwszej złej linii\n"
+@@ -8675,8 +8302,7 @@
+ "                              posortowane, ale bez sortowania\n"
+ "  -C, --check=quiet, --check=silent  jak -c, ale bez informowania o\n"
+ "                              pierwszej złej linii\n"
 -"      --compress-program=PROG  kompresowanie plików tymczasowych przez "
 -"PROG;\n"
--"                              dekompresowanie przez PROG -d\n"
-+"      --debug               zanotowanie która część linii została użyta do\n"
-+"                              posortowania i ostrzeganie o niewłaściwym\n"
-+"                              użyciu przez standardowe wyjście błędu\n"
- "      --files0-from=P       dane wejściowe będą czytane z plików\n"
- "                              rozdzielonych znakiem NUL, podanych w pliku P\n"
--"                            Jeżeli PLIK to -, nazwy czytane są ze\n"
--"                            standardowego wejścia\n"
-+"                              Jeżeli PLIK to -, nazwy czytane są ze\n"
-+"                              standardowego wejścia\n"
++"      --compress-program=PROG  kompresowanie plików tymczasowych przez PROG;\n"
+ "                              dekompresowanie przez PROG -d\n"
  
- #: src/sort.c:441
--#, fuzzy
- msgid ""
- "  -k, --key=POS1[,POS2]     start a key at POS1 (origin 1), end it at POS2\n"
+ #: src/sort.c:434
+@@ -8701,22 +8327,18 @@
  "                            (default end of line).  See POS syntax below\n"
  "  -m, --merge               merge already sorted files; do not sort\n"
  msgstr ""
--"  -k, --key=POZ1[,POZ2]     klucz zaczyna się od POZYCJI1 i kończy na "
--"POZYCJI2\n"
--"                              (numeracja od 1)\n"
-+"  -k, --key=POZ1[,POZ2]     klucz zaczyna się od POZYCJI1 (numeracja od 1) "
-+"i\n"
-+"                              kończy na POZYCJI2 (domyślnie koniec lini).\n"
-+"                              Informacje o składni POZYCJI poniżej.\n"
- "  -m, --merge               połączenie już posortowanych plików, bez "
- "sortowania\n"
+-"  -k, --key=POZ1[,POZ2]     klucz zaczyna się od POZYCJI1 (numeracja od 1) "
+-"i\n"
++"  -k, --key=POZ1[,POZ2]     klucz zaczyna się od POZYCJI1 (numeracja od 1) i\n"
+ "                              kończy na POZYCJI2 (domyślnie koniec lini).\n"
+ "                              Informacje o składni POZYCJI poniżej.\n"
+-"  -m, --merge               połączenie już posortowanych plików, bez "
+-"sortowania\n"
++"  -m, --merge               połączenie już posortowanych plików, bez sortowania\n"
  
-@@ -8750,7 +8739,7 @@
- "  -S, --buffer-size=ROZM    ROZMIAR głównego bufora pamięci\n"
- 
- #: src/sort.c:451
--#, fuzzy, c-format
-+#, c-format
+ #: src/sort.c:446
  msgid ""
- "  -t, --field-separator=SEP  use SEP instead of non-blank to blank "
- "transition\n"
-@@ -8767,6 +8756,7 @@
- "  -T, --temporary-directory=KATALOG  użycie KATALOGU na pliki tymczasowe\n"
- "                              zamiast $TMPDIR lub %s; opcja użyta\n"
+ "  -o, --output=FILE         write result to FILE instead of standard output\n"
+-"  -s, --stable              stabilize sort by disabling last-resort "
+-"comparison\n"
++"  -s, --stable              stabilize sort by disabling last-resort comparison\n"
+ "  -S, --buffer-size=SIZE    use SIZE for main memory buffer\n"
+ msgstr ""
+-"  -o, --output=PLIK         zapisanie wyniku w PLIKU zamiast na "
+-"standardowym\n"
++"  -o, --output=PLIK         zapisanie wyniku w PLIKU zamiast na standardowym\n"
+ "                              wyjściu\n"
+ "  -s, --stable              stabilizacja sortowania przez zablokowanie\n"
+ "                              porównania końcowego\n"
+@@ -8725,15 +8347,12 @@
+ #: src/sort.c:451
+ #, c-format
+ msgid ""
+-"  -t, --field-separator=SEP  use SEP instead of non-blank to blank "
+-"transition\n"
+-"  -T, --temporary-directory=DIR  use DIR for temporaries, not $TMPDIR or "
+-"%s;\n"
++"  -t, --field-separator=SEP  use SEP instead of non-blank to blank transition\n"
++"  -T, --temporary-directory=DIR  use DIR for temporaries, not $TMPDIR or %s;\n"
+ "                              multiple options specify multiple directories\n"
+ "      --parallel=N          limit the number of sorts run concurrently to N\n"
+ "  -u, --unique              with -c, check for strict ordering;\n"
+-"                              without -c, output only the first of an equal "
+-"run\n"
++"                              without -c, output only the first of an equal run\n"
+ msgstr ""
+ "  -t, --field-separator=SEP  użycie SEPARATORA zamiast przejścia\n"
+ "                              odstęp - nie-odstęp\n"
+@@ -8742,36 +8361,29 @@
  "                              więcej razy definiuje więcej katalogów\n"
-+"      --parallel=N          ograniczenie liczby równoległych sortowań do N\n"
+ "      --parallel=N          ograniczenie liczby równoległych sortowań do N\n"
  "  -u, --unique              z -c: sprawdzenie uporządkowania; bez -c:\n"
- "                              wypisanie tylko pierwszej z identycznych "
- "linii\n"
-@@ -8904,7 +8894,7 @@
- #: src/sort.c:1389
- #, c-format
- msgid "number in parallel must be nonzero"
--msgstr ""
-+msgstr "liczba równoległych sortowań (parallel) musi byc niezerowy"
+-"                              wypisanie tylko pierwszej z identycznych "
+-"linii\n"
++"                              wypisanie tylko pierwszej z identycznych linii\n"
  
- #: src/sort.c:1470
- msgid "stat failed"
-@@ -8927,40 +8917,41 @@
- #: src/sort.c:2167
- #, c-format
- msgid "^ no match for key\n"
--msgstr ""
-+msgstr "^ brak dopasowania klucza\n"
+ #: src/sort.c:459
+ msgid "  -z, --zero-terminated     end lines with 0 byte, not newline\n"
+ msgstr ""
+-"  -z, --zero-terminated     zakończenie linii bajtem 0 zamiast znakiem "
+-"nowej\n"
++"  -z, --zero-terminated     zakończenie linii bajtem 0 zamiast znakiem nowej\n"
+ "                              linii\n"
  
+ #: src/sort.c:464
+ msgid ""
+ "\n"
+-"POS is F[.C][OPTS], where F is the field number and C the character "
+-"position\n"
+-"in the field; both are origin 1.  If neither -t nor -b is in effect, "
+-"characters\n"
+-"in a field are counted from the beginning of the preceding whitespace.  OPTS "
+-"is\n"
++"POS is F[.C][OPTS], where F is the field number and C the character position\n"
++"in the field; both are origin 1.  If neither -t nor -b is in effect, characters\n"
++"in a field are counted from the beginning of the preceding whitespace.  OPTS is\n"
+ "one or more single-letter ordering options, which override global ordering\n"
+ "options for that key.  If no key is given, use the entire line as the key.\n"
+ "\n"
+ "SIZE may be followed by the following multiplicative suffixes:\n"
+ msgstr ""
+ "\n"
+-"POZ to P[.Z][OPCJE], gdzie P jest numerem pola, a Z pozycją znaku w polu; "
+-"oba\n"
++"POZ to P[.Z][OPCJE], gdzie P jest numerem pola, a Z pozycją znaku w polu; oba\n"
+ "liczone od jedynki. Jeżeli nie jest użyta opcja -t ani -b, znaki w polu są\n"
+-"liczone do początku poprzedzającego odstępu. OPCJE zawierają jedną lub "
+-"więcej\n"
++"liczone do początku poprzedzającego odstępu. OPCJE zawierają jedną lub więcej\n"
+ "liter, które dla tego klucza są ważniejsze niż opcje globalne. Jeżeli nie\n"
+ "jest podany klucz, cała linia jest używana jako klucz.\n"
+ "\n"
+@@ -8906,8 +8518,7 @@
  #: src/sort.c:2344
  #, c-format
  msgid "obsolescent key `%s' used; consider `%s' instead"
- msgstr ""
-+"został użyty zdezaktualizowany klucz `%s', rozważ użycie `%s' zamiast niego"
+-msgstr ""
+-"został użyty zdezaktualizowany klucz `%s', rozważ użycie `%s' zamiast niego"
++msgstr "został użyty zdezaktualizowany klucz `%s', rozważ użycie `%s' zamiast niego"
  
  #: src/sort.c:2350
  #, c-format
- msgid "key %lu has zero width and will be ignored"
--msgstr ""
-+msgstr "klucz %lu ma zerową długość i będzie zignorowany"
- 
- #: src/sort.c:2361
- #, c-format
- msgid "leading blanks are significant in key %lu; consider also specifying `b'"
--msgstr ""
-+msgstr "początkowe odstępy są znaczące w kluczu %lu, rozważ podanie `b'"
- 
- #: src/sort.c:2374
- #, c-format
- msgid "key %lu is numeric and spans multiple fields"
--msgstr ""
-+msgstr "klucz %lu jest numeryczny i rozciąga się na wiele pól"
- 
- #: src/sort.c:2406
--#, fuzzy, c-format
-+#, c-format
- msgid "option `-%s' is ignored"
- msgid_plural "options `-%s' are ignored"
--msgstr[0] "opcje `-%s' nie pasują do siebie"
--msgstr[1] "opcje `-%s' nie pasują do siebie"
--msgstr[2] "opcje `-%s' nie pasują do siebie"
-+msgstr[0] "opcja `-%s' została zignorowana"
-+msgstr[1] "opcje `-%s' zostały zignorowane"
-+msgstr[2] "opcji `-%s' zostało zignorowanych"
- 
- #: src/sort.c:2412
- #, c-format
- msgid "option `-r' only applies to last-resort comparison"
--msgstr ""
-+msgstr "optja `-r' ma zastosowanie tylko do porównań ostatniej szansy"
- 
- #: src/sort.c:2686 src/sort.c:2695
- msgid "write failed"
-@@ -9046,12 +9037,12 @@
- #: src/sort.c:4469
- #, c-format
- msgid "using %s sorting rules"
--msgstr ""
-+msgstr "użycie reguł sortowania %s"
- 
- #: src/sort.c:4472
- #, c-format
- msgid "using simple byte comparison"
--msgstr ""
-+msgstr "użycie prostego porównywania bajtów"
- 
- #: src/sort.c:4503
- #, c-format
-@@ -9147,9 +9138,9 @@
- msgstr "Michael Meskes"
- 
- #: src/stat.c:682
--#, fuzzy, c-format
-+#, c-format
- msgid "failed to canonicalize %s"
--msgstr "nie udało się sklonować %s"
-+msgstr "nie udało się kanonizować %s"
- 
- #: src/stat.c:889
- #, c-format
-@@ -9193,6 +9184,11 @@
- "Blocks: Total: %-10b Free: %-10f Available: %a\n"
- "Inodes: Total: %-10c Free: %d\n"
- msgstr ""
-+"  Plik: \"%n\"\n"
-+"    ID: %-8i długość nazwy: %-7l typ: %T\n"
-+"rozmiar bloku: %-10s podstawowy rozmiar bloku: %S\n"
-+"bloków: Razem: %-10b wolnych: %-10f dostępnych: %a\n"
-+"Inody: razem: %-10c wolnych: %d\n"
- 
- #. TRANSLATORS: This string uses format specifiers from
- #. 'stat --help' without --file-system, and NOT from printf.
-@@ -9201,31 +9197,33 @@
- "  File: %N\n"
- "  Size: %-10s\tBlocks: %-10b IO Block: %-6o %F\n"
- msgstr ""
-+"  Plik: %N\n"
-+"  rozmiar: %-10s\tbloków: %-10b bloki I/O: %-6o %F\n"
- 
- #. TRANSLATORS: This string uses format specifiers from
- #. 'stat --help' without --file-system, and NOT from printf.
- #: src/stat.c:1113
- msgid "Device: %Dh/%dd\tInode: %-10i  Links: %-5h Device type: %t,%T\n"
--msgstr ""
-+msgstr "Urządzenie: %Dh/%dd\tinody: %-10i  dowiązań: %-5h typ: %t,%T\n"
- 
- #. TRANSLATORS: This string uses format specifiers from
- #. 'stat --help' without --file-system, and NOT from printf.
- #: src/stat.c:1121
- msgid "Device: %Dh/%dd\tInode: %-10i  Links: %h\n"
--msgstr ""
-+msgstr "Urządzenie: %Dh/%dd\tinody: %-10i  dowiązań: %h\n"
- 
- #. TRANSLATORS: This string uses format specifiers from
- #. 'stat --help' without --file-system, and NOT from printf.
- #: src/stat.c:1130
- msgid "Access: (%04a/%10.10A)  Uid: (%5u/%8U)   Gid: (%5g/%8G)\n"
--msgstr ""
-+msgstr "Dostęp: (%04a/%10.10A)  Uid: (%5u/%8U)   Gid: (%5g/%8G)\n"
- 
- #. TRANSLATORS: This string uses format specifiers from
- #. 'stat --help' without --file-system, and NOT from printf.
- #: src/stat.c:1140
--#, fuzzy, c-format
-+#, c-format
- msgid "Context: %C\n"
--msgstr " kontekst=%s"
-+msgstr "Kontekst: %C\n"
- 
- #. TRANSLATORS: This string uses format specifiers from
- #. 'stat --help' without --file-system, and NOT from printf.
-@@ -9236,6 +9234,10 @@
- "Change: %z\n"
- " Birth: %w\n"
- msgstr ""
-+"Dostęp:      %x\n"
-+"Modyfikacja: %y\n"
-+"Zmiana:      %z\n"
-+"Utworzenie:  %w\n"
- 
- #: src/stat.c:1170
+@@ -9041,14 +8652,12 @@
+ #: src/split.c:106
  msgid ""
-@@ -9305,7 +9307,6 @@
- "  %G   nazwa grupy właściciela pliku\n"
- 
- #: src/stat.c:1204
--#, fuzzy
- msgid ""
- "  %h   Number of hard links\n"
- "  %i   Inode number\n"
-@@ -9319,6 +9320,7 @@
+ "Output fixed-size pieces of INPUT to PREFIXaa, PREFIXab, ...; default\n"
+-"size is 1000 lines, and default PREFIX is `x'.  With no INPUT, or when "
+-"INPUT\n"
++"size is 1000 lines, and default PREFIX is `x'.  With no INPUT, or when INPUT\n"
+ "is -, read standard input.\n"
+ "\n"
  msgstr ""
- "  %h   liczba dowiązań zwykłych\n"
- "  %i   numer i-węzła\n"
-+"  %m   miejsce zamontowania\n"
- "  %n   nazwa pliku\n"
- "  %N   nazwa pliku w cudzysłowach, rozwiązana jeżeli dowiązanie symboliczne\n"
- "  %o   rozmiar bloku wejścia/wyjścia\n"
-@@ -9327,7 +9329,6 @@
- "  %T   mniejszy numer urządzenia szesnastkowo\n"
- 
- #: src/stat.c:1215
--#, fuzzy
- msgid ""
- "  %u   User ID of owner\n"
- "  %U   User name of owner\n"
-@@ -9343,6 +9344,8 @@
- msgstr ""
- "  %u   numer użytkownika właściciela\n"
- "  %U   nazwa właściciela\n"
-+"  %w   czas utworzenia pliku albo - jeżeli nieznany\n"
-+"  %W   czas utworzenia pliku w sekundach od Epoki albo - jeżeli nieznana\n"
- "  %x   czas ostatniego czytania\n"
- "  %X   czas ostatniego czytania w sekundach od Epoki\n"
- "  %y   czas ostatniej modyfikacji\n"
-@@ -9352,7 +9355,6 @@
+ "Zapisanie równych kawałków PLIKU do PRZEDROSTEKaa, PRZEDROSTEKab, ...;\n"
+-"domyślny rozmiat to 1000 linii, domyslny PRZEDROSTEK to `x'. Jeżeli PLIK "
+-"nie\n"
++"domyślny rozmiat to 1000 linii, domyslny PRZEDROSTEK to `x'. Jeżeli PLIK nie\n"
+ "jest podany albo podany jako -, czytane jest standardowe wejście\n"
  "\n"
  
- #: src/stat.c:1229
--#, fuzzy
- msgid ""
- "Valid format sequences for file systems:\n"
- "\n"
-@@ -9369,7 +9371,6 @@
- "  %c   całkowita liczba i-węzłów w systemie plików\n"
- "  %d   liczba wolnych i-węzłów w systemie plików\n"
- "  %f   liczba wolnych bloków w systemie plików\n"
--"  %C   kontekst bezpieczeństwa SELinuksa\n"
- 
- #: src/stat.c:1238
- msgid ""
-@@ -10412,9 +10413,9 @@
- msgstr "nie można śledzić katalogu nadrzędnego %s"
- 
- #: src/tail.c:1365 src/tail.c:1380
--#, fuzzy, c-format
-+#, c-format
- msgid "inotify resources exhausted"
--msgstr "zabrakło przyrostków plików wyjściowych"
-+msgstr "zabrakło zasobów inotify"
- 
- #: src/tail.c:1383 src/tail.c:1501
- #, c-format
-@@ -11124,6 +11125,8 @@
- "when translating with string1 longer than string2,\n"
- "the latter string must not end with a character class"
+@@ -9072,8 +8681,7 @@
+ "      --verbose           print a diagnostic just before each\n"
+ "                            output file is opened\n"
  msgstr ""
-+"jeżeli translacja jest robiona ze ZBIOREM1 dłuższym niż\n"
-+"ZBIÓR2, ten ostatni nie może kończyć się klasą znaków"
+-"      --verbose           przed otwarciem każdego pliku wypisanie "
+-"komunikatów\n"
++"      --verbose           przed otwarciem każdego pliku wypisanie komunikatów\n"
+ "                            diagnostycznych\n"
  
- # should it be string1 or SET1?
- #: src/tr.c:1481
-@@ -11237,13 +11240,12 @@
- "  -o, --io-blocks        ROZMIAR traktowany jako liczba bloków, nie bajtów\n"
+ #: src/split.c:186
+@@ -9144,9 +8752,7 @@
+ #: src/stat.c:1153
+ #, c-format
+ msgid "using %s to denote standard input does not work in file system mode"
+-msgstr ""
+-"użycie %s jako oznaczenia standardowego wejścia nie działa w trybie systemu "
+-"plików"
++msgstr "użycie %s jako oznaczenia standardowego wejścia nie działa w trybie systemu plików"
+ 
+ #: src/stat.c:1160
+ #, c-format
+@@ -9245,12 +8851,10 @@
+ "  -t, --terse           print the information in terse form\n"
+ msgstr ""
+ "  -c  --format=FORMAT   użycie podanego FORMATU zamiast domyślnego; po\n"
+-"                          użyciu każdego nowego FORMATU wypisywany jest "
+-"znak\n"
++"                          użyciu każdego nowego FORMATU wypisywany jest znak\n"
+ "                          nowej linii\n"
+ "      --printf=FORMAT   jak --format, ale z interpretacją sekwencji z\n"
+-"                          ukośnikiem odwrotnym i bez wypisywania znaku "
+-"nowej\n"
++"                          ukośnikiem odwrotnym i bez wypisywania znaku nowej\n"
+ "                          linii. Żeby go wypisać użyj \\n w FORMACIE.\n"
+ "  -t, --terse           wypisywanie informacji w skróconej formie\n"
+ 
+@@ -9383,9 +8987,7 @@
+ msgid ""
+ "Run COMMAND, with modified buffering operations for its standard streams.\n"
+ "\n"
+-msgstr ""
+-"Uruchamia POLECENIE ze zmodyfikowanymi operacjami buforowania standardowych "
+-"strumieni.\n"
++msgstr "Uruchamia POLECENIE ze zmodyfikowanymi operacjami buforowania standardowych strumieni.\n"
+ 
+ #: src/stdbuf.c:100
+ msgid ""
+@@ -9420,8 +9022,7 @@
+ "\n"
+ "Otherwise MODE is a number which may be followed by one of the following:\n"
+ "KB 1000, K 1024, MB 1000*1000, M 1024*1024, and so on for G, T, P, E, Z, Y.\n"
+-"In this case the corresponding stream will be fully buffered with the "
+-"buffer\n"
++"In this case the corresponding stream will be fully buffered with the buffer\n"
+ "size set to MODE bytes.\n"
+ msgstr ""
+ "\n"
+@@ -9434,8 +9035,7 @@
+ msgid ""
+ "\n"
+ "NOTE: If COMMAND adjusts the buffering of its standard streams (`tee' does\n"
+-"for e.g.) then that will override corresponding settings changed by "
+-"`stdbuf'.\n"
++"for e.g.) then that will override corresponding settings changed by `stdbuf'.\n"
+ "Also some filters (like `dd' and `cat' etc.) don't use streams for I/O,\n"
+ "and are thus unaffected by `stdbuf' settings.\n"
+ msgstr ""
+@@ -9503,8 +9103,7 @@
+ msgstr ""
+ "\n"
+ "Znaki specjalne:\n"
+-" * dsusp ZNAK    ZNAK wysyła do terminala sygnał stopu po opróżnieniu "
+-"wejścia\n"
++" * dsusp ZNAK    ZNAK wysyła do terminala sygnał stopu po opróżnieniu wejścia\n"
+ "   eof ZNAK      ZNAK wysyła znak końca pliku (końca wejścia)\n"
+ "   eol ZNAK      ZNAK wysyła znak końca linii\n"
+ 
+@@ -9562,8 +9161,7 @@
+ msgid ""
+ "   ispeed N      set the input speed to N\n"
+ " * line N        use line discipline N\n"
+-"   min N         with -icanon, set N characters minimum for a completed "
+-"read\n"
++"   min N         with -icanon, set N characters minimum for a completed read\n"
+ "   ospeed N      set the output speed to N\n"
+ msgstr ""
+ "   ispeed N      ustawienie prędkości wejściowej na N\n"
+@@ -9574,8 +9172,7 @@
+ #: src/stty.c:568
+ msgid ""
+ " * rows N        tell the kernel that the terminal has N rows\n"
+-" * size          print the number of rows and columns according to the "
+-"kernel\n"
++" * size          print the number of rows and columns according to the kernel\n"
+ "   speed         print the terminal speed\n"
+ "   time N        with -icanon, set read timeout of N tenths of a second\n"
+ msgstr ""
+@@ -9605,8 +9202,7 @@
+ "   [-]cstopb     use two stop bits per character (one with `-')\n"
+ "   [-]hup        send a hangup signal when the last process closes the tty\n"
+ "   [-]hupcl      same as [-]hup\n"
+-"   [-]parenb     generate parity bit in output and expect parity bit in "
+-"input\n"
++"   [-]parenb     generate parity bit in output and expect parity bit in input\n"
+ "   [-]parodd     set odd parity (even with `-')\n"
+ msgstr ""
+ "   [-]cstopb     użycie dwóch bitów stopu na znak (jeden z `-')\n"
+@@ -9649,8 +9245,7 @@
+ 
+ #: src/stty.c:604
+ msgid " * [-]iutf8      assume input characters are UTF-8 encoded\n"
+-msgstr ""
+-" * [-]iutf8      program zakłada, że znaki wejściowe są zakodowane w UTF-8\n"
++msgstr " * [-]iutf8      program zakłada, że znaki wejściowe są zakodowane w UTF-8\n"
+ 
+ #: src/stty.c:607
+ msgid ""
+@@ -9711,12 +9306,10 @@
+ msgstr ""
+ " * [-]onocr      bez wysyłania znaków CR w pierwszej kolumnie\n"
+ "   [-]opost      przetwarzanie znaków wyjściowych\n"
+-" * tabN          styl opóźnienia po tabulatorze poziomym, N w zakresie "
+-"[0..3]\n"
++" * tabN          styl opóźnienia po tabulatorze poziomym, N w zakresie [0..3]\n"
+ " * tabs          to samo co  tab0\n"
+ " * -tabs         to samo co  tab3\n"
+-" * vtN           styl opóźnienia po tabulatorze pionowym, N w zakresie "
+-"[0..1]\n"
++" * vtN           styl opóźnienia po tabulatorze pionowym, N w zakresie [0..1]\n"
+ 
+ #: src/stty.c:639
+ msgid ""
+@@ -9729,10 +9322,8 @@
+ "\n"
+ "Ustawienia lokalne:\n"
+ "   [-]crterase   wyświetlanie znaku erase jako BS-spacja-BS\n"
+-" * crtkill       kasowanie całej linii zgodnie z ustawieniami echoprt i "
+-"echoe\n"
+-" * -crtkill      kasowanie całej linii zgodnie z ustawieniami echoctl i "
+-"echok\n"
++" * crtkill       kasowanie całej linii zgodnie z ustawieniami echoprt i echoe\n"
++" * -crtkill      kasowanie całej linii zgodnie z ustawieniami echoctl i echok\n"
+ 
+ #: src/stty.c:646
+ msgid ""
+@@ -9765,8 +9356,7 @@
+ #: src/stty.c:660
+ msgid ""
+ "   [-]isig       enable interrupt, quit, and suspend special characters\n"
+-"   [-]noflsh     disable flushing after interrupt and quit special "
+-"characters\n"
++"   [-]noflsh     disable flushing after interrupt and quit special characters\n"
+ " * [-]prterase   same as [-]echoprt\n"
+ " * [-]tostop     stop background jobs that try to write to the terminal\n"
+ " * [-]xcase      with icanon, escape with `\\' for uppercase characters\n"
+@@ -9774,8 +9364,7 @@
+ "   [-]isig       wyświetlanie znaków intr, quit i susp\n"
+ "   [-]noflsh     bez opróżniania bufora po znakach intr i quit\n"
+ " * [-]prterase   to samo co  [-]echoprt\n"
+-" * [-]tostop     zatrzymywanie procesów w tle, próbujących pisać na "
+-"terminal\n"
++" * [-]tostop     zatrzymywanie procesów w tle, próbujących pisać na terminal\n"
+ " * [-]xcase      z icanon: wyświetlanie wielkich liter jako `\\mała-litera'\n"
+ 
+ #: src/stty.c:667
+@@ -9987,14 +9576,12 @@
+ "Zmiana efektywnego identyfikatora użytkownika i grupy na identyfikator\n"
+ "UŻYTKOWNIKA.\n"
+ "\n"
+-"  -, -l, --login               uruchomienie powłoki podstawowej (login "
+-"shell)\n"
++"  -, -l, --login               uruchomienie powłoki podstawowej (login shell)\n"
+ "  -c, --command=POLECENIE      przekazanie POLECENIA powłoce opcją -c\n"
+ "  -f, --fast                   przekazanie -f powłoce (dla csh lub tcsh)\n"
+ "  -m, --preserve-environment   bez kasowania zmiennych środowiskowych\n"
+ "  -p                           to samo co  -m\n"
+-"  -s, --shell=POWŁOKA          uruchomienie POWŁOKI, jeśli /etc/shells "
+-"pozwala\n"
++"  -s, --shell=POWŁOKA          uruchomienie POWŁOKI, jeśli /etc/shells pozwala\n"
+ 
+ #: src/su.c:382
+ msgid ""
+@@ -10097,8 +9684,7 @@
+ "\n"
+ "Wartości są wypisywane w jednostkach pierwszego dostępnego ROZMIARU z opcji\n"
+ "--block-size i ze zmiennych środowiskowych %s_BLOCK_SIZE, BLOCK_SIZE i\n"
+-"BLOCKSIZE. Jeżeli jednostka nie jest dostępna to domyślnie wynosi 1024 "
+-"bajty\n"
++"BLOCKSIZE. Jeżeli jednostka nie jest dostępna to domyślnie wynosi 1024 bajty\n"
+ "albo 512 bajtów jeżeli ustawiona jest zmienna POSIXLY_CORRECT.\n"
+ 
+ #: src/system.h:596
+@@ -10117,16 +9703,12 @@
+ #: src/system.h:612
+ #, c-format
+ msgid "Report %s translation bugs to <http://translationproject.org/team/>\n"
+-msgstr ""
+-"O błędach tłumaczenia %s poinformuj przez http://translationproject.org/"
+-"team/\n"
++msgstr "O błędach tłumaczenia %s poinformuj przez http://translationproject.org/team/\n"
+ 
+ #: src/system.h:616
+ #, c-format
+ msgid "For complete documentation, run: info coreutils '%s invocation'\n"
+-msgstr ""
+-"Żeby przeczytać kompletną dokumentację uruchom: info coreutils '%s "
+-"invocation'\n"
++msgstr "Żeby przeczytać kompletną dokumentację uruchom: info coreutils '%s invocation'\n"
+ 
+ #: src/system.h:686
+ #, c-format
+@@ -10167,8 +9749,7 @@
+ msgstr ""
+ "  -b, --before             dołączenie separatora przed zamiast po\n"
+ "  -r, --regex              interpretowanie separatora jako wyr. regularnego\n"
+-"  -s, --separator=NAPIS    użycie NAPISU jako separatora zamiast nowej "
+-"linii\n"
++"  -s, --separator=NAPIS    użycie NAPISU jako separatora zamiast nowej linii\n"
+ 
+ #: src/tac.c:235 src/tac.c:336
+ #, c-format
+@@ -10209,17 +9790,14 @@
+ "\n"
+ msgstr ""
+ "Wypisanie %d ostatnich linii każdego PLIKU na standardowym wyjściu.\n"
+-"Dla większej liczby PLIKÓW każda porcja ma nagłówek z nazwą. Jeżeli PLIK "
+-"nie\n"
++"Dla większej liczby PLIKÓW każda porcja ma nagłówek z nazwą. Jeżeli PLIK nie\n"
+ "jest podany albo podany jako -, czytane jest standardowe wejście.\n"
+ "\n"
+ 
+ #: src/tail.c:271
+ msgid ""
+-"  -c, --bytes=K            output the last K bytes; alternatively, use -c "
+-"+K\n"
+-"                           to output bytes starting with the Kth of each "
+-"file\n"
++"  -c, --bytes=K            output the last K bytes; alternatively, use -c +K\n"
++"                           to output bytes starting with the Kth of each file\n"
+ msgstr ""
+ "  -c, --bytes=N            wypisanie ostatnich N bajtów; alternatynie użyj\n"
+ "                           -c +K aby wypisać od N-tego bajtu z każdego z\n"
+@@ -10243,8 +9821,7 @@
+ #, c-format
+ msgid ""
+ "  -n, --lines=K            output the last K lines, instead of the last %d;\n"
+-"                           or use -n +K to output lines starting with the "
+-"Kth\n"
++"                           or use -n +K to output lines starting with the Kth\n"
+ "      --max-unchanged-stats=N\n"
+ "                           with --follow=name, reopen a FILE which has not\n"
+ "                           changed size after N (default %d) iterations\n"
+@@ -10254,8 +9831,7 @@
+ "  -n, --lines=N            wypisanie ostatnich N linii zamiast ostatnich %d\n"
+ "                             albo użyj -n +K dla wypisania linii od N-tej\n"
+ "      --max-unchanged-stats=N\n"
+-"                           z --follow=name powoduje ponowne otwieranie "
+-"PLIKU,\n"
++"                           z --follow=name powoduje ponowne otwieranie PLIKU,\n"
+ "                           który nie zmienił rozmiaru po N (domyślnie %d)\n"
+ "                           iteracjach, dla sprawdzenia czy został usunięty\n"
+ "                           albo przemianowany (częsty przypadek dla logów)\n"
+@@ -10268,8 +9844,7 @@
+ "                             becomes inaccessible; useful when following by\n"
+ "                             name, i.e., with --follow=name\n"
+ msgstr ""
+-"      --pid=PID            z -f - zakończenie pracy po zakończeniu procesu "
+-"o\n"
++"      --pid=PID            z -f - zakończenie pracy po zakończeniu procesu o\n"
+ "                           numerze PID\n"
+ "  -q, --quiet, --silent    bez wypisywania nagłówków z nazwami plików\n"
+ "      --retry              stałe ponawianie próby otwierania pliku, nawet\n"
+@@ -10317,10 +9892,8 @@
+ "Z --follow (-f) tail domyślnie śledzi przyrosty zawartości pliku o\n"
+ "określonym deskryptorze, więc nawet po zmianie nazwy śledzi ten sam plik.\n"
+ "To domyślne zachowanie jest niepożądane, jeżeli śledzony ma być plik o\n"
+-"określonej nazwie (np. plik logu podlegający rotacji). W tym przypadku "
+-"należy\n"
+-"użyć --follow=name, co powoduje, że tail śledzi podany plik, otwierając go "
+-"co\n"
++"określonej nazwie (np. plik logu podlegający rotacji). W tym przypadku należy\n"
++"użyć --follow=name, co powoduje, że tail śledzi podany plik, otwierając go co\n"
+ "jakiś czas ponownie, żeby sprawdzić, czy nie został przemianowany albo\n"
+ "usunięty i ponownie utworzony przez jakiś inny program.\n"
+ 
+@@ -10352,9 +9925,7 @@
+ #: src/tail.c:974
+ #, c-format
+ msgid "%s has been replaced with an untailable file; giving up on this name"
+-msgstr ""
+-"%s został zamieniony na plik, którego nie można śledzić tailem; koniec "
+-"śledzenia"
++msgstr "%s został zamieniony na plik, którego nie można śledzić tailem; koniec śledzenia"
+ 
+ #: src/tail.c:983
+ #, c-format
+@@ -10429,8 +10000,7 @@
+ #: src/tail.c:1956
+ #, c-format
+ msgid "%s: invalid maximum number of unchanged stats between opens"
+-msgstr ""
+-"%s: błędna maksymalna liczba braków zmian stanów między otwarciami pliku"
++msgstr "%s: błędna maksymalna liczba braków zmian stanów między otwarciami pliku"
+ 
+ #: src/tail.c:1972
+ #, c-format
+@@ -10455,8 +10025,7 @@
+ #: src/tail.c:2019
+ #, c-format
+ msgid "warning: PID ignored; --pid=PID is useful only when following"
+-msgstr ""
+-"uwaga: zignorowany PID; opcja --pid=PID jest przydatna tylko przy śledzeniu"
++msgstr "uwaga: zignorowany PID; opcja --pid=PID jest przydatna tylko przy śledzeniu"
+ 
+ #: src/tail.c:2022
+ #, c-format
+@@ -10660,8 +10229,7 @@
+ "  -f PLIK     PLIK istnieje i jest zwykłym plikiem\n"
+ "  -g PLIK     PLIK istnieje i ma atrybut set-group-id\n"
+ "  -G PLIK     PLIK istnieje i jego właścicielem jest efektywna grupa\n"
+-"  -h PLIK     PLIK istnieje i jest dowiązaniem symbolicznym (to samo co  -"
+-"L)\n"
++"  -h PLIK     PLIK istnieje i jest dowiązaniem symbolicznym (to samo co  -L)\n"
+ "  -k PLIK     PLIK istnieje i ma ustawiony bit ochrony (sticky bit)\n"
+ 
+ #: src/test.c:747
+@@ -10696,16 +10264,13 @@
+ msgid ""
+ "\n"
+ "Except for -h and -L, all FILE-related tests dereference symbolic links.\n"
+-"Beware that parentheses need to be escaped (e.g., by backslashes) for "
+-"shells.\n"
++"Beware that parentheses need to be escaped (e.g., by backslashes) for shells.\n"
+ "INTEGER may also be -l STRING, which evaluates to the length of STRING.\n"
+ msgstr ""
+ "\n"
+-"Wszystkie testy dotyczące PLIKÓW oprócz -h i -L rozwijają łącza "
+-"symboliczne.\n"
++"Wszystkie testy dotyczące PLIKÓW oprócz -h i -L rozwijają łącza symboliczne.\n"
+ "Należy zwrócić uwagę na to, że nawiasy muszą być chronione (np. przez `\\')\n"
+-"przed interpretacją przez powłokę. LICZBA musi być całkowita i może mieć "
+-"także\n"
++"przed interpretacją przez powłokę. LICZBA musi być całkowita i może mieć także\n"
+ "postać -l NAPIS czyli długość NAPISU.\n"
+ 
+ #: src/test.c:767
+@@ -10783,8 +10348,7 @@
+ msgid ""
+ "\n"
+ "DURATION is an integer with an optional suffix:\n"
+-"`s' for seconds(the default), `m' for minutes, `h' for hours or `d' for "
+-"days.\n"
++"`s' for seconds(the default), `m' for minutes, `h' for hours or `d' for days.\n"
+ msgstr ""
+ "\n"
+ "CZAS jest liczbą całkowitą z opcjonalnym przyrostkiem:\n"
+@@ -10876,17 +10440,14 @@
+ 
+ #: src/touch.c:235
+ msgid ""
+-"  -h, --no-dereference   affect each symbolic link instead of any "
+-"referenced\n"
++"  -h, --no-dereference   affect each symbolic link instead of any referenced\n"
+ "                         file (useful only on systems that can change the\n"
+ "                         timestamps of a symlink)\n"
+ "  -m                     change only the modification time\n"
+ msgstr ""
+-"  -h, --no-dereference   operowanie na dowiązaniach symbolicznych zamiast "
+-"na\n"
++"  -h, --no-dereference   operowanie na dowiązaniach symbolicznych zamiast na\n"
+ "                         wskazywanych plikach (tylko dla systemów, które\n"
+-"                         umieją zmienić właściciela dowiązania "
+-"symbolicznego)\n"
++"                         umieją zmienić właściciela dowiązania symbolicznego)\n"
+ "  -m                     zmiana tylko czasu modyfikacji\n"
+ 
+ #: src/touch.c:241
+@@ -10898,8 +10459,7 @@
+ "                           WORD is modify or mtime: equivalent to -m\n"
+ msgstr ""
+ "  -r, --reference=PLIK   użycie czasu tego PLIKU zamiast czasu bieżącego\n"
+-"  -t CZAS                użycie [[CC]YY]MMDDhhmm[.ss] zamiast bieżącego "
+-"czasu\n"
++"  -t CZAS                użycie [[CC]YY]MMDDhhmm[.ss] zamiast bieżącego czasu\n"
+ "  --time=SŁOWO           ustawienie czasu wg SŁOWA: access atime use (czas\n"
+ "                           dostępu, to samo co -a), modify mtime (czas\n"
+ "                           modyfikacji, to samo co -m)\n"
+@@ -10919,11 +10479,8 @@
+ 
+ #: src/touch.c:407
+ #, c-format
+-msgid ""
+-"warning: `touch %s' is obsolete; use `touch -t %04ld%02d%02d%02d%02d.%02d'"
+-msgstr ""
+-"uwaga: `touch %s' jest formą przestarzałą; używaj `touch -t %04ld%02d%02d%02d"
+-"%02d.%02d'"
++msgid "warning: `touch %s' is obsolete; use `touch -t %04ld%02d%02d%02d%02d.%02d'"
++msgstr "uwaga: `touch %s' jest formą przestarzałą; używaj `touch -t %04ld%02d%02d%02d%02d.%02d'"
+ 
+ #: src/tr.c:287
+ #, c-format
+@@ -10937,8 +10494,7 @@
+ "\n"
+ "  -c, -C, --complement    use the complement of SET1\n"
+ "  -d, --delete            delete characters in SET1, do not translate\n"
+-"  -s, --squeeze-repeats   replace each input sequence of a repeated "
+-"character\n"
++"  -s, --squeeze-repeats   replace each input sequence of a repeated character\n"
+ "                            that is listed in SET1 with a single occurrence\n"
+ "                            of that character\n"
+ "  -t, --truncate-set1     first truncate SET1 to length of SET2\n"
+@@ -10971,8 +10527,7 @@
+ "ZBIORY są podawane jako ciągi znaków. Większość znaków reprezentuje same\n"
+ "siebie. Specjalnie interpretowane ciągi to:\n"
+ "\n"
+-"  \\NNN            znak o wartości ósemkowej NNN (od 1 do 3 cyfr "
+-"ósemkowych)\n"
++"  \\NNN            znak o wartości ósemkowej NNN (od 1 do 3 cyfr ósemkowych)\n"
+ "  \\\\              ukośnik odwrotny\n"
+ "  \\a              znak BEL\n"
+ "  \\b              backspace\n"
+@@ -11058,9 +10613,7 @@
+ #: src/tr.c:519
+ #, c-format
+ msgid "warning: an unescaped backslash at end of string is not portable"
+-msgstr ""
+-"uwaga: ukośnik odwrotny bez poprzedzającego znaku cytowania na końcu formatu "
+-"jest nieprzenośny"
++msgstr "uwaga: ukośnik odwrotny bez poprzedzającego znaku cytowania na końcu formatu jest nieprzenośny"
+ 
+ #: src/tr.c:674
+ #, c-format
+@@ -11168,8 +10721,7 @@
+ 
+ #: src/tr.c:1801
+ msgid "Only one string may be given when deleting without squeezing repeats."
+-msgstr ""
+-"Przy kasowaniu bez kompresji powtórzeń może być podany tylko jeden zbiór."
++msgstr "Przy kasowaniu bez kompresji powtórzeń może być podany tylko jeden zbiór."
+ 
+ #: src/true.c:38
+ #, c-format
+@@ -11218,10 +10770,8 @@
+ msgstr "  -c, --no-create        bez tworzenia nowych plików\n"
+ 
+ #: src/truncate.c:114
+-msgid ""
+-"  -o, --io-blocks        treat SIZE as number of IO blocks instead of bytes\n"
+-msgstr ""
+-"  -o, --io-blocks        ROZMIAR traktowany jako liczba bloków, nie bajtów\n"
++msgid "  -o, --io-blocks        treat SIZE as number of IO blocks instead of bytes\n"
++msgstr "  -o, --io-blocks        ROZMIAR traktowany jako liczba bloków, nie bajtów\n"
  
  #: src/truncate.c:117
--#, fuzzy
  msgid ""
- "  -r, --reference=RFILE  base size on RFILE\n"
- "  -s, --size=SIZE        set or adjust the file size by SIZE\n"
- msgstr ""
--"  -r, --reference=PLIK   użycie rozmiaru tego PLIKU\n"
--"  -s, --size=ROZMIAR     użycie takiego ROZMIARU\n"
-+"  -r, --reference=PLIKODN  użycie rozmiaru tego PLIKU ODNIESIENIA\n"
-+"  -s, --size=ROZMIAR     użycie tego ROZMIARU\n"
- 
- #: src/truncate.c:123
- msgid ""
-@@ -11264,9 +11266,9 @@
- msgstr "przepełnienie przy %<PRIdMAX> * %<PRIdMAX> bajtach dla pliku %s"
- 
- #: src/truncate.c:167 src/truncate.c:354
--#, fuzzy, c-format
-+#, c-format
- msgid "cannot get the size of %s"
--msgstr "nie można zmienić właściciela na %s"
-+msgstr "nie można ustalić rozmiaru %s"
- 
- #: src/truncate.c:174
- #, c-format
-@@ -11284,9 +11286,9 @@
- msgstr "przepełnienie przy zwiększaniu rozmiatu pliku %s"
- 
- #: src/truncate.c:219
--#, fuzzy, c-format
-+#, c-format
- msgid "failed to truncate %s at %<PRIdMAX> bytes"
--msgstr "obcięcie pliku %s do %<PRIdMAX> bajtów"
-+msgstr "nie udało się obciąć pliku %s do %<PRIdMAX> bajtów"
- 
- #: src/truncate.c:292
- #, c-format
-@@ -11294,14 +11296,14 @@
- msgstr "podano wiele modyfikatorów względnych"
- 
- #: src/truncate.c:322
--#, fuzzy, c-format
-+#, c-format
- msgid "you must specify either %s or %s"
--msgstr "musisz podać jeden z %s albo %s"
-+msgstr "musisz podać albo %s albo %s"
- 
- #: src/truncate.c:329
--#, fuzzy, c-format
-+#, c-format
- msgid "you must specify a relative %s with %s"
--msgstr "musisz podać jeden z %s albo %s"
-+msgstr "musisz podać względy %s z %s"
- 
- #: src/truncate.c:336
- #, c-format
-@@ -11861,65 +11863,3 @@
- msgstr ""
- "Powtarzanie na wyjściu linii ze wszystkimi podanymi NAPIS(AMI) albo `y'\n"
+@@ -11241,8 +10791,7 @@
  "\n"
--
--#, fuzzy
--#~ msgid "%s: failed to get extents info"
--#~ msgstr "nie udało się otworzyć %s"
--
--#, fuzzy
--#~ msgid "%s: write failed"
--#~ msgstr "błąd zapisu"
--
--#, fuzzy
--#~ msgid "failed to extend %s"
--#~ msgstr "nie udało się otworzyć %s"
--
--#~ msgid "both SI and IEC prefixes present on units"
--#~ msgstr "jednostki mają zarówno prefiksy SI jak IEC"
--
--#, fuzzy
--#~ msgid "standard out"
--#~ msgstr "standardowe wyjście"
--
--#, fuzzy
--#~ msgid "options -o and --debug are incompatible"
--#~ msgstr "opcje `-%s' nie pasują do siebie"
--
--#, fuzzy
--#~ msgid "%s: FIEMAP ioctl failed"
--#~ msgstr "%s: błąd fcntl"
--
--#~ msgid "%s"
--#~ msgstr "%s"
--
--#~ msgid "creating symbolic link %s"
--#~ msgstr "tworzenie dowiązania symbolicznego %s"
--
--#~ msgid "creating symbolic link %s -> %s"
--#~ msgstr "tworzenie dowiązania symbolicznego %s -> %s"
--
--#~ msgid "creating hard link %s"
--#~ msgstr "tworzenie dowiązania zwykłego %s"
--
--#~ msgid "creating hard link %s => %s"
--#~ msgstr "tworzenie dowiązania zwykłego %s => %s"
--
--#~ msgid ""
--#~ "the --context (-Z) option is obsolete and will be removed\n"
--#~ "in a future release"
--#~ msgstr ""
--#~ "opcja --context (-Z) jest przestarzała i będzie usunięta\n"
--#~ "w jednej z przyszłych wersji"
--
--#~ msgid "warning: the --%s option is obsolete; use --reference"
--#~ msgstr "uwaga: opcja --%s jest przestarzała, używał --reference"
--
--#~ msgid ""
--#~ "\n"
--#~ "Note that the -r and -s options are mutually exclusive.\n"
--#~ msgstr ""
--#~ "\n"
--#~ "Należy zauważyć, że opcje -r i -s wzajemnie się wykluczają.\n"
--
--#~ msgid "extra operand %s\n"
--#~ msgstr "nadmiarowy argument %s\n"
+ "ROZMIAR może być też poprzedzony przez jeden z następujących\n"
+ "przedrostków: `+' zwiększ o, `-' zmniejsz o, `<' najwyżej, `>' co najmniej,\n"
+-"`/' zaokrągl w dół do wielokrotności, `%' zaokrągl w górę do "
+-"wielokrotności.\n"
++"`/' zaokrągl w dół do wielokrotności, `%' zaokrągl w górę do wielokrotności.\n"
+ 
+ #: src/truncate.c:151
+ #, c-format
+@@ -11331,8 +10880,7 @@
+ msgstr ""
+ "Napisanie nazwy terminala związanego ze standardowym wejściem.\n"
+ "\n"
+-"  -s, --silent, --quiet   nic nie jest wypisywane, zwracany jest kod "
+-"powrotu\n"
++"  -s, --silent, --quiet   nic nie jest wypisywane, zwracany jest kod powrotu\n"
+ 
+ #: src/tty.c:121
+ msgid "not a tty"
+@@ -11366,8 +10914,7 @@
+ msgstr ""
+ "  -v, --kernel-version     pokazanie numeru wersji jądra systemu\n"
+ "  -m, --machine            pokazanie nazwy sprzętu (architektury)\n"
+-"  -p, --processor          pokazanie typu procesora albo \"unknown"
+-"\" (nieznany)\n"
++"  -p, --processor          pokazanie typu procesora albo \"unknown\" (nieznany)\n"
+ "  -i, --hardware-platform  pokazanie platformy sprzętowej albo \"unknown\"\n"
+ "  -o, --operating-system   pokazanie nazwy systemu operacyjnego\n"
+ 
+@@ -11431,8 +10978,7 @@
+ "With no options, matching lines are merged to the first occurrence.\n"
+ "\n"
+ msgstr ""
+-"Odfiltrowanie sąsiadujących identycznych linii z WEJŚCIA (albo "
+-"standardowego\n"
++"Odfiltrowanie sąsiadujących identycznych linii z WEJŚCIA (albo standardowego\n"
+ "wejścia), wynik zapisywany do WYJŚCIA (albo standardowego wyjścia).\n"
+ "\n"
+ "Jeżeli nie są podane żadne opcje, z identycznych linii pozostawiana jest\n"
+@@ -11460,13 +11006,11 @@
+ msgstr ""
+ "  -D, --all-repeated[=metoda-oddzielenia]  wypisanie wszystkich\n"
+ "                        powtarzających się linii.\n"
+-"                        metoda-oddzielenia={none(domyślna),prepend,"
+-"separate}\n"
++"                        metoda-oddzielenia={none(domyślna),prepend,separate}\n"
+ "                        (żadna, przed, pomiędzy).\n"
+ "                        Do oddzielania używane są puste linie.\n"
+ "  -f, --skip-fields=N   bez porównania pierwszych N pól\n"
+-"  -i, --ignore-case     ignorowanie różnic między małymi i wielkimi "
+-"literami\n"
++"  -i, --ignore-case     ignorowanie różnic między małymi i wielkimi literami\n"
+ "  -s, --skip-chars=N    bez porównania pierwszych N znaków\n"
+ "  -u, --unique          wypisanie tylko linii unikalnych\n"
+ "  -z, --zero-terminated  na końcach linii bajty 0, nie znak nowej linii\n"
+@@ -11483,8 +11027,7 @@
+ msgstr ""
+ "\n"
+ "Pole to ciąg znaków odstępu (zwykle spacji i/lub znaków TAB), za którym są\n"
+-"znaki nie będące znakami odstepu. Pola są przeskakiwane przed "
+-"przeskakiwaniem\n"
++"znaki nie będące znakami odstepu. Pola są przeskakiwane przed przeskakiwaniem\n"
+ "znaków.\n"
+ 
+ #: src/uniq.c:173
+@@ -11522,8 +11065,7 @@
+ #: src/uniq.c:561
+ #, c-format
+ msgid "printing all duplicated lines and repeat counts is meaningless"
+-msgstr ""
+-"wypisywanie wszystkich powtórzonych linii i ilości powtórzeń nie ma sensu"
++msgstr "wypisywanie wszystkich powtórzonych linii i ilości powtórzeń nie ma sensu"
+ 
+ #: src/unlink.c:46
+ #, c-format
+@@ -11774,8 +11316,7 @@
+ "  -p, --process     print active processes spawned by init\n"
+ msgstr ""
+ "      --lookup      rozwiązywanie nazw systemów poprzez DNS\n"
+-"  -m                wyświetlenie tylko nazwy systemu i użytkownika "
+-"związanego\n"
++"  -m                wyświetlenie tylko nazwy systemu i użytkownika związanego\n"
+ "                    ze standardowym wejściem\n"
+ "  -p, --process     aktywne procesy uruchomione przez init\n"
+ 
+@@ -11788,8 +11329,7 @@
+ msgstr ""
+ "  -q, --count       wszystkie nazwy i liczba zalogowanych użytkowników\n"
+ "  -r, --runlevel    bieżący runlevel\n"
+-"  -s, --short       wypisanie tylko użytkownika, terminala i czasu "
+-"(domyślnie)\n"
++"  -s, --short       wypisanie tylko użytkownika, terminala i czasu (domyślnie)\n"
+ "  -t, --time        podanie ostatniej zmiany zegara systemowego\n"
+ 
+ #: src/who.c:679
+@@ -11799,8 +11339,7 @@
+ "      --message     same as -T\n"
+ "      --writable    same as -T\n"
+ msgstr ""
+-"  -T, -w, --mesg    zaznaczenie czy użytkownik przyjmuje komunikaty: +, - "
+-"lub ?\n"
++"  -T, -w, --mesg    zaznaczenie czy użytkownik przyjmuje komunikaty: +, - lub ?\n"
+ "  -u, --users       wypisanie zalogowanych użytkowników\n"
+ "      --message     to samo co  -T\n"
+ "      --writable    to samo co  -T\n"
