@@ -254,10 +254,9 @@ diff -ru coreutils-8.4.orig/src/copy.h coreutils-8.4/src/copy.h
 +/* END progress mod */
 +
  #endif
-diff -ru coreutils-8.4.orig/src/cp.c coreutils-8.4/src/cp.c
---- coreutils-8.4.orig/src/cp.c	2010-01-25 16:03:29.596930015 +0100
-+++ coreutils-8.4/src/cp.c	2010-01-26 15:42:02.274161757 +0100
-@@ -139,6 +139,7 @@
+--- coreutils-8.9/src/cp.c.orig	2011-01-01 22:19:23.000000000 +0100
++++ coreutils-8.9/src/cp.c	2011-01-09 13:07:02.769898177 +0100
+@@ -141,6 +141,7 @@
    {"target-directory", required_argument, NULL, 't'},
    {"update", no_argument, NULL, 'u'},
    {"verbose", no_argument, NULL, 'v'},
@@ -265,15 +264,15 @@ diff -ru coreutils-8.4.orig/src/cp.c coreutils-8.4/src/cp.c
    {GETOPT_HELP_OPTION_DECL},
    {GETOPT_VERSION_OPTION_DECL},
    {NULL, 0, NULL, 0}
-@@ -176,6 +177,7 @@
-   -f, --force                  if an existing destination file cannot be\n\
-                                  opened, remove it and try again (redundant if\n\
+@@ -181,6 +182,7 @@
+                                  opened, remove it and try again (redundant if\
+ \n\
                                   the -n option is used)\n\
 +  -g, --progress-bar           add progress-bar\n\
-   -i, --interactive            prompt before overwrite (overrides a previous -n\n\
+   -i, --interactive            prompt before overwrite (overrides a previous -n\
+ \n\
                                    option)\n\
-   -H                           follow command-line symbolic links in SOURCE\n\
-@@ -612,6 +614,57 @@
+@@ -621,6 +623,57 @@
                 quote (file[n_files - 1]));
      }
  
@@ -331,7 +330,7 @@ diff -ru coreutils-8.4.orig/src/cp.c coreutils-8.4/src/cp.c
    if (target_directory)
      {
        /* cp file1...filen edir
-@@ -754,6 +807,46 @@
+@@ -763,6 +816,46 @@
        ok = copy (source, new_dest, 0, x, &unused, NULL);
      }
  
@@ -378,7 +377,7 @@ diff -ru coreutils-8.4.orig/src/cp.c coreutils-8.4/src/cp.c
    return ok;
  }
  
-@@ -785,6 +878,7 @@
+@@ -795,6 +888,7 @@
    x->recursive = false;
    x->sparse_mode = SPARSE_AUTO;
    x->symbolic_link = false;
@@ -386,7 +385,7 @@ diff -ru coreutils-8.4.orig/src/cp.c coreutils-8.4/src/cp.c
    x->set_mode = false;
    x->mode = 0;
  
-@@ -923,7 +1017,7 @@
+@@ -933,7 +1027,7 @@
       we'll actually use backup_suffix_string.  */
    backup_suffix_string = getenv ("SIMPLE_BACKUP_SUFFIX");
  
@@ -395,7 +394,7 @@ diff -ru coreutils-8.4.orig/src/cp.c coreutils-8.4/src/cp.c
                             long_opts, NULL))
           != -1)
      {
-@@ -975,6 +1069,10 @@
+@@ -990,6 +1084,10 @@
            x.unlink_dest_after_failed_open = true;
            break;
  
