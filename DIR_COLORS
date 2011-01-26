@@ -114,6 +114,7 @@ EXEC 32
 .pgm  01;35
 .png  01;35
 .ppm  01;35
+.svg  01;35
 .tga  01;35
 .tif  01;35
 .tiff 01;35
@@ -167,6 +168,7 @@ EXEC 32
 .pps     36
 .ppt     36
 .rtf     36
+.stw     36
 .sxc     36
 .sxw     36
 .tex     36
