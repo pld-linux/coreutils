@@ -1,96 +1,342 @@
---- coreutils-8.9/po/pl.po.orig	2011-01-04 12:29:50.000000000 +0100
-+++ coreutils-8.9/po/pl.po	2011-01-09 12:10:33.541901529 +0100
-@@ -1,8 +1,8 @@
- # Polish translation of GNU coreutils messages
--# Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
-+# Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
- # This file is distributed under the same license as the coreutils package.
- # Contributions:
--# Rafał Maszkowski <rzm@icm.edu.pl>, 1996-2001, 2003-2010. „”
-+# Rafał Maszkowski <rzm@icm.edu.pl>, 1996-2001, 2003-2011. „”
- # ptx: Paweł Krawczyk <kravietz@pipeta.chemia.pk.edu.pl>, 1996.
- # sh-utils: Paweł Krawczyk <kravietz@ceti.pl>, 1997, 1998, 1999.
- # fileutils: Thanks for help to Marta Bartnicka, 1999.
+--- coreutils-8.10/po/pl.po.org	2011-02-11 08:04:05.750689888 +0100
++++ coreutils-8.10/po/pl.po	2011-02-11 08:04:33.618557666 +0100
 @@ -14,13 +14,12 @@
  # 2 format strings: Jakub Bogusz <qboosh@pld-linux.org>, 2007.
  msgid ""
  msgstr ""
--"Project-Id-Version: coreutils 8.8\n"
-+"Project-Id-Version: coreutils 8.9\n"
+-"Project-Id-Version: coreutils 8.9\n"
++"Project-Id-Version: coreutils 8.10-pre1\n"
  "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
- "POT-Creation-Date: 2011-01-04 12:29+0100\n"
--"PO-Revision-Date: 2010-12-24 09:45+0100\n"
-+"PO-Revision-Date: 2011-01-05 11:00+0100\n"
+-"POT-Creation-Date: 2011-02-04 18:11+0100\n"
+-"PO-Revision-Date: 2011-01-05 11:00+0100\n"
++"POT-Creation-Date: 2011-02-02 14:40+0100\n"
++"PO-Revision-Date: 2011-02-05 18:00+0100\n"
  "Last-Translator: Rafał Maszkowski <rzm@icm.edu.pl>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 -"Language: pl\n"
  "MIME-Version: 1.0\n"
  "Content-Type: text/plain; charset=UTF-8\n"
  "Content-Transfer-Encoding: 8-bit\n"
-@@ -5850,42 +5849,35 @@
- "Bez podanego PLIKU albo gdy jest podany jako -, czyta standardowe wejście.\n"
+@@ -947,7 +946,7 @@
+ #: src/hostid.c:75 src/hostname.c:112 src/id.c:169 src/install.c:610
+ #: src/join.c:945 src/link.c:86 src/ln.c:520 src/logname.c:72 src/mknod.c:158
+ #: src/mv.c:448 src/od.c:1799 src/ptx.c:2082 src/readlink.c:155 src/seq.c:409
+-#: src/shuf.c:321 src/shuf.c:340 src/sort.c:4457 src/split.c:1008
++#: src/shuf.c:321 src/shuf.c:340 src/sort.c:4455 src/split.c:1008
+ #: src/tr.c:1798 src/tsort.c:556 src/tty.c:113 src/uname.c:253 src/uniq.c:455
+ #: src/uniq.c:472 src/unlink.c:82 src/uptime.c:255 src/users.c:147
+ #: src/wc.c:665 src/who.c:837 src/whoami.c:80
+@@ -1842,19 +1841,19 @@
+ msgstr "obcięcie %s"
  
- #: src/md5sum.c:164
--#, fuzzy
- msgid ""
- "  -b, --binary         read in binary mode (default unless reading tty "
- "stdin)\n"
- msgstr ""
--"  -b, --binary            czytanie plików w trybie binarnym (domyślne "
--"jeżeli\n"
--"                            nie jest czytane tty przez standardowe wejście)\n"
-+"  -b, --binary         czytanie plików w trybie binarnym (domyślne jeżeli\n"
-+"                         nie jest czytane tty przez standardowe wejście)\n"
- 
- #: src/md5sum.c:168
--#, fuzzy
- msgid "  -b, --binary         read in binary mode\n"
--msgstr "  -b, --binary             czytanie w trybie binarnym.\n"
-+msgstr "  -b, --binary          czytanie w trybie binarnym.\n"
- 
- #: src/md5sum.c:171
+ #: src/copy.c:342
 -#, fuzzy, c-format
 +#, c-format
- msgid "  -c, --check          read %s sums from the FILEs and check them\n"
--msgstr "  -c, --check             sprawdzanie sum %s zapisanych w PLIKACH\n"
-+msgstr "  -c, --check          sprawdzanie sum %s zapisanych w PLIKACH\n"
+ msgid "%s: failed to get extents info"
+-msgstr "nie udało się odczytać bieżącego kontekstu"
++msgstr "%s: nie udało się odczytać informacji o rozszerzeniach"
  
- #: src/md5sum.c:175
+ #: src/copy.c:381
+-#, fuzzy, c-format
++#, c-format
+ msgid "%s: write failed"
+-msgstr "błąd zapisu"
++msgstr "%s: błąd zapisu"
+ 
+ #: src/copy.c:419
+-#, fuzzy, c-format
++#, c-format
+ msgid "failed to extend %s"
+-msgstr "nie udało się otworzyć %s"
++msgstr "nie udało się rozszerzyć %s"
+ 
+ #: src/copy.c:631
+ #, c-format
+@@ -1877,7 +1876,7 @@
+ msgstr "nie udało się zachować autorstwa %s"
+ 
+ #: src/copy.c:756 src/csplit.c:638 src/du.c:888 src/fmt.c:428 src/head.c:849
+-#: src/sort.c:4469 src/split.c:1015 src/tac.c:544 src/tail.c:1743 src/wc.c:677
++#: src/sort.c:4467 src/split.c:1015 src/tac.c:544 src/tail.c:1743 src/wc.c:677
+ #, c-format
+ msgid "cannot open %s for reading"
+ msgstr "nie można otworzyć %s do czytania"
+@@ -3882,9 +3881,9 @@
+ "                          FORMAT jest interpretowany jak dla `date'\n"
+ 
+ #: src/du.c:587
+-#, fuzzy, c-format
++#, c-format
+ msgid "fts_read failed: %s"
+-msgstr "błąd fts_read"
++msgstr "błąd fts_read %s"
+ 
+ #: src/du.c:711
+ #, c-format
+@@ -3906,7 +3905,7 @@
+ msgid "warning: summarizing conflicts with --max-depth=%lu"
+ msgstr "uwaga: --summarize nie może być użyte razem z --max-depth=%lu"
+ 
+-#: src/du.c:883 src/sort.c:4459 src/wc.c:667
++#: src/du.c:883 src/sort.c:4457 src/wc.c:667
+ msgid "file operands cannot be combined with --files0-from"
+ msgstr ""
+ "nie można podawać argumentów plikowych i opcji --files0-from równocześnie"
+@@ -3917,7 +3916,7 @@
+ msgid "%s: read error"
+ msgstr "%s: błąd odczytu"
+ 
+-#: src/du.c:950 src/sort.c:4488 src/wc.c:742
++#: src/du.c:950 src/sort.c:4486 src/wc.c:742
+ #, c-format
+ msgid "when reading file names from stdin, no file name of %s allowed"
+ msgstr "przy czytaniu nazw na wejściu plik nie może mieć nazwy %s"
+@@ -5039,7 +5038,6 @@
+ "                      prób ich sparowania\n"
+ 
+ #: src/join.c:213
 -#, fuzzy
  msgid ""
- "  -t, --text           read in text mode (default if reading tty stdin)\n"
- msgstr ""
--"  -t, --text              czytanie plików w trybie tekstowym (domyślne "
--"jeżeli\n"
--"                            czytane jest tty przez standardowe wejście)\n"
-+"  -t, --text           czytanie plików w trybie tekstowym (domyślne jeżeli\n"
-+"                         czytane jest tty przez standardowe wejście)\n"
+ "\n"
+ "Unless -t CHAR is given, leading blanks separate fields and are ignored,\n"
+@@ -5061,15 +5059,16 @@
+ "Jeżeli nie jest podana opcja -t ZNAK, spacje na początku linii oddzielają\n"
+ "pola i są ignorowane, w przeciwnym wypadku pola są oddzielane przez\n"
+ "ZNAK. POLE jest numerem pola liczonym od 1. FORMAT to jedna lub więcej\n"
+-"specyfikacji `NUMER.POLE' albo `0'. Domyślny format wypisuje pole łączące,\n"
++"specyfikacji `NUMER.POLE' albo `0'. Domyślny FORMAT wypisuje pole łączące,\n"
+ "pozostałe pola z PLIKU1 i pozostałe pola z PLIKU2, wszystkie oddzielone\n"
+-"ZNAKIEM.\n"
++"ZNAKIEM. Jeżeli FORMAT to słowo kluczowe `auto', to pierwsza linia każdego\n"
++"z plików określa liczbę pól wypisywanych w każdej linii\n"
+ "\n"
+ "Ważne: PLIK1 i PLIK2 muszą być posortowane po polu łączącym.\n"
+ "Np. jeżeli `join' został uruchomiony bez opcji użyj przedtem `sort -k "
+ "1b,1',\n"
+ "a jeżeli `sort' był uruchomiony bez opcji użyj ` join -t '' '.\n"
+-"Zauważ, że porównania odbywają się zgodnie z regułami podanymi przez\n"
++"Zauważ, że porównania odbywają się zgodnie z regułami określonymi w \n"
+ "`LC_COLLATE'.\n"
+ "Jeżeli dane wejściowe nie są posortowane i niektóre linie nie mogą być\n"
+ "połączone, zostanie wypisane ostrzeżenie.\n"
+@@ -5099,12 +5098,12 @@
+ msgid "conflicting empty-field replacement strings"
+ msgstr "konflikt napisów zastępujących puste pola"
  
- #: src/md5sum.c:179
+-#: src/join.c:1086 src/sort.c:4394
++#: src/join.c:1086 src/sort.c:4392
+ #, c-format
+ msgid "multi-character tab %s"
+ msgstr "wieloznakowy TAB %s"
+ 
+-#: src/join.c:1090 src/sort.c:4399
++#: src/join.c:1090 src/sort.c:4397
+ #, c-format
+ msgid "incompatible tabs"
+ msgstr "niekompatybilne TABy"
+@@ -8479,7 +8478,7 @@
+ msgid "%s: invalid number of passes"
+ msgstr "%s: błędna liczba przebiegów"
+ 
+-#: src/shred.c:1142 src/shuf.c:292 src/sort.c:4367
++#: src/shred.c:1142 src/shuf.c:292 src/sort.c:4365
+ #, c-format
+ msgid "multiple random sources specified"
+ msgstr "podano wiele źródeł losowych bajtów"
+@@ -8546,7 +8545,7 @@
+ msgid "invalid line count %s"
+ msgstr "błędna liczba linii %s"
+ 
+-#: src/shuf.c:286 src/sort.c:4361
++#: src/shuf.c:286 src/sort.c:4359
+ #, c-format
+ msgid "multiple output files specified"
+ msgstr "podano wiele plików wyjściowych"
+@@ -8835,8 +8834,8 @@
+ msgid "cannot create temporary file in %s"
+ msgstr "nie można utworzyć pliku tymczasowego w %s"
+ 
+-#: src/sort.c:934 src/sort.c:1987 src/sort.c:3033 src/sort.c:3735
+-#: src/sort.c:3738
++#: src/sort.c:934 src/sort.c:1987 src/sort.c:3031 src/sort.c:3733
++#: src/sort.c:3736
+ msgid "open failed"
+ msgstr "błąd otwierania pliku"
+ 
+@@ -8844,7 +8843,7 @@
+ msgid "fflush failed"
+ msgstr "błąd fflush"
+ 
+-#: src/sort.c:959 src/sort.c:1990 src/sort.c:4626
++#: src/sort.c:959 src/sort.c:1990 src/sort.c:4624
+ msgid "close failed"
+ msgstr "błąd zamykania pliku"
+ 
+@@ -8925,28 +8924,28 @@
+ msgid "^ no match for key\n"
+ msgstr "^ brak dopasowania klucza\n"
+ 
+-#: src/sort.c:2351
++#: src/sort.c:2349
+ #, c-format
+ msgid "obsolescent key `%s' used; consider `%s' instead"
+ msgstr ""
+ "został użyty zdezaktualizowany klucz `%s', rozważ użycie `%s' zamiast niego"
+ 
+-#: src/sort.c:2357
++#: src/sort.c:2355
+ #, c-format
+ msgid "key %lu has zero width and will be ignored"
+ msgstr "klucz %lu ma zerową długość i będzie zignorowany"
+ 
+-#: src/sort.c:2368
++#: src/sort.c:2366
+ #, c-format
+ msgid "leading blanks are significant in key %lu; consider also specifying `b'"
+ msgstr "początkowe odstępy są znaczące w kluczu %lu, rozważ podanie `b'"
+ 
+-#: src/sort.c:2381
++#: src/sort.c:2379
+ #, c-format
+ msgid "key %lu is numeric and spans multiple fields"
+ msgstr "klucz %lu jest numeryczny i rozciąga się na wiele pól"
+ 
+-#: src/sort.c:2413
++#: src/sort.c:2411
+ #, c-format
+ msgid "option `-%s' is ignored"
+ msgid_plural "options `-%s' are ignored"
+@@ -8954,103 +8953,103 @@
+ msgstr[1] "opcje `-%s' zostały zignorowane"
+ msgstr[2] "opcji `-%s' zostało zignorowanych"
+ 
+-#: src/sort.c:2419
++#: src/sort.c:2417
+ #, c-format
+ msgid "option `-r' only applies to last-resort comparison"
+ msgstr "optja `-r' ma zastosowanie tylko do porównań ostatniej szansy"
+ 
+-#: src/sort.c:2693 src/sort.c:2702
++#: src/sort.c:2691 src/sort.c:2700
+ msgid "write failed"
+ msgstr "błąd zapisu"
+ 
+-#: src/sort.c:2745
++#: src/sort.c:2743
+ #, c-format
+ msgid "%s: %s:%s: disorder: "
+ msgstr "%s: %s:%s: nieuporządkowanie: "
+ 
+-#: src/sort.c:2748
++#: src/sort.c:2746
+ msgid "standard error"
+ msgstr "standardowe wyjście błędów"
+ 
+-#: src/sort.c:3906
++#: src/sort.c:3904
+ #, c-format
+ msgid "%s: invalid field specification %s"
+ msgstr "%s: błędna specyfikacja pola %s"
+ 
+-#: src/sort.c:3917
++#: src/sort.c:3915
+ #, c-format
+ msgid "options `-%s' are incompatible"
+ msgstr "opcje `-%s' nie pasują do siebie"
+ 
+-#: src/sort.c:3968
++#: src/sort.c:3966
+ #, c-format
+ msgid "%s: invalid count at start of %s"
+ msgstr "%s: błędna liczba na początku %s"
+ 
+-#: src/sort.c:4225
++#: src/sort.c:4223
+ msgid "invalid number after `-'"
+ msgstr "błędna liczba po `-'"
+ 
+-#: src/sort.c:4228 src/sort.c:4314 src/sort.c:4342
++#: src/sort.c:4226 src/sort.c:4312 src/sort.c:4340
+ msgid "invalid number after `.'"
+ msgstr "błędna liczba po `.'"
+ 
+-#: src/sort.c:4241 src/sort.c:4347
++#: src/sort.c:4239 src/sort.c:4345
+ msgid "stray character in field spec"
+ msgstr "nieprawidłowy znak w specyfikacji pola"
+ 
+-#: src/sort.c:4288
++#: src/sort.c:4286
+ #, c-format
+ msgid "multiple compress programs specified"
+ msgstr "podano wiele programów kompresujących"
+ 
+-#: src/sort.c:4305
++#: src/sort.c:4303
+ msgid "invalid number at field start"
+ msgstr "błędna liczba na początku pola"
+ 
+-#: src/sort.c:4309 src/sort.c:4337
++#: src/sort.c:4307 src/sort.c:4335
+ msgid "field number is zero"
+ msgstr "numer pola wynosi zero"
+ 
+-#: src/sort.c:4318
++#: src/sort.c:4316
+ msgid "character offset is zero"
+ msgstr "numer znaku wynosi zero"
+ 
+-#: src/sort.c:4333
++#: src/sort.c:4331
+ msgid "invalid number after `,'"
+ msgstr "błędna liczba po `,'"
+ 
+-#: src/sort.c:4383
++#: src/sort.c:4381
+ #, c-format
+ msgid "empty tab"
+ msgstr "pusty TAB"
+ 
+-#: src/sort.c:4476 src/wc.c:691
++#: src/sort.c:4474 src/wc.c:691
+ #, c-format
+ msgid "cannot read file names from %s"
+ msgstr "nie można wczytać nazw plików z %s"
+ 
+-#: src/sort.c:4498
++#: src/sort.c:4496
+ #, c-format
+ msgid "%s:%lu: invalid zero-length file name"
+ msgstr "%s:%lu: błędna nazwa pliku - o zerowej długości"
+ 
+-#: src/sort.c:4504
++#: src/sort.c:4502
+ #, c-format
+ msgid "no input from %s"
+ msgstr "brak danych z %s"
+ 
+-#: src/sort.c:4550
++#: src/sort.c:4548
+ #, c-format
+ msgid "using %s sorting rules"
+ msgstr "użycie reguł sortowania %s"
+ 
+-#: src/sort.c:4553
++#: src/sort.c:4551
+ #, c-format
+ msgid "using simple byte comparison"
+ msgstr "użycie prostego porównywania bajtów"
+ 
+-#: src/sort.c:4584
++#: src/sort.c:4582
+ #, c-format
+ msgid "extra operand %s not allowed with -%c"
+ msgstr "dodatkowy argument %s nie może być użyty z opcją -%c"
+@@ -11922,7 +11921,3 @@
+ msgstr ""
+ "Powtarzanie na wyjściu linii ze wszystkimi podanymi NAPIS(AMI) albo `y'\n"
+ "\n"
+-
 -#, fuzzy
- msgid "  -t, --text           read in text mode (default)\n"
- msgstr ""
--"  -t, --text              czytanie plików w trybie tekstowym (domyślnie)\n"
-+"  -t, --text           czytanie plików w trybie tekstowym (domyślnie)\n"
- 
- #: src/md5sum.c:182
--#, fuzzy
- msgid ""
- "\n"
- "The following three options are useful only when verifying checksums:\n"
-@@ -5896,11 +5888,11 @@
- msgstr ""
- "\n"
- "Następujące opcje są przydatne tylko przy sprawdzaniu sum kontrolnych:\n"
--"      --quiet             bez wypisywania OK dla każdego pozytywnie\n"
--"                            zweryfikowanego pliku\n"
--"      --status            bez wypisywania niczego, kod wyjścia przekazuje "
-+"      --quiet          bez wypisywania OK dla każdego pozytywnie\n"
-+"                         zweryfikowanego pliku\n"
-+"      --status         bez wypisywania niczego, kod wyjścia przekazuje "
- "wynik\n"
--"  -w, --warn              ostrzeganie o niepoprawnie sformatowanych liniach "
-+"  -w, --warn           ostrzeganie o niepoprawnie sformatowanych liniach "
- "sum\n"
- "\n"
- 
+-#~ msgid "error reading input"
+-#~ msgstr "błąd czytania %s"

@@ -1,16 +1,17 @@
 #
 # Conditional build:
+%bcond_with	advcopy
 %bcond_without	tests
 #
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.9
+Version:	8.10
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	4a38f51941bae177c997cda9bdc603bd
+# Source0-md5:	4bb81c051da6e5436fc1ad9a67ae44fe
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -126,8 +127,10 @@ Programy zawarte w tym pakiecie to:
 %ifarch sparc64
 %patch12 -p1
 %endif
+%if %{with advcopy}
 # progress-bar patch, -g,--progress-bar //if in doubt, comment it out
 %patch14 -p1
+%endif
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
