@@ -1,7 +1,7 @@
 #
 # Conditional build:
-%bcond_with	advcopy
-%bcond_without	tests
+%bcond_with	advcopy	# progress bar in cp (orphaned patch)
+%bcond_without	tests	# do not perform "make test check"
 #
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
@@ -135,7 +135,7 @@ Programy zawarte w tym pakiecie to:
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
 # allow rebuilding *.gmo
-rm -f po/stamp-po
+%{__rm} po/stamp-po
 
 %build
 %{__gettextize}
@@ -185,7 +185,7 @@ for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN ; do
 	install man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
 done
 install %{SOURCE9} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
-# unwanted
+# unwanted (-f left intentionally - some manuals could have no translations)
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 
 %find_lang %{name}
