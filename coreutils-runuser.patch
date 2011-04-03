@@ -1,24 +1,45 @@
---- coreutils-6.10/README.orig	2008-01-18 09:26:09.000000000 +0100
-+++ coreutils-6.10/README	2008-03-02 14:24:55.578407708 +0100
-@@ -12,7 +12,7 @@
+diff -urNp coreutils-8.7-orig/README coreutils-8.7/README
+--- coreutils-8.7-orig/README	2010-10-11 19:35:11.000000000 +0200
++++ coreutils-8.7/README	2010-11-15 10:10:43.002922253 +0100
+@@ -12,10 +12,10 @@ The programs that can be built with this
    factor false fmt fold groups head hostid hostname id install join kill
    link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup
    nproc od paste pathchk pinky pr printenv printf ptx pwd readlink rm rmdir
 -  runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf
-+  runcon runuser seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf
-   sleep sort split stat stdbuf stty su sum sync tac tail tee test timeout
-   touch tr true truncate tsort tty uname unexpand uniq unlink uptime users
-   vdir wc who whoami yes
---- coreutils-6.10/AUTHORS.orig	2008-01-05 23:58:24.000000000 +0100
-+++ coreutils-6.10/AUTHORS	2008-03-02 14:25:23.908022120 +0100
-@@ -64,6 +64,7 @@
- rm: Paul Rubin, David MacKenzie, Richard Stallman, Jim Meyering
+-  sleep sort split stat stdbuf stty su sum sync tac tail tee test timeout
+-  touch tr true truncate tsort tty uname unexpand uniq unlink uptime users
+-  vdir wc who whoami yes
++  runcon runuser seq sha1sum sha224sum sha256sum sha384sum sha512sum shred
++  shuf sleep sort split stat stdbuf stty su sum sync tac tail tee test
++  timeout touch tr true truncate tsort tty uname unexpand uniq unlink uptime
++  users vdir wc who whoami yes
+ 
+ See the file NEWS for a list of major changes in the current release.
+ 
+diff -urNp coreutils-8.7-orig/AUTHORS coreutils-8.7/AUTHORS
+--- coreutils-8.7-orig/AUTHORS	2010-10-11 19:35:11.000000000 +0200
++++ coreutils-8.7/AUTHORS	2010-11-15 10:08:04.222078001 +0100
+@@ -65,6 +65,7 @@ readlink: Dmitry V. Levin
+ rm: Paul Rubin, David MacKenzie, Richard M. Stallman, Jim Meyering
  rmdir: David MacKenzie
  runcon: Russell Coker
 +runuser: David MacKenzie, Dan Walsh
  seq: Ulrich Drepper
  sha1sum: Ulrich Drepper, Scott Miller, David Madore
  sha224sum: Ulrich Drepper, Scott Miller, David Madore
+diff -urNp coreutils-8.7-orig/man/help2man coreutils-8.7/man/help2man
+--- coreutils-8.7-orig/man/help2man	2010-10-11 19:35:11.000000000 +0200
++++ coreutils-8.7/man/help2man	2010-11-15 10:08:51.331054884 +0100
+@@ -555,6 +555,9 @@ while (length)
+     $include{$sect} .= $content;
+ }
+ 
++# There is no info documentation for runuser (shared with su).
++$opt_no_info = 1 if $program eq 'runuser';
++
+ # Refer to the real documentation.
+ unless ($opt_no_info)
+ {
 --- coreutils-6.7/src/su.c.runuser	2007-01-09 17:27:56.000000000 +0000
 +++ coreutils-6.7/src/su.c	2007-01-09 17:30:12.000000000 +0000
 @@ -109,9 +109,15 @@
@@ -257,9 +278,10 @@
 +#endif
 +		  );
  }
---- coreutils-6.10/src/Makefile.am.orig	2008-03-02 14:22:53.223435095 +0100
-+++ coreutils-6.10/src/Makefile.am	2008-03-02 14:25:58.317983032 +0100
-@@ -101,6 +101,7 @@
+diff -urNp coreutils-8.7-orig/src/Makefile.am coreutils-8.7/src/Makefile.am
+--- coreutils-8.7-orig/src/Makefile.am	2010-11-15 10:07:07.339171659 +0100
++++ coreutils-8.7/src/Makefile.am	2010-11-15 10:12:14.847094550 +0100
+@@ -100,6 +100,7 @@ EXTRA_PROGRAMS = \
    rm		\
    rmdir		\
    runcon	\
@@ -267,29 +289,30 @@
    seq		\
    sha1sum	\
    sha224sum	\
-@@ -135,6 +135,10 @@
- 
- stat_LDADD = $(LDADD) $(LIB_SELINUX)
+@@ -300,6 +301,10 @@ cp_LDADD += $(copy_LDADD)
+ ginstall_LDADD += $(copy_LDADD)
+ mv_LDADD += $(copy_LDADD)
  
 +runuser_SOURCES = su.c
 +runuser_CFLAGS = -DRUNUSER -DAUTHORS="\"David MacKenzie, Dan Walsh\""
 +runuser_LDADD = $(LDADD) $(LIB_CRYPT) $(LIB_PAM)
 +
- $(PROGRAMS): ../lib/libcoreutils.a
- 
- # Get the release year from ../lib/version-etc.c.
-@@ -156,7 +160,7 @@
- 	chmod +x $@-t
- 	mv $@-t $@
+ remove_LDADD =
+ mv_LDADD += $(remove_LDADD)
+ rm_LDADD += $(remove_LDADD)
+@@ -395,7 +400,7 @@ RELEASE_YEAR = \
+   `sed -n '/.*COPYRIGHT_YEAR = \([0-9][0-9][0-9][0-9]\) };/s//\1/p' \
+     $(top_srcdir)/lib/version-etc.c`
  
 -all-local: su$(EXEEXT)
 +all-local: su$(EXEEXT) runuser$(EXEEXT)
  
  installed_su = $(DESTDIR)$(bindir)/`echo su|sed '$(transform)'`
  
---- coreutils-6.10/man/Makefile.am.orig	2008-03-02 14:22:53.175432360 +0100
-+++ coreutils-6.10/man/Makefile.am	2008-03-02 14:26:36.980186266 +0100
-@@ -94,6 +94,7 @@
+diff -urNp coreutils-8.7-orig/man/Makefile.am coreutils-8.7/man/Makefile.am
+--- coreutils-8.7-orig/man/Makefile.am	2010-10-11 19:35:11.000000000 +0200
++++ coreutils-8.7/man/Makefile.am	2010-11-15 10:09:21.768922182 +0100
+@@ -94,6 +94,7 @@ readlink.1:	$(common_dep)	$(srcdir)/read
  rm.1:		$(common_dep)	$(srcdir)/rm.x		../src/rm.c
  rmdir.1:	$(common_dep)	$(srcdir)/rmdir.x	../src/rmdir.c
  runcon.1:	$(common_dep)	$(srcdir)/runcon.x	../src/runcon.c
@@ -297,13 +320,22 @@
  seq.1:		$(common_dep)	$(srcdir)/seq.x		../src/seq.c
  sha1sum.1:	$(common_dep)	$(srcdir)/sha1sum.x	../src/md5sum.c
  sha224sum.1:	$(common_dep)	$(srcdir)/sha224sum.x	../src/md5sum.c
---- /dev/null	2007-01-09 09:38:07.860075128 +0000
-+++ coreutils-6.7/man/runuser.x	2007-01-09 17:27:56.000000000 +0000
-@@ -0,0 +1,4 @@
+diff -urNp coreutils-8.7-orig/man/runuser.x coreutils-8.7/man/runuser.x
+--- coreutils-8.7-orig/man/runuser.x	1970-01-01 01:00:00.000000000 +0100
++++ coreutils-8.7/man/runuser.x	2010-11-15 10:09:57.437939015 +0100
+@@ -0,0 +1,12 @@
 +[NAME]
 +runuser \- run a shell with substitute user and group IDs
 +[DESCRIPTION]
 +.\" Add any additional description here
++[SEE ALSO]
++.TP
++More detailed Texinfo documentation could be found by command
++.TP
++\t\fBinfo coreutils \(aqsu invocation\(aq\fR\t
++.TP
++since the command \fBrunuser\fR is trimmed down version of command \fBsu\fR.
++.br
 --- /dev/null	2007-01-09 09:38:07.860075128 +0000
 +++ coreutils-6.7/man/runuser.1	2007-01-09 17:27:56.000000000 +0000
 @@ -0,0 +1,68 @@
@@ -394,3 +426,33 @@
  #. This is a proper name. See the gettext manual, section Names.
  #: src/sum.c:36
  msgid "Kayvan Aghaiepour"
+diff -urNp coreutils-8.7-orig/tests/misc/help-version coreutils-8.7/tests/misc/help-version
+--- coreutils-8.7-orig/tests/misc/help-version	2010-10-11 19:35:11.000000000 +0200
++++ coreutils-8.7/tests/misc/help-version	2010-11-15 10:45:18.473682325 +0100
+@@ -32,6 +32,7 @@ expected_failure_status_nohup=125
+ expected_failure_status_stdbuf=125
+ expected_failure_status_su=125
+ expected_failure_status_timeout=125
++expected_failure_status_runuser=125
+ expected_failure_status_printenv=2
+ expected_failure_status_tty=3
+ expected_failure_status_sort=2
+@@ -209,6 +210,7 @@ seq_setup () { args=10; }
+ sleep_setup () { args=0; }
+ su_setup () { args=--version; }
+ stdbuf_setup () { args="-oL true"; }
++runuser_setup () { args=--version; }
+ timeout_setup () { args=--version; }
+ 
+ # I'd rather not run sync, since it spins up disks that I've
+diff -urNp coreutils-8.7-orig/tests/misc/invalid-opt coreutils-8.7/tests/misc/invalid-opt
+--- coreutils-8.7-orig/tests/misc/invalid-opt	2010-10-11 19:35:11.000000000 +0200
++++ coreutils-8.7/tests/misc/invalid-opt	2010-11-15 10:45:46.451938873 +0100
+@@ -37,6 +37,7 @@ my %exit_status =
+     sort => 2,
+     stdbuf => 125,
+     su => 125,
++    runuser => 125,
+     test => 0,
+     timeout => 125,
+     true => 0,
