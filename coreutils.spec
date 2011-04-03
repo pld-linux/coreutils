@@ -140,19 +140,16 @@ Programy zawarte w tym pakiecie to:
 # fails under C locale:
 # LC_ALL=C echo -e "ça\nçb\n"|LC_ALL=C fmt -p 'ç'
 # fmt: memory exhausted
-%{__rm} tests/misc/fmt
-%{__sed} -i -e '/misc\/fmt/d' tests/Makefile.am
+%{__sed} -i -e 25,27d tests/misc/fmt
+
+# /etc/resolv.conf is blocked in pld builders, try some other file
+%{__sed} -i -e 's,/etc/resolv.conf,/etc/hosts,' gnulib-tests/test-read-file.c
 
 # getgid needs to be fixed:
 # getgid: missing operand
 # Try `getgid --help' for more information.
 %{__rm} tests/misc/help-version
 %{__sed} -i -e '/misc\/help-version/d' tests/Makefile.am
-
-# broken (racy?)
-# +du: fts_read failed: T/U/3/a/b: No such file or directory
-%{__rm} tests/du/move-dir-while-traversing
-%{__sed} -i -e '/du\/move-dir-while-traversing/d' tests/Makefile.am
 
 %build
 %{__gettextize}
@@ -170,7 +167,7 @@ Programy zawarte w tym pakiecie to:
 
 %{__make}
 
-%{?with_tests:%{__make} tests check}
+%{?with_tests:%{__make} -j1 tests check}
 
 %install
 rm -rf $RPM_BUILD_ROOT
