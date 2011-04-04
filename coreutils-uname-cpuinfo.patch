@@ -1,0 +1,68 @@
+diff -urN coreutils-5.2.1-orig/src/uname.c coreutils-5.2.1/src/uname.c
+--- coreutils-5.2.1-orig/src/uname.c	2005-01-15 19:15:36.193346304 +0100
++++ coreutils-5.2.1/src/uname.c	2005-01-15 19:19:06.918311240 +0100
+@@ -77,6 +77,8 @@
+ /* Operating system.  */
+ #define PRINT_OPERATING_SYSTEM 128
+ 
++void __sysinfo_processor_type(char*);
++
+ static struct option const uname_long_options[] =
+ {
+   {"all", no_argument, NULL, 'a'},
+@@ -243,13 +245,9 @@
+   if (toprint & PRINT_PROCESSOR)
+     {
+       char const *element = unknown;
+-#if HAVE_SYSINFO && defined SI_ARCHITECTURE
+-      {
+-        static char processor[257];
+-        if (0 <= sysinfo (SI_ARCHITECTURE, processor, sizeof processor))
+-          element = processor;
+-      }
+-#endif
++      char processor[BUFSIZ];
++      __sysinfo_processor_type(processor);
++      element = processor;
+ #ifdef UNAME_PROCESSOR
+       if (element == unknown)
+ 	{
+@@ -294,3 +292,38 @@
+ 
+   exit (EXIT_SUCCESS);
+ }
++
++
++/* Carlos E. Gorges
++return vendor_id from proc cpuinfo
++*/
++
++void
++__sysinfo_processor_type (char* proc_info) {
++ FILE *ffd;
++ char *p,temp_string[BUFSIZ],final_string[BUFSIZ]="unknown";
++ 
++ if ((ffd=fopen("/proc/cpuinfo", "r") )!=NULL) {
++ while ( fscanf(ffd, "%s : ", temp_string) != EOF)
++ #ifdef __PPC__
++ 	if (!(strcmp(temp_string, "machine"))) 
++ #endif /* __PPC__ */
++ #ifdef __sparc__
++ 	if (!(strcmp(temp_string, "cpu"))) 
++ #endif /* __sparc__ */
++ #if defined(__i386__) || defined(__x86_64__)
++ 	if (!(strcmp(temp_string, "name"))) 
++ #endif /* __x86__ */
++ #ifdef __alpha__
++ 	if (!(strcmp(temp_string, "model"))) 
++ #endif /* __alpha__ */
++ {
++         fgets(final_string, 64, ffd);
++         while (p=strchr(final_string, ' ')) *p='_';
++         while (p=strchr(final_string, '\n')) *p=0;
++	 break;
++ }
++ fclose(ffd);
++ }
++ strncpy(proc_info,final_string,BUFSIZ);
++}

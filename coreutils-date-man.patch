@@ -1,0 +1,11 @@
+--- coreutils-4.5.3.orig/man/date.x	Tue Nov  2 15:07:36 1999
++++ coreutils-4.5.3/man/date.x	Sun Oct 27 22:37:24 2002
+@@ -11,3 +11,8 @@
+ relative date, and numbers.  An empty string indicates the beginning
+ of the day.  The date string format is more complex than is easily
+ documented here but is fully described in the info documentation.
++[ENVIRONMENT]
++.TP
++TZ
++Specifies the timezone, unless overridden by command line parameters.
++If neither is specified, the setting from /etc/localtime is used.

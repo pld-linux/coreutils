@@ -1,0 +1,1920 @@
+--- coreutils-8.9/doc/coreutils.texi.orig	2011-01-01 22:19:23.000000000 +0100
++++ coreutils-8.9/doc/coreutils.texi	2011-01-09 12:28:09.837901529 +0100
+@@ -20,119 +20,111 @@
+ @syncodeindex pg cp
+ @syncodeindex vr cp
+ 
+-@dircategory Basics
++@dircategory Core utilities:
+ @direntry
+-* Coreutils: (coreutils).       Core GNU (file, text, shell) utilities.
+-* Common options: (coreutils)Common options.      Common options.
+-* File permissions: (coreutils)File permissions.  Access modes.
++* Coreutils: (coreutils).		Core GNU (file, text, shell) utilities
++* Common options: (coreutils)Common options.	Common options
++* File permissions: (coreutils)File permissions.	Access modes
+ * Date input formats: (coreutils)Date input formats.
+-@end direntry
+-
+-@c FIXME: the following need documentation
+-@c * [: (coreutils)[ invocation.                   File/string tests.
+-@c * pinky: (coreutils)pinky invocation.           FIXME.
+-
+-@dircategory Individual utilities
+-@direntry
+-* arch: (coreutils)arch invocation.             Print machine hardware name.
+-* base64: (coreutils)base64 invocation.         Base64 encode/decode data.
+-* basename: (coreutils)basename invocation.     Strip directory and suffix.
+-* cat: (coreutils)cat invocation.               Concatenate and write files.
+-* chcon: (coreutils)chcon invocation.           Change SELinux CTX of files.
+-* chgrp: (coreutils)chgrp invocation.           Change file groups.
+-* chmod: (coreutils)chmod invocation.           Change file permissions.
+-* chown: (coreutils)chown invocation.           Change file owners/groups.
+-* chroot: (coreutils)chroot invocation.         Specify the root directory.
+-* cksum: (coreutils)cksum invocation.           Print POSIX CRC checksum.
+-* comm: (coreutils)comm invocation.             Compare sorted files by line.
+-* cp: (coreutils)cp invocation.                 Copy files.
+-* csplit: (coreutils)csplit invocation.         Split by context.
+-* cut: (coreutils)cut invocation.               Print selected parts of lines.
+-* date: (coreutils)date invocation.             Print/set system date and time.
+-* dd: (coreutils)dd invocation.                 Copy and convert a file.
+-* df: (coreutils)df invocation.                 Report file system disk usage.
+-* dir: (coreutils)dir invocation.               List directories briefly.
+-* dircolors: (coreutils)dircolors invocation.   Color setup for ls.
+-* dirname: (coreutils)dirname invocation.       Strip last file name component.
+-* du: (coreutils)du invocation.                 Report on disk usage.
+-* echo: (coreutils)echo invocation.             Print a line of text.
+-* env: (coreutils)env invocation.               Modify the environment.
+-* expand: (coreutils)expand invocation.         Convert tabs to spaces.
+-* expr: (coreutils)expr invocation.             Evaluate expressions.
+-* factor: (coreutils)factor invocation.         Print prime factors
+-* false: (coreutils)false invocation.           Do nothing, unsuccessfully.
+-* fmt: (coreutils)fmt invocation.               Reformat paragraph text.
+-* fold: (coreutils)fold invocation.             Wrap long input lines.
+-* groups: (coreutils)groups invocation.         Print group names a user is in.
+-* head: (coreutils)head invocation.             Output the first part of files.
+-* hostid: (coreutils)hostid invocation.         Print numeric host identifier.
+-* hostname: (coreutils)hostname invocation.     Print or set system name.
+-* id: (coreutils)id invocation.                 Print user identity.
+-* install: (coreutils)install invocation.       Copy and change attributes.
+-* join: (coreutils)join invocation.             Join lines on a common field.
+-* kill: (coreutils)kill invocation.             Send a signal to processes.
+-* link: (coreutils)link invocation.             Make hard links between files.
+-* ln: (coreutils)ln invocation.                 Make links between files.
+-* logname: (coreutils)logname invocation.       Print current login name.
+-* ls: (coreutils)ls invocation.                 List directory contents.
+-* md5sum: (coreutils)md5sum invocation.         Print or check MD5 digests.
+-* mkdir: (coreutils)mkdir invocation.           Create directories.
+-* mkfifo: (coreutils)mkfifo invocation.         Create FIFOs (named pipes).
+-* mknod: (coreutils)mknod invocation.           Create special files.
+-* mktemp: (coreutils)mktemp invocation.         Create temporary files.
+-* mv: (coreutils)mv invocation.                 Rename files.
+-* nice: (coreutils)nice invocation.             Modify niceness.
+-* nl: (coreutils)nl invocation.                 Number lines and write files.
+-* nohup: (coreutils)nohup invocation.           Immunize to hangups.
+-* nproc: (coreutils)nproc invocation.           Print the number of processors.
+-* od: (coreutils)od invocation.                 Dump files in octal, etc.
+-* paste: (coreutils)paste invocation.           Merge lines of files.
+-* pathchk: (coreutils)pathchk invocation.       Check file name portability.
+-* pr: (coreutils)pr invocation.                 Paginate or columnate files.
+-* printenv: (coreutils)printenv invocation.     Print environment variables.
+-* printf: (coreutils)printf invocation.         Format and print data.
+-* ptx: (coreutils)ptx invocation.               Produce permuted indexes.
+-* pwd: (coreutils)pwd invocation.               Print working directory.
+-* readlink: (coreutils)readlink invocation.     Print referent of a symlink.
+-* rm: (coreutils)rm invocation.                 Remove files.
+-* rmdir: (coreutils)rmdir invocation.           Remove empty directories.
+-* runcon: (coreutils)runcon invocation.         Run in specified SELinux CTX.
+-* seq: (coreutils)seq invocation.               Print numeric sequences
+-* sha1sum: (coreutils)sha1sum invocation.       Print or check SHA-1 digests.
+-* sha2: (coreutils)sha2 utilities.              Print or check SHA-2 digests.
+-* shred: (coreutils)shred invocation.           Remove files more securely.
+-* shuf: (coreutils)shuf invocation.             Shuffling text files.
+-* sleep: (coreutils)sleep invocation.           Delay for a specified time.
+-* sort: (coreutils)sort invocation.             Sort text files.
+-* split: (coreutils)split invocation.           Split into pieces.
+-* stat: (coreutils)stat invocation.             Report file(system) status.
+-* stdbuf: (coreutils)stdbuf invocation.         Modify stdio buffering.
+-* stty: (coreutils)stty invocation.             Print/change terminal settings.
+-* su: (coreutils)su invocation.                 Modify user and group ID.
+-* sum: (coreutils)sum invocation.               Print traditional checksum.
+-* sync: (coreutils)sync invocation.             Synchronize memory and disk.
+-* tac: (coreutils)tac invocation.               Reverse files.
+-* tail: (coreutils)tail invocation.             Output the last part of files.
+-* tee: (coreutils)tee invocation.               Redirect to multiple files.
+-* test: (coreutils)test invocation.             File/string tests.
+-* timeout: (coreutils)timeout invocation.       Run with time limit.
+-* touch: (coreutils)touch invocation.           Change file timestamps.
+-* tr: (coreutils)tr invocation.                 Translate characters.
+-* true: (coreutils)true invocation.             Do nothing, successfully.
+-* truncate: (coreutils)truncate invocation.     Shrink/extend size of a file.
+-* tsort: (coreutils)tsort invocation.           Topological sort.
+-* tty: (coreutils)tty invocation.               Print terminal name.
+-* uname: (coreutils)uname invocation.           Print system information.
+-* unexpand: (coreutils)unexpand invocation.     Convert spaces to tabs.
+-* uniq: (coreutils)uniq invocation.             Uniquify files.
+-* unlink: (coreutils)unlink invocation.         Removal via unlink(2).
+-* uptime: (coreutils)uptime invocation.         Print uptime and load.
+-* users: (coreutils)users invocation.           Print current user names.
+-* vdir: (coreutils)vdir invocation.             List directories verbosely.
+-* wc: (coreutils)wc invocation.                 Line, word, and byte counts.
+-* who: (coreutils)who invocation.               Print who is logged in.
+-* whoami: (coreutils)whoami invocation.         Print effective user ID.
+-* yes: (coreutils)yes invocation.               Print a string indefinitely.
++* arch: (coreutils)arch.		Print machine hardware name
++* base64: (coreutils)base64.		Base64 encode/decode data
++* basename: (coreutils)basename.	Strip directory and suffix
++* cat: (coreutils)cat.			Concatenate and write files
++* chcon: (coreutils)chcon.		Change SELinux CTX of files
++* chgrp: (coreutils)chgrp.		Change file groups
++* chmod: (coreutils)chmod.		Change file permissions
++* chown: (coreutils)chown.		Change file owners/groups
++* chroot: (coreutils)chroot.		Specify the root directory
++* cksum: (coreutils)cksum.		Print POSIX CRC checksum
++* comm: (coreutils)comm.		Compare sorted files by line
++* cp: (coreutils)cp.			Copy files
++* csplit: (coreutils)csplit.		Split by context
++* cut: (coreutils)cut.			Print selected parts of lines
++* date: (coreutils)date.		Print/set system date and time
++* dd: (coreutils)dd.			Copy and convert a file
++* df: (coreutils)df.			Report file system disk usage
++* dir: (coreutils)dir.			List directories briefly
++* dircolors: (coreutils)dircolors.	Color setup for ls
++* dirname: (coreutils)dirname.		Strip last file name component
++* du: (coreutils)du.			Report on disk usage
++* echo: (coreutils)echo.		Print a line of text
++* env: (coreutils)env.			Modify the environment
++* expand: (coreutils)expand.		Convert tabs to spaces
++* expr: (coreutils)expr.		Evaluate expressions
++* factor: (coreutils)factor.		Print prime factors
++* false: (coreutils)false.		Do nothing, unsuccessfully
++* fmt: (coreutils)fmt.			Reformat paragraph text
++* fold: (coreutils)fold.		Wrap long input lines
++* groups: (coreutils)groups.		Print group names a user is in
++* head: (coreutils)head.		Output the first part of files
++* hostid: (coreutils)hostid.		Print numeric host identifier
++* hostname: (coreutils)hostname.	Print or set system name
++* id: (coreutils)id.			Print user identity
++* install: (coreutils)install.		Copy and change attributes
++* join: (coreutils)join.		Join lines on a common field
++* kill: (coreutils)kill.		Send a signal to processes
++* link: (coreutils)link.		Make hard links between files
++* ln: (coreutils)ln.			Make links between files
++* logname: (coreutils)logname.		Print current login name
++* ls: (coreutils)ls.			List directory contents
++* md5sum: (coreutils)md5sum.		Print or check MD5 digests
++* mkdir: (coreutils)mkdir.		Create directories
++* mkfifo: (coreutils)mkfifo.		Create FIFOs (named pipes)
++* mknod: (coreutils)mknod.		Create special files
++* mktemp: (coreutils)mktemp.		Create temporary files
++* mv: (coreutils)mv.			Rename files
++* nice: (coreutils)nice.		Modify niceness
++* nl: (coreutils)nl.			Number lines and write files
++* nohup: (coreutils)nohup.		Immunize to hangups
++* nproc: (coreutils)nproc.		Print the number of processors
++* od: (coreutils)od.			Dump files in octal, etc.
++* paste: (coreutils)paste.		Merge lines of files
++* pathchk: (coreutils)pathchk.		Check file name portability
++* pr: (coreutils)pr.			Paginate or columnate files
++* printenv: (coreutils)printenv.	Print environment variables
++* printf: (coreutils)printf.		Format and print data
++* ptx: (coreutils)ptx.			Produce permuted indexes
++* pwd: (coreutils)pwd.			Print working directory
++* readlink: (coreutils)readlink.	Print referent of a symlink
++* rm: (coreutils)rm.			Remove files
++* rmdir: (coreutils)rmdir.		Remove empty directories
++* runcon: (coreutils)runcon.		Run in specified SELinux CTX
++* seq: (coreutils)seq.			Print numeric sequences
++* sha1sum: (coreutils)sha1sum.		Print or check SHA-1 digests
++* sha2: (coreutils)sha2 utilities.	Print or check SHA-2 digests
++* shred: (coreutils)shred.		Remove files more securely
++* shuf: (coreutils)shuf.		Shuffling text files
++* sleep: (coreutils)sleep.		Delay for a specified time
++* sort: (coreutils)sort.		Sort text files
++* split: (coreutils)split.		Split into pieces
++* stat: (coreutils)stat.		Report file(system) status
++* stdbuf: (coreutils)stdbuf.		Modify stdio buffering
++* stty: (coreutils)stty.		Print/change terminal settings
++* su: (coreutils)su.			Modify user and group ID
++* sum: (coreutils)sum.			Print traditional checksum
++* sync: (coreutils)sync.		Synchronize memory and disk
++* tac: (coreutils)tac.			Reverse files
++* tail: (coreutils)tail.		Output the last part of files
++* tee: (coreutils)tee.			Redirect to multiple files
++* test: (coreutils)test.		File/string tests
++* timeout: (coreutils)timeout.		Run with time limit
++* touch: (coreutils)touch.		Change file timestamps
++* tr: (coreutils)tr.			Translate characters
++* true: (coreutils)true.		Do nothing, successfully
++* truncate: (coreutils)truncate.	Shrink/extend size of a file
++* tsort: (coreutils)tsort.		Topological sort
++* tty: (coreutils)tty.			Print terminal name
++* uname: (coreutils)uname.		Print system information
++* unexpand: (coreutils)unexpand.	Convert spaces to tabs
++* uniq: (coreutils)uniq.		Uniquify files
++* unlink: (coreutils)unlink.		Removal via unlink(2)
++* uptime: (coreutils)uptime.		Print uptime and load
++* users: (coreutils)users.		Print current user names
++* vdir: (coreutils)vdir.		List directories verbosely
++* wc: (coreutils)wc.			Line, word, and byte counts
++* who: (coreutils)who.			Print who is logged in
++* whoami: (coreutils)whoami.		Print effective user ID
++* yes: (coreutils)yes.			Print a string indefinitely
+ @end direntry
+ 
+ @copying
+@@ -197,10 +189,9 @@
+ * File name manipulation::       dirname basename pathchk mktemp
+ * Working context::              pwd stty printenv tty
+ * User information::             id logname whoami groups users who
+-* System context::               date arch nproc uname hostname hostid uptime
++* System context::               date arch nproc uname hostid
+ * SELinux context::              chcon runcon
+ * Modified command invocation::  chroot env nice nohup stdbuf su timeout
+-* Process control::              kill
+ * Delaying::                     sleep
+ * Numeric operations::           factor seq
+ * File permissions::             Access modes
+@@ -228,42 +219,42 @@
+ 
+ Output of entire files
+ 
+-* cat invocation::               Concatenate and write files
+-* tac invocation::               Concatenate and write files in reverse
+-* nl invocation::                Number lines and write files
+-* od invocation::                Write files in octal or other formats
+-* base64 invocation::            Transform data into printable data
++* cat::                          Concatenate and write files
++* tac::                          Concatenate and write files in reverse
++* nl::                           Number lines and write files
++* od::                           Write files in octal or other formats
++* base64::                       Transform data into printable data
+ 
+ Formatting file contents
+ 
+-* fmt invocation::               Reformat paragraph text
+-* pr invocation::                Paginate or columnate files for printing
+-* fold invocation::              Wrap input lines to fit in specified width
++* fmt::                          Reformat paragraph text
++* pr::                           Paginate or columnate files for printing
++* fold::                         Wrap input lines to fit in specified width
+ 
+ Output of parts of files
+ 
+-* head invocation::              Output the first part of files
+-* tail invocation::              Output the last part of files
+-* split invocation::             Split a file into fixed-size pieces
+-* csplit invocation::            Split a file into context-determined pieces
++* head::                         Output the first part of files
++* tail::                         Output the last part of files
++* split::                        Split a file into fixed-size pieces
++* csplit::                       Split a file into context-determined pieces
+ 
+ Summarizing files
+ 
+-* wc invocation::                Print newline, word, and byte counts
+-* sum invocation::               Print checksum and block counts
+-* cksum invocation::             Print CRC checksum and byte counts
+-* md5sum invocation::            Print or check MD5 digests
+-* sha1sum invocation::           Print or check SHA-1 digests
++* wc::                           Print newline, word, and byte counts
++* sum::                          Print checksum and block counts
++* cksum::                        Print CRC checksum and byte counts
++* md5sum::                       Print or check MD5 digests
++* sha1sum::                      Print or check SHA-1 digests
+ * sha2 utilities::               Print or check SHA-2 digests
+ 
+ Operating on sorted files
+ 
+-* sort invocation::              Sort text files
+-* shuf invocation::              Shuffle text files
+-* uniq invocation::              Uniquify files
+-* comm invocation::              Compare two sorted files line by line
+-* ptx invocation::               Produce a permuted index of file contents
+-* tsort invocation::             Topological sort
++* sort::                         Sort text files
++* shuf::                         Shuffle text files
++* uniq::                         Uniquify files
++* comm::                         Compare two sorted files line by line
++* ptx::                          Produce a permuted index of file contents
++* tsort::                        Topological sort
+ 
+ @command{ptx}: Produce permuted indexes
+ 
+@@ -275,15 +266,15 @@
+ 
+ Operating on fields
+ 
+-* cut invocation::               Print selected parts of lines
+-* paste invocation::             Merge lines of files
+-* join invocation::              Join lines on a common field
++* cut::                          Print selected parts of lines
++* paste::                        Merge lines of files
++* join::                         Join lines on a common field
+ 
+ Operating on characters
+ 
+-* tr invocation::                Translate, squeeze, and/or delete characters
+-* expand invocation::            Convert tabs to spaces
+-* unexpand invocation::          Convert spaces to tabs
++* tr::                           Translate, squeeze, and/or delete characters
++* expand::                       Convert tabs to spaces
++* unexpand::                     Convert spaces to tabs
+ 
+ @command{tr}: Translate, squeeze, and/or delete characters
+ 
+@@ -293,10 +284,10 @@
+ 
+ Directory listing
+ 
+-* ls invocation::                List directory contents
+-* dir invocation::               Briefly list directory contents
+-* vdir invocation::              Verbosely list directory contents
+-* dircolors invocation::         Color setup for @command{ls}
++* ls::                           List directory contents
++* dir::                          Briefly list directory contents
++* vdir::                         Verbosely list directory contents
++* dircolors::                    Color setup for @command{ls}
+ 
+ @command{ls}:  List directory contents
+ 
+@@ -309,51 +300,51 @@
+ 
+ Basic operations
+ 
+-* cp invocation::                Copy files and directories
+-* dd invocation::                Convert and copy a file
+-* install invocation::           Copy files and set attributes
+-* mv invocation::                Move (rename) files
+-* rm invocation::                Remove files or directories
+-* shred invocation::             Remove files more securely
++* cp::                           Copy files and directories
++* dd::                           Convert and copy a file
++* install::                      Copy files and set attributes
++* mv::                           Move (rename) files
++* rm::                           Remove files or directories
++* shred::                        Remove files more securely
+ 
+ Special file types
+ 
+-* link invocation::              Make a hard link via the link syscall
+-* ln invocation::                Make links between files
+-* mkdir invocation::             Make directories
+-* mkfifo invocation::            Make FIFOs (named pipes)
+-* mknod invocation::             Make block or character special files
+-* readlink invocation::          Print value of a symlink or canonical file name
+-* rmdir invocation::             Remove empty directories
+-* unlink invocation::            Remove files via unlink syscall
++* link::                         Make a hard link via the link syscall
++* ln::                           Make links between files
++* mkdir::                        Make directories
++* mkfifo::                       Make FIFOs (named pipes)
++* mknod::                        Make block or character special files
++* readlink::                     Print value of a symlink or canonical file name
++* rmdir::                        Remove empty directories
++* unlink::                       Remove files via unlink syscall
+ 
+ Changing file attributes
+ 
+-* chown invocation::             Change file owner and group
+-* chgrp invocation::             Change group ownership
+-* chmod invocation::             Change access permissions
+-* touch invocation::             Change file timestamps
++* chown::                        Change file owner and group
++* chgrp::                        Change group ownership
++* chmod::                        Change access permissions
++* touch::                        Change file timestamps
+ 
+ Disk usage
+ 
+-* df invocation::                Report file system disk space usage
+-* du invocation::                Estimate file space usage
+-* stat invocation::              Report file or file system status
+-* sync invocation::              Synchronize data on disk with memory
+-* truncate invocation::          Shrink or extend the size of a file
++* df::                           Report file system disk space usage
++* du::                           Estimate file space usage
++* stat::                         Report file or file system status
++* sync::                         Synchronize data on disk with memory
++* truncate::                     Shrink or extend the size of a file
+ 
+ Printing text
+ 
+-* echo invocation::              Print a line of text
+-* printf invocation::            Format and print data
+-* yes invocation::               Print a string until interrupted
++* echo::                         Print a line of text
++* printf::                       Format and print data
++* yes::                          Print a string until interrupted
+ 
+ Conditions
+ 
+-* false invocation::             Do nothing, unsuccessfully
+-* true invocation::              Do nothing, successfully
+-* test invocation::              Check file types and compare values
+-* expr invocation::              Evaluate expressions
++* false::                        Do nothing, unsuccessfully
++* true::                         Do nothing, successfully
++* test::                         Check file types and compare values
++* expr::                         Evaluate expressions
+ 
+ @command{test}: Check file types and compare values
+ 
+@@ -372,21 +363,21 @@
+ 
+ Redirection
+ 
+-* tee invocation::               Redirect output to multiple files or processes
++* tee::                          Redirect output to multiple files or processes
+ 
+ File name manipulation
+ 
+-* basename invocation::          Strip directory and suffix from a file name
+-* dirname invocation::           Strip last file name component
+-* pathchk invocation::           Check file name validity and portability
+-* mktemp invocation::            Create temporary file or directory
++* basename::                     Strip directory and suffix from a file name
++* dirname::                      Strip last file name component
++* pathchk::                      Check file name validity and portability
++* mktemp::                       Create temporary file or directory
+ 
+ Working context
+ 
+-* pwd invocation::               Print working directory
+-* stty invocation::              Print or change terminal characteristics
+-* printenv invocation::          Print all or some environment variables
+-* tty invocation::               Print file name of terminal on standard input
++* pwd::                          Print working directory
++* stty::                         Print or change terminal characteristics
++* printenv::                     Print all or some environment variables
++* tty::                          Print file name of terminal on standard input
+ 
+ @command{stty}: Print or change terminal characteristics
+ 
+@@ -400,22 +391,20 @@
+ 
+ User information
+ 
+-* id invocation::                Print user identity
+-* logname invocation::           Print current login name
+-* whoami invocation::            Print effective user ID
+-* groups invocation::            Print group names a user is in
+-* users invocation::             Print login names of users currently logged in
+-* who invocation::               Print who is currently logged in
++* id::                           Print user identity
++* logname::                      Print current login name
++* whoami::                       Print effective user ID
++* groups::                       Print group names a user is in
++* users::                        Print login names of users currently logged in
++* who::                          Print who is currently logged in
+ 
+ System context
+ 
+-* arch invocation::              Print machine hardware name
+-* date invocation::              Print or set system date and time
+-* nproc invocation::             Print the number of processors
+-* uname invocation::             Print system information
+-* hostname invocation::          Print or set system name
+-* hostid invocation::            Print numeric host identifier
+-* uptime invocation::            Print system uptime and load
++* arch::                         Print machine hardware name
++* date::                         Print or set system date and time
++* nproc::                        Print the number of processors
++* uname::                        Print system information
++* hostid::                       Print numeric host identifier
+ 
+ @command{date}: Print or set system date and time
+ 
+@@ -430,31 +419,27 @@
+ 
+ SELinux context
+ 
+-* chcon invocation::             Change SELinux context of file
+-* runcon invocation::            Run a command in specified SELinux context
++* chcon::                        Change SELinux context of file
++* runcon::                       Run a command in specified SELinux context
+ 
+ Modified command invocation
+ 
+-* chroot invocation::            Run a command with a different root directory
+-* env invocation::               Run a command in a modified environment
+-* nice invocation::              Run a command with modified niceness
+-* nohup invocation::             Run a command immune to hangups
+-* stdbuf invocation::            Run a command with modified I/O buffering
+-* su invocation::                Run a command with substitute user and group ID
+-* timeout invocation::           Run a command with a time limit
+-
+-Process control
+-
+-* kill invocation::              Sending a signal to processes.
++* chroot::                       Run a command with a different root directory
++* env::                          Run a command in a modified environment
++* nice::                         Run a command with modified niceness
++* nohup::                        Run a command immune to hangups
++* stdbuf::                       Run a command with modified I/O buffering
++* su::                           Run a command with substitute user and group ID
++* timeout::                      Run a command with a time limit
+ 
+ Delaying
+ 
+-* sleep invocation::             Delay for a specified time
++* sleep::                        Delay for a specified time
+ 
+ Numeric operations
+ 
+-* factor invocation::            Print prime factors
+-* seq invocation::               Print numeric sequences
++* factor::                       Print prime factors
++* seq::                          Print numeric sequences
+ 
+ File permissions
+ 
+@@ -1443,14 +1428,14 @@
+ in some way.
+ 
+ @menu
+-* cat invocation::              Concatenate and write files.
+-* tac invocation::              Concatenate and write files in reverse.
+-* nl invocation::               Number lines and write files.
+-* od invocation::               Write files in octal or other formats.
+-* base64 invocation::           Transform data into printable data.
++* cat::                         Concatenate and write files.
++* tac::                         Concatenate and write files in reverse.
++* nl::                          Number lines and write files.
++* od::                          Write files in octal or other formats.
++* base64::                      Transform data into printable data.
+ @end menu
+ 
+-@node cat invocation
++@node cat
+ @section @command{cat}: Concatenate and write files
+ 
+ @pindex cat
+@@ -1550,7 +1535,7 @@
+ @end smallexample
+ 
+ 
+-@node tac invocation
++@node tac
+ @section @command{tac}: Concatenate and write files in reverse
+ 
+ @pindex tac
+@@ -1599,7 +1584,7 @@
+ @exitstatus
+ 
+ 
+-@node nl invocation
++@node nl
+ @section @command{nl}: Number lines and write files
+ 
+ @pindex nl
+@@ -1762,7 +1747,7 @@
+ @exitstatus
+ 
+ 
+-@node od invocation
++@node od
+ @section @command{od}: Write files in octal or other formats
+ 
+ @pindex od
+@@ -2016,7 +2001,7 @@
+ 
+ @exitstatus
+ 
+-@node base64 invocation
++@node base64
+ @section @command{base64}: Transform data into printable data
+ 
+ @pindex base64
+@@ -2084,13 +2069,13 @@
+ These commands reformat the contents of files.
+ 
+ @menu
+-* fmt invocation::              Reformat paragraph text.
+-* pr invocation::               Paginate or columnate files for printing.
+-* fold invocation::             Wrap input lines to fit in specified width.
++* fmt::                         Reformat paragraph text.
++* pr::                          Paginate or columnate files for printing.
++* fold::                        Wrap input lines to fit in specified width.
+ @end menu
+ 
+ 
+-@node fmt invocation
++@node fmt
+ @section @command{fmt}: Reformat paragraph text
+ 
+ @pindex fmt
+@@ -2189,7 +2174,7 @@
+ @exitstatus
+ 
+ 
+-@node pr invocation
++@node pr
+ @section @command{pr}: Paginate or columnate files for printing
+ 
+ @pindex pr
+@@ -2329,7 +2314,7 @@
+ @cindex time formats
+ @cindex formatting times
+ Format header dates using @var{format}, using the same conventions as
+-for the command @samp{date +@var{format}}; @xref{date invocation}.
++for the command @samp{date +@var{format}}; @xref{date}.
+ Except for directives, which start with
+ @samp{%}, characters in @var{format} are printed unchanged.  You can use
+ this option to specify an arbitrary string in place of the header date,
+@@ -2556,7 +2541,7 @@
+ @exitstatus
+ 
+ 
+-@node fold invocation
++@node fold
+ @section @command{fold}: Wrap input lines to fit in specified width
+ 
+ @pindex fold
+@@ -2623,13 +2608,13 @@
+ These commands output pieces of the input.
+ 
+ @menu
+-* head invocation::             Output the first part of files.
+-* tail invocation::             Output the last part of files.
+-* split invocation::            Split a file into pieces.
+-* csplit invocation::           Split a file into context-determined pieces.
++* head::                        Output the first part of files.
++* tail::                        Output the last part of files.
++* split::                       Split a file into pieces.
++* csplit::                      Split a file into context-determined pieces.
+ @end menu
+ 
+-@node head invocation
++@node head
+ @section @command{head}: Output the first part of files
+ 
+ @pindex head
+@@ -2706,7 +2691,7 @@
+ @exitstatus
+ 
+ 
+-@node tail invocation
++@node tail
+ @section @command{tail}: Output the last part of files
+ 
+ @pindex tail
+@@ -2922,7 +2907,7 @@
+ @exitstatus
+ 
+ 
+-@node split invocation
++@node split
+ @section @command{split}: Split a file into pieces.
+ 
+ @pindex split
+@@ -3112,7 +3097,7 @@
+ @end example
+ 
+ 
+-@node csplit invocation
++@node csplit
+ @section @command{csplit}: Split a file into context-determined pieces
+ 
+ @pindex csplit
+@@ -3303,16 +3288,16 @@
+ contents of files.
+ 
+ @menu
+-* wc invocation::               Print newline, word, and byte counts.
+-* sum invocation::              Print checksum and block counts.
+-* cksum invocation::            Print CRC checksum and byte counts.
+-* md5sum invocation::           Print or check MD5 digests.
+-* sha1sum invocation::          Print or check SHA-1 digests.
++* wc::                          Print newline, word, and byte counts.
++* sum::                         Print checksum and block counts.
++* cksum::                       Print CRC checksum and byte counts.
++* md5sum::                      Print or check MD5 digests.
++* sha1sum::                     Print or check SHA-1 digests.
+ * sha2 utilities::              Print or check SHA-2 digests.
+ @end menu
+ 
+ 
+-@node wc invocation
++@node wc
+ @section @command{wc}: Print newline, word, and byte counts
+ 
+ @pindex wc
+@@ -3430,7 +3415,7 @@
+ @exitstatus
+ 
+ 
+-@node sum invocation
++@node sum
+ @section @command{sum}: Print checksum and block counts
+ 
+ @pindex sum
+@@ -3481,7 +3466,7 @@
+ @exitstatus
+ 
+ 
+-@node cksum invocation
++@node cksum
+ @section @command{cksum}: Print CRC checksum and byte counts
+ 
+ @pindex cksum
+@@ -3515,7 +3500,7 @@
+ @exitstatus
+ 
+ 
+-@node md5sum invocation
++@node md5sum
+ @section @command{md5sum}: Print or check MD5 digests
+ 
+ @pindex md5sum
+@@ -3643,7 +3628,7 @@
+ @exitstatus
+ 
+ 
+-@node sha1sum invocation
++@node sha1sum
+ @section @command{sha1sum}: Print or check SHA-1 digests
+ 
+ @pindex sha1sum
+@@ -3655,7 +3640,7 @@
+ 
+ @command{sha1sum} computes a 160-bit checksum for each specified
+ @var{file}.  The usage and options of this command are precisely the
+-same as for @command{md5sum}.  @xref{md5sum invocation}.
++same as for @command{md5sum}.  @xref{md5sum}.
+ 
+ Note: The SHA-1 digest is more secure than MD5, and no collisions of
+ it are known (different files having the same fingerprint).  However,
+@@ -3695,7 +3680,7 @@
+ various lengths (respectively 224, 256, 384 and 512 bits),
+ collectively known as the SHA-2 hashes.  The usage and options of
+ these commands are precisely the same as for @command{md5sum}.
+-@xref{md5sum invocation}.
++@xref{md5sum}.
+ 
+ Note: The SHA384 and SHA512 digests are considerably slower to
+ compute, especially on 32-bit computers, than SHA224 or SHA256.
+@@ -3710,16 +3695,16 @@
+ These commands work with (or produce) sorted files.
+ 
+ @menu
+-* sort invocation::             Sort text files.
+-* shuf invocation::             Shuffle text files.
+-* uniq invocation::             Uniquify files.
+-* comm invocation::             Compare two sorted files line by line.
+-* ptx invocation::              Produce a permuted index of file contents.
+-* tsort invocation::            Topological sort.
++* sort::                        Sort text files.
++* shuf::                        Shuffle text files.
++* uniq::                        Uniquify files.
++* comm::                        Compare two sorted files line by line.
++* ptx::                         Produce a permuted index of file contents.
++* tsort::                       Topological sort.
+ @end menu
+ 
+ 
+-@node sort invocation
++@node sort
+ @section @command{sort}: Sort text files
+ 
+ @pindex sort
+@@ -4008,7 +3993,7 @@
+ Sort by hashing the input keys and then sorting the hash values.
+ Choose the hash function at random, ensuring that it is free of
+ collisions so that differing keys have differing hash values.  This is
+-like a random permutation of the inputs (@pxref{shuf invocation}),
++like a random permutation of the inputs (@pxref{shuf}),
+ except that keys with the same value sort together.
+ 
+ If multiple random sort fields are specified, the same random hash
+@@ -4196,7 +4181,7 @@
+ @var{n} is set to the number of available processors, but limited
+ to 8, as there are diminishing performance gains after that.
+ Note also that using @var{n} threads increases the memory usage by
+-a factor of log @var{n}.  Also see @ref{nproc invocation}.
++a factor of log @var{n}.  Also see @ref{nproc}.
+ 
+ @item -u
+ @itemx --unique
+@@ -4214,7 +4199,7 @@
+ this equivalence does not extend to arbitrary @command{sort} options.
+ For example, @code{sort -n -u} inspects only the value of the initial
+ numeric string when checking for uniqueness, whereas @code{sort -n |
+-uniq} inspects the entire line.  @xref{uniq invocation}.
++uniq} inspects the entire line.  @xref{uniq}.
+ 
+ @macro zeroTerminatedOption
+ @item -z
+@@ -4437,7 +4422,7 @@
+ @end itemize
+ 
+ 
+-@node shuf invocation
++@node shuf
+ @section @command{shuf}: Shuffling text
+ 
+ @pindex shuf
+@@ -4567,7 +4552,7 @@
+ @exitstatus
+ 
+ 
+-@node uniq invocation
++@node uniq
+ @section @command{uniq}: Uniquify files
+ 
+ @pindex uniq
+@@ -4589,7 +4574,7 @@
+ The input need not be sorted, but repeated input lines are detected
+ only if they are adjacent.  If you want to discard non-adjacent
+ duplicate lines, perhaps you want to use @code{sort -u}.
+-@xref{sort invocation}.
++@xref{sort}.
+ 
+ @vindex LC_COLLATE
+ Comparisons honor the rules specified by the @env{LC_COLLATE}
+@@ -4716,7 +4701,7 @@
+ @exitstatus
+ 
+ 
+-@node comm invocation
++@node comm
+ @section @command{comm}: Compare two sorted files line by line
+ 
+ @pindex comm
+@@ -4792,7 +4777,7 @@
+ 
+ @end table
+ 
+-@node ptx invocation
++@node ptx
+ @section @command{ptx}: Produce permuted indexes
+ 
+ @pindex ptx
+@@ -5249,7 +5234,7 @@
+ @end itemize
+ 
+ 
+-@node tsort invocation
++@node tsort
+ @section @command{tsort}: Topological sort
+ 
+ @pindex tsort
+@@ -5411,13 +5396,13 @@
+ @chapter Operating on fields
+ 
+ @menu
+-* cut invocation::              Print selected parts of lines.
+-* paste invocation::            Merge lines of files.
+-* join invocation::             Join lines on a common field.
++* cut::                         Print selected parts of lines.
++* paste::                       Merge lines of files.
++* join::                        Join lines on a common field.
+ @end menu
+ 
+ 
+-@node cut invocation
++@node cut
+ @section @command{cut}: Print selected parts of lines
+ 
+ @pindex cut
+@@ -5522,7 +5507,7 @@
+ @exitstatus
+ 
+ 
+-@node paste invocation
++@node paste
+ @section @command{paste}: Merge lines of files
+ 
+ @pindex paste
+@@ -5592,7 +5577,7 @@
+ @exitstatus
+ 
+ 
+-@node join invocation
++@node join
+ @section @command{join}: Join lines on a common field
+ 
+ @pindex join
+@@ -5757,13 +5742,13 @@
+ This commands operate on individual characters.
+ 
+ @menu
+-* tr invocation::               Translate, squeeze, and/or delete characters.
+-* expand invocation::           Convert tabs to spaces.
+-* unexpand invocation::         Convert spaces to tabs.
++* tr::                          Translate, squeeze, and/or delete characters.
++* expand::                      Convert tabs to spaces.
++* unexpand::                    Convert spaces to tabs.
+ @end menu
+ 
+ 
+-@node tr invocation
++@node tr
+ @section @command{tr}: Translate, squeeze, and/or delete characters
+ 
+ @pindex tr
+@@ -6142,7 +6127,7 @@
+ @end itemize
+ 
+ 
+-@node expand invocation
++@node expand
+ @section @command{expand}: Convert tabs to spaces
+ 
+ @pindex expand
+@@ -6195,7 +6180,7 @@
+ @exitstatus
+ 
+ 
+-@node unexpand invocation
++@node unexpand
+ @section @command{unexpand}: Convert spaces to tabs
+ 
+ @pindex unexpand
+@@ -6256,14 +6241,14 @@
+ and @command{vdir}, which list information about files.
+ 
+ @menu
+-* ls invocation::               List directory contents.
+-* dir invocation::              Briefly ls.
+-* vdir invocation::             Verbosely ls.
+-* dircolors invocation::        Color setup for ls, etc.
++* ls::                          List directory contents.
++* dir::                         Briefly ls.
++* vdir::                        Verbosely ls.
++* dircolors::                   Color setup for ls, etc.
+ @end menu
+ 
+ 
+-@node ls invocation
++@node ls
+ @section @command{ls}: List directory contents
+ 
+ @pindex ls
+@@ -7101,7 +7086,7 @@
+ @item +@var{format}
+ @vindex LC_TIME
+ List timestamps using @var{format}, where @var{format} is interpreted
+-like the format argument of @command{date} (@pxref{date invocation}).
++like the format argument of @command{date} (@pxref{date}).
+ For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
+ @command{ls} to list timestamps like @samp{2002-03-30 23:45:56}.  As
+ with @command{date}, @var{format}'s interpretation is affected by the
+@@ -7293,7 +7278,7 @@
+ @end table
+ 
+ 
+-@node dir invocation
++@node dir
+ @section @command{dir}: Briefly list directory contents
+ 
+ @pindex dir
+@@ -7303,10 +7288,10 @@
+ -b}; that is, by default files are listed in columns, sorted vertically,
+ and special characters are represented by backslash escape sequences.
+ 
+-@xref{ls invocation, @command{ls}}.
++@xref{ls, @command{ls}}.
+ 
+ 
+-@node vdir invocation
++@node vdir
+ @section @command{vdir}: Verbosely list directory contents
+ 
+ @pindex vdir
+@@ -7316,7 +7301,7 @@
+ -b}; that is, by default files are listed in long format and special
+ characters are represented by backslash escape sequences.
+ 
+-@node dircolors invocation
++@node dircolors
+ @section @command{dircolors}: Color setup for @command{ls}
+ 
+ @pindex dircolors
+@@ -7403,16 +7388,16 @@
+ copying, moving (renaming), and deleting (removing).
+ 
+ @menu
+-* cp invocation::               Copy files.
+-* dd invocation::               Convert and copy a file.
+-* install invocation::          Copy files and set attributes.
+-* mv invocation::               Move (rename) files.
+-* rm invocation::               Remove files or directories.
+-* shred invocation::            Remove files more securely.
++* cp::                          Copy files.
++* dd::                          Convert and copy a file.
++* install::                     Copy files and set attributes.
++* mv::                          Move (rename) files.
++* rm::                          Remove files or directories.
++* shred::                       Remove files more securely.
+ @end menu
+ 
+ 
+-@node cp invocation
++@node cp
+ @section @command{cp}: Copy files and directories
+ 
+ @pindex cp
+@@ -7861,7 +7846,7 @@
+ @exitstatus
+ 
+ 
+-@node dd invocation
++@node dd
+ @section @command{dd}: Convert and copy a file
+ 
+ @pindex dd
+@@ -8226,7 +8211,7 @@
+ @exitstatus
+ 
+ 
+-@node install invocation
++@node install
+ @section @command{install}: Copy files and set attributes
+ 
+ @pindex install
+@@ -8407,7 +8392,7 @@
+ @exitstatus
+ 
+ 
+-@node mv invocation
++@node mv
+ @section @command{mv}: Move (rename) files
+ 
+ @pindex mv
+@@ -8538,7 +8523,7 @@
+ @exitstatus
+ 
+ 
+-@node rm invocation
++@node rm
+ @section @command{rm}: Remove files or directories
+ 
+ @pindex rm
+@@ -8693,7 +8678,7 @@
+ @exitstatus
+ 
+ 
+-@node shred invocation
++@node shred
+ @section @command{shred}: Remove files more securely
+ 
+ @pindex shred
+@@ -8703,7 +8688,7 @@
+ @command{shred} overwrites devices or files, to help prevent even
+ very expensive hardware from recovering the data.
+ 
+-Ordinarily when you remove a file (@pxref{rm invocation}), the data is
++Ordinarily when you remove a file (@pxref{rm}), the data is
+ not actually destroyed.  Only the index listing where the file is
+ stored is destroyed, and the storage is made available for reuse.
+ There are undelete utilities that will attempt to reconstruct the index
+@@ -8936,18 +8921,18 @@
+ (FIFOs), symbolic links, sockets, and so-called @dfn{special files}.
+ 
+ @menu
+-* link invocation::             Make a hard link via the link syscall
+-* ln invocation::               Make links between files.
+-* mkdir invocation::            Make directories.
+-* mkfifo invocation::           Make FIFOs (named pipes).
+-* mknod invocation::            Make block or character special files.
+-* readlink invocation::         Print value of a symlink or canonical file name.
+-* rmdir invocation::            Remove empty directories.
+-* unlink invocation::           Remove files via the unlink syscall
++* link::                        Make a hard link via the link syscall
++* ln::                          Make links between files.
++* mkdir::                       Make directories.
++* mkfifo::                      Make FIFOs (named pipes).
++* mknod::                       Make block or character special files.
++* readlink::                    Print value of a symlink or canonical file name.
++* rmdir::                       Remove empty directories.
++* unlink::                      Remove files via the unlink syscall
+ @end menu
+ 
+ 
+-@node link invocation
++@node link
+ @section @command{link}: Make a hard link via the link syscall
+ 
+ @pindex link
+@@ -8960,7 +8945,7 @@
+ @code{link} function.  @xref{Hard Links, , , libc,
+ The GNU C Library Reference Manual}.
+ It avoids the bells and whistles of the more commonly-used
+-@command{ln} command (@pxref{ln invocation}).
++@command{ln} command (@pxref{ln}).
+ Synopsis:
+ 
+ @example
+@@ -8986,7 +8971,7 @@
+ @exitstatus
+ 
+ 
+-@node ln invocation
++@node ln
+ @section @command{ln}: Make links between files
+ 
+ @pindex ln
+@@ -9215,7 +9200,7 @@
+ @end smallexample
+ 
+ 
+-@node mkdir invocation
++@node mkdir
+ @section @command{mkdir}: Make directories
+ 
+ @pindex mkdir
+@@ -9294,7 +9279,7 @@
+ @exitstatus
+ 
+ 
+-@node mkfifo invocation
++@node mkfifo
+ @section @command{mkfifo}: Make FIFOs (named pipes)
+ 
+ @pindex mkfifo
+@@ -9341,7 +9326,7 @@
+ @exitstatus
+ 
+ 
+-@node mknod invocation
++@node mknod
+ @section @command{mknod}: Make block or character special files
+ 
+ @pindex mknod
+@@ -9424,7 +9409,7 @@
+ @exitstatus
+ 
+ 
+-@node readlink invocation
++@node readlink
+ @section @command{readlink}: Print value of a symlink or canonical file name
+ 
+ @pindex readlink
+@@ -9520,7 +9505,7 @@
+ @exitstatus
+ 
+ 
+-@node rmdir invocation
++@node rmdir
+ @section @command{rmdir}: Remove empty directories
+ 
+ @pindex rmdir
+@@ -9568,12 +9553,12 @@
+ 
+ @end table
+ 
+-@xref{rm invocation}, for how to remove non-empty directories (recursively).
++@xref{rm}, for how to remove non-empty directories (recursively).
+ 
+ @exitstatus
+ 
+ 
+-@node unlink invocation
++@node unlink
+ @section @command{unlink}: Remove files via the unlink syscall
+ 
+ @pindex unlink
+@@ -9584,7 +9569,7 @@
+ @code{unlink} function.  @xref{Deleting Files, , , libc,
+ The GNU C Library Reference Manual}.  Synopsis:
+ It avoids the bells and whistles of the more commonly-used
+-@command{rm} command (@pxref{rm invocation}).
++@command{rm} command (@pxref{rm}).
+ 
+ @example
+ unlink @var{filename}
+@@ -9618,14 +9603,14 @@
+ These commands change file attributes.
+ 
+ @menu
+-* chgrp invocation::            Change file groups.
+-* chmod invocation::            Change access permissions.
+-* chown invocation::            Change file owners and groups.
+-* touch invocation::            Change file timestamps.
++* chgrp::                       Change file groups.
++* chmod::                       Change access permissions.
++* chown::                       Change file owners and groups.
++* touch::                       Change file timestamps.
+ @end menu
+ 
+ 
+-@node chown invocation
++@node chown
+ @section @command{chown}: Change file owner and group
+ 
+ @pindex chown
+@@ -9843,7 +9828,7 @@
+ @end smallexample
+ 
+ 
+-@node chgrp invocation
++@node chgrp
+ @section @command{chgrp}: Change group ownership
+ 
+ @pindex chgrp
+@@ -9966,7 +9951,7 @@
+ @end smallexample
+ 
+ 
+-@node chmod invocation
++@node chmod
+ @section @command{chmod}: Change access permissions
+ 
+ @pindex chmod
+@@ -10066,7 +10051,7 @@
+ @exitstatus
+ 
+ 
+-@node touch invocation
++@node touch
+ @section @command{touch}: Change file timestamps
+ 
+ @pindex touch
+@@ -10243,15 +10228,15 @@
+ file status information, and write buffers to disk.
+ 
+ @menu
+-* df invocation::               Report file system disk space usage.
+-* du invocation::               Estimate file space usage.
+-* stat invocation::             Report file or file system status.
+-* sync invocation::             Synchronize memory and disk.
+-* truncate invocation::         Shrink or extend the size of a file.
++* df::                          Report file system disk space usage.
++* du::                          Estimate file space usage.
++* stat::                        Report file or file system status.
++* sync::                        Synchronize memory and disk.
++* truncate::                    Shrink or extend the size of a file.
+ @end menu
+ 
+ 
+-@node df invocation
++@node df
+ @section @command{df}: Report file system disk space usage
+ 
+ @pindex df
+@@ -10464,7 +10449,7 @@
+ @samp{ext3} or @samp{reiserfs}.
+ 
+ 
+-@node du invocation
++@node du
+ @section @command{du}: Estimate file space usage
+ 
+ @pindex du
+@@ -10662,7 +10647,7 @@
+ @item +@var{format}
+ @vindex LC_TIME
+ List timestamps using @var{format}, where @var{format} is interpreted
+-like the format argument of @command{date} (@pxref{date invocation}).
++like the format argument of @command{date} (@pxref{date}).
+ For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
+ @command{du} to list timestamps like @samp{2002-03-30 23:45:56}.  As
+ with @command{date}, @var{format}'s interpretation is affected by the
+@@ -10730,7 +10715,7 @@
+ @exitstatus
+ 
+ 
+-@node stat invocation
++@node stat
+ @section @command{stat}: Report file or file system status
+ 
+ @pindex stat
+@@ -10914,7 +10899,7 @@
+ @exitstatus
+ 
+ 
+-@node sync invocation
++@node sync
+ @section @command{sync}: Synchronize data on disk with memory
+ 
+ @pindex sync
+@@ -10941,7 +10926,7 @@
+ @exitstatus
+ 
+ 
+-@node truncate invocation
++@node truncate
+ @section @command{truncate}: Shrink or extend the size of a file
+ 
+ @pindex truncate
+@@ -11017,13 +11002,13 @@
+ This section describes commands that display text strings.
+ 
+ @menu
+-* echo invocation::             Print a line of text.
+-* printf invocation::           Format and print data.
+-* yes invocation::              Print a string until interrupted.
++* echo::                        Print a line of text.
++* printf::                      Format and print data.
++* yes::                         Print a string until interrupted.
+ @end menu
+ 
+ 
+-@node echo invocation
++@node echo
+ @section @command{echo}: Print a line of text
+ 
+ @pindex echo
+@@ -11110,12 +11095,12 @@
+ @var{string} contains a backslash or if the first argument is
+ @option{-n}.  Portable programs can use the @command{printf} command
+ if they need to omit trailing newlines or output control characters or
+-backslashes.  @xref{printf invocation}.
++backslashes.  @xref{printf}.
+ 
+ @exitstatus
+ 
+ 
+-@node printf invocation
++@node printf
+ @section @command{printf}: Format and print data
+ 
+ @pindex printf
+@@ -11264,7 +11249,7 @@
+ @exitstatus
+ 
+ 
+-@node yes invocation
++@node yes
+ @section @command{yes}: Print a string until interrupted
+ 
+ @pindex yes
+@@ -11295,14 +11280,14 @@
+ pipeline.
+ 
+ @menu
+-* false invocation::            Do nothing, unsuccessfully.
+-* true invocation::             Do nothing, successfully.
+-* test invocation::             Check file types and compare values.
+-* expr invocation::             Evaluate expressions.
++* false::                       Do nothing, unsuccessfully.
++* true::                        Do nothing, successfully.
++* test::                        Check file types and compare values.
++* expr::                        Evaluate expressions.
+ @end menu
+ 
+ 
+-@node false invocation
++@node false
+ @section @command{false}: Do nothing, unsuccessfully
+ 
+ @pindex false
+@@ -11332,7 +11317,7 @@
+ non-@acronym{GNU} hosts.
+ 
+ 
+-@node true invocation
++@node true
+ @section @command{true}: Do nothing, successfully
+ 
+ @pindex true
+@@ -11368,7 +11353,7 @@
+ more secure and faster than a shell script implementation, and may safely
+ be used as a dummy shell for the purpose of disabling accounts.
+ 
+-@node test invocation
++@node test
+ @section @command{test}: Check file types and compare values
+ 
+ @pindex test
+@@ -11696,7 +11681,7 @@
+ @end table
+ 
+ 
+-@node expr invocation
++@node expr
+ @section @command{expr}: Evaluate expressions
+ 
+ @pindex expr
+@@ -11973,11 +11958,11 @@
+ it's described here.
+ 
+ @menu
+-* tee invocation::              Redirect output to multiple files or processes.
++* tee::                         Redirect output to multiple files or processes.
+ @end menu
+ 
+ 
+-@node tee invocation
++@node tee
+ @section @command{tee}: Redirect output to multiple files or processes
+ 
+ @pindex tee
+@@ -12138,14 +12123,14 @@
+ This section describes commands that manipulate file names.
+ 
+ @menu
+-* basename invocation::         Strip directory and suffix from a file name.
+-* dirname invocation::          Strip last file name component.
+-* pathchk invocation::          Check file name validity and portability.
+-* mktemp invocation::           Create temporary file or directory.
++* basename::                    Strip directory and suffix from a file name.
++* dirname::                     Strip last file name component.
++* pathchk::                     Check file name validity and portability.
++* mktemp::                      Create temporary file or directory.
+ @end menu
+ 
+ 
+-@node basename invocation
++@node basename
+ @section @command{basename}: Strip directory and suffix from a file name
+ 
+ @pindex basename
+@@ -12199,7 +12184,7 @@
+ @end smallexample
+ 
+ 
+-@node dirname invocation
++@node dirname
+ @section @command{dirname}: Strip last file name component
+ 
+ @pindex dirname
+@@ -12244,7 +12229,7 @@
+ @end smallexample
+ 
+ 
+-@node pathchk invocation
++@node pathchk
+ @section @command{pathchk}: Check file name validity and portability
+ 
+ @pindex pathchk
+@@ -12320,7 +12305,7 @@
+ 1 otherwise.
+ @end display
+ 
+-@node mktemp invocation
++@node mktemp
+ @section @command{mktemp}: Create temporary file or directory
+ 
+ @pindex mktemp
+@@ -12506,14 +12491,14 @@
+ so forth.  See also the user-related commands in the next section.
+ 
+ @menu
+-* pwd invocation::              Print working directory.
+-* stty invocation::             Print or change terminal characteristics.
+-* printenv invocation::         Print environment variables.
+-* tty invocation::              Print file name of terminal on standard input.
++* pwd::                         Print working directory.
++* stty::                        Print or change terminal characteristics.
++* printenv::                    Print environment variables.
++* tty::                         Print file name of terminal on standard input.
+ @end menu
+ 
+ 
+-@node pwd invocation
++@node pwd
+ @section @command{pwd}: Print working directory
+ 
+ @pindex pwd
+@@ -12560,7 +12545,7 @@
+ @exitstatus
+ 
+ 
+-@node stty invocation
++@node stty
+ @section @command{stty}: Print or change terminal characteristics
+ 
+ @pindex stty
+@@ -13244,7 +13229,7 @@
+ @end table
+ 
+ 
+-@node printenv invocation
++@node printenv
+ @section @command{printenv}: Print all or some environment variables
+ 
+ @pindex printenv
+@@ -13279,7 +13264,7 @@
+ @end display
+ 
+ 
+-@node tty invocation
++@node tty
+ @section @command{tty}: Print file name of terminal on standard input
+ 
+ @pindex tty
+@@ -13329,16 +13314,16 @@
+ logins, groups, and so forth.
+ 
+ @menu
+-* id invocation::               Print user identity.
+-* logname invocation::          Print current login name.
+-* whoami invocation::           Print effective user ID.
+-* groups invocation::           Print group names a user is in.
+-* users invocation::            Print login names of users currently logged in.
+-* who invocation::              Print who is currently logged in.
++* id::                          Print user identity.
++* logname::                     Print current login name.
++* whoami::                      Print effective user ID.
++* groups::                      Print group names a user is in.
++* users::                       Print login names of users currently logged in.
++* who::                         Print who is currently logged in.
+ @end menu
+ 
+ 
+-@node id invocation
++@node id
+ @section @command{id}: Print user identity
+ 
+ @pindex id
+@@ -13424,7 +13409,7 @@
+ @end macro
+ @primaryAndSupplementaryGroups{id,user argument}
+ 
+-@node logname invocation
++@node logname
+ @section @command{logname}: Print current login name
+ 
+ @pindex logname
+@@ -13445,7 +13430,7 @@
+ @exitstatus
+ 
+ 
+-@node whoami invocation
++@node whoami
+ @section @command{whoami}: Print effective user ID
+ 
+ @pindex whoami
+@@ -13461,7 +13446,7 @@
+ @exitstatus
+ 
+ 
+-@node groups invocation
++@node groups
+ @section @command{groups}: Print group names a user is in
+ 
+ @pindex groups
+@@ -13489,7 +13474,7 @@
+ @exitstatus
+ 
+ 
+-@node users invocation
++@node users
+ @section @command{users}: Print login names of users currently logged in
+ 
+ @pindex users
+@@ -13520,7 +13505,7 @@
+ @exitstatus
+ 
+ 
+-@node who invocation
++@node who
+ @section @command{who}: Print who is currently logged in
+ 
+ @pindex who
+@@ -13679,16 +13664,14 @@
+ information.
+ 
+ @menu
+-* date invocation::             Print or set system date and time.
+-* arch invocation::             Print machine hardware name.
+-* nproc invocation::            Print the number of processors.
+-* uname invocation::            Print system information.
+-* hostname invocation::         Print or set system name.
+-* hostid invocation::           Print numeric host identifier.
+-* uptime invocation::           Print system uptime and load.
++* date::                        Print or set system date and time.
++* arch::                        Print machine hardware name.
++* nproc::                       Print the number of processors.
++* uname::                       Print system information.
++* hostid::                      Print numeric host identifier.
+ @end menu
+ 
+-@node date invocation
++@node date
+ @section @command{date}: Print or set system date and time
+ 
+ @pindex date
+@@ -14321,7 +14304,7 @@
+ @end itemize
+ 
+ 
+-@node arch invocation
++@node arch
+ @section @command{arch}: Print machine hardware name
+ 
+ @pindex arch
+@@ -14341,7 +14324,7 @@
+ @exitstatus
+ 
+ 
+-@node nproc invocation
++@node nproc
+ @section @command{nproc}: Print the number of available processors
+ 
+ @pindex nproc
+@@ -14378,7 +14361,7 @@
+ @exitstatus
+ 
+ 
+-@node uname invocation
++@node uname
+ @section @command{uname}: Print system information
+ 
+ @pindex uname
+@@ -14508,31 +14491,7 @@
+ @exitstatus
+ 
+ 
+-@node hostname invocation
+-@section @command{hostname}: Print or set system name
+-
+-@pindex hostname
+-@cindex setting the hostname
+-@cindex printing the hostname
+-@cindex system name, printing
+-@cindex appropriate privileges
+-
+-With no arguments, @command{hostname} prints the name of the current host
+-system.  With one argument, it sets the current host name to the
+-specified string.  You must have appropriate privileges to set the host
+-name.  Synopsis:
+-
+-@example
+-hostname [@var{name}]
+-@end example
+-
+-The only options are @option{--help} and @option{--version}.  @xref{Common
+-options}.
+-
+-@exitstatus
+-
+-
+-@node hostid invocation
++@node hostid
+ @section @command{hostid}: Print numeric host identifier
+ 
+ @pindex hostid
+@@ -14556,37 +14515,6 @@
+ 
+ @exitstatus
+ 
+-@node uptime invocation
+-@section @command{uptime}: Print system uptime and load
+-
+-@pindex uptime
+-@cindex printing the system uptime and load
+-
+-@command{uptime} prints the current time, the system's uptime, the
+-number of logged-in users and the current load average.
+-
+-If an argument is specified, it is used as the file to be read
+-to discover how many users are logged in.  If no argument is
+-specified, a system default is used (@command{uptime --help} indicates
+-the default setting).
+-
+-The only options are @option{--help} and @option{--version}.
+-@xref{Common options}.
+-
+-For example, here's what it prints right now on one system I use:
+-
+-@example
+-$ uptime
+- 14:07  up   3:35,  3 users,  load average: 1.39, 1.15, 1.04
+-@end example
+-
+-The precise method of calculation of load average varies somewhat
+-between systems.  Some systems calculate it as the average number of
+-runnable processes over the last 1, 5 and 15 minutes, but some systems
+-also include processes in the uninterruptible sleep state (that is,
+-those processes which are waiting for disk I/O).  The Linux kernel
+-includes uninterruptible processes.
+-
+ @node SELinux context
+ @chapter SELinux context
+ 
+@@ -14598,11 +14526,11 @@
+ contexts.
+ 
+ @menu
+-* chcon invocation::            Change SELinux context of file
+-* runcon invocation::           Run a command in specified SELinux context
++* chcon::                       Change SELinux context of file
++* runcon::                      Run a command in specified SELinux context
+ @end menu
+ 
+-@node chcon invocation
++@node chcon
+ @section @command{chcon}: Change SELinux context of file
+ 
+ @pindex chcon
+@@ -14689,7 +14617,7 @@
+ 
+ @exitstatus
+ 
+-@node runcon invocation
++@node runcon
+ @section @command{runcon}: Run a command in specified SELinux context
+ 
+ @pindex runcon
+@@ -14774,17 +14702,17 @@
+ user, etc.
+ 
+ @menu
+-* chroot invocation::           Modify the root directory.
+-* env invocation::              Modify environment variables.
+-* nice invocation::             Modify niceness.
+-* nohup invocation::            Immunize to hangups.
+-* stdbuf invocation::           Modify buffering of standard streams.
+-* su invocation::               Modify user and group ID.
+-* timeout invocation::          Run with time limit.
++* chroot::                      Modify the root directory.
++* env::                         Modify environment variables.
++* nice::                        Modify niceness.
++* nohup::                       Immunize to hangups.
++* stdbuf::                      Modify buffering of standard streams.
++* su::                          Modify user and group ID.
++* timeout::                     Run with time limit.
+ @end menu
+ 
+ 
+-@node chroot invocation
++@node chroot
+ @section @command{chroot}: Run a command with a different root directory
+ 
+ @pindex chroot
+@@ -14872,7 +14800,7 @@
+ @end display
+ 
+ 
+-@node env invocation
++@node env
+ @section @command{env}: Run a command in a modified environment
+ 
+ @pindex env
+@@ -15022,7 +14950,7 @@
+ @end display
+ 
+ 
+-@node nice invocation
++@node nice
+ @section @command{nice}: Run a command with modified niceness
+ 
+ @pindex nice
+@@ -15145,7 +15073,7 @@
+ @end example
+ 
+ 
+-@node nohup invocation
++@node nohup
+ @section @command{nohup}: Run a command immune to hangups
+ 
+ @pindex nohup
+@@ -15218,7 +15146,7 @@
+ instead of 125.
+ 
+ 
+-@node stdbuf invocation
++@node stdbuf
+ @section @command{stdbuf}: Run a command with modified I/O stream buffering
+ 
+ @pindex stdbuf
+@@ -15297,7 +15225,7 @@
+ @end display
+ 
+ 
+-@node su invocation
++@node su
+ @section @command{su}: Run a command with substitute user and group ID
+ 
+ @pindex su
+@@ -15454,7 +15382,7 @@
+ might find this idea strange at first.
+ 
+ 
+-@node timeout invocation
++@node timeout
+ @section @command{timeout}: Run a command with a time limit
+ 
+ @pindex timeout
+@@ -15515,89 +15443,6 @@
+ @end display
+ 
+ 
+-@node Process control
+-@chapter Process control
+-
+-@cindex processes, commands for controlling
+-@cindex commands for controlling processes
+-
+-@menu
+-* kill invocation::             Sending a signal to processes.
+-@end menu
+-
+-
+-@node kill invocation
+-@section @command{kill}: Send a signal to processes
+-
+-@pindex kill
+-@cindex send a signal to processes
+-
+-The @command{kill} command sends a signal to processes, causing them
+-to terminate or otherwise act upon receiving the signal in some way.
+-Alternatively, it lists information about signals.  Synopses:
+-
+-@example
+-kill [-s @var{signal} | --signal @var{signal} | -@var{signal}] @var{pid}@dots{}
+-kill [-l | --list | -t | --table] [@var{signal}]@dots{}
+-@end example
+-
+-@mayConflictWithShellBuiltIn{kill}
+-
+-The first form of the @command{kill} command sends a signal to all
+-@var{pid} arguments.  The default signal to send if none is specified
+-is @samp{TERM}.  The special signal number @samp{0} does not denote a
+-valid signal, but can be used to test whether the @var{pid} arguments
+-specify processes to which a signal could be sent.
+-
+-If @var{pid} is positive, the signal is sent to the process with the
+-process ID @var{pid}.  If @var{pid} is zero, the signal is sent to all
+-processes in the process group of the current process.  If @var{pid}
+-is @minus{}1, the signal is sent to all processes for which the user has
+-permission to send a signal.  If @var{pid} is less than @minus{}1, the signal
+-is sent to all processes in the process group that equals the absolute
+-value of @var{pid}.
+-
+-If @var{pid} is not positive, a system-dependent set of system
+-processes is excluded from the list of processes to which the signal
+-is sent.
+-
+-If a negative @var{pid} argument is desired as the first one, it
+-should be preceded by @option{--}.  However, as a common extension to
+-@acronym{POSIX}, @option{--} is not required with @samp{kill
+--@var{signal} -@var{pid}}.  The following commands are equivalent:
+-
+-@example
+-kill -15 -1
+-kill -TERM -1
+-kill -s TERM -- -1
+-kill -- -1
+-@end example
+-
+-The first form of the @command{kill} command succeeds if every @var{pid}
+-argument specifies at least one process that the signal was sent to.
+-
+-The second form of the @command{kill} command lists signal information.
+-Either the @option{-l} or @option{--list} option, or the @option{-t}
+-or @option{--table} option must be specified.  Without any
+-@var{signal} argument, all supported signals are listed.  The output
+-of @option{-l} or @option{--list} is a list of the signal names, one
+-per line; if @var{signal} is already a name, the signal number is
+-printed instead.  The output of @option{-t} or @option{--table} is a
+-table of signal numbers, names, and descriptions.  This form of the
+-@command{kill} command succeeds if all @var{signal} arguments are valid
+-and if there is no output error.
+-
+-The @command{kill} command also supports the @option{--help} and
+-@option{--version} options.  @xref{Common options}.
+-
+-A @var{signal} may be a signal name like @samp{HUP}, or a signal
+-number like @samp{1}, or an exit status of a process terminated by the
+-signal.  A signal name can be given in canonical form or prefixed by
+-@samp{SIG}.  The case of the letters is ignored, except for the
+-@option{-@var{signal}} option which must use upper case to avoid
+-ambiguity with lower case option letters.  For a list of supported
+-signal names and numbers see @xref{Signal specifications}.
+-
+ @node Delaying
+ @chapter Delaying
+ 
+@@ -15607,11 +15452,11 @@
+ @c Perhaps @command{wait} or other commands should be described here also?
+ 
+ @menu
+-* sleep invocation::            Delay for a specified time.
++* sleep::                       Delay for a specified time.
+ @end menu
+ 
+ 
+-@node sleep invocation
++@node sleep
+ @section @command{sleep}: Delay for a specified time
+ 
+ @pindex sleep
+@@ -15662,12 +15507,12 @@
+ These programs do numerically-related operations.
+ 
+ @menu
+-* factor invocation::              Show factors of numbers.
+-* seq invocation::                 Print sequences of numbers.
++* factor::                         Show factors of numbers.
++* seq::                            Print sequences of numbers.
+ @end menu
+ 
+ 
+-@node factor invocation
++@node factor
+ @section @command{factor}: Print prime factors
+ 
+ @pindex factor
+@@ -15723,7 +15568,7 @@
+ @exitstatus
+ 
+ 
+-@node seq invocation
++@node seq
+ @section @command{seq}: Print numeric sequences
+ 
+ @pindex seq

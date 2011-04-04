@@ -1,0 +1,207 @@
+# Configuration file for the color ls utility
+# This file goes in the /etc directory and must be world readable.
+# You can copy this file to .dir_colors in your $HOME directory to override
+# the system defaults.
+
+# NOTE:
+# The keywords COLOR, OPTIONS and EIGHTBIT (honored by the slackware version
+# of dircolors) are recognized but ignored.
+
+# COLOR keyword is recognized by PLD fileutils.(c)sh script (which is located
+# in /etc/shrc.d directory and needs one of these arguments:
+# 'auto', 'tty', 'if-tty' - colorizes output to ttys, but not pipes,
+# 'always', 'yes', 'force' - adds color characters to all output,
+# 'never', 'no', 'none' - shuts colorization off.
+COLOR tty
+
+# Below, there should be one TERM entry for each termtype that is colorizable
+TERM linux
+TERM console
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM rxvt
+TERM xterm
+TERM xterm-color
+TERM color-xterm
+TERM color_xterm
+TERM vt100
+TERM dtterm
+
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+NORMAL 00	# global default, although everything should be something.
+FILE 00		# normal file
+DIR 01;34	# directory
+LINK 01;36	# symbolic link
+FIFO 33		# pipe
+SOCK 01;35	# socket
+BLK 01;33	# block device driver
+CHR 01;33	# character device driver
+ORPHAN 01;05;37;41  # orphaned symlinks
+MISSING 01;05;37;41 # ... and the files they point to
+
+# This is for files with execute permission:
+EXEC 32
+
+# List any file extensions like '.gz' or '.tar' that you would like ls
+# to colorize below. Put the extension, a space, and the color init string.
+# (and any comments you want to add after a '#')
+
+# executables (bright green)
+
+.sh  01;32
+.csh 01;32
+.bat 01;32
+.btm 01;32
+.cmd 01;32
+.com 01;32
+.exe 01;32
+
+# archives or compressed (bright red)
+
+.7z   01;31
+.7zip 01;31
+.arj  01;31
+.bz   01;31
+.bz2  01;31
+.cpio 01;31
+.deb  01;31
+.gz   01;31
+.img  01;31
+.lha  01;31
+.lzh  01;31
+.lzma 01;31
+.rar  01;31
+.rpm  01;31
+.tar  01;31
+.taz  01;31
+.tgz  01;31
+.tpz  01;31
+.trpm 01;31
+.tz   01;31
+.xz   01;31
+.z    01;31
+.Z    01;31
+.zip  01;31
+.zoo  01;31
+
+# image formats (bright magenta)
+
+.bmp  01;35
+.cdr  01;35
+.gif  01;35
+.jpeg 01;35
+.jpg  01;35
+.JPG  01;35
+.mng  01;35
+.pbm  01;35
+.pcx  01;35
+.pgm  01;35
+.png  01;35
+.ppm  01;35
+.svg  01;35
+.tga  01;35
+.tif  01;35
+.tiff 01;35
+.xbm  01;35
+.xcf  01;35
+.xpm  01;35
+
+# multimedia files (bright white)
+
+.asf  01;37
+.asx  01;37
+.au   01;37
+.avi  01;37
+.m1v  01;37
+.mid  01;37
+.mkv  01;37
+.mp3  01;37
+.mp4  01;37
+.mpg  01;37
+.mpe  01;37
+.mpeg 01;37
+.mod  01;37
+.mov  01;37
+.ogg  01;37
+.qt   01;37
+.rm   01;37
+.ram  01;37
+.s3m  01;37
+.vob  01;37
+.voc  01;37
+.wav  01;37
+.wma  01;37
+.wmv  01;37
+.xm   01;37
+
+# documents (cyan)
+.abw     36
+.bib     36
+.doc     36
+.dot     36
+.dvi     36
+.eps     36
+.info    36
+.kpr     36
+.me      36
+.ms      36
+.ods     36
+.odt     36
+.ps      36
+.pdf     36
+.pps     36
+.ppt     36
+.rtf     36
+.stw     36
+.sxc     36
+.sxw     36
+.tex     36
+.texi    36
+.texinfo 36
+.tm      36
+.txt     36
+.wri     36
+.xls     36
+.xlw     36
+
+# web (yellow)
+.cgi     33
+.css     33
+.htm     33
+.html    33
+.php     33
+.phtml   33
+
+# devel (bright yellow)
+
+.ac   01;33
+.am   01;33
+.c    01;33
+.cc   01;33
+.cpp  01;33
+.diff 01;33
+.f    01;33
+.h    01;33
+.in   01;33
+.o    01;33
+.patch 01;33
+.po   01;33
+.pot  01;33
+.s    01;33
+.spec 01;33
