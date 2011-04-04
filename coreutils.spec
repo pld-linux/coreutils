@@ -201,8 +201,8 @@ done
 install %{SOURCE9} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
 # unwanted (-f left intentionally - some manuals could have no translations)
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
-
-%{__rm} $RPM_BUILD_ROOT%{_infodir}/dir
+# always remove, never packaged but sometimes installed
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %find_lang %{name}
 
