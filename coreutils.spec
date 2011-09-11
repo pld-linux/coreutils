@@ -42,10 +42,10 @@ Patch14:	%{name}-advcopy.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
-BuildRequires:	autoconf >= 2.62
+BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gcc >= 5:3.2
-BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gettext-devel >= 0.18.1
 BuildRequires:	gmp-devel
 BuildRequires:	help2man
 BuildRequires:	libcap-devel
