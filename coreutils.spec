@@ -55,6 +55,9 @@ BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.2
 BuildRequires:	xz
+%if %{with tests}
+BuildRequires:	strace
+%endif
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	coreutils-su
