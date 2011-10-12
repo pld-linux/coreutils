@@ -7,7 +7,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	8.10
-Release:	3
+Release:	4
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -30,7 +30,7 @@ Patch4:		%{name}-uname-cpuinfo.patch
 Patch5:		%{name}-date-man.patch
 Patch6:		%{name}-mem.patch
 Patch7:		%{name}-7.4-sttytcsadrain.patch
-
+Patch8:		inotify.patch
 Patch9:		%{name}-fmt-wchars.patch
 Patch10:	%{name}-runuser.patch
 Patch11:	%{name}-split-pam.patch
@@ -46,6 +46,7 @@ BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11.1
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	glibc-headers >= 6:2.3.6-17
 BuildRequires:	gmp-devel
 BuildRequires:	help2man
 BuildRequires:	libcap-devel
@@ -120,6 +121,7 @@ Programy zawarte w tym pakiecie to:
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
