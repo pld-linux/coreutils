@@ -1,0 +1,22 @@
+--- coreutils-8.10/m4/jm-macros.m4	2011-10-12 09:57:39.122777938 +0300
++++ coreutils-8.10/m4/jm-macros.m4	2011-10-12 10:33:51.986782716 +0300
+@@ -67,9 +67,16 @@
+   AC_CHECK_FUNCS_ONCE([nl_langinfo])
+ 
+   # Used by tail.c.
+-  AC_CHECK_FUNCS([inotify_init],
+-    [AC_DEFINE([HAVE_INOTIFY], [1],
+-     [Define to 1 if you have usable inotify support.])])
++  AC_RUN_IFELSE(
++    AC_LANG_PROGRAM([[#include <sys/inotify.h>]],
++                    [[return (-1 == inotify_init());]]
++    ),
++    [
++      AC_MSG_RESULT([yes])
++      AC_DEFINE([HAVE_INOTIFY], [1],
++       [Define to 1 if you have usable inotify support.])
++    ], [AC_MSG_RESULT([no])]
++  )
+ 
+   AC_CHECK_FUNCS_ONCE( \
+     endgrent \
