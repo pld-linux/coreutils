@@ -30,7 +30,7 @@ Patch4:		%{name}-uname-cpuinfo.patch
 Patch5:		%{name}-date-man.patch
 Patch6:		%{name}-mem.patch
 Patch7:		%{name}-7.4-sttytcsadrain.patch
-
+Patch8:		%{name}-bug-10243.patch
 Patch9:		%{name}-fmt-wchars.patch
 Patch10:	%{name}-runuser.patch
 Patch11:	%{name}-split-pam.patch
@@ -124,6 +124,7 @@ Programy zawarte w tym pakiecie to:
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1

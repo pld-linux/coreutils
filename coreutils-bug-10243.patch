@@ -1,0 +1,13 @@
+--- coreutils-8.14/src/ls.c~	2011-10-10 09:56:46.000000000 +0200
++++ coreutils-8.14/src/ls.c	2011-12-07 18:54:11.468310130 +0100
+@@ -4041,9 +4041,9 @@
+   if (stack)
+     PUSH_CURRENT_DIRED_POS (stack);
+ 
++  process_signals ();
+   if (used_color_this_time)
+     {
+-      process_signals ();
+       prep_non_filename_text ();
+       if (start_col / line_length != (start_col + width - 1) / line_length)
+         put_indicator (&color_indicator[C_CLR_TO_EOL]);
