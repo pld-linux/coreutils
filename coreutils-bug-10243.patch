@@ -1,6 +1,18 @@
---- coreutils-8.14/src/ls.c~	2011-10-10 09:56:46.000000000 +0200
-+++ coreutils-8.14/src/ls.c	2011-12-07 18:54:11.468310130 +0100
-@@ -4041,9 +4041,9 @@
+--- coreutils-8.14/src/ls.c.org	2011-12-08 11:13:48.597770882 +0100
++++ coreutils-8.14/src/ls.c	2011-12-08 11:16:34.612089051 +0100
+@@ -2583,6 +2583,11 @@
+         }
+       else
+         break;
++
++        /* When processing a very large directory, and since we've inhibited
++           interrupts, this loop would take so long that ls would be annoyingly
++           uninterruptible.  This ensures that it handles signals promptly.  */
++        process_signals ();
+     }
+ 
+   if (closedir (dirp) != 0)
+@@ -4041,9 +4046,9 @@
    if (stack)
      PUSH_CURRENT_DIRED_POS (stack);
  
