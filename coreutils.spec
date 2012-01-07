@@ -90,9 +90,9 @@ The programs that can be built with this package are:
   dd df dir dircolors dirname du echo env expand expr factor false fmt
   fold install groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
-  printf ptx pwd rm rmdir runuser seq sha1sum shred sleep sort split
-  stat stty su sum sync tac tail tee test touch tr true tsort tty uname
-  unexpand uniq unlink users vdir wc who whoami yes
+  printf ptx pwd realpath rm rmdir runuser seq sha1sum shred sleep sort
+  split stat stty su sum sync tac tail tee test touch tr true tsort tty
+  uname unexpand uniq unlink users vdir wc who whoami yes
 
 %description -l pl.UTF-8
 Narzędzia podstawowe (core utilities) GNU to połączone paczki GNU
@@ -108,9 +108,9 @@ Programy zawarte w tym pakiecie to:
   dd df dir dircolors dirname du echo env expand expr factor false fmt
   fold ginstall groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
-  printf ptx pwd rm rmdir runuser seq sha1sum shred sleep sort split
-  stat stty su sum sync tac tail tee test touch tr true tsort tty uname
-  unexpand uniq unlink users vdir wc who whoami yes
+  printf ptx pwd realpath rm rmdir runuser seq sha1sum shred sleep sort
+  split stat stty su sum sync tac tail tee test touch tr true tsort tty
+  uname unexpand uniq unlink users vdir wc who whoami yes
 
 %prep
 %setup -q -a1
