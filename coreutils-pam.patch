@@ -474,7 +474,7 @@
 +msgid " killed.\n"
 +msgstr " zabito.\n"
 +
- #: src/su.c:382
+ #: src/su.c:373
  msgid ""
  "Change the effective user id and group id to that of USER.\n"
 diff -Nur coreutils-5.2.1.orig/man/es/su.1 coreutils-5.2.1/man/es/su.1
