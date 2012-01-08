@@ -153,7 +153,7 @@ Programy zawarte w tym pakiecie to:
 %{__rm} tests/misc/help-version
 %{__sed} -i -e '/misc\/help-version/d' tests/Makefile.am
 
-# broken?
+# fails on some filesystems (like XFS), where readdir returns d_type=DT_UNKNOWN
 %{__rm} tests/ls/stat-free-color
 %{__sed} -i -e '/ls\/stat-free-color/d' tests/Makefile.am
 

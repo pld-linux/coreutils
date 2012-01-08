@@ -182,7 +182,7 @@
 +* ptx: (coreutils)ptx.			Produce permuted indexes
 +* pwd: (coreutils)pwd.			Print working directory
 +* readlink: (coreutils)readlink.	Print referent of a symlink
-+* realpath: (coreutils)readpath.	Print resolved file names.
++* realpath: (coreutils)realpath.	Print resolved file names
 +* rm: (coreutils)rm.			Remove files
 +* rmdir: (coreutils)rmdir.		Remove empty directories
 +* runcon: (coreutils)runcon.		Run in specified SELinux CTX
