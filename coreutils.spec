@@ -167,7 +167,7 @@ Programy zawarte w tym pakiecie to:
 	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
 	DEFAULT_POSIX2_VERSION=199209 \
 	--disable-silent-rules \
-	--enable-install-program=arch \
+	--enable-install-program=arch,su \
 	--enable-no-install-program=hostname,kill,uptime \
 	--enable-pam
 
@@ -190,10 +190,10 @@ df,echo,false,id,link,ln,ls,mkdir,mknod,mktemp,mv,nice,printf,pwd,rm,rmdir,\
 sleep,sort,stat,stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
+mv $RPM_BUILD_ROOT{%{_bindir},/sbin}/runuser
 
 # su is missed by "make install" called by non-root
 install -p src/su $RPM_BUILD_ROOT/bin
-mv $RPM_BUILD_ROOT{%{_bindir},/sbin}/runuser
 
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/shrc.d
