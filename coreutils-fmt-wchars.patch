@@ -83,11 +83,11 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
 +
  /* Extra ctype(3)-style macros.  */
  
--#define isopen(c)	(strchr ("([`'\"", c) != NULL)
+-#define isopen(c)	(strchr ("(['`\"", c) != NULL)
 -#define isclose(c)	(strchr (")]'\"", c) != NULL)
 -#define isperiod(c)	(strchr (".?!", c) != NULL)
 +#define isopen(c)	\
-+  (wcschr (L"([`'\"\u2018\u201A\u201B\u201C\u201E\u201F", c) != NULL)
++  (wcschr (L"(['`\"\u2018\u201A\u201B\u201C\u201E\u201F", c) != NULL)
 +#define isclose(c)	(wcschr (L")]'\"\u2018\u2019\u201C\u201D", c) != NULL)
 +#define isperiod(c)	(wcschr (L".?!", c) != NULL)
  
@@ -589,10 +589,10 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
 +	      start->line_width = wid;
              }
  
--          /* This is a kludge to keep us from computing `len' as the
+-          /* This is a kludge to keep us from computing 'len' as the
 -             sum of the sentinel length and some non-zero number.
 -             Since the sentinel w->length may be INT_MAX, adding
-+	  /* This is a kludge to keep us from computing `wid' as the
++	  /* This is a kludge to keep us from computing 'wid' as the
 +	     sum of the sentinel width and some non-zero number.
 +	     Since the sentinel w->width may be INT_MAX, adding
               to that would give a negative result.  */

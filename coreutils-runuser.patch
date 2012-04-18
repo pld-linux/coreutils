@@ -45,7 +45,7 @@ diff -urNp coreutils-8.7-orig/man/help2man coreutils-8.7/man/help2man
 @@ -109,9 +109,15 @@
  #include "error.h"
  
- /* The official name of this program (e.g., no `g' prefix).  */
+ /* The official name of this program (e.g., no 'g' prefix).  */
 +#ifndef RUNUSER
  #define PROGRAM_NAME "su"
 +#else

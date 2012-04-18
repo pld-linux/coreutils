@@ -5,8 +5,8 @@ diff -uNrp -x '*~' coreutils-5.97-orig/src/su.c coreutils-5.97/src/su.c
  
  #include "error.h"
  
--/* The official name of this program (e.g., no `g' prefix).  */
-+/* The official name of this program (e.g., no `g' prefix).
+-/* The official name of this program (e.g., no 'g' prefix).  */
++/* The official name of this program (e.g., no 'g' prefix).
 + * - Add a "-l" to the name passed to PAM if this is a login simulation
 + */
  #ifndef RUNUSER
