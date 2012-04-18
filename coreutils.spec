@@ -114,7 +114,7 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-#%patch13 -p1
+%patch13 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
