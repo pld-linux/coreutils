@@ -7,7 +7,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	8.16
-Release:	1
+Release:	1.1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -17,15 +17,14 @@ Source1:	%{name}-non-english-man-pages.tar.bz2
 Source2:	DIR_COLORS
 Source3:	fileutils.sh
 Source4:	fileutils.csh
-Source5:	su.pamd
-Source6:	su-l.pamd
+
 Source7:	runuser.pamd
 Source8:	runuser-l.pamd
 Source9:	mktemp.1.pl
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-pam.patch
 Patch2:		%{name}-getgid.patch
-Patch3:		%{name}-su-paths.patch
+
 Patch4:		%{name}-uname-cpuinfo.patch
 Patch5:		%{name}-date-man.patch
 Patch6:		%{name}-mem.patch
@@ -59,13 +58,11 @@ BuildRequires:	strace
 %endif
 Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
-Provides:	coreutils-su
 Provides:	fileutils
 Provides:	mktemp = %{version}-%{release}
 Provides:	sh-utils
 Provides:	stat
 Provides:	textutils
-Obsoletes:	coreutils-su
 Obsoletes:	fileutils
 Obsoletes:	mktemp
 Obsoletes:	sh-utils
@@ -91,7 +88,7 @@ The programs that can be built with this package are:
   fold install groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
   printf ptx pwd realpath rm rmdir runuser seq sha1sum shred sleep sort
-  split stat stty su sum sync tac tail tee test touch tr true tsort tty
+  split stat stty sum sync tac tail tee test touch tr true tsort tty
   uname unexpand uniq unlink users vdir wc who whoami yes
 
 %description -l pl.UTF-8
@@ -109,7 +106,7 @@ Programy zawarte w tym pakiecie to:
   fold ginstall groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
   printf ptx pwd realpath rm rmdir runuser seq sha1sum shred sleep sort
-  split stat stty su sum sync tac tail tee test touch tr true tsort tty
+  split stat stty sum sync tac tail tee test touch tr true tsort tty
   uname unexpand uniq unlink users vdir wc who whoami yes
 
 %prep
@@ -118,7 +115,7 @@ Programy zawarte w tym pakiecie to:
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
@@ -167,7 +164,7 @@ Programy zawarte w tym pakiecie to:
 	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
 	DEFAULT_POSIX2_VERSION=199209 \
 	--disable-silent-rules \
-	--enable-install-program=arch,su \
+	--enable-install-program=arch \
 	--enable-no-install-program=hostname,kill,uptime \
 	--enable-pam
 
@@ -192,13 +189,9 @@ sleep,sort,stat,stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 mv $RPM_BUILD_ROOT{%{_bindir},/sbin}/runuser
 
-# su is missed by "make install" called by non-root
-install -p src/su $RPM_BUILD_ROOT/bin
-
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/shrc.d
-cp -p %{SOURCE5} $RPM_BUILD_ROOT/etc/pam.d/su
-cp -p %{SOURCE6} $RPM_BUILD_ROOT/etc/pam.d/su-l
+
 cp -p %{SOURCE7} $RPM_BUILD_ROOT/etc/pam.d/runuser
 cp -p %{SOURCE8} $RPM_BUILD_ROOT/etc/pam.d/runuser-l
 
@@ -229,13 +222,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS THANKS-to-translators TODO
 %attr(755,root,root) /bin/[!s]*
 %attr(755,root,root) /bin/s[!u]*
-%attr(4755,root,root) /bin/su
 %attr(755,root,root) /sbin/runuser
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/chroot
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/su-l
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
 %config(noreplace) /etc/shrc.d/fileutils.*sh
