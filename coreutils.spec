@@ -67,7 +67,8 @@ Obsoletes:	stat
 Obsoletes:	textutils
 Conflicts:	shadow < 1:4.0.3-6
 Conflicts:	tetex < 1:2.0.2
-Conflicts:	util-linux < 2.13-0.pre7
+# ensure util-linux has su included
+Conflicts:	util-linux < 2.22
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -190,7 +191,7 @@ for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN; do
 done
 install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
 # unwanted (-f left intentionally - some manuals could have no translations)
-rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
+rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,su,uptime}.1
 # always remove, never packaged but sometimes installed
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
@@ -208,15 +209,214 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README THANKS THANKS-to-translators TODO
-%attr(755,root,root) /bin/[!s]*
-%attr(755,root,root) /bin/s[!u]*
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) /bin/arch
+%attr(755,root,root) /bin/basename
+%attr(755,root,root) /bin/cat
+%attr(755,root,root) /bin/chgrp
+%attr(755,root,root) /bin/chmod
+%attr(755,root,root) /bin/chown
+%attr(755,root,root) /bin/cp
+%attr(755,root,root) /bin/date
+%attr(755,root,root) /bin/dd
+%attr(755,root,root) /bin/df
+%attr(755,root,root) /bin/echo
+%attr(755,root,root) /bin/false
+%attr(755,root,root) /bin/id
+%attr(755,root,root) /bin/link
+%attr(755,root,root) /bin/ln
+%attr(755,root,root) /bin/ls
+%attr(755,root,root) /bin/mkdir
+%attr(755,root,root) /bin/mknod
+%attr(755,root,root) /bin/mktemp
+%attr(755,root,root) /bin/mv
+%attr(755,root,root) /bin/nice
+%attr(755,root,root) /bin/printf
+%attr(755,root,root) /bin/pwd
+%attr(755,root,root) /bin/rm
+%attr(755,root,root) /bin/rmdir
+%attr(755,root,root) /bin/sleep
+%attr(755,root,root) /bin/sort
+%attr(755,root,root) /bin/stat
+%attr(755,root,root) /bin/stty
+%attr(755,root,root) /bin/sync
+%attr(755,root,root) /bin/touch
+%attr(755,root,root) /bin/true
+%attr(755,root,root) /bin/uname
+%attr(755,root,root) /bin/unlink
+%attr(755,root,root) %{_bindir}/[
+%attr(755,root,root) %{_bindir}/base64
+%attr(755,root,root) %{_bindir}/chcon
+%attr(755,root,root) %{_bindir}/cksum
+%attr(755,root,root) %{_bindir}/comm
+%attr(755,root,root) %{_bindir}/csplit
+%attr(755,root,root) %{_bindir}/cut
+%attr(755,root,root) %{_bindir}/dir
+%attr(755,root,root) %{_bindir}/dircolors
+%attr(755,root,root) %{_bindir}/dirname
+%attr(755,root,root) %{_bindir}/du
+%attr(755,root,root) %{_bindir}/env
+%attr(755,root,root) %{_bindir}/expand
+%attr(755,root,root) %{_bindir}/expr
+%attr(755,root,root) %{_bindir}/factor
+%attr(755,root,root) %{_bindir}/fmt
+%attr(755,root,root) %{_bindir}/fold
+%attr(755,root,root) %{_bindir}/getgid
+%attr(755,root,root) %{_bindir}/groups
+%attr(755,root,root) %{_bindir}/head
+%attr(755,root,root) %{_bindir}/hostid
+%attr(755,root,root) %{_bindir}/install
+%attr(755,root,root) %{_bindir}/join
+%attr(755,root,root) %{_bindir}/logname
+%attr(755,root,root) %{_bindir}/md5sum
+%attr(755,root,root) %{_bindir}/mkfifo
+%attr(755,root,root) %{_bindir}/nl
+%attr(755,root,root) %{_bindir}/nohup
+%attr(755,root,root) %{_bindir}/nproc
+%attr(755,root,root) %{_bindir}/od
+%attr(755,root,root) %{_bindir}/paste
+%attr(755,root,root) %{_bindir}/pathchk
+%attr(755,root,root) %{_bindir}/pinky
+%attr(755,root,root) %{_bindir}/pr
+%attr(755,root,root) %{_bindir}/printenv
+%attr(755,root,root) %{_bindir}/ptx
+%attr(755,root,root) %{_bindir}/readlink
+%attr(755,root,root) %{_bindir}/realpath
+%attr(755,root,root) %{_bindir}/runcon
+%attr(755,root,root) %{_bindir}/seq
+%attr(755,root,root) %{_bindir}/sha1sum
+%attr(755,root,root) %{_bindir}/sha224sum
+%attr(755,root,root) %{_bindir}/sha256sum
+%attr(755,root,root) %{_bindir}/sha384sum
+%attr(755,root,root) %{_bindir}/sha512sum
+%attr(755,root,root) %{_bindir}/shred
+%attr(755,root,root) %{_bindir}/shuf
+%attr(755,root,root) %{_bindir}/split
+%attr(755,root,root) %{_bindir}/stdbuf
+%attr(755,root,root) %{_bindir}/sum
+%attr(755,root,root) %{_bindir}/tac
+%attr(755,root,root) %{_bindir}/tail
+%attr(755,root,root) %{_bindir}/tee
+%attr(755,root,root) %{_bindir}/test
+%attr(755,root,root) %{_bindir}/timeout
+%attr(755,root,root) %{_bindir}/tr
+%attr(755,root,root) %{_bindir}/truncate
+%attr(755,root,root) %{_bindir}/tsort
+%attr(755,root,root) %{_bindir}/tty
+%attr(755,root,root) %{_bindir}/unexpand
+%attr(755,root,root) %{_bindir}/uniq
+%attr(755,root,root) %{_bindir}/users
+%attr(755,root,root) %{_bindir}/vdir
+%attr(755,root,root) %{_bindir}/wc
+%attr(755,root,root) %{_bindir}/who
+%attr(755,root,root) %{_bindir}/whoami
+%attr(755,root,root) %{_bindir}/yes
 %attr(755,root,root) %{_sbindir}/chroot
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
-%config(noreplace) /etc/shrc.d/fileutils.*sh
+%config(noreplace) /etc/shrc.d/fileutils.csh
+%config(noreplace) /etc/shrc.d/fileutils.sh
 %dir %{_libdir}/coreutils
 %attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
-%{_mandir}/man1/*
+%{_mandir}/man1/arch.1*
+%{_mandir}/man1/base64.1*
+%{_mandir}/man1/basename.1*
+%{_mandir}/man1/cat.1*
+%{_mandir}/man1/chcon.1*
+%{_mandir}/man1/chgrp.1*
+%{_mandir}/man1/chmod.1*
+%{_mandir}/man1/chown.1*
+%{_mandir}/man1/chroot.1*
+%{_mandir}/man1/cksum.1*
+%{_mandir}/man1/comm.1*
+%{_mandir}/man1/cp.1*
+%{_mandir}/man1/csplit.1*
+%{_mandir}/man1/cut.1*
+%{_mandir}/man1/date.1*
+%{_mandir}/man1/dd.1*
+%{_mandir}/man1/df.1*
+%{_mandir}/man1/dir.1*
+%{_mandir}/man1/dircolors.1*
+%{_mandir}/man1/dirname.1*
+%{_mandir}/man1/du.1*
+%{_mandir}/man1/echo.1*
+%{_mandir}/man1/env.1*
+%{_mandir}/man1/expand.1*
+%{_mandir}/man1/expr.1*
+%{_mandir}/man1/factor.1*
+%{_mandir}/man1/false.1*
+%{_mandir}/man1/fmt.1*
+%{_mandir}/man1/fold.1*
+%{_mandir}/man1/getgid.1*
+%{_mandir}/man1/groups.1*
+%{_mandir}/man1/head.1*
+%{_mandir}/man1/hostid.1*
+%{_mandir}/man1/id.1*
+%{_mandir}/man1/install.1*
+%{_mandir}/man1/join.1*
+%{_mandir}/man1/link.1*
+%{_mandir}/man1/ln.1*
+%{_mandir}/man1/logname.1*
+%{_mandir}/man1/ls.1*
+%{_mandir}/man1/md5sum.1*
+%{_mandir}/man1/mkdir.1*
+%{_mandir}/man1/mkfifo.1*
+%{_mandir}/man1/mknod.1*
+%{_mandir}/man1/mktemp.1*
+%{_mandir}/man1/mv.1*
+%{_mandir}/man1/nice.1*
+%{_mandir}/man1/nl.1*
+%{_mandir}/man1/nohup.1*
+%{_mandir}/man1/nproc.1*
+%{_mandir}/man1/od.1*
+%{_mandir}/man1/paste.1*
+%{_mandir}/man1/pathchk.1*
+%{_mandir}/man1/pinky.1*
+%{_mandir}/man1/pr.1*
+%{_mandir}/man1/printenv.1*
+%{_mandir}/man1/printf.1*
+%{_mandir}/man1/ptx.1*
+%{_mandir}/man1/pwd.1*
+%{_mandir}/man1/readlink.1*
+%{_mandir}/man1/realpath.1*
+%{_mandir}/man1/rm.1*
+%{_mandir}/man1/rmdir.1*
+%{_mandir}/man1/runcon.1*
+%{_mandir}/man1/seq.1*
+%{_mandir}/man1/sha1sum.1*
+%{_mandir}/man1/sha224sum.1*
+%{_mandir}/man1/sha256sum.1*
+%{_mandir}/man1/sha384sum.1*
+%{_mandir}/man1/sha512sum.1*
+%{_mandir}/man1/shred.1*
+%{_mandir}/man1/shuf.1*
+%{_mandir}/man1/sleep.1*
+%{_mandir}/man1/sort.1*
+%{_mandir}/man1/split.1*
+%{_mandir}/man1/stat.1*
+%{_mandir}/man1/stdbuf.1*
+%{_mandir}/man1/stty.1*
+%{_mandir}/man1/sum.1*
+%{_mandir}/man1/sync.1*
+%{_mandir}/man1/tac.1*
+%{_mandir}/man1/tail.1*
+%{_mandir}/man1/tee.1*
+%{_mandir}/man1/test.1*
+%{_mandir}/man1/timeout.1*
+%{_mandir}/man1/touch.1*
+%{_mandir}/man1/tr.1*
+%{_mandir}/man1/true.1*
+%{_mandir}/man1/truncate.1*
+%{_mandir}/man1/tsort.1*
+%{_mandir}/man1/tty.1*
+%{_mandir}/man1/uname.1*
+%{_mandir}/man1/unexpand.1*
+%{_mandir}/man1/uniq.1*
+%{_mandir}/man1/unlink.1*
+%{_mandir}/man1/users.1*
+%{_mandir}/man1/vdir.1*
+%{_mandir}/man1/wc.1*
+%{_mandir}/man1/who.1*
+%{_mandir}/man1/whoami.1*
+%{_mandir}/man1/yes.1*
 %lang(cs) %{_mandir}/cs/man1/*
 %lang(da) %{_mandir}/da/man1/*
 %lang(de) %{_mandir}/de/man1/*
