@@ -1,103 +1,22 @@
---- coreutils-8.16/po/pl.po.orig	2012-03-26 14:08:45.000000000 +0200
-+++ coreutils-8.16/po/pl.po	2012-04-18 18:00:32.969889049 +0200
-@@ -14,10 +14,10 @@
- # 2 format strings: Jakub Bogusz <qboosh@pld-linux.org>, 2007.
- msgid ""
- msgstr ""
--"Project-Id-Version: coreutils 8.16-pre1\n"
-+"Project-Id-Version: coreutils 8.16\n"
- "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
- "POT-Creation-Date: 2012-03-26 14:08+0200\n"
--"PO-Revision-Date: 2012-03-20 01:07+0100\n"
-+"PO-Revision-Date: 2012-03-27 00:00+0200\n"
- "Last-Translator: Rafał Maszkowski <rzm@icm.edu.pl>\n"
- "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
- "Language: pl\n"
-@@ -560,15 +560,15 @@
+--- coreutils-8.19/po/pl.po.orig	2012-08-20 08:22:10.000000000 +0200
++++ coreutils-8.19/po/pl.po	2012-10-14 10:20:31.269339375 +0200
+@@ -8084,7 +8084,6 @@
+ "polecenia\n"
  
- #: lib/spawn-pipe.c:138 lib/spawn-pipe.c:141 lib/spawn-pipe.c:262
- #: lib/spawn-pipe.c:265
--#, fuzzy, c-format
-+#, c-format
- msgid "cannot create pipe"
--msgstr "nie można utworzyć potoku %s"
-+msgstr "nie można utworzyć potoku"
- 
- #: lib/spawn-pipe.c:232 lib/spawn-pipe.c:346 lib/wait-process.c:282
- #: lib/wait-process.c:356
--#, fuzzy, c-format
-+#, c-format
- msgid "%s subprocess failed"
--msgstr "%s: nie udało się ustawienie pozycji"
-+msgstr "%s: błąd procesu potomnego"
- 
- #: lib/strsignal.c:114
- #, c-format
-@@ -794,24 +794,24 @@
- msgstr "Pomoc w używaniu oprogramowania GNU: http://www.gnu.org/gethelp/\n"
- 
- #: lib/w32spawn.h:43
--#, fuzzy, c-format
-+#, c-format
- msgid "_open_osfhandle failed"
--msgstr "błąd otwierania pliku"
-+msgstr "błąd _open_osfhandle"
- 
- #: lib/w32spawn.h:84
- #, c-format
- msgid "cannot restore fd %d: dup2 failed"
--msgstr ""
-+msgstr "nie można odtworzyć deskryptora %d: błąd dup2"
- 
- #: lib/wait-process.c:223 lib/wait-process.c:255 lib/wait-process.c:317
- #, c-format
- msgid "%s subprocess"
--msgstr ""
-+msgstr "proces potomny %s"
- 
- #: lib/wait-process.c:274 lib/wait-process.c:346
- #, c-format
- msgid "%s subprocess got fatal signal %d"
--msgstr ""
-+msgstr "proces potomny %s otrzymał fatalny sygnał %d"
- 
- #: lib/xfreopen.c:35
- msgid "stdin"
-@@ -5432,7 +5432,6 @@
- "  -f, --force                 skasowanie istniejących CELÓW bez pytania\n"
- 
- #: src/ln.c:403
+ #: src/rm.c:154
 -#, fuzzy
  msgid ""
- "  -i, --interactive           prompt whether to remove destinations\n"
- "  -L, --logical               dereference TARGETs that are symbolic links\n"
-@@ -5450,6 +5449,8 @@
- "                                symbolicznym do katalogu, traktowany jest "
- "jak\n"
- "                                zwykły plik\n"
-+"  -r, --relative              tworzenie dowiązań symbolicznych względem ich\n"
-+"                                położenia\n"
- "  -s, --symbolic              tworzenie dowiązań symbolicznych zamiast "
- "zwykłych\n"
+ "      --no-preserve-root  do not treat '/' specially\n"
+ "      --preserve-root   do not remove '/' (default)\n"
+@@ -8093,9 +8092,9 @@
+ "  -v, --verbose         explain what is being done\n"
+ msgstr ""
+ "      --no-preserve-root bez traktowania katalogu '/' w specjalny sposób\n"
+-"                          (domyślnie)\n"
+-"      --preserve-root   odmowa usunięcia '/' (domyslnie)\n"
++"      --preserve-root   odmowa usunięcia '/' (domyślne)\n"
+ "  -r, -R, --recursive   usuwanie katalogów z zawartością rekursywnie\n"
++"  -d, --dir             usuwanie pustych katalogów\n"
+ "  -v, --verbose         wyjaśnianie co się dzieje\n"
  
-@@ -5503,9 +5504,9 @@
- "nie można używać równocześnie --target-directory i --no-target-directory"
- 
- #: src/ln.c:588
--#, fuzzy, c-format
-+#, c-format
- msgid "cannot do --relative without --symbolic"
--msgstr "nie można utworzyć dowiązania symbolicznego %s"
-+msgstr "nie można użyć --relative bez --symbolic"
- 
- #. This is a proper name. See the gettext manual, section Names.
- #: src/logname.c:30
-@@ -7953,7 +7954,7 @@
- 
- #: src/relpath.c:130
- msgid "generating relative path"
--msgstr ""
-+msgstr "tworzenie ścieżki względnej"
- 
- #: src/remove.c:286
- #, c-format
+ #: src/rm.c:163

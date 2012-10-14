@@ -1,24 +1,24 @@
---- coreutils-8.9/po/pl.po.orig	2011-01-09 12:30:07.000000000 +0100
-+++ coreutils-8.9/po/pl.po	2011-01-09 13:01:57.685902367 +0100
-@@ -4380,12 +4380,14 @@
- #: src/fmt.c:286
+--- coreutils-8.19/po/pl.po.orig	2012-10-14 10:58:23.839244005 +0200
++++ coreutils-8.19/po/pl.po	2012-10-14 11:00:38.809238341 +0200
+@@ -4497,13 +4497,15 @@
+ #, no-c-format
  msgid ""
  "  -t, --tagged-paragraph    indentation of first line different from second\n"
 -"  -u, --uniform-spacing     one space between words, two after sentences\n"
 +"  -u, --uniform-spacing     one space between words, two between sentences\n"
 +"  -n, --single-spaces       single spaces between sentences\n"
  "  -w, --width=WIDTH         maximum line width (default of 75 columns)\n"
+ "  -g, --goal=WIDTH          goal width (default of 93% of width)\n"
  msgstr ""
  "  -t, --tagged-paragraph    wcięcie pierwszej linii inne niż drugiej\n"
  "  -u, --uniform-spacing     jedna spacja między słowami, dwie między "
  "zdaniami\n"
 +"  -n, --single-spaces       pojedyncze spacje między zdaniami\n"
- "  -w, --width=ILE           maksymalna szerokość linii (domyślnie 75 "
+ "  -w, --width=SZEROKOŚĆ     maksymalna SZEROKOŚĆ linii (domyślnie 75 "
  "kolumn)\n"
- 
-diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
---- coreutils-7.6.org/src/fmt.c	2009-09-01 13:01:16.000000000 +0200
-+++ coreutils-7.6/src/fmt.c	2009-09-12 20:25:11.894693234 +0200
+ "  -g, --goal=SZEROKOŚĆ      docelowa SZEROKOŚĆ (domyślnie 93% of szerokości\n"
+--- coreutils-8.19/src/fmt.c.orig	2012-07-21 16:54:31.000000000 +0200
++++ coreutils-8.19/src/fmt.c	2012-10-14 11:02:27.109233796 +0200
 @@ -17,6 +17,7 @@
  /* Written by Ross Paterson <rap@doc.ic.ac.uk>.  */
  
@@ -27,7 +27,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  #include <stdio.h>
  #include <sys/types.h>
  #include <getopt.h>
-@@ -38,7 +39,7 @@
+@@ -40,7 +41,7 @@
  /* The following parameters represent the program's idea of what is
     "best".  Adjust to taste, subject to the caveats given.  */
  
@@ -36,7 +36,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  #define WIDTH	75
  
  /* Prefer lines to be LEEWAY % shorter than the maximum width, giving
-@@ -50,7 +51,7 @@
+@@ -52,7 +53,7 @@
  #define DEF_INDENT 3
  
  /* Costs and bonuses are expressed as the equivalent departure from the
@@ -45,7 +45,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
     cost of 50 means that it is as bad as a line 5 characters too short
     or too long.  The definition of SHORT_COST(n) should not be changed.
     However, EQUIV(n) may need tuning.  */
-@@ -77,11 +78,11 @@
+@@ -79,11 +80,11 @@
  #define LINE_COST	EQUIV (70)
  
  /* Cost of breaking a line after the first word of a sentence, where
@@ -59,7 +59,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  #define ORPHAN_COST(n)	(EQUIV (150) / ((n) + 2))
  
  /* Bonus for breaking a line at the end of a sentence.  */
-@@ -113,11 +114,30 @@
+@@ -115,11 +116,30 @@
  #define MAXWORDS	1000
  #define MAXCHARS	5000
  
@@ -93,7 +93,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  
  /* Size of a tab stop, for expansion on input and re-introduction on
     output.  */
-@@ -132,8 +152,9 @@
+@@ -134,8 +154,9 @@
  
      /* Static attributes determined during input.  */
  
@@ -105,7 +105,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
      int space;			/* the size of the following space */
      unsigned int paren:1;	/* starts with open paren */
      unsigned int period:1;	/* ends in [.?!])* */
-@@ -142,7 +163,7 @@
+@@ -144,7 +165,7 @@
  
      /* The remaining fields are computed during the optimization.  */
  
@@ -114,7 +114,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
      COST best_cost;		/* cost of best paragraph starting here */
      WORD *next_break;		/* break which achieves best_cost */
    };
-@@ -152,16 +173,16 @@
+@@ -154,16 +175,16 @@
  static void set_prefix (char *p);
  static void fmt (FILE *f);
  static bool get_paragraph (FILE *f);
@@ -137,7 +137,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  static void put_paragraph (WORD *finish);
  static void put_line (WORD *w, int indent);
  static void put_word (WORD *w);
-@@ -181,8 +202,11 @@
+@@ -183,8 +204,11 @@
  /* If true, don't preserve inter-word spacing (default false).  */
  static bool uniform;
  
@@ -150,7 +150,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  
  /* User-supplied maximum line width (default WIDTH).  The only output
     lines longer than this will each comprise a single word.  */
-@@ -190,14 +214,14 @@
+@@ -192,14 +216,14 @@
  
  /* Values derived from the option values.  */
  
@@ -169,8 +169,8 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
 +static int prefix_width;
  
  /* The preferred width of text lines, set to LEEWAY % less than max_width.  */
- static int best_width;
-@@ -212,10 +236,10 @@
+ static int goal_width;
+@@ -214,10 +238,10 @@
  
  /* Space for the paragraph text -- longer paragraphs are handled neatly
     (cf. flush_paragraph()).  */
@@ -183,7 +183,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  
  /* The words of a paragraph -- longer paragraphs are handled neatly
     (cf. flush_paragraph()).  */
-@@ -247,16 +271,16 @@
+@@ -249,16 +273,16 @@
     prefix (next_prefix_indent).  See get_paragraph() and copy_rest().  */
  
  /* The last character read from the input file.  */
@@ -203,25 +203,25 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  
  void
  usage (int status)
-@@ -284,7 +308,8 @@
-              stdout);
+@@ -287,7 +311,8 @@
+          format string:  xgettext:no-c-format */
        fputs (_("\
    -t, --tagged-paragraph    indentation of first line different from second\n\
 -  -u, --uniform-spacing     one space between words, two after sentences\n\
 +  -u, --uniform-spacing     one space between words, two between sentences\n\
 +  -n, --single-spaces       single spaces between sentences\n\
    -w, --width=WIDTH         maximum line width (default of 75 columns)\n\
+   -g, --goal=WIDTH          goal width (default of 93% of width)\n\
  "), stdout);
-       fputs (HELP_OPTION_DESCRIPTION, stdout);
-@@ -307,6 +332,7 @@
+@@ -311,6 +336,7 @@
    {"split-only", no_argument, NULL, 's'},
    {"tagged-paragraph", no_argument, NULL, 't'},
    {"uniform-spacing", no_argument, NULL, 'u'},
 +  {"single-spaces", no_argument, NULL, 'n'},
    {"width", required_argument, NULL, 'w'},
+   {"goal", required_argument, NULL, 'g'},
    {GETOPT_HELP_OPTION_DECL},
-   {GETOPT_VERSION_OPTION_DECL},
-@@ -329,9 +355,10 @@
+@@ -335,9 +361,10 @@
    atexit (close_stdout);
  
    crown = tagged = split = uniform = false;
@@ -234,16 +234,16 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  
    if (argc > 1 && argv[1][0] == '-' && ISDIGIT (argv[1][1]))
      {
-@@ -344,7 +371,7 @@
+@@ -350,7 +377,7 @@
        argc--;
      }
  
--  while ((optchar = getopt_long (argc, argv, "0123456789cstuw:p:",
-+  while ((optchar = getopt_long (argc, argv, "0123456789cstunw:p:",
+-  while ((optchar = getopt_long (argc, argv, "0123456789cstuw:p:g:",
++  while ((optchar = getopt_long (argc, argv, "0123456789cstunw:p:g:",
                                   long_options, NULL))
           != -1)
      switch (optchar)
-@@ -372,6 +399,10 @@
+@@ -378,6 +405,10 @@
          uniform = true;
          break;
  
@@ -254,7 +254,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
        case 'w':
          max_width_option = optarg;
          break;
-@@ -436,26 +467,32 @@
+@@ -461,26 +492,32 @@
  }
  
  /* Trim space from the front and back of the string P, yielding the prefix,
@@ -297,7 +297,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  }
  
  /* read file F and send formatted output to stdout.  */
-@@ -524,24 +561,24 @@
+@@ -550,24 +587,24 @@
  static bool
  get_paragraph (FILE *f)
  {
@@ -329,7 +329,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
        c = get_prefix (f);
      }
  
-@@ -597,26 +634,26 @@
+@@ -628,26 +665,26 @@
     that failed to match the prefix.  In the latter, C is \n or EOF.
     Return the character (\n or EOF) ending the line.  */
  
@@ -367,7 +367,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
      }
    return c;
  }
-@@ -626,11 +663,11 @@
+@@ -657,11 +694,11 @@
     otherwise false.  */
  
  static bool
@@ -382,7 +382,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  }
  
  /* Read a line from input file F, given first non-blank character C
-@@ -641,11 +678,11 @@
+@@ -672,11 +709,11 @@
  
     Return the first non-blank character of the next line.  */
  
@@ -397,7 +397,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
    WORD *end_of_word;
  
    end_of_parabuf = &parabuf[MAXCHARS];
-@@ -657,6 +694,7 @@
+@@ -688,6 +725,7 @@
        /* Scan word.  */
  
        word_limit->text = wptr;
@@ -405,7 +405,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
        do
          {
            if (wptr == end_of_parabuf)
-@@ -665,10 +703,12 @@
+@@ -696,10 +734,12 @@
                flush_paragraph ();
              }
            *wptr++ = c;
@@ -421,7 +421,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
        check_punctuation (word_limit);
  
        /* Scan inter-word space.  */
-@@ -676,11 +716,11 @@
+@@ -707,11 +747,11 @@
        start = in_column;
        c = get_space (f, c);
        word_limit->space = in_column - start;
@@ -437,7 +437,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
        if (word_limit == end_of_word)
          {
            set_other_indent (true);
-@@ -688,34 +728,34 @@
+@@ -719,34 +759,34 @@
          }
        word_limit++;
      }
@@ -481,7 +481,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
          }
        c = get_space (f, c);
      }
-@@ -725,21 +765,21 @@
+@@ -756,21 +796,21 @@
  /* Read blank characters from input file F, starting with C, and keeping
     in_column up-to-date.  Return first non-blank character.  */
  
@@ -508,7 +508,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
      }
  }
  
-@@ -748,9 +788,9 @@
+@@ -779,9 +819,9 @@
  static void
  check_punctuation (WORD *w)
  {
@@ -521,7 +521,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  
    w->paren = isopen (*start);
    w->punct = !! ispunct (fin);
-@@ -774,7 +814,9 @@
+@@ -805,7 +845,9 @@
  
    if (word_limit == word)
      {
@@ -532,7 +532,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
        wptr = parabuf;
        return;
      }
-@@ -806,7 +848,8 @@
+@@ -837,7 +879,8 @@
    /* Copy text of words down to start of parabuf -- we use memmove because
       the source and target may overlap.  */
  
@@ -542,7 +542,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
    shift = split_point->text - parabuf;
    wptr -= shift;
  
-@@ -830,53 +873,53 @@
+@@ -861,53 +904,53 @@
  fmt_paragraph (void)
  {
    WORD *start, *w;
@@ -612,12 +612,12 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  }
  
  /* Return the constant component of the cost of breaking before the
-@@ -901,33 +944,33 @@
+@@ -932,33 +975,33 @@
        else if ((this - 1)->punct)
          cost -= PUNCT_BONUS;
        else if (this > word + 1 && (this - 2)->final)
 -        cost += WIDOW_COST ((this - 1)->length);
-+	cost += WIDOW_COST ((this - 1)->width);
++        cost += WIDOW_COST ((this - 1)->width);
      }
  
    if (this->paren)
@@ -642,8 +642,8 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  
    if (next == word_limit)
      return 0;
--  n = best_width - len;
-+  n = best_width - wid;
+-  n = goal_width - len;
++  n = goal_width - wid;
    cost = SHORT_COST (n);
    if (next->next_break != word_limit)
      {
@@ -652,7 +652,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
        cost += RAGGED_COST (n);
      }
    return cost;
-@@ -956,8 +999,8 @@
+@@ -987,8 +1030,8 @@
  
    out_column = 0;
    put_space (prefix_indent);
@@ -663,7 +663,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
    put_space (indent - out_column);
  
    endline = w->next_break - 1;
-@@ -967,8 +1010,8 @@
+@@ -998,8 +1041,8 @@
        put_space (w->space);
      }
    put_word (w);
@@ -674,7 +674,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  }
  
  /* Output to stdout the word W.  */
-@@ -976,13 +1019,13 @@
+@@ -1007,13 +1050,13 @@
  static void
  put_word (WORD *w)
  {
@@ -691,7 +691,7 @@ diff -ur coreutils-7.6.org/src/fmt.c coreutils-7.6/src/fmt.c
  }
  
  /* Output to stdout SPACE spaces, or equivalent tabs.  */
-@@ -999,13 +1042,13 @@
+@@ -1030,13 +1073,13 @@
        if (out_column + 1 < tab_target)
          while (out_column < tab_target)
            {

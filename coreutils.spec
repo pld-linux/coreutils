@@ -6,37 +6,36 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.16
-Release:	1.1
+Version:	8.19
+Release:	0.1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	89b06f91634208dceba7b36ad1f9e8b9
+# Source0-md5:	1a01231a2f3ed37c0efc073ccdda9375
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
 Source3:	fileutils.sh
 Source4:	fileutils.csh
-
-Source7:	runuser.pamd
-Source8:	runuser-l.pamd
-Source9:	mktemp.1.pl
+Source5:	mktemp.1.pl
 Patch0:		%{name}-info.patch
-Patch1:		%{name}-pam.patch
-Patch2:		%{name}-getgid.patch
-
-Patch4:		%{name}-uname-cpuinfo.patch
-Patch5:		%{name}-date-man.patch
-Patch6:		%{name}-mem.patch
-Patch7:		%{name}-7.4-sttytcsadrain.patch
-Patch9:		%{name}-fmt-wchars.patch
-Patch10:	%{name}-runuser.patch
-Patch11:	%{name}-split-pam.patch
-Patch12:	%{name}-sparc64.patch
+Patch1:		%{name}-getgid.patch
+Patch2:		%{name}-uname-cpuinfo.patch
+Patch3:		%{name}-date-man.patch
+Patch4:		%{name}-mem.patch
+Patch5:		%{name}-7.4-sttytcsadrain.patch
+Patch6:		%{name}-fmt-wchars.patch
+Patch7:		%{name}-sparc64.patch
 # http://translationproject.org/latest/coreutils/pl.po (pass through msgcat to generate shorter diff)
-Patch13:	%{name}-pl.po-update.patch
+Patch8:		%{name}-pl.po-update.patch
 # from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
-Patch14:	%{name}-advcopy.patch
+Patch9:		%{name}-advcopy.patch
+# TODO: check/move to su in util-linux
+#Source7:	runuser.pamd
+#Source8:	runuser-l.pamd
+#Patch1:	%{name}-pam.patch
+#Patch10:	%{name}-runuser.patch
+#Patch11:	%{name}-split-pam.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -48,7 +47,6 @@ BuildRequires:	gmp-devel
 BuildRequires:	help2man
 BuildRequires:	libcap-devel
 BuildRequires:	libselinux-devel
-BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.2
@@ -56,7 +54,6 @@ BuildRequires:	xz
 %if %{with tests}
 BuildRequires:	strace
 %endif
-Requires:	pam >= 0.77.3
 Requires:	setup >= 2.4.6-2
 Provides:	fileutils
 Provides:	mktemp = %{version}-%{release}
@@ -87,9 +84,9 @@ The programs that can be built with this package are:
   dd df dir dircolors dirname du echo env expand expr factor false fmt
   fold install groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
-  printf ptx pwd realpath rm rmdir runuser seq sha1sum shred sleep sort
-  split stat stty sum sync tac tail tee test touch tr true tsort tty
-  uname unexpand uniq unlink users vdir wc who whoami yes
+  printf ptx pwd realpath rm rmdir seq sha1sum shred sleep sort split
+  stat stty sum sync tac tail tee test touch tr true tsort tty uname
+  unexpand uniq unlink users vdir wc who whoami yes
 
 %description -l pl.UTF-8
 Narzędzia podstawowe (core utilities) GNU to połączone paczki GNU
@@ -105,30 +102,26 @@ Programy zawarte w tym pakiecie to:
   dd df dir dircolors dirname du echo env expand expr factor false fmt
   fold ginstall groups head hostid id join link ln logname ls md5sum
   mkdir mkfifo mknod mv nice nl nohup od paste pathchk pinky pr printenv
-  printf ptx pwd realpath rm rmdir runuser seq sha1sum shred sleep sort
-  split stat stty sum sync tac tail tee test touch tr true tsort tty
-  uname unexpand uniq unlink users vdir wc who whoami yes
+  printf ptx pwd realpath rm rmdir seq sha1sum shred sleep sort split
+  stat stty sum sync tac tail tee test touch tr true tsort tty uname
+  unexpand uniq unlink users vdir wc who whoami yes
 
 %prep
 %setup -q -a1
-%patch13 -p1
+%patch8 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-
+%patch3 -p1
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-%patch7 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
 %ifarch sparc64
-%patch12 -p1
+%patch7 -p1
 %endif
 %if %{with advcopy}
 # progress-bar patch, -g,--progress-bar //if in doubt, comment it out
-%patch14 -p1
+%patch9 -p1
 %endif
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
@@ -139,7 +132,7 @@ Programy zawarte w tym pakiecie to:
 # fails under C locale:
 # LC_ALL=C echo -e "ça\nçb\n"|LC_ALL=C fmt -p 'ç'
 # fmt: memory exhausted
-%{__sed} -i -e 25,27d tests/misc/fmt
+%{__sed} -i -e 25,27d tests/fmt/base
 
 # /etc/resolv.conf is blocked in pld builders, try some other file
 %{__sed} -i -e 's,/etc/resolv.conf,/etc/hosts,' gnulib-tests/test-read-file.c
@@ -165,8 +158,7 @@ Programy zawarte w tym pakiecie to:
 	DEFAULT_POSIX2_VERSION=199209 \
 	--disable-silent-rules \
 	--enable-install-program=arch \
-	--enable-no-install-program=hostname,kill,uptime \
-	--enable-pam
+	--enable-no-install-program=hostname,kill,uptime
 
 %{__make}
 
@@ -177,7 +169,7 @@ sed -i -e 's#COLUMNS##g' tests/envvar-check
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/pam.d,/etc/shrc.d}
+install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/shrc.d}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -187,20 +179,16 @@ df,echo,false,id,link,ln,ls,mkdir,mknod,mktemp,mv,nice,printf,pwd,rm,rmdir,\
 sleep,sort,stat,stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
-mv $RPM_BUILD_ROOT{%{_bindir},/sbin}/runuser
 
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/shrc.d
-
-cp -p %{SOURCE7} $RPM_BUILD_ROOT/etc/pam.d/runuser
-cp -p %{SOURCE8} $RPM_BUILD_ROOT/etc/pam.d/runuser-l
 
 cp -a man/pt_BR man/pt
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
 	cp -p man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
 done
-install %{SOURCE9} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
+install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
 # unwanted (-f left intentionally - some manuals could have no translations)
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 # always remove, never packaged but sometimes installed
@@ -222,12 +210,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README THANKS THANKS-to-translators TODO
 %attr(755,root,root) /bin/[!s]*
 %attr(755,root,root) /bin/s[!u]*
-%attr(755,root,root) /sbin/runuser
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_sbindir}/chroot
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/runuser-l
 %config(noreplace) /etc/shrc.d/fileutils.*sh
 %dir %{_libdir}/coreutils
 %attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
