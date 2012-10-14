@@ -30,12 +30,6 @@ Patch7:		%{name}-sparc64.patch
 Patch8:		%{name}-pl.po-update.patch
 # from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
 Patch9:		%{name}-advcopy.patch
-# TODO: check/move to su in util-linux
-#Source7:	runuser.pamd
-#Source8:	runuser-l.pamd
-#Patch1:	%{name}-pam.patch
-#Patch10:	%{name}-runuser.patch
-#Patch11:	%{name}-split-pam.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
