@@ -6,12 +6,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.19
+Version:	8.20
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	1a01231a2f3ed37c0efc073ccdda9375
+# Source0-md5:	3d69af8f561fce512538a9fe85f147ff
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -124,10 +124,10 @@ Programy zawarte w tym pakiecie to:
 # allow rebuilding *.gmo
 %{__rm} po/stamp-po
 
-# fails under C locale:
+# 8-bit-pfx test fails under C locale:
 # LC_ALL=C echo -e "ça\nçb\n"|LC_ALL=C fmt -p 'ç'
 # fmt: memory exhausted
-%{__sed} -i -e 25,27d tests/fmt/base
+%{__sed} -i -e 25,27d tests/fmt/base.pl
 
 # /etc/resolv.conf is blocked in pld builders, try some other file
 %{__sed} -i -e 's,/etc/resolv.conf,/etc/hosts,' gnulib-tests/test-read-file.c
@@ -135,14 +135,16 @@ Programy zawarte w tym pakiecie to:
 # getgid needs to be fixed:
 # getgid: missing operand
 # Try `getgid --help' for more information.
-%{__rm} tests/misc/help-version
-%{__sed} -i -e '/misc\/help-version/d' tests/Makefile.am
+%{__rm} tests/misc/help-version.sh
+%{__sed} -i -e '/misc\/help-version/d' tests/local.mk
 
 # fails on some filesystems (like XFS), where readdir returns d_type=DT_UNKNOWN
-%{__rm} tests/ls/stat-free-color
-%{__sed} -i -e '/ls\/stat-free-color/d' tests/Makefile.am
+%{__rm} tests/ls/stat-free-color.sh
+%{__sed} -i -e '/ls\/stat-free-color/d' tests/local.mk
 
 %build
+build-aux/gen-lists-of-programs.sh --autoconf > m4/cu-progs.m4
+build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 %{__gettextize}
 %{__aclocal} -I m4
 %{__autoconf}

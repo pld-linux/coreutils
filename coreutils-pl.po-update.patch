@@ -1,22 +1,156 @@
---- coreutils-8.19/po/pl.po.orig	2012-08-20 08:22:10.000000000 +0200
-+++ coreutils-8.19/po/pl.po	2012-10-14 10:20:31.269339375 +0200
-@@ -8084,7 +8084,6 @@
- "polecenia\n"
+--- coreutils-8.20/po/pl.po.orig	2012-11-18 07:22:42.025241225 +0100
++++ coreutils-8.20/po/pl.po	2012-11-18 07:46:58.035210874 +0100
+@@ -14,7 +14,7 @@
+ # 2 format strings: Jakub Bogusz <qboosh@pld-linux.org>, 2007.
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: coreutils 8.19\n"
++"Project-Id-Version: coreutils 8.20\n"
+ "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
+ "POT-Creation-Date: 2012-10-23 16:59+0100\n"
+ "PO-Revision-Date: 2012-08-20 20:15+0200\n"
+@@ -3173,7 +3173,6 @@
+ "  ibs=BAJTÓW      czytanie tylu BAJTÓW naraz (domyślnie: 512)\n"
  
- #: src/rm.c:154
+ #: src/dd.c:535
 -#, fuzzy
  msgid ""
- "      --no-preserve-root  do not treat '/' specially\n"
- "      --preserve-root   do not remove '/' (default)\n"
-@@ -8093,9 +8092,9 @@
- "  -v, --verbose         explain what is being done\n"
- msgstr ""
- "      --no-preserve-root bez traktowania katalogu '/' w specjalny sposób\n"
--"                          (domyślnie)\n"
--"      --preserve-root   odmowa usunięcia '/' (domyslnie)\n"
-+"      --preserve-root   odmowa usunięcia '/' (domyślne)\n"
- "  -r, -R, --recursive   usuwanie katalogów z zawartością rekursywnie\n"
-+"  -d, --dir             usuwanie pustych katalogów\n"
- "  -v, --verbose         wyjaśnianie co się dzieje\n"
+ "  if=FILE         read from FILE instead of stdin\n"
+ "  iflag=FLAGS     read as per the comma separated symbol list\n"
+@@ -3194,10 +3193,10 @@
+ "                    oddzielonych przecinkami\n"
+ "  seek=ILE        przeskoczenie ILU bloków o rozmiarze obs na wyjściu\n"
+ "  skip=ILE        przeskoczenie ILU bloków o rozmiarze ibs na wejściu\n"
+-"  status=noxfer   bez statystyki kopiowania\n"
++"  status=JAKIE    JAIE informacje pomijać na wyjściu diagnostycznym;\n"
++"                  'noxfer' bez statystyki kopiowania, 'none' bez niczego\n"
  
- #: src/rm.c:163
+ #: src/dd.c:546
+-#, fuzzy
+ msgid ""
+ "\n"
+ "N and BYTES may be followed by the following multiplicative suffixes:\n"
+@@ -3208,7 +3207,7 @@
+ "\n"
+ msgstr ""
+ "\n"
+-"N, BLOKI i BAJTY mogą mieć następujące przyrostki mnożące:\n"
++"N i BAJTY mogą mieć następujące przyrostki mnożące:\n"
+ "c =1, w =2, b =512, kB =1000, K =1024, MB =1000*1000, M =1024*1024, xM =M\n"
+ "GB =1000*1000*1000, G =1024*1024*1024, itd. dla T, P, E, Z, Y.\n"
+ "\n"
+@@ -3640,7 +3639,7 @@
+ #: src/df.c:319 src/df.c:328
+ #, c-format
+ msgid "%s-%s"
+-msgstr ""
++msgstr "%2$s %1$s"
+ 
+ #: src/df.c:873
+ msgid ""
+@@ -3989,7 +3988,7 @@
+ #: src/du.c:501
+ #, c-format
+ msgid "mount point %s already traversed"
+-msgstr ""
++msgstr "punkt montowania %s już był przejrzany"
+ 
+ #: src/du.c:611
+ #, c-format
+@@ -4416,17 +4415,17 @@
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/factor.c:111
+ msgid "Niels Moller"
+-msgstr ""
++msgstr "Niels Möller"
+ 
+ #: src/factor.c:1252 src/factor.c:1352 src/factor.c:1428
+ #, c-format
+ msgid "Lucas prime test failure.  This should not happen"
+-msgstr ""
++msgstr "Błąd testu Lucasa liczby pierwszej. Nie powinno się zdarzyć"
+ 
+ #: src/factor.c:2061
+ #, c-format
+ msgid "squfof queue overflow"
+-msgstr ""
++msgstr "przepełnienie kolejki squfof"
+ 
+ #: src/factor.c:2377
+ msgid "using single-precision arithmetic"
+@@ -6079,7 +6078,7 @@
+ 
+ #: src/md5sum.c:184
+ msgid "      --tag            create a BSD-style checksum\n"
+-msgstr ""
++msgstr "      --tag            tworzenie sum kontrolnych w stylu BSD\n"
+ 
+ #: src/md5sum.c:188
+ msgid ""
+@@ -6189,12 +6188,12 @@
+ #: src/md5sum.c:760
+ #, c-format
+ msgid "--tag does not support --text mode"
+-msgstr ""
++msgstr "--tag nie obsługuje trybu --text"
+ 
+ #: src/md5sum.c:766
+-#, fuzzy, c-format
++#, c-format
+ msgid "the --tag option is meaningless when verifying checksums"
+-msgstr "opcja --status ma znaczenie tylko przy weryfikacji sum kontrolnych"
++msgstr "opcja --tag nie ma znaczenia przy weryfikacji sum kontrolnych"
+ 
+ #: src/md5sum.c:773
+ #, c-format
+@@ -6576,7 +6575,7 @@
+ msgstr "Składnia: %s [OPCJA] [POLECENIE [ARGUMENT]...]\n"
+ 
+ #: src/nice.c:73
+-#, fuzzy, c-format
++#, c-format
+ msgid ""
+ "Run COMMAND with an adjusted niceness, which affects process scheduling.\n"
+ "With no COMMAND, print the current niceness.  Niceness values range from\n"
+@@ -6585,9 +6584,10 @@
+ "  -n, --adjustment=N   add integer N to the niceness (default 10)\n"
+ msgstr ""
+ "Uruchomienie POLECENIA z poprawionym priorytetem, co wpływa na przydział\n"
+-"czasu procesora. Bez POLECENIE wypisuje bieżący priorytet. Priorytet może\n"
++"czasu procesora. Bez POLECENIA wypisuje bieżący priorytet. Priorytet może\n"
+ "mieć wartość od %d (największe przydziały czasu) do %d (najmniejsze).\n"
+ "\n"
++"  -n, --adjustment=N   dodanie liczby całkowitej N do priorytetu (domyślnie 10)\n"
+ 
+ #: src/nice.c:168
+ #, c-format
+@@ -11250,7 +11250,7 @@
+ #: src/timeout.c:456
+ #, c-format
+ msgid "the monitored command dumped core"
+-msgstr ""
++msgstr "monitorowane polecenie utworzyło zrzut pamięci"
+ 
+ #. This is a proper name. See the gettext manual, section Names.
+ #: src/touch.c:43
+@@ -11326,7 +11326,6 @@
+ "  -m                     zmiana tylko czasu modyfikacji\n"
+ 
+ #: src/touch.c:238
+-#, fuzzy
+ msgid ""
+ "  -r, --reference=FILE   use this file's times instead of current time\n"
+ "  -t STAMP               use [[CC]YY]MMDDhhmm[.ss] instead of current time\n"
+@@ -11337,9 +11336,9 @@
+ "  -r, --reference=PLIK   użycie czasu tego PLIKU zamiast czasu bieżącego\n"
+ "  -t CZAS                użycie [[CC]YY]MMDDhhmm[.ss] zamiast bieżącego "
+ "czasu\n"
+-"  --time=SŁOWO           ustawienie czasu wg SŁOWA: access atime use (czas\n"
+-"                           dostępu, to samo co -a), modify mtime (czas\n"
+-"                           modyfikacji, to samo co -m)\n"
++"      --time=SŁOWO       ustawienie czasu wg SŁOWA:\n"
++"                           access, atime, use (czas dostępu, to samo co -a)\n"
++"                           modify, mtime (czas modyfikacji, to samo co -m)\n"
+ 
+ #: src/touch.c:247
+ msgid ""

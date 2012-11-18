@@ -10,17 +10,16 @@ diff -urN coreutils-8.16.orig//README coreutils-8.16/README
    link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup
    nproc od paste pathchk pinky pr printenv printf ptx pwd readlink realpath
    rm rmdir runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred
-diff -urN coreutils-8.16.orig//man/Makefile.am coreutils-8.16/man/Makefile.am
---- coreutils-8.16.orig//man/Makefile.am	2012-03-26 09:50:41.000000000 +0000
-+++ coreutils-8.16/man/Makefile.am	2012-04-18 09:07:17.410850573 +0000
-@@ -60,6 +60,7 @@
- false.1:	$(common_dep)	$(srcdir)/false.x	../src/false.c
- fmt.1:		$(common_dep)	$(srcdir)/fmt.x		../src/fmt.c
- fold.1:		$(common_dep)	$(srcdir)/fold.x	../src/fold.c
-+getgid.1:	$(common_dep)	$(srcdir)/getgid.x	../src/getgid.c
- groups.1:	$(common_dep)	$(srcdir)/groups.x	../src/groups.c
- head.1:		$(common_dep)	$(srcdir)/head.x	../src/head.c
- hostid.1:	$(common_dep)	$(srcdir)/hostid.x	../src/hostid.c
+--- coreutils-8.20/man/local.mk.orig	2012-11-18 07:54:05.958535288 +0100
++++ coreutils-8.20/man/local.mk	2012-11-18 07:55:01.678534127 +0100
+@@ -87,6 +87,7 @@
+ man/false.1:     src/false
+ man/fmt.1:       src/fmt
+ man/fold.1:      src/fold
++man/getgid.1:    src/getgid
+ man/groups.1:    src/groups
+ man/head.1:      src/head
+ man/hostid.1:    src/hostid
 diff -urN coreutils-8.16.orig//man/getgid.1 coreutils-8.16/man/getgid.1
 --- coreutils-8.16.orig//man/getgid.1	1970-01-01 00:00:00.000000000 +0000
 +++ coreutils-8.16/man/getgid.1	2012-04-18 09:07:17.410850573 +0000
@@ -111,17 +110,16 @@ diff -urN coreutils-8.16.orig//po/pl.po coreutils-8.16/po/pl.po
  #. This is a proper name. See the gettext manual, section Names.
  #: src/env.c:32 src/printenv.c:45 src/whoami.c:35
  msgid "Richard Mlynarik"
-diff -urN coreutils-8.16.orig//src/Makefile.am coreutils-8.16/src/Makefile.am
---- coreutils-8.16.orig//src/Makefile.am	2012-03-24 18:22:13.000000000 +0000
-+++ coreutils-8.16/src/Makefile.am	2012-04-18 09:07:17.411850524 +0000
-@@ -69,6 +69,7 @@
-   false		\
-   fmt		\
-   fold		\
-+  getgid	\
-   ginstall	\
-   groups	\
-   head		\
+--- coreutils-8.20/src/local.mk.orig	2012-11-18 07:56:05.651866127 +0100
++++ coreutils-8.20/src/local.mk	2012-11-18 07:59:50.728528105 +0100
+@@ -122,6 +122,7 @@
+ src_false_LDADD = $(LDADD)
+ src_fmt_LDADD = $(LDADD)
+ src_fold_LDADD = $(LDADD)
++src_getgid_LDADD = $(LDADD)
+ src_getlimits_LDADD = $(LDADD)
+ src_ginstall_LDADD = $(LDADD)
+ src_groups_LDADD = $(LDADD)
 diff -urN coreutils-8.16.orig//src/getgid.c coreutils-8.16/src/getgid.c
 --- coreutils-8.16.orig//src/getgid.c	1970-01-01 00:00:00.000000000 +0000
 +++ coreutils-8.16/src/getgid.c	2012-04-18 09:44:16.000000000 +0000
@@ -214,3 +212,13 @@ diff -urN coreutils-8.16.orig//src/getgid.c coreutils-8.16/src/getgid.c
 +    printf("%lu\n", (unsigned long int) gr->gr_gid);
 +  exit(EXIT_SUCCESS);
 +}
+--- coreutils-8.20/build-aux/gen-lists-of-programs.sh.orig	2012-10-23 16:14:12.000000000 +0200
++++ coreutils-8.20/build-aux/gen-lists-of-programs.sh	2012-11-18 08:48:50.915133486 +0100
+@@ -66,6 +66,7 @@
+     false
+     fmt
+     fold
++    getgid
+     ginstall
+     groups
+     head
