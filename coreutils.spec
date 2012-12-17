@@ -29,6 +29,7 @@ Patch7:		%{name}-sparc64.patch
 Patch8:		%{name}-pl.po-update.patch
 # from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
 Patch9:		%{name}-advcopy.patch
+Patch10:	format-security.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -116,6 +117,7 @@ Programy zawarte w tym pakiecie to:
 # progress-bar patch, -g,--progress-bar //if in doubt, comment it out
 %patch9 -p1
 %endif
+%patch10 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
