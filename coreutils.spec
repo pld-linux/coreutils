@@ -6,12 +6,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.20
-Release:	2
+Version:	8.21
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	3d69af8f561fce512538a9fe85f147ff
+# Source0-md5:	065ba41828644eca5dd8163446de5d64
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -34,7 +34,7 @@ URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
 BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.11.1
+BuildRequires:	automake >= 1:1.11.2
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-devel >= 0.18.1
 BuildRequires:	gmp-devel
@@ -103,7 +103,7 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-%patch8 -p1
+#patch8 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -268,6 +268,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nl
 %attr(755,root,root) %{_bindir}/nohup
 %attr(755,root,root) %{_bindir}/nproc
+%attr(755,root,root) %{_bindir}/numfmt
 %attr(755,root,root) %{_bindir}/od
 %attr(755,root,root) %{_bindir}/paste
 %attr(755,root,root) %{_bindir}/pathchk
@@ -362,6 +363,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/nl.1*
 %{_mandir}/man1/nohup.1*
 %{_mandir}/man1/nproc.1*
+%{_mandir}/man1/numfmt.1*
 %{_mandir}/man1/od.1*
 %{_mandir}/man1/paste.1*
 %{_mandir}/man1/pathchk.1*
