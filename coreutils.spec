@@ -7,7 +7,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	8.21
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -30,6 +30,7 @@ Patch8:		%{name}-pl.po-update.patch
 # from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
 Patch9:		%{name}-advcopy.patch
 Patch10:	format-security.patch
+Patch11:	tests.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -118,6 +119,7 @@ Programy zawarte w tym pakiecie to:
 %patch9 -p1
 %endif
 %patch10 -p1
+%patch11 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
@@ -142,6 +144,17 @@ Programy zawarte w tym pakiecie to:
 %{__rm} tests/ls/stat-free-color.sh
 %{__sed} -i -e '/ls\/stat-free-color/d' tests/local.mk
 
+# filesystem layout dependant (fails on some xfs fs)
+%{__rm} tests/dd/sparse.sh
+%{__sed} -i -e '/dd\/sparse/d' tests/local.mk
+
+# mksh is too smart for those, won't let programs fail on ulimit
+# would need bash here
+%{__rm} tests/misc/sort-merge-fdlimit.sh
+%{__sed} -i -e '/misc\/sort-merge-fdlimit/d' tests/local.mk
+%{__rm} tests/split/r-chunk.sh
+%{__sed} -i -e '/split\/r-chunk/d' tests/local.mk
+
 %build
 build-aux/gen-lists-of-programs.sh --autoconf > m4/cu-progs.m4
 build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
@@ -161,7 +174,7 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 
 %if %{with tests}
 sed -i -e 's#COLUMNS##g' tests/envvar-check
-%{__make} -j1 tests check
+LC_ALL=C LANG=C %{__make} -j1 tests check
 %endif
 
 %install
