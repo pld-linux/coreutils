@@ -218,3 +218,18 @@
  
  ## end   gnulib module lchown-tests
  
+@@ -2438,10 +2438,10 @@
+ 
+ ## begin gnulib module utimens-tests
+ 
+-TESTS += test-utimens
+-check_PROGRAMS += test-utimens
+-test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
+-EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
++#TESTS += test-utimens
++#check_PROGRAMS += test-utimens
++#test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
++#EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
+ 
+ ## end   gnulib module utimens-tests
+ 
