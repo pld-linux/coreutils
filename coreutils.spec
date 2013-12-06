@@ -7,7 +7,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	8.21
-Release:	5
+Release:	6
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -185,7 +185,7 @@ install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/shrc.d}
 	DESTDIR=$RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/{arch,basename,cat,chgrp,chmod,chown,cp,date,dd,\
-df,echo,false,id,link,ln,ls,mkdir,mknod,mktemp,mv,nice,printf,pwd,rm,rmdir,\
+df,echo,false,id,link,ln,ls,mkdir,mknod,mktemp,mv,nice,printf,pwd,readlink,rm,rmdir,\
 sleep,sort,stat,stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
@@ -241,6 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/nice
 %attr(755,root,root) /bin/printf
 %attr(755,root,root) /bin/pwd
+%attr(755,root,root) /bin/readlink
 %attr(755,root,root) /bin/rm
 %attr(755,root,root) /bin/rmdir
 %attr(755,root,root) /bin/sleep
@@ -289,7 +290,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/pr
 %attr(755,root,root) %{_bindir}/printenv
 %attr(755,root,root) %{_bindir}/ptx
-%attr(755,root,root) %{_bindir}/readlink
 %attr(755,root,root) %{_bindir}/realpath
 %attr(755,root,root) %{_bindir}/runcon
 %attr(755,root,root) %{_bindir}/seq
