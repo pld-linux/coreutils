@@ -220,6 +220,21 @@
  
  ## end   gnulib module fdutimensat-tests
  
+@@ -778,10 +778,10 @@
+ 
+ ## begin gnulib module futimens-tests
+ 
+-TESTS += test-futimens
+-check_PROGRAMS += test-futimens
+-test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
+-EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
++#TESTS += test-futimens
++#check_PROGRAMS += test-futimens
++#test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
++#EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
+ 
+ ## end   gnulib module futimens-tests
+ 
 @@ -1102,9 +1102,9 @@
  
  ## begin gnulib module lchown-tests
