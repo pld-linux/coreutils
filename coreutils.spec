@@ -6,12 +6,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.21
-Release:	6
+Version:	8.22
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	065ba41828644eca5dd8163446de5d64
+# Source0-md5:	8fb0ae2267aa6e728958adc38f8163a2
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -29,8 +29,7 @@ Patch7:		%{name}-sparc64.patch
 Patch8:		%{name}-pl.po-update.patch
 # from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
 Patch9:		%{name}-advcopy.patch
-Patch10:	format-security.patch
-Patch11:	tests.patch
+Patch10:	tests.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -119,7 +118,6 @@ Programy zawarte w tym pakiecie to:
 %patch9 -p1
 %endif
 %patch10 -p1
-%patch11 -p1
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 

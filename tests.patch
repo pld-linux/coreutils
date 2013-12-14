@@ -175,91 +175,85 @@
  /* Skip the ctime tests on native Windows platforms, because their
     st_ctime is either the same as st_mtime (plus or minus an offset)
     or set to the file _creation_ time, and is not influenced by rename
---- coreutils-8.21/gnulib-tests/gnulib.mk~	2013-02-07 17:58:44.000000000 +0100
-+++ coreutils-8.21/gnulib-tests/gnulib.mk	2013-12-03 14:40:18.667641475 +0100
+--- coreutils-8.22/gnulib-tests/gnulib.mk.orig	2013-12-14 12:14:47.200742771 +0100
++++ coreutils-8.22/gnulib-tests/gnulib.mk	2013-12-14 12:17:30.570735914 +0100
 @@ -259,9 +259,9 @@
  
  ## begin gnulib module chown-tests
  
 -TESTS += test-chown
 -check_PROGRAMS += test-chown
--EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
+-test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
 +#TESTS += test-chown
 +#check_PROGRAMS += test-chown
-+#EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
++#test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
+ EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
  
  ## end   gnulib module chown-tests
- 
-@@ -457,10 +457,10 @@
+@@ -460,9 +460,9 @@
  
  ## begin gnulib module fchownat-tests
  
 -TESTS += test-fchownat
 -check_PROGRAMS += test-fchownat
--test_fchownat_LDADD = $(LDADD) @LIBINTL@
--EXTRA_DIST += nap.h test-chown.h test-lchown.h test-fchownat.c signature.h macros.h
+-test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
 +#TESTS += test-fchownat
 +#check_PROGRAMS += test-fchownat
-+#test_fchownat_LDADD = $(LDADD) @LIBINTL@
-+#EXTRA_DIST += nap.h test-chown.h test-lchown.h test-fchownat.c signature.h macros.h
++#test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-chown.h test-lchown.h test-fchownat.c signature.h macros.h
  
  ## end   gnulib module fchownat-tests
- 
-@@ -524,10 +524,10 @@
+@@ -527,10 +527,10 @@
  
  ## begin gnulib module fdutimensat-tests
  
 -TESTS += test-fdutimensat
 -check_PROGRAMS += test-fdutimensat
--test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
--EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-fdutimensat.c macros.h
+-test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
+-  $(LIB_NANOSLEEP) @LIBINTL@
 +#TESTS += test-fdutimensat
 +#check_PROGRAMS += test-fdutimensat
-+#test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
-+#EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-fdutimensat.c macros.h
++#test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
++#  $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-fdutimensat.c macros.h
  
  ## end   gnulib module fdutimensat-tests
- 
-@@ -778,10 +778,10 @@
+@@ -782,9 +782,9 @@
  
  ## begin gnulib module futimens-tests
  
 -TESTS += test-futimens
 -check_PROGRAMS += test-futimens
--test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
--EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
+-test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
 +#TESTS += test-futimens
 +#check_PROGRAMS += test-futimens
-+#test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
-+#EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
++#test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
  
  ## end   gnulib module futimens-tests
- 
-@@ -1102,9 +1102,9 @@
+@@ -1107,9 +1107,9 @@
  
  ## begin gnulib module lchown-tests
  
 -TESTS += test-lchown
 -check_PROGRAMS += test-lchown
--EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
+-test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
 +#TESTS += test-lchown
 +#check_PROGRAMS += test-lchown
-+#EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
++#test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
+ EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
  
  ## end   gnulib module lchown-tests
- 
-@@ -2438,10 +2438,10 @@
+@@ -2428,9 +2428,9 @@
  
  ## begin gnulib module utimens-tests
  
 -TESTS += test-utimens
 -check_PROGRAMS += test-utimens
--test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
--EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
+-test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
 +#TESTS += test-utimens
 +#check_PROGRAMS += test-utimens
-+#test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) @LIBINTL@
-+#EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
++#test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
  
  ## end   gnulib module utimens-tests
- 
