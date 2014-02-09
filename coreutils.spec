@@ -322,7 +322,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/yes
 %attr(755,root,root) %{_sbindir}/chroot
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS.256colors
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS.256color
 %config(noreplace) /etc/shrc.d/colorls.csh
 %config(noreplace) /etc/shrc.d/colorls.sh
 %dir %{_libdir}/coreutils
