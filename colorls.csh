@@ -1,32 +1,32 @@
-set SYS_RC_FILE=/etc/DIR_COLORS
+# skip everything for non-interactive shells
+if (! $?prompt) exit
+
+if ( "`tty -s && tput colors 2>/dev/null`" == "256" ) then
+	set RC_FILE="/etc/DIR_COLORS.256color"
+else
+	set RC_FILE="/etc/DIR_COLORS"
+endif
 set USER_RC_FILE=$HOME/.dir_colors
-set DEF_COLOR_MODE=tty
+set DEF_COLOR_MODE=auto
 
 set COLOR_MODE=`awk '/^COLOR/{c=$2} END{print c}' $SYS_RC_FILE`
 
-test -r $USER_RC_FILE
-if ($status == 0) then
+if ( -r $USER_RC_FILE ) then
 	set COLOR_MODE=`awk '/^COLOR/{c=$2} END{print c}' $USER_RC_FILE`
+	set RC_FILE=$USER_RC_FILE
 endif
 
 # 'all' argument for 'ls --color=' is no longer valid
-test "$COLOR_MODE" = all
-if ($status == 0) then
+if ( "$COLOR_MODE" == "all" ) then
 	set COLOR_MODE=always
 endif
 
-test -z "$COLOR_MODE"
-if ($status == 0) then
+if ( "$COLOR_MODE" == '') then
 	set COLOR_MODE=$DEF_COLOR_MODE
 endif
 
 alias ls "ls --color=$COLOR_MODE"
 
-test -r $USER_RC_FILE
-if ($status == 0) then
-	eval `/usr/bin/dircolors -c $USER_RC_FILE`
-else	
-	eval `/usr/bin/dircolors -c $SYS_RC_FILE`
-endif
+eval `/usr/bin/dircolors -c $RC_FILE`
 
-unset SYS_RC_FILE USER_RC_FILE DEF_COLOR_MODE
+unset RC_FILE USER_RC_FILE DEF_COLOR_MODE COLOR_MODE
