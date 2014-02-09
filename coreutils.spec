@@ -15,8 +15,8 @@ Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
-Source3:	fileutils.sh
-Source4:	fileutils.csh
+Source3:	colorls.sh
+Source4:	colorls.csh
 Source5:	mktemp.1.pl
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-getgid.patch
@@ -320,8 +320,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/yes
 %attr(755,root,root) %{_sbindir}/chroot
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
-%config(noreplace) /etc/shrc.d/fileutils.csh
-%config(noreplace) /etc/shrc.d/fileutils.sh
+%config(noreplace) /etc/shrc.d/colorls.csh
+%config(noreplace) /etc/shrc.d/colorls.sh
 %dir %{_libdir}/coreutils
 %attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
 %{_mandir}/man1/arch.1*
