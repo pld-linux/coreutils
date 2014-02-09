@@ -15,9 +15,10 @@ Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
-Source3:	colorls.sh
-Source4:	colorls.csh
-Source5:	mktemp.1.pl
+Source3:	DIR_COLORS.256colors
+Source4:	colorls.sh
+Source5:	colorls.csh
+Source6:	mktemp.1.pl
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-getgid.patch
 Patch2:		%{name}-uname-cpuinfo.patch
@@ -189,14 +190,15 @@ sleep,sort,stat,stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
-cp -p %{SOURCE3} %{SOURCE4} $RPM_BUILD_ROOT/etc/shrc.d
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
+cp -p %{SOURCE4} %{SOURCE5} $RPM_BUILD_ROOT/etc/shrc.d
 
 cp -a man/pt_BR man/pt
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
 	cp -p man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
 done
-install %{SOURCE5} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
+install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
 # unwanted (-f left intentionally - some manuals could have no translations)
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,su,uptime}.1
 # always remove, never packaged but sometimes installed
@@ -320,6 +322,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/yes
 %attr(755,root,root) %{_sbindir}/chroot
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS.256colors
 %config(noreplace) /etc/shrc.d/colorls.csh
 %config(noreplace) /etc/shrc.d/colorls.sh
 %dir %{_libdir}/coreutils
