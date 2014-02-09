@@ -7,7 +7,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	8.22
-Release:	1
+Release:	1.1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -15,7 +15,7 @@ Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
-Source3:	DIR_COLORS.256colors
+Source3:	DIR_COLORS.256color
 Source4:	colorls.sh
 Source5:	colorls.csh
 Source6:	mktemp.1.pl
