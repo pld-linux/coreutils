@@ -1,27 +1,15 @@
-diff -urN coreutils-8.16.orig//README coreutils-8.16/README
---- coreutils-8.16.orig//README	2012-03-24 18:22:13.000000000 +0000
-+++ coreutils-8.16/README	2012-04-18 09:07:17.417662632 +0000
+--- coreutils-8.23/README.orig	2014-07-20 18:31:49.574517705 +0200
++++ coreutils-8.23/README	2014-07-20 18:32:59.324514778 +0200
 @@ -9,7 +9,7 @@
  
-   [ arch base64 basename cat chcon chgrp chmod chown chroot cksum comm cp
-   csplit cut date dd df dir dircolors dirname du echo env expand expr
--  factor false fmt fold groups head hostid hostname id install join kill
-+  factor false fmt fold getgid groups head hostid hostname id install join kill
-   link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl nohup
-   nproc od paste pathchk pinky pr printenv printf ptx pwd readlink realpath
-   rm rmdir runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred
---- coreutils-8.20/man/local.mk.orig	2012-11-18 07:54:05.958535288 +0100
-+++ coreutils-8.20/man/local.mk	2012-11-18 07:55:01.678534127 +0100
-@@ -87,6 +87,7 @@
- man/false.1:     src/false
- man/fmt.1:       src/fmt
- man/fold.1:      src/fold
-+man/getgid.1:    src/getgid
- man/groups.1:    src/groups
- man/head.1:      src/head
- man/hostid.1:    src/hostid
-diff -urN coreutils-8.16.orig//man/getgid.1 coreutils-8.16/man/getgid.1
---- coreutils-8.16.orig//man/getgid.1	1970-01-01 00:00:00.000000000 +0000
+   [ arch base64 basename cat chcon chgrp chmod chown chroot cksum comm
+   coreutils cp csplit cut date dd df dir dircolors dirname du echo env
+-  expand expr factor false fmt fold groups head hostid hostname id install
++  expand expr factor false fmt fold getgid groups head hostid hostname id install
+   join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl
+   nohup nproc numfmt od paste pathchk pinky pr printenv printf ptx pwd
+   readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum sha384sum
+--- coreutils-8.16.orig/man/getgid.1	1970-01-01 00:00:00.000000000 +0000
 +++ coreutils-8.16/man/getgid.1	2012-04-18 09:07:17.410850573 +0000
 @@ -0,0 +1,22 @@
 +.TH GETGID "1" "October 2002" "getgid (coreutils) 4.5.3" "User Commands"
@@ -54,8 +42,7 @@ diff -urN coreutils-8.16.orig//man/getgid.x coreutils-8.16/man/getgid.x
 +getgid \- print ID of given group
 +[DESCRIPTION]
 +.\" Add any additional description here
-diff -urN coreutils-8.16.orig//man/pl/getgid.1 coreutils-8.16/man/pl/getgid.1
---- coreutils-8.16.orig//man/pl/getgid.1	1970-01-01 00:00:00.000000000 +0000
+--- coreutils-8.16.orig/man/pl/getgid.1	1970-01-01 00:00:00.000000000 +0000
 +++ coreutils-8.16/man/pl/getgid.1	2012-04-18 09:07:17.410850573 +0000
 @@ -0,0 +1,22 @@
 +.TH GETGID "1" "Pa¼dziernik 2002" "getgid (coreutils) 4.5.3" "Polecenia u¿ytkownika"
@@ -80,8 +67,7 @@ diff -urN coreutils-8.16.orig//man/pl/getgid.1 coreutils-8.16/man/pl/getgid.1
 +warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 +.SH ZOBACZ TAK¯E
 +.BR id (1)
-diff -urN coreutils-8.16.orig//po/POTFILES.in coreutils-8.16/po/POTFILES.in
---- coreutils-8.16.orig//po/POTFILES.in	2012-03-24 18:22:13.000000000 +0000
+--- coreutils-8.16.orig/po/POTFILES.in	2012-03-24 18:22:13.000000000 +0000
 +++ coreutils-8.16/po/POTFILES.in	2012-04-18 09:07:17.412850440 +0000
 @@ -66,6 +66,7 @@
  src/find-mount-point.c
@@ -91,8 +77,7 @@ diff -urN coreutils-8.16.orig//po/POTFILES.in coreutils-8.16/po/POTFILES.in
  src/getlimits.c
  src/group-list.c
  src/groups.c
-diff -urN coreutils-8.16.orig//po/pl.po coreutils-8.16/po/pl.po
---- coreutils-8.16.orig//po/pl.po	2012-03-26 12:08:45.000000000 +0000
+--- coreutils-8.16.orig/po/pl.po	2012-03-26 12:08:45.000000000 +0000
 +++ coreutils-8.16/po/pl.po	2012-04-18 09:07:17.417662632 +0000
 @@ -4109,6 +4109,15 @@
  "  \\0NNN   znak o kodzie ASCII wynoszÄ…cym NNN (Ã³semkowo, 1 do 3 cyfr)\n"
@@ -120,8 +105,7 @@ diff -urN coreutils-8.16.orig//po/pl.po coreutils-8.16/po/pl.po
  src_getlimits_LDADD = $(LDADD)
  src_ginstall_LDADD = $(LDADD)
  src_groups_LDADD = $(LDADD)
-diff -urN coreutils-8.16.orig//src/getgid.c coreutils-8.16/src/getgid.c
---- coreutils-8.16.orig//src/getgid.c	1970-01-01 00:00:00.000000000 +0000
+--- coreutils-8.16.orig/src/getgid.c	1970-01-01 00:00:00.000000000 +0000
 +++ coreutils-8.16/src/getgid.c	2012-04-18 09:44:16.000000000 +0000
 @@ -0,0 +1,88 @@
 +/* getgid - print GID of given group

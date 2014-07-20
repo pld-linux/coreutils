@@ -120,32 +120,42 @@
  if test $double_slash = //; then
    test "$out" = "/$nl//" || fail=1
  else
---- coreutils-8.21/tests/misc/nohup.sh~	2013-01-31 01:46:24.000000000 +0100
-+++ coreutils-8.21/tests/misc/nohup.sh	2013-12-03 13:35:51.952568924 +0100
-@@ -61,18 +61,18 @@
+--- coreutils-8.23/tests/misc/nohup.sh.orig	2014-07-20 19:03:44.627770671 +0200
++++ coreutils-8.23/tests/misc/nohup.sh	2014-07-20 19:10:31.097753613 +0200
+@@ -61,23 +61,23 @@
  
  # Bug present through coreutils 8.0: failure to print advisory message
  # to stderr must be fatal.  Requires stdout to be terminal.
 -if test -w /dev/full && test -c /dev/full; then
 -(
+-  # POSIX shells immediately exit the subshell on exec error.
+-  # So check we can write to /dev/tty before the exec, which
+-  # isn't possible if we've no controlling tty for example.
+-  test -c /dev/tty && >/dev/tty || exit 0
+-
 -  exec >/dev/tty
 -  test -t 1 || exit 0
 -  nohup echo hi 2> /dev/full
 -  test $? = 125 || fail=1
 -  test -f nohup.out || fail=1
--  test -s nohup.out && fail=1
+-  compare /dev/null nohup.out || fail=1
 -  rm -f nohup.out
 -  exit $fail
 -) || fail=1
 -fi
 +#if test -w /dev/full && test -c /dev/full; then
 +#(
++#  # POSIX shells immediately exit the subshell on exec error.
++#  # So check we can write to /dev/tty before the exec, which
++#  # isn't possible if we've no controlling tty for example.
++#  test -c /dev/tty && >/dev/tty || exit 0
++#
 +#  exec >/dev/tty
 +#  test -t 1 || exit 0
 +#  nohup echo hi 2> /dev/full
 +#  test $? = 125 || fail=1
 +#  test -f nohup.out || fail=1
-+#  test -s nohup.out && fail=1
++#  compare /dev/null nohup.out || fail=1
 +#  rm -f nohup.out
 +#  exit $fail
 +#) || fail=1
