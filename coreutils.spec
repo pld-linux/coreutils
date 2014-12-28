@@ -37,7 +37,7 @@ BuildRequires:	attr-devel
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11.2
 BuildRequires:	gcc >= 5:3.2
-BuildRequires:	gettext-devel >= 0.18.1
+BuildRequires:	gettext-tools >= 0.18.1
 BuildRequires:	gmp-devel
 BuildRequires:	help2man
 BuildRequires:	libcap-devel
