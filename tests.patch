@@ -267,3 +267,21 @@
  EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
  
  ## end   gnulib module utimens-tests
+--- coreutils-8.23/tests/local.mk~	2015-01-04 16:12:22.000000000 +0000
++++ coreutils-8.23/tests/local.mk	2015-01-04 16:44:31.705861487 +0000
+@@ -163,7 +163,6 @@
+   tests/rm/cycle.sh				\
+   tests/cp/link-heap.sh				\
+   tests/cp/no-ctx.sh				\
+-  tests/misc/tty-eof.pl				\
+   tests/tail-2/inotify-hash-abuse.sh		\
+   tests/tail-2/inotify-hash-abuse2.sh		\
+   tests/tail-2/F-vs-missing.sh			\
+@@ -468,7 +467,6 @@
+   tests/df/unreadable.sh			\
+   tests/df/total-unprocessed.sh			\
+   tests/df/no-mtab-status.sh			\
+-  tests/df/skip-duplicates.sh			\
+   tests/df/skip-rootfs.sh			\
+   tests/dd/ascii.sh				\
+   tests/dd/direct.sh				\
