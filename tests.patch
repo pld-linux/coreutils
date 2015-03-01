@@ -277,6 +277,14 @@
    tests/tail-2/inotify-hash-abuse.sh		\
    tests/tail-2/inotify-hash-abuse2.sh		\
    tests/tail-2/F-vs-missing.sh			\
+@@ -339,7 +339,6 @@
+   tests/misc/sort-unique-segv.sh		\
+   tests/misc/sort-version.sh			\
+   tests/misc/sort-NaN-infloop.sh		\
+-  tests/misc/sort-u-FMR.sh			\
+   tests/split/filter.sh				\
+   tests/split/suffix-auto-length.sh		\
+   tests/split/suffix-length.sh			\
 @@ -468,7 +467,6 @@
    tests/df/unreadable.sh			\
    tests/df/total-unprocessed.sh			\
