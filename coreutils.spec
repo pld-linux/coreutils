@@ -204,6 +204,11 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,uptime}.1
 # always remove, never packaged but sometimes installed
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
+%if "%{pld_release}" == "ac"
+# not present in ac, no point searching it
+%{__sed} -i -e '/pam_keyinit.so/d' $RPM_BUILD_ROOT/etc/pam.d/sudo*
+%endif
+
 %find_lang %{name}
 
 %clean
