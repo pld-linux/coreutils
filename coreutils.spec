@@ -1,8 +1,9 @@
 #
 # Conditional build:
 %bcond_with	advcopy	# progress bar in cp (orphaned patch)
+%bcond_without	multicall	# Compile all the tools in a single binary
 %bcond_without	tests	# do not perform "make test check"
-#
+
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
@@ -165,6 +166,7 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 %configure \
 	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
 	DEFAULT_POSIX2_VERSION=199209 \
+	%{?with_multicall:--enable-single-binary=symlinks} \
 	--disable-silent-rules \
 	--enable-install-program=arch \
 	--enable-no-install-program=hostname,kill,uptime
@@ -183,11 +185,16 @@ install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/shrc.d}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_bindir}/{arch,basename,cat,chgrp,chmod,chown,cp,date,dd,\
+mv $RPM_BUILD_ROOT%{_bindir}/{arch,basename,cat,chgrp,chmod,chown,cp,date,dd,\
 df,echo,false,id,link,ln,ls,mkdir,mknod,mktemp,mv,nice,printf,pwd,readlink,rm,rmdir,\
 sleep,sort,stat,stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
-mv -f $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
+%if %{with multicall}
+mv $RPM_BUILD_ROOT{%{_bindir},/bin}/coreutils
+ln -s ../../bin/coreutils $RPM_BUILD_ROOT%{_bindir}
+%endif
+
+mv $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
@@ -321,6 +328,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/whoami
 %attr(755,root,root) %{_bindir}/yes
 %attr(755,root,root) %{_sbindir}/chroot
+%if %{with multicall}
+%attr(755,root,root) /bin/coreutils
+%attr(755,root,root) %{_bindir}/coreutils
+%{_mandir}/man1/coreutils.1*
+%endif
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS.256color
 %config(noreplace) /etc/shrc.d/colorls.csh
