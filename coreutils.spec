@@ -121,6 +121,8 @@ Programy zawarte w tym pakiecie to:
 %endif
 %patch10 -p1
 
+mv man/pt_BR man/pt
+
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
 # allow rebuilding *.gmo
@@ -200,12 +202,11 @@ cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE4} %{SOURCE5} $RPM_BUILD_ROOT/etc/shrc.d
 
-cp -a man/pt_BR man/pt
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
 	cp -p man/$d/*.1 $RPM_BUILD_ROOT%{_mandir}/$d/man1
 done
-install %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
+cp -p %{SOURCE6} $RPM_BUILD_ROOT%{_mandir}/pl/man1/mktemp.1
 # unwanted (-f left intentionally - some manuals could have no translations)
 rm -f $RPM_BUILD_ROOT%{_mandir}/*/man1/{hostname,kill,su,uptime}.1
 # always remove, never packaged but sometimes installed
