@@ -1,0 +1,12 @@
+--- coreutils-8.23/tests/fmt/base.pl.org	2016-01-24 12:53:10.307811328 +0100
++++ coreutils-8.23/tests/fmt/base.pl	2016-01-24 12:53:16.991740623 +0100
+@@ -22,9 +22,6 @@
+ 
+ my @Tests =
+     (
+-     ['8-bit-pfx', qw (-p 'ç'),
+-      {IN=> "ça\nçb\n"},
+-      {OUT=>"ça b\n"}],
+      ['wide-1', '-w 32768',
+       {ERR => "fmt: invalid width: '32768'\n"}, {EXIT => 1}],
+      ['wide-2', '-w 2147483647',
