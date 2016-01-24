@@ -154,7 +154,7 @@ diff -urN coreutils-8.16.orig//man/getgid.x coreutils-8.16/man/getgid.x
 +"), stdout);
 +      fputs (HELP_OPTION_DESCRIPTION, stdout);
 +      fputs (VERSION_OPTION_DESCRIPTION, stdout);
-+      emit_ancillary_info ();
++      emit_ancillary_info (PROGRAM_NAME);
 +    }
 +  exit (status);
 +}

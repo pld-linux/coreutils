@@ -7,12 +7,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.23
-Release:	3
+Version:	8.25
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	abed135279f87ad6762ce57ff6d89c41
+# Source0-md5:	070e43ba7f618d747414ef56ab248a48
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -24,7 +24,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-getgid.patch
 Patch2:		%{name}-uname-cpuinfo.patch
 Patch3:		%{name}-date-man.patch
-Patch5:		%{name}-7.4-sttytcsadrain.patch
+
 Patch6:		%{name}-fmt-wchars.patch
 Patch7:		%{name}-sparc64.patch
 # http://translationproject.org/latest/coreutils/pl.po (pass through msgcat to generate shorter diff)
@@ -105,12 +105,13 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-#patch8 -p1
-%patch0 -p1
+%patch8 -p1
+# FIXME and push upstream
+# %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch5 -p1
+
 %patch6 -p1
 %ifarch sparc64
 %patch7 -p1
@@ -262,6 +263,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/uname
 %attr(755,root,root) /bin/unlink
 %attr(755,root,root) %{_bindir}/[
+%attr(755,root,root) %{_bindir}/base32
 %attr(755,root,root) %{_bindir}/base64
 %attr(755,root,root) %{_bindir}/chcon
 %attr(755,root,root) %{_bindir}/cksum
@@ -341,6 +343,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/coreutils
 %attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
 %{_mandir}/man1/arch.1*
+%{_mandir}/man1/base32.1*
 %{_mandir}/man1/base64.1*
 %{_mandir}/man1/basename.1*
 %{_mandir}/man1/cat.1*
