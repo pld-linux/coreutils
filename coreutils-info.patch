@@ -1,5 +1,5 @@
---- coreutils-8.23/doc/coreutils.texi.orig	2014-07-14 00:09:52.000000000 +0200
-+++ coreutils-8.23/doc/coreutils.texi	2014-07-20 18:30:37.001187417 +0200
+--- coreutils-8.25/doc/coreutils.texi.orig	2016-01-13 12:16:39.000000000 +0100
++++ coreutils-8.25/doc/coreutils.texi	2016-01-29 21:28:29.282714525 +0100
 @@ -22,121 +22,110 @@
  @syncodeindex pg cp
  @syncodeindex vr cp
@@ -22,6 +22,7 @@
 -@dircategory Individual utilities
 -@direntry
 -* arch: (coreutils)arch invocation.             Print machine hardware name.
+-* base32: (coreutils)base32 invocation.         Base32 encode/decode data.
 -* base64: (coreutils)base64 invocation.         Base64 encode/decode data.
 -* basename: (coreutils)basename invocation.     Strip directory and suffix.
 -* cat: (coreutils)cat invocation.               Concatenate and write files.
@@ -32,7 +33,6 @@
 -* chroot: (coreutils)chroot invocation.         Specify the root directory.
 -* cksum: (coreutils)cksum invocation.           Print POSIX CRC checksum.
 -* comm: (coreutils)comm invocation.             Compare sorted files by line.
--* coreutils: (coreutils)coreutils invocation.   Multi-call program.
 -* cp: (coreutils)cp invocation.                 Copy files.
 -* csplit: (coreutils)csplit invocation.         Split by context.
 -* cut: (coreutils)cut invocation.               Print selected parts of lines.
@@ -99,7 +99,7 @@
 -* stdbuf: (coreutils)stdbuf invocation.         Modify stdio buffering.
 -* stty: (coreutils)stty invocation.             Print/change terminal settings.
 -* sum: (coreutils)sum invocation.               Print traditional checksum.
--* sync: (coreutils)sync invocation.             Synchronize memory and disk.
+-* sync: (coreutils)sync invocation.             Synchronize memory to disk.
 -* tac: (coreutils)tac invocation.               Reverse files.
 -* tail: (coreutils)tail invocation.             Output the last part of files.
 -* tee: (coreutils)tee invocation.               Redirect to multiple files.
@@ -123,6 +123,7 @@
 -* whoami: (coreutils)whoami invocation.         Print effective user ID.
 -* yes: (coreutils)yes invocation.               Print a string indefinitely.
 +* arch: (coreutils)arch.		Print machine hardware name
++* base32: (coreutils)base32.		Base32 encode/decode data
 +* base64: (coreutils)base64.		Base64 encode/decode data
 +* basename: (coreutils)basename.	Strip directory and suffix
 +* cat: (coreutils)cat.			Concatenate and write files
@@ -133,7 +134,6 @@
 +* chroot: (coreutils)chroot.		Specify the root directory
 +* cksum: (coreutils)cksum.		Print POSIX CRC checksum
 +* comm: (coreutils)comm.		Compare sorted files by line
-+* coreutils: (coreutils)coreutils.	Multi-call program
 +* cp: (coreutils)cp.			Copy files
 +* csplit: (coreutils)csplit.		Split by context
 +* cut: (coreutils)cut.			Print selected parts of lines
@@ -198,7 +198,7 @@
 +* stdbuf: (coreutils)stdbuf.		Modify stdio buffering
 +* stty: (coreutils)stty.		Print/change terminal settings
 +* sum: (coreutils)sum.			Print traditional checksum
-+* sync: (coreutils)sync.		Synchronize memory and disk
++* sync: (coreutils)sync.		Synchronize memory to disk
 +* tac: (coreutils)tac.			Reverse files
 +* tail: (coreutils)tail.		Output the last part of files
 +* tee: (coreutils)tee.			Redirect to multiple files
@@ -233,14 +233,9 @@
  * Modified command invocation::  chroot env nice nohup stdbuf timeout
 -* Process control::              kill
  * Delaying::                     sleep
- * Numeric operations::           factor seq
+ * Numeric operations::           factor numfmt seq
  * File permissions::             Access modes
-@@ -230,47 +218,47 @@
- * Traversing symlinks::          Traversing symlinks to directories
- * Treating / specially::         Treating / specially
- * Standards conformance::        Standards conformance
--* coreutils invocation::         Multi-call binary invocation
-+* coreutils::                    Multi-call binary invocation
+@@ -234,43 +222,43 @@
  
  Output of entire files
  
@@ -248,21 +243,21 @@
 -* tac invocation::               Concatenate and write files in reverse
 -* nl invocation::                Number lines and write files
 -* od invocation::                Write files in octal or other formats
+-* base32 invocation::            Transform data into printable data
 -* base64 invocation::            Transform data into printable data
 +* cat::                          Concatenate and write files
 +* tac::                          Concatenate and write files in reverse
 +* nl::                           Number lines and write files
 +* od::                           Write files in octal or other formats
++* base32::                       Transform data into printable data
 +* base64::                       Transform data into printable data
  
  Formatting file contents
  
 -* fmt invocation::               Reformat paragraph text
--* numfmt invocation::            Reformat numbers
 -* pr invocation::                Paginate or columnate files for printing
 -* fold invocation::              Wrap input lines to fit in specified width
 +* fmt::                          Reformat paragraph text
-+* numfmt::                       Reformat numbers
 +* pr::                           Paginate or columnate files for printing
 +* fold::                         Wrap input lines to fit in specified width
  
@@ -397,12 +392,12 @@
 -* df invocation::                Report file system disk space usage
 -* du invocation::                Estimate file space usage
 -* stat invocation::              Report file or file system status
--* sync invocation::              Synchronize data on disk with memory
+-* sync invocation::              Synchronize cached writes to persistent storage
 -* truncate invocation::          Shrink or extend the size of a file
 +* df::                           Report file system disk space usage
 +* du::                           Estimate file space usage
 +* stat::                         Report file or file system status
-+* sync::                         Synchronize data on disk with memory
++* sync::                         Synchronize cached writes to persistent storage
 +* truncate::                     Shrink or extend the size of a file
  
  Printing text
@@ -494,7 +489,7 @@
  
  @command{date}: Print or set system date and time
  
-@@ -438,30 +424,26 @@
+@@ -438,31 +424,27 @@
  
  SELinux context
  
@@ -530,31 +525,15 @@
  Numeric operations
  
 -* factor invocation::            Print prime factors
+-* numfmt invocation::            Reformat numbers
 -* seq invocation::               Print numeric sequences
 +* factor::                       Print prime factors
++* numfmt::                       Reformat numbers
 +* seq::                          Print numeric sequences
  
  File permissions
  
-@@ -773,7 +755,7 @@
- * Treating / specially::        --preserve-root and --no-preserve-root.
- * Special built-in utilities::  @command{break}, @command{:}, @dots{}
- * Standards conformance::       Conformance to the POSIX standard.
--* coreutils invocation::        Multi-call binary invocation.
-+* coreutils::                   Multi-call binary invocation.
- @end menu
- 
- 
-@@ -1497,7 +1479,7 @@
- or @samp{tail +10}, you can work around any compatibility problems by setting
- @samp{_POSIX2_VERSION=199209} in your environment.
- 
--@node coreutils invocation
-+@node coreutils
- @section @command{coreutils}: Multi-call binary
- 
- @pindex multicall
-@@ -1523,14 +1505,14 @@
+@@ -1557,15 +1539,15 @@
  in some way.
  
  @menu
@@ -562,11 +541,13 @@
 -* tac invocation::              Concatenate and write files in reverse.
 -* nl invocation::               Number lines and write files.
 -* od invocation::               Write files in octal or other formats.
+-* base32 invocation::           Transform data into printable data.
 -* base64 invocation::           Transform data into printable data.
 +* cat::                         Concatenate and write files.
 +* tac::                         Concatenate and write files in reverse.
 +* nl::                          Number lines and write files.
 +* od::                          Write files in octal or other formats.
++* base32::                      Transform data into printable data.
 +* base64::                      Transform data into printable data.
  @end menu
  
@@ -575,7 +556,7 @@
  @section @command{cat}: Concatenate and write files
  
  @pindex cat
-@@ -1630,7 +1612,7 @@
+@@ -1666,7 +1648,7 @@
  @end smallexample
  
  
@@ -584,7 +565,7 @@
  @section @command{tac}: Concatenate and write files in reverse
  
  @pindex tac
-@@ -1686,7 +1668,7 @@
+@@ -1724,7 +1706,7 @@
  @end example
  
  
@@ -593,7 +574,7 @@
  @section @command{nl}: Number lines and write files
  
  @pindex nl
-@@ -1849,7 +1831,7 @@
+@@ -1887,7 +1869,7 @@
  @exitstatus
  
  
@@ -602,25 +583,36 @@
  @section @command{od}: Write files in octal or other formats
  
  @pindex od
-@@ -2114,7 +2096,7 @@
- 
+@@ -2153,7 +2135,7 @@
  @exitstatus
+ 
+ 
+-@node base32 invocation
++@node base32
+ @section @command{base32}: Transform data into printable data
+ 
+ @pindex base32
+@@ -2163,10 +2145,10 @@
+ into (or from) base32 encoded form.  The base32 encoded form uses
+ printable ASCII characters to represent binary data.
+ The usage and options of this command are precisely the
+-same as for @command{base64}.  @xref{base64 invocation}.
++same as for @command{base64}.  @xref{base64}.
+ 
  
 -@node base64 invocation
 +@node base64
  @section @command{base64}: Transform data into printable data
  
  @pindex base64
-@@ -2182,14 +2164,14 @@
+@@ -2235,13 +2217,13 @@
  These commands reformat the contents of files.
  
  @menu
 -* fmt invocation::              Reformat paragraph text.
--* numfmt invocation::           Reformat numbers.
 -* pr invocation::               Paginate or columnate files for printing.
 -* fold invocation::             Wrap input lines to fit in specified width.
 +* fmt::                         Reformat paragraph text.
-+* numfmt::                      Reformat numbers.
 +* pr::                          Paginate or columnate files for printing.
 +* fold::                        Wrap input lines to fit in specified width.
  @end menu
@@ -631,25 +623,16 @@
  @section @command{fmt}: Reformat paragraph text
  
  @pindex fmt
-@@ -2293,7 +2275,7 @@
+@@ -2345,7 +2327,7 @@
  
  @exitstatus
- 
--@node numfmt invocation
-+@node numfmt
- @section @command{numfmt}: Reformat numbers
- 
- @pindex numfmt
-@@ -2615,7 +2597,7 @@
- == 2,14,74,83,648==
- @end example
  
 -@node pr invocation
 +@node pr
  @section @command{pr}: Paginate or columnate files for printing
  
  @pindex pr
-@@ -2725,7 +2707,7 @@
+@@ -2455,7 +2437,7 @@
  @cindex time formats
  @cindex formatting times
  Format header dates using @var{format}, using the same conventions as
@@ -658,7 +641,7 @@
  Except for directives, which start with
  @samp{%}, characters in @var{format} are printed unchanged.  You can use
  this option to specify an arbitrary string in place of the header date,
-@@ -2955,7 +2937,7 @@
+@@ -2685,7 +2667,7 @@
  @exitstatus
  
  
@@ -667,7 +650,7 @@
  @section @command{fold}: Wrap input lines to fit in specified width
  
  @pindex fold
-@@ -3022,13 +3004,13 @@
+@@ -2752,13 +2734,13 @@
  These commands output pieces of the input.
  
  @menu
@@ -686,7 +669,7 @@
  @section @command{head}: Output the first part of files
  
  @pindex head
-@@ -3105,7 +3087,7 @@
+@@ -2837,7 +2819,7 @@
  @exitstatus
  
  
@@ -695,7 +678,7 @@
  @section @command{tail}: Output the last part of files
  
  @pindex tail
-@@ -3343,7 +3325,7 @@
+@@ -3087,7 +3069,7 @@
  @exitstatus
  
  
@@ -704,7 +687,7 @@
  @section @command{split}: Split a file into pieces.
  
  @pindex split
-@@ -3572,7 +3554,7 @@
+@@ -3336,7 +3318,7 @@
  @end example
  
  
@@ -713,7 +696,7 @@
  @section @command{csplit}: Split a file into context-determined pieces
  
  @pindex csplit
-@@ -3788,16 +3770,16 @@
+@@ -3552,16 +3534,16 @@
  contents of files.
  
  @menu
@@ -736,7 +719,7 @@
  @section @command{wc}: Print newline, word, and byte counts
  
  @pindex wc
-@@ -3915,7 +3897,7 @@
+@@ -3682,7 +3664,7 @@
  @exitstatus
  
  
@@ -745,7 +728,7 @@
  @section @command{sum}: Print checksum and block counts
  
  @pindex sum
-@@ -3966,7 +3948,7 @@
+@@ -3733,7 +3715,7 @@
  @exitstatus
  
  
@@ -754,7 +737,7 @@
  @section @command{cksum}: Print CRC checksum and byte counts
  
  @pindex cksum
-@@ -4000,7 +3982,7 @@
+@@ -3767,7 +3749,7 @@
  @exitstatus
  
  
@@ -763,7 +746,7 @@
  @section @command{md5sum}: Print or check MD5 digests
  
  @pindex md5sum
-@@ -4146,7 +4128,7 @@
+@@ -3926,7 +3908,7 @@
  @exitstatus
  
  
@@ -772,7 +755,7 @@
  @section @command{sha1sum}: Print or check SHA-1 digests
  
  @pindex sha1sum
-@@ -4158,7 +4140,7 @@
+@@ -3938,7 +3920,7 @@
  
  @command{sha1sum} computes a 160-bit checksum for each specified
  @var{file}.  The usage and options of this command are precisely the
@@ -781,16 +764,16 @@
  
  Note: The SHA-1 digest is more secure than MD5, and no collisions of
  it are known (different files having the same fingerprint).  However,
-@@ -4198,7 +4180,7 @@
- various lengths (respectively 224, 256, 384 and 512 bits),
+@@ -3979,7 +3961,7 @@
  collectively known as the SHA-2 hashes.  The usage and options of
- these commands are precisely the same as for @command{md5sum}.
+ these commands are precisely the same as for @command{md5sum}
+ and @command{sha1sum}.
 -@xref{md5sum invocation}.
 +@xref{md5sum}.
  
- Note: The SHA384 and SHA512 digests are considerably slower to
- compute, especially on 32-bit computers, than SHA224 or SHA256.
-@@ -4213,16 +4195,16 @@
+ 
+ @node Operating on sorted files
+@@ -3991,16 +3973,16 @@
  These commands work with (or produce) sorted files.
  
  @menu
@@ -814,7 +797,7 @@
  @section @command{sort}: Sort text files
  
  @pindex sort
-@@ -4511,7 +4493,7 @@
+@@ -4290,7 +4272,7 @@
  Sort by hashing the input keys and then sorting the hash values.
  Choose the hash function at random, ensuring that it is free of
  collisions so that differing keys have differing hash values.  This is
@@ -823,7 +806,7 @@
  except that keys with the same value sort together.
  
  If multiple random sort fields are specified, the same random hash
-@@ -4699,7 +4681,7 @@
+@@ -4478,7 +4460,7 @@
  @var{n} is set to the number of available processors, but limited
  to 8, as there are diminishing performance gains after that.
  Note also that using @var{n} threads increases the memory usage by
@@ -832,7 +815,7 @@
  
  @item -u
  @itemx --unique
-@@ -4717,7 +4699,7 @@
+@@ -4496,7 +4478,7 @@
  this equivalence does not extend to arbitrary @command{sort} options.
  For example, @code{sort -n -u} inspects only the value of the initial
  numeric string when checking for uniqueness, whereas @code{sort -n |
@@ -840,8 +823,8 @@
 +uniq} inspects the entire line.  @xref{uniq}.
  
  @optZeroTerminated
- 
-@@ -4926,7 +4908,7 @@
+ @macro newlineFieldSeparator
+@@ -4708,7 +4690,7 @@
  @end itemize
  
  
@@ -850,7 +833,7 @@
  @section @command{shuf}: Shuffling text
  
  @pindex shuf
-@@ -5082,7 +5064,7 @@
+@@ -4864,7 +4846,7 @@
  @exitstatus
  
  
@@ -859,7 +842,7 @@
  @section @command{uniq}: Uniquify files
  
  @pindex uniq
-@@ -5104,7 +5086,7 @@
+@@ -4886,7 +4868,7 @@
  The input need not be sorted, but repeated input lines are detected
  only if they are adjacent.  If you want to discard non-adjacent
  duplicate lines, perhaps you want to use @code{sort -u}.
@@ -868,7 +851,7 @@
  
  @vindex LC_COLLATE
  Comparisons honor the rules specified by the @env{LC_COLLATE}
-@@ -5266,7 +5248,7 @@
+@@ -5050,7 +5032,7 @@
  @exitstatus
  
  
@@ -877,7 +860,7 @@
  @section @command{comm}: Compare two sorted files line by line
  
  @pindex comm
-@@ -5348,7 +5330,7 @@
+@@ -5134,7 +5116,7 @@
  
  @end table
  
@@ -886,7 +869,7 @@
  @section @command{ptx}: Produce permuted indexes
  
  @pindex ptx
-@@ -5807,7 +5789,7 @@
+@@ -5623,7 +5605,7 @@
  @end itemize
  
  
@@ -895,7 +878,7 @@
  @section @command{tsort}: Topological sort
  
  @pindex tsort
-@@ -5969,13 +5951,13 @@
+@@ -5785,13 +5767,13 @@
  @chapter Operating on fields
  
  @menu
@@ -913,7 +896,7 @@
  @section @command{cut}: Print selected parts of lines
  
  @pindex cut
-@@ -6095,7 +6077,7 @@
+@@ -5913,7 +5895,7 @@
  @exitstatus
  
  
@@ -922,7 +905,7 @@
  @section @command{paste}: Merge lines of files
  
  @pindex paste
-@@ -6191,7 +6173,7 @@
+@@ -6011,7 +5993,7 @@
  @exitstatus
  
  
@@ -931,7 +914,7 @@
  @section @command{join}: Join lines on a common field
  
  @pindex join
-@@ -6367,13 +6349,13 @@
+@@ -6188,13 +6170,13 @@
  These commands operate on individual characters.
  
  @menu
@@ -949,7 +932,7 @@
  @section @command{tr}: Translate, squeeze, and/or delete characters
  
  @pindex tr
-@@ -6753,7 +6735,7 @@
+@@ -6577,7 +6559,7 @@
  @end itemize
  
  
@@ -958,7 +941,7 @@
  @section @command{expand}: Convert tabs to spaces
  
  @pindex expand
-@@ -6806,7 +6788,7 @@
+@@ -6630,7 +6612,7 @@
  @exitstatus
  
  
@@ -967,7 +950,7 @@
  @section @command{unexpand}: Convert spaces to tabs
  
  @pindex unexpand
-@@ -6867,14 +6849,14 @@
+@@ -6691,14 +6673,14 @@
  and @command{vdir}, which list information about files.
  
  @menu
@@ -987,7 +970,7 @@
  @section @command{ls}: List directory contents
  
  @pindex ls
-@@ -7737,7 +7719,7 @@
+@@ -7564,7 +7546,7 @@
  @item +@var{format}
  @vindex LC_TIME
  List timestamps using @var{format}, where @var{format} is interpreted
@@ -996,7 +979,7 @@
  For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
  @command{ls} to list timestamps like @samp{2002-03-30 23:45:56}.  As
  with @command{date}, @var{format}'s interpretation is affected by the
-@@ -7929,7 +7911,7 @@
+@@ -7762,7 +7744,7 @@
  @end table
  
  
@@ -1005,7 +988,7 @@
  @section @command{dir}: Briefly list directory contents
  
  @pindex dir
-@@ -7939,10 +7921,10 @@
+@@ -7772,10 +7754,10 @@
  -b}; that is, by default files are listed in columns, sorted vertically,
  and special characters are represented by backslash escape sequences.
  
@@ -1018,16 +1001,19 @@
  @section @command{vdir}: Verbosely list directory contents
  
  @pindex vdir
-@@ -7952,7 +7934,7 @@
+@@ -7785,9 +7767,9 @@
  -b}; that is, by default files are listed in long format and special
  characters are represented by backslash escape sequences.
+ 
+-@xref{ls invocation, @command{ls}}.
++@xref{ls, @command{ls}}.
  
 -@node dircolors invocation
 +@node dircolors
  @section @command{dircolors}: Color setup for @command{ls}
  
  @pindex dircolors
-@@ -8039,16 +8021,16 @@
+@@ -7874,16 +7856,16 @@
  copying, moving (renaming), and deleting (removing).
  
  @menu
@@ -1051,7 +1037,7 @@
  @section @command{cp}: Copy files and directories
  
  @pindex cp
-@@ -8526,7 +8508,7 @@
+@@ -8363,7 +8345,7 @@
  @exitstatus
  
  
@@ -1060,7 +1046,7 @@
  @section @command{dd}: Convert and copy a file
  
  @pindex dd
-@@ -9016,7 +8998,7 @@
+@@ -8884,7 +8866,7 @@
  @exitstatus
  
  
@@ -1069,7 +1055,7 @@
  @section @command{install}: Copy files and set attributes
  
  @pindex install
-@@ -9197,7 +9179,7 @@
+@@ -9066,7 +9048,7 @@
  @exitstatus
  
  
@@ -1078,7 +1064,7 @@
  @section @command{mv}: Move (rename) files
  
  @pindex mv
-@@ -9338,7 +9320,7 @@
+@@ -9210,7 +9192,7 @@
  @exitstatus
  
  
@@ -1087,7 +1073,7 @@
  @section @command{rm}: Remove files or directories
  
  @pindex rm
-@@ -9501,7 +9483,7 @@
+@@ -9373,7 +9355,7 @@
  @exitstatus
  
  
@@ -1096,7 +1082,7 @@
  @section @command{shred}: Remove files more securely
  
  @pindex shred
-@@ -9511,7 +9493,7 @@
+@@ -9383,7 +9365,7 @@
  @command{shred} overwrites devices or files, to help prevent even
  very expensive hardware from recovering the data.
  
@@ -1105,7 +1091,7 @@
  not actually destroyed.  Only the index listing where the file is
  stored is destroyed, and the storage is made available for reuse.
  There are undelete utilities that will attempt to reconstruct the index
-@@ -9772,18 +9754,18 @@
+@@ -9643,18 +9625,18 @@
  (FIFOs), symbolic links, sockets, and so-called @dfn{special files}.
  
  @menu
@@ -1117,14 +1103,14 @@
 -* readlink invocation::         Print value of a symlink or canonical file name.
 -* rmdir invocation::            Remove empty directories.
 -* unlink invocation::           Remove files via the unlink syscall
-+* link::                        Make a hard link via the link syscall
-+* ln::                          Make links between files.
-+* mkdir::                       Make directories.
-+* mkfifo::                      Make FIFOs (named pipes).
-+* mknod::                       Make block or character special files.
-+* readlink::                    Print value of a symlink or canonical file name.
-+* rmdir::                       Remove empty directories.
-+* unlink::                      Remove files via the unlink syscall
++* link::             Make a hard link via the link syscall
++* ln::               Make links between files.
++* mkdir::            Make directories.
++* mkfifo::           Make FIFOs (named pipes).
++* mknod::            Make block or character special files.
++* readlink::         Print value of a symlink or canonical file name.
++* rmdir::            Remove empty directories.
++* unlink::           Remove files via the unlink syscall
  @end menu
  
  
@@ -1133,7 +1119,7 @@
  @section @command{link}: Make a hard link via the link syscall
  
  @pindex link
-@@ -9796,7 +9778,7 @@
+@@ -9667,7 +9649,7 @@
  @code{link} function.  @xref{Hard Links, , , libc,
  The GNU C Library Reference Manual}.
  It avoids the bells and whistles of the more commonly-used
@@ -1142,7 +1128,7 @@
  Synopsis:
  
  @example
-@@ -9822,7 +9804,7 @@
+@@ -9693,7 +9675,7 @@
  @exitstatus
  
  
@@ -1151,16 +1137,16 @@
  @section @command{ln}: Make links between files
  
  @pindex ln
-@@ -10006,7 +9988,7 @@
+@@ -9877,7 +9859,7 @@
  Relative symbolic links are generated based on their canonicalized
- containing directory, and canonicalized targets.  I.E. all symbolic
+ containing directory, and canonicalized targets.  I.e., all symbolic
  links in these file names will be resolved.
 -@xref{realpath invocation}, which gives greater control
 +@xref{realpath}, which gives greater control
  over relative file name generation, as demonstrated in the following example:
  
  @example
-@@ -10083,7 +10065,7 @@
+@@ -9954,7 +9936,7 @@
  @end smallexample
  
  
@@ -1169,7 +1155,7 @@
  @section @command{mkdir}: Make directories
  
  @pindex mkdir
-@@ -10156,7 +10138,7 @@
+@@ -10027,7 +10009,7 @@
  @exitstatus
  
  
@@ -1178,7 +1164,7 @@
  @section @command{mkfifo}: Make FIFOs (named pipes)
  
  @pindex mkfifo
-@@ -10197,7 +10179,7 @@
+@@ -10068,7 +10050,7 @@
  @exitstatus
  
  
@@ -1187,7 +1173,7 @@
  @section @command{mknod}: Make block or character special files
  
  @pindex mknod
-@@ -10274,7 +10256,7 @@
+@@ -10145,7 +10127,7 @@
  @exitstatus
  
  
@@ -1196,7 +1182,7 @@
  @section @command{readlink}: Print value of a symlink or canonical file name
  
  @pindex readlink
-@@ -10372,7 +10354,7 @@
+@@ -10243,7 +10225,7 @@
  @exitstatus
  
  
@@ -1205,7 +1191,7 @@
  @section @command{rmdir}: Remove empty directories
  
  @pindex rmdir
-@@ -10420,12 +10402,12 @@
+@@ -10291,12 +10273,12 @@
  
  @end table
  
@@ -1220,7 +1206,7 @@
  @section @command{unlink}: Remove files via the unlink syscall
  
  @pindex unlink
-@@ -10436,7 +10418,7 @@
+@@ -10307,7 +10289,7 @@
  @code{unlink} function.  @xref{Deleting Files, , , libc,
  The GNU C Library Reference Manual}.  Synopsis:
  It avoids the bells and whistles of the more commonly-used
@@ -1229,7 +1215,7 @@
  
  @example
  unlink @var{filename}
-@@ -10470,14 +10452,14 @@
+@@ -10341,14 +10323,14 @@
  These commands change file attributes.
  
  @menu
@@ -1249,7 +1235,7 @@
  @section @command{chown}: Change file owner and group
  
  @pindex chown
-@@ -10702,7 +10684,7 @@
+@@ -10573,7 +10555,7 @@
  @end smallexample
  
  
@@ -1258,7 +1244,7 @@
  @section @command{chgrp}: Change group ownership
  
  @pindex chgrp
-@@ -10711,7 +10693,7 @@
+@@ -10582,7 +10564,7 @@
  
  @command{chgrp} changes the group ownership of each given @var{file}
  to @var{group} (which can be either a group name or a numeric group ID)
@@ -1267,7 +1253,7 @@
  Synopsis:
  
  @example
-@@ -10828,7 +10810,7 @@
+@@ -10699,7 +10681,7 @@
  @end smallexample
  
  
@@ -1276,7 +1262,7 @@
  @section @command{chmod}: Change access permissions
  
  @pindex chmod
-@@ -10928,7 +10910,7 @@
+@@ -10799,7 +10781,7 @@
  @exitstatus
  
  
@@ -1285,19 +1271,19 @@
  @section @command{touch}: Change file timestamps
  
  @pindex touch
-@@ -11135,15 +11117,15 @@
+@@ -11006,15 +10988,15 @@
  file status information, and write buffers to disk.
  
  @menu
 -* df invocation::               Report file system disk space usage.
 -* du invocation::               Estimate file space usage.
 -* stat invocation::             Report file or file system status.
--* sync invocation::             Synchronize memory and disk.
+-* sync invocation::             Synchronize cached writes to persistent storage.
 -* truncate invocation::         Shrink or extend the size of a file.
 +* df::                          Report file system disk space usage.
 +* du::                          Estimate file space usage.
 +* stat::                        Report file or file system status.
-+* sync::                        Synchronize memory and disk.
++* sync::                        Synchronize cached writes to persistent storage.
 +* truncate::                    Shrink or extend the size of a file.
  @end menu
  
@@ -1307,7 +1293,7 @@
  @section @command{df}: Report file system disk space usage
  
  @pindex df
-@@ -11442,7 +11424,7 @@
+@@ -11322,7 +11304,7 @@
  or @option{-x} is used together with a file name argument.
  
  
@@ -1316,7 +1302,7 @@
  @section @command{du}: Estimate file space usage
  
  @pindex du
-@@ -11699,7 +11681,7 @@
+@@ -11579,7 +11561,7 @@
  @item +@var{format}
  @vindex LC_TIME
  List timestamps using @var{format}, where @var{format} is interpreted
@@ -1325,7 +1311,7 @@
  For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
  @command{du} to list timestamps like @samp{2002-03-30 23:45:56}.  As
  with @command{date}, @var{format}'s interpretation is affected by the
-@@ -11767,7 +11749,7 @@
+@@ -11647,7 +11629,7 @@
  @exitstatus
  
  
@@ -1334,16 +1320,16 @@
  @section @command{stat}: Report file or file system status
  
  @pindex stat
-@@ -11956,7 +11938,7 @@
+@@ -11855,7 +11837,7 @@
  @exitstatus
  
  
 -@node sync invocation
 +@node sync
- @section @command{sync}: Synchronize data on disk with memory
+ @section @command{sync}: Synchronize cached writes to persistent storage
  
  @pindex sync
-@@ -11983,7 +11965,7 @@
+@@ -11914,7 +11896,7 @@
  @exitstatus
  
  
@@ -1352,7 +1338,7 @@
  @section @command{truncate}: Shrink or extend the size of a file
  
  @pindex truncate
-@@ -12060,13 +12042,13 @@
+@@ -11991,13 +11973,13 @@
  This section describes commands that display text strings.
  
  @menu
@@ -1370,7 +1356,7 @@
  @section @command{echo}: Print a line of text
  
  @pindex echo
-@@ -12155,12 +12137,12 @@
+@@ -12086,12 +12068,12 @@
  @var{string} contains a backslash or if the first argument is
  @option{-n}.  Portable programs can use the @command{printf} command
  if they need to omit trailing newlines or output control characters or
@@ -1385,7 +1371,7 @@
  @section @command{printf}: Format and print data
  
  @pindex printf
-@@ -12314,7 +12296,7 @@
+@@ -12253,7 +12235,7 @@
  @exitstatus
  
  
@@ -1394,7 +1380,7 @@
  @section @command{yes}: Print a string until interrupted
  
  @pindex yes
-@@ -12345,14 +12327,14 @@
+@@ -12284,14 +12266,14 @@
  pipeline.
  
  @menu
@@ -1414,7 +1400,7 @@
  @section @command{false}: Do nothing, unsuccessfully
  
  @pindex false
-@@ -12382,7 +12364,7 @@
+@@ -12321,7 +12303,7 @@
  non-GNU hosts.
  
  
@@ -1423,7 +1409,7 @@
  @section @command{true}: Do nothing, successfully
  
  @pindex true
-@@ -12418,7 +12400,7 @@
+@@ -12357,7 +12339,7 @@
  more secure and faster than a shell script implementation, and may safely
  be used as a dummy shell for the purpose of disabling accounts.
  
@@ -1432,7 +1418,7 @@
  @section @command{test}: Check file types and compare values
  
  @pindex test
-@@ -12751,7 +12733,7 @@
+@@ -12720,7 +12702,7 @@
  @end table
  
  
@@ -1441,7 +1427,7 @@
  @section @command{expr}: Evaluate expressions
  
  @pindex expr
-@@ -13028,11 +13010,11 @@
+@@ -12997,11 +12979,11 @@
  it's described here.
  
  @menu
@@ -1455,7 +1441,7 @@
  @section @command{tee}: Redirect output to multiple files or processes
  
  @pindex tee
-@@ -13193,15 +13175,15 @@
+@@ -13208,15 +13190,15 @@
  This section describes commands that manipulate file names.
  
  @menu
@@ -1477,7 +1463,7 @@
  @section @command{basename}: Strip directory and suffix from a file name
  
  @pindex basename
-@@ -13283,7 +13265,7 @@
+@@ -13298,7 +13280,7 @@
  @end smallexample
  
  
@@ -1486,7 +1472,7 @@
  @section @command{dirname}: Strip last file name component
  
  @pindex dirname
-@@ -13336,7 +13318,7 @@
+@@ -13351,7 +13333,7 @@
  @end smallexample
  
  
@@ -1495,7 +1481,7 @@
  @section @command{pathchk}: Check file name validity and portability
  
  @pindex pathchk
-@@ -13412,7 +13394,7 @@
+@@ -13427,7 +13409,7 @@
  1 otherwise.
  @end display
  
@@ -1504,7 +1490,7 @@
  @section @command{mktemp}: Create temporary file or directory
  
  @pindex mktemp
-@@ -13587,7 +13569,7 @@
+@@ -13602,7 +13584,7 @@
  @end display
  
  
@@ -1513,7 +1499,7 @@
  @section @command{realpath}: Print the resolved file name.
  
  @pindex realpath
-@@ -13711,14 +13693,14 @@
+@@ -13726,14 +13708,14 @@
  so forth.  See also the user-related commands in the next section.
  
  @menu
@@ -1533,7 +1519,7 @@
  @section @command{pwd}: Print working directory
  
  @pindex pwd
-@@ -13765,7 +13747,7 @@
+@@ -13780,7 +13762,7 @@
  @exitstatus
  
  
@@ -1542,7 +1528,7 @@
  @section @command{stty}: Print or change terminal characteristics
  
  @pindex stty
-@@ -14466,7 +14448,7 @@
+@@ -14522,7 +14504,7 @@
  @end table
  
  
@@ -1551,7 +1537,7 @@
  @section @command{printenv}: Print all or some environment variables
  
  @pindex printenv
-@@ -14501,7 +14483,7 @@
+@@ -14557,7 +14539,7 @@
  @end display
  
  
@@ -1560,7 +1546,7 @@
  @section @command{tty}: Print file name of terminal on standard input
  
  @pindex tty
-@@ -14551,16 +14533,16 @@
+@@ -14607,16 +14589,16 @@
  logins, groups, and so forth.
  
  @menu
@@ -1584,7 +1570,7 @@
  @section @command{id}: Print user identity
  
  @pindex id
-@@ -14664,7 +14646,7 @@
+@@ -14720,7 +14702,7 @@
  
  @exitstatus
  
@@ -1593,7 +1579,7 @@
  @section @command{logname}: Print current login name
  
  @pindex logname
-@@ -14685,7 +14667,7 @@
+@@ -14741,7 +14723,7 @@
  @exitstatus
  
  
@@ -1602,7 +1588,7 @@
  @section @command{whoami}: Print effective user ID
  
  @pindex whoami
-@@ -14701,7 +14683,7 @@
+@@ -14757,7 +14739,7 @@
  @exitstatus
  
  
@@ -1611,7 +1597,7 @@
  @section @command{groups}: Print group names a user is in
  
  @pindex groups
-@@ -14728,7 +14710,7 @@
+@@ -14784,7 +14766,7 @@
  
  @exitstatus
  
@@ -1620,7 +1606,7 @@
  @section @command{users}: Print login names of users currently logged in
  
  @pindex users
-@@ -14759,7 +14741,7 @@
+@@ -14819,7 +14801,7 @@
  @exitstatus
  
  
@@ -1629,7 +1615,7 @@
  @section @command{who}: Print who is currently logged in
  
  @pindex who
-@@ -14918,16 +14900,14 @@
+@@ -14982,16 +14964,14 @@
  information.
  
  @menu
@@ -1640,11 +1626,11 @@
 -* hostname invocation::         Print or set system name.
 -* hostid invocation::           Print numeric host identifier.
 -* uptime invocation::           Print system uptime and load.
-+* date::                        Print or set system date and time.
-+* arch::                        Print machine hardware name.
-+* nproc::                       Print the number of processors.
-+* uname::                       Print system information.
-+* hostid::                      Print numeric host identifier.
++* date::             Print or set system date and time.
++* arch::             Print machine hardware name.
++* nproc::            Print the number of processors.
++* uname::            Print system information.
++* hostid::           Print numeric host identifier.
  @end menu
  
 -@node date invocation
@@ -1652,7 +1638,7 @@
  @section @command{date}: Print or set system date and time
  
  @pindex date
-@@ -15620,7 +15600,7 @@
+@@ -15688,7 +15668,7 @@
  @end itemize
  
  
@@ -1661,7 +1647,7 @@
  @section @command{arch}: Print machine hardware name
  
  @pindex arch
-@@ -15640,7 +15620,7 @@
+@@ -15711,7 +15691,7 @@
  @exitstatus
  
  
@@ -1670,7 +1656,7 @@
  @section @command{nproc}: Print the number of available processors
  
  @pindex nproc
-@@ -15677,7 +15657,7 @@
+@@ -15748,7 +15728,7 @@
  @exitstatus
  
  
@@ -1679,7 +1665,7 @@
  @section @command{uname}: Print system information
  
  @pindex uname
-@@ -15807,31 +15787,7 @@
+@@ -15878,35 +15858,7 @@
  @exitstatus
  
  
@@ -1704,6 +1690,10 @@
 -The only options are @option{--help} and @option{--version}.  @xref{Common
 -options}.
 -
+-@command{hostname} is not installed by default, and other packages
+-also supply a @command{hostname} command, so portable scripts should
+-not rely on its existence or on the exact behavior documented above.
+-
 -@exitstatus
 -
 -
@@ -1712,7 +1702,7 @@
  @section @command{hostid}: Print numeric host identifier
  
  @pindex hostid
-@@ -15855,37 +15811,6 @@
+@@ -15934,44 +15886,6 @@
  
  @exitstatus
  
@@ -1747,10 +1737,17 @@
 -those processes which are waiting for disk I/O).  The Linux kernel
 -includes uninterruptible processes.
 -
+-@command{uptime} is installed only on platforms with infrastructure
+-for obtaining the boot time, and other packages also supply an
+-@command{uptime} command, so portable scripts should not rely on its
+-existence or on the exact behavior documented above.
+-
+-@exitstatus
+-
  @node SELinux context
  @chapter SELinux context
  
-@@ -15897,11 +15822,11 @@
+@@ -15983,11 +15897,11 @@
  contexts.
  
  @menu
@@ -1765,7 +1762,7 @@
  @section @command{chcon}: Change SELinux context of file
  
  @pindex chcon
-@@ -16004,7 +15929,7 @@
+@@ -16090,7 +16004,7 @@
  
  @exitstatus
  
@@ -1774,7 +1771,7 @@
  @section @command{runcon}: Run a command in specified SELinux context
  
  @pindex runcon
-@@ -16089,16 +16014,16 @@
+@@ -16175,16 +16089,16 @@
  user, etc.
  
  @menu
@@ -1798,7 +1795,7 @@
  @section @command{chroot}: Run a command with a different root directory
  
  @pindex chroot
-@@ -16198,7 +16123,7 @@
+@@ -16300,7 +16214,7 @@
  @end display
  
  
@@ -1807,7 +1804,7 @@
  @section @command{env}: Run a command in a modified environment
  
  @pindex env
-@@ -16348,7 +16273,7 @@
+@@ -16450,7 +16364,7 @@
  @end display
  
  
@@ -1816,7 +1813,7 @@
  @section @command{nice}: Run a command with modified niceness
  
  @pindex nice
-@@ -16475,7 +16400,7 @@
+@@ -16581,7 +16495,7 @@
  @end example
  
  
@@ -1825,7 +1822,7 @@
  @section @command{nohup}: Run a command immune to hangups
  
  @pindex nohup
-@@ -16548,7 +16473,7 @@
+@@ -16655,7 +16569,7 @@
  instead of 125.
  
  
@@ -1834,7 +1831,7 @@
  @section @command{stdbuf}: Run a command with modified I/O stream buffering
  
  @pindex stdbuf
-@@ -16637,7 +16562,7 @@
+@@ -16749,7 +16663,7 @@
  @end display
  
  
@@ -1843,7 +1840,7 @@
  @section @command{timeout}: Run a command with a time limit
  
  @pindex timeout
-@@ -16724,90 +16649,6 @@
+@@ -16839,90 +16753,6 @@
  @end display
  
  
@@ -1934,7 +1931,7 @@
  @node Delaying
  @chapter Delaying
  
-@@ -16817,11 +16658,11 @@
+@@ -16932,11 +16762,11 @@
  @c Perhaps @command{wait} or other commands should be described here also?
  
  @menu
@@ -1948,13 +1945,15 @@
  @section @command{sleep}: Delay for a specified time
  
  @pindex sleep
-@@ -16871,12 +16712,12 @@
+@@ -16986,13 +16816,13 @@
  These programs do numerically-related operations.
  
  @menu
 -* factor invocation::              Show factors of numbers.
+-* numfmt invocation::              Reformat numbers.
 -* seq invocation::                 Print sequences of numbers.
 +* factor::                         Show factors of numbers.
++* numfmt::                         Reformat numbers.
 +* seq::                            Print sequences of numbers.
  @end menu
  
@@ -1964,8 +1963,17 @@
  @section @command{factor}: Print prime factors
  
  @pindex factor
-@@ -16934,7 +16775,7 @@
+@@ -17050,7 +16880,7 @@
  @exitstatus
+ 
+ 
+-@node numfmt invocation
++@node numfmt
+ @section @command{numfmt}: Reformat numbers
+ 
+ @pindex numfmt
+@@ -17390,7 +17220,7 @@
+ @end example
  
  
 -@node seq invocation

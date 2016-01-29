@@ -106,8 +106,7 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -a1
 %patch8 -p1
-# FIXME and push upstream
-# %patch0 -p1
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
