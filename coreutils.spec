@@ -20,6 +20,7 @@ Source3:	DIR_COLORS.256color
 Source4:	colorls.sh
 Source5:	colorls.csh
 Source6:	mktemp.1.pl
+Source7:	%{name}.sh
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-getgid.patch
 Patch2:		%{name}-uname-cpuinfo.patch
@@ -200,7 +201,7 @@ mv $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
-cp -p %{SOURCE4} %{SOURCE5} $RPM_BUILD_ROOT/etc/shrc.d
+cp -p %{SOURCE4} %{SOURCE5} %{SOURCE7} $RPM_BUILD_ROOT/etc/shrc.d
 
 for d in cs da de es fi fr hu id it ja ko nl pl pt ru zh_CN; do
 	install -d $RPM_BUILD_ROOT%{_mandir}/$d/man1
@@ -339,6 +340,7 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/DIR_COLORS.256color
 %config(noreplace) /etc/shrc.d/colorls.csh
 %config(noreplace) /etc/shrc.d/colorls.sh
+%config(noreplace) /etc/shrc.d/%{name}.sh
 %dir %{_libdir}/coreutils
 %attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
 %{_mandir}/man1/arch.1*
