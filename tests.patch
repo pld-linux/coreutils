@@ -1,6 +1,183 @@
---- coreutils-8.21/tests/misc/printenv.sh~	2013-01-31 01:46:24.000000000 +0100
-+++ coreutils-8.21/tests/misc/printenv.sh	2013-12-03 12:25:51.949012868 +0100
-@@ -27,8 +27,8 @@ print_ver_ printenv
+diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests/gnulib.mk
+--- coreutils-8.27.orig/gnulib-tests/gnulib.mk	2017-03-09 04:52:57.000000000 +0100
++++ coreutils-8.27/gnulib-tests/gnulib.mk	2017-06-10 20:43:44.600627260 +0200
+@@ -264,9 +264,9 @@
+ 
+ ## begin gnulib module chown-tests
+ 
+-TESTS += test-chown
+-check_PROGRAMS += test-chown
+-test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
++#TESTS += test-chown
++#check_PROGRAMS += test-chown
++#test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
+ EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
+ 
+ ## end   gnulib module chown-tests
+@@ -465,9 +465,9 @@
+ 
+ ## begin gnulib module fchownat-tests
+ 
+-TESTS += test-fchownat
+-check_PROGRAMS += test-fchownat
+-test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
++#TESTS += test-fchownat
++#check_PROGRAMS += test-fchownat
++#test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-chown.h test-lchown.h test-fchownat.c signature.h macros.h
+ 
+ ## end   gnulib module fchownat-tests
+@@ -532,10 +532,10 @@
+ 
+ ## begin gnulib module fdutimensat-tests
+ 
+-TESTS += test-fdutimensat
+-check_PROGRAMS += test-fdutimensat
+-test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
+-  $(LIB_NANOSLEEP) @LIBINTL@
++#TESTS += test-fdutimensat
++#check_PROGRAMS += test-fdutimensat
++#test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
++#  $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-fdutimensat.c macros.h
+ 
+ ## end   gnulib module fdutimensat-tests
+@@ -798,9 +798,9 @@
+ 
+ ## begin gnulib module futimens-tests
+ 
+-TESTS += test-futimens
+-check_PROGRAMS += test-futimens
+-test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
++#TESTS += test-futimens
++#check_PROGRAMS += test-futimens
++#test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
+ 
+ ## end   gnulib module futimens-tests
+@@ -1126,9 +1126,9 @@
+ 
+ ## begin gnulib module lchown-tests
+ 
+-TESTS += test-lchown
+-check_PROGRAMS += test-lchown
+-test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
++#TESTS += test-lchown
++#check_PROGRAMS += test-lchown
++#test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
+ EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
+ 
+ ## end   gnulib module lchown-tests
+@@ -2381,9 +2381,9 @@
+ 
+ ## begin gnulib module utimens-tests
+ 
+-TESTS += test-utimens
+-check_PROGRAMS += test-utimens
+-test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
++#TESTS += test-utimens
++#check_PROGRAMS += test-utimens
++#test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
+ EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
+ 
+ ## end   gnulib module utimens-tests
+diff -ruN coreutils-8.27.orig/gnulib-tests/test-stat-time.c coreutils-8.27/gnulib-tests/test-stat-time.c
+--- coreutils-8.27.orig/gnulib-tests/test-stat-time.c	2017-01-01 23:35:38.000000000 +0100
++++ coreutils-8.27/gnulib-tests/test-stat-time.c	2017-06-10 20:43:44.599627263 +0200
+@@ -145,7 +145,7 @@
+     }
+ }
+ 
+-#if (defined _WIN32 || defined __WIN32__) && !defined __CYGWIN__
++#if 1
+ /* Skip the ctime tests on native Windows platforms, because their
+    st_ctime is either the same as st_mtime (plus or minus an offset)
+    or set to the file _creation_ time, and is not influenced by rename
+diff -ruN coreutils-8.27.orig/gnulib-tests/test-utimens-common.h coreutils-8.27/gnulib-tests/test-utimens-common.h
+--- coreutils-8.27.orig/gnulib-tests/test-utimens-common.h	2017-01-01 23:35:38.000000000 +0100
++++ coreutils-8.27/gnulib-tests/test-utimens-common.h	2017-06-10 20:43:44.598627265 +0200
+@@ -48,7 +48,7 @@
+                           : 0)
+ };
+ 
+-# if (defined _WIN32 || defined __WIN32__) && !defined __CYGWIN__
++# if 1
+ /* Skip ctime tests on native Windows, since it is either a copy of
+    mtime or birth time (depending on the file system), rather than a
+    properly tracked change time.  */
+diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
+--- coreutils-8.27.orig/tests/local.mk	2017-03-01 05:25:37.000000000 +0100
++++ coreutils-8.27/tests/local.mk	2017-06-10 20:43:44.601627257 +0200
+@@ -167,7 +167,6 @@
+   tests/rm/cycle.sh				\
+   tests/cp/link-heap.sh				\
+   tests/cp/no-ctx.sh				\
+-  tests/misc/tty-eof.pl				\
+   tests/tail-2/inotify-hash-abuse.sh		\
+   tests/tail-2/inotify-hash-abuse2.sh		\
+   tests/tail-2/F-vs-missing.sh			\
+@@ -364,7 +363,6 @@
+   tests/misc/sort-unique-segv.sh		\
+   tests/misc/sort-version.sh			\
+   tests/misc/sort-NaN-infloop.sh		\
+-  tests/misc/sort-u-FMR.sh			\
+   tests/split/filter.sh				\
+   tests/split/suffix-auto-length.sh		\
+   tests/split/suffix-length.sh			\
+@@ -498,7 +496,6 @@
+   tests/df/unreadable.sh			\
+   tests/df/total-unprocessed.sh			\
+   tests/df/no-mtab-status.sh			\
+-  tests/df/skip-duplicates.sh			\
+   tests/df/skip-rootfs.sh			\
+   tests/dd/ascii.sh				\
+   tests/dd/direct.sh				\
+diff -ruN coreutils-8.27.orig/tests/misc/nohup.sh coreutils-8.27/tests/misc/nohup.sh
+--- coreutils-8.27.orig/tests/misc/nohup.sh	2017-01-01 23:34:24.000000000 +0100
++++ coreutils-8.27/tests/misc/nohup.sh	2017-06-10 20:44:45.353459732 +0200
+@@ -61,22 +61,22 @@
+ 
+ # Bug present through coreutils 8.0: failure to print advisory message
+ # to stderr must be fatal.  Requires stdout to be terminal.
+-if test -w /dev/full && test -c /dev/full; then
+-(
+-  # POSIX shells immediately exit the subshell on exec error.
+-  # So check we can write to /dev/tty before the exec, which
+-  # isn't possible if we've no controlling tty for example.
+-  test -c /dev/tty && >/dev/tty || exit 0
+-
+-  exec >/dev/tty
+-  test -t 1 || exit 0
+-  returns_ 125 nohup echo hi 2> /dev/full || fail=1
+-  test -f nohup.out || fail=1
+-  compare /dev/null nohup.out || fail=1
+-  rm -f nohup.out
+-  exit $fail
+-) || fail=1
+-fi
++#if test -w /dev/full && test -c /dev/full; then
++#(
++#  # POSIX shells immediately exit the subshell on exec error.
++#  # So check we can write to /dev/tty before the exec, which
++#  # isn't possible if we've no controlling tty for example.
++#  test -c /dev/tty && >/dev/tty || exit 0
++#
++#  exec >/dev/tty
++#  test -t 1 || exit 0
++#  returns_ 125 nohup echo hi 2> /dev/full || fail=1
++#  test -f nohup.out || fail=1
++#  compare /dev/null nohup.out || fail=1
++#  rm -f nohup.out
++#  exit $fail
++#) || fail=1
++#fi
+ 
+ nohup no-such-command 2> err
+ errno=$?
+diff -ruN coreutils-8.27.orig/tests/misc/printenv.sh coreutils-8.27/tests/misc/printenv.sh
+--- coreutils-8.27.orig/tests/misc/printenv.sh	2017-01-01 23:34:24.000000000 +0100
++++ coreutils-8.27/tests/misc/printenv.sh	2017-06-10 20:43:44.597627268 +0200
+@@ -27,8 +27,8 @@
  # env's output the same way as that of printenv and works around a bug
  # on aarch64 at least where libc's execvp reverses the order of the
  # output.
@@ -11,9 +188,10 @@
  compare exp out || fail=1
  
  # POSIX is clear that environ may, but need not be, sorted.
---- coreutils-8.21/tests/misc/realpath.sh.orig	2013-12-03 12:36:46.105079823 +0100
-+++ coreutils-8.21/tests/misc/realpath.sh	2013-12-03 12:46:44.854069134 +0100
-@@ -40,68 +40,68 @@ ln -s // two || framework_failure_
+diff -ruN coreutils-8.27.orig/tests/misc/realpath.sh coreutils-8.27/tests/misc/realpath.sh
+--- coreutils-8.27.orig/tests/misc/realpath.sh	2017-01-01 23:34:24.000000000 +0100
++++ coreutils-8.27/tests/misc/realpath.sh	2017-06-10 20:43:44.597627268 +0200
+@@ -40,68 +40,68 @@
  ln -s /// three || framework_failure_
  
  # Basic operation
@@ -109,176 +287,3 @@
  if test $double_slash = //; then
    test "$out" = "/$nl//" || fail=1
  else
---- coreutils-8.23/tests/misc/nohup.sh.orig	2014-07-20 19:03:44.627770671 +0200
-+++ coreutils-8.23/tests/misc/nohup.sh	2014-07-20 19:10:31.097753613 +0200
-@@ -61,23 +61,23 @@
- 
- # Bug present through coreutils 8.0: failure to print advisory message
- # to stderr must be fatal.  Requires stdout to be terminal.
--if test -w /dev/full && test -c /dev/full; then
--(
--  # POSIX shells immediately exit the subshell on exec error.
--  # So check we can write to /dev/tty before the exec, which
--  # isn't possible if we've no controlling tty for example.
--  test -c /dev/tty && >/dev/tty || exit 0
--
--  exec >/dev/tty
--  test -t 1 || exit 0
--  nohup echo hi 2> /dev/full
--  test $? = 125 || fail=1
--  test -f nohup.out || fail=1
--  compare /dev/null nohup.out || fail=1
--  rm -f nohup.out
--  exit $fail
--) || fail=1
--fi
-+#if test -w /dev/full && test -c /dev/full; then
-+#(
-+#  # POSIX shells immediately exit the subshell on exec error.
-+#  # So check we can write to /dev/tty before the exec, which
-+#  # isn't possible if we've no controlling tty for example.
-+#  test -c /dev/tty && >/dev/tty || exit 0
-+#
-+#  exec >/dev/tty
-+#  test -t 1 || exit 0
-+#  nohup echo hi 2> /dev/full
-+#  test $? = 125 || fail=1
-+#  test -f nohup.out || fail=1
-+#  compare /dev/null nohup.out || fail=1
-+#  rm -f nohup.out
-+#  exit $fail
-+#) || fail=1
-+#fi
- 
- nohup no-such-command 2> err
- errno=$?
---- coreutils-8.21/gnulib-tests/test-utimens-common.h~	2013-01-02 13:34:46.000000000 +0100
-+++ coreutils-8.21/gnulib-tests/test-utimens-common.h	2013-12-03 14:10:06.406077452 +0100
-@@ -48,7 +48,7 @@
-                           : 0)
- };
- 
--# if (defined _WIN32 || defined __WIN32__) && !defined __CYGWIN__
-+# if 1
- /* Skip ctime tests on native Windows, since it is either a copy of
-    mtime or birth time (depending on the file system), rather than a
-    properly tracked change time.  */
---- coreutils-8.21/gnulib-tests/test-stat-time.c~	2013-01-02 13:34:46.000000000 +0100
-+++ coreutils-8.21/gnulib-tests/test-stat-time.c	2013-12-03 14:39:35.423872940 +0100
-@@ -184,7 +184,7 @@
-     }
- }
- 
--#if (defined _WIN32 || defined __WIN32__) && !defined __CYGWIN__
-+#if 1
- /* Skip the ctime tests on native Windows platforms, because their
-    st_ctime is either the same as st_mtime (plus or minus an offset)
-    or set to the file _creation_ time, and is not influenced by rename
---- coreutils-8.22/gnulib-tests/gnulib.mk.orig	2013-12-14 12:14:47.200742771 +0100
-+++ coreutils-8.22/gnulib-tests/gnulib.mk	2013-12-14 12:17:30.570735914 +0100
-@@ -259,9 +259,9 @@
- 
- ## begin gnulib module chown-tests
- 
--TESTS += test-chown
--check_PROGRAMS += test-chown
--test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
-+#TESTS += test-chown
-+#check_PROGRAMS += test-chown
-+#test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
- EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
- 
- ## end   gnulib module chown-tests
-@@ -460,9 +460,9 @@
- 
- ## begin gnulib module fchownat-tests
- 
--TESTS += test-fchownat
--check_PROGRAMS += test-fchownat
--test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
-+#TESTS += test-fchownat
-+#check_PROGRAMS += test-fchownat
-+#test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
- EXTRA_DIST += nap.h test-chown.h test-lchown.h test-fchownat.c signature.h macros.h
- 
- ## end   gnulib module fchownat-tests
-@@ -527,10 +527,10 @@
- 
- ## begin gnulib module fdutimensat-tests
- 
--TESTS += test-fdutimensat
--check_PROGRAMS += test-fdutimensat
--test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
--  $(LIB_NANOSLEEP) @LIBINTL@
-+#TESTS += test-fdutimensat
-+#check_PROGRAMS += test-fdutimensat
-+#test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
-+#  $(LIB_NANOSLEEP) @LIBINTL@
- EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-fdutimensat.c macros.h
- 
- ## end   gnulib module fdutimensat-tests
-@@ -782,9 +782,9 @@
- 
- ## begin gnulib module futimens-tests
- 
--TESTS += test-futimens
--check_PROGRAMS += test-futimens
--test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
-+#TESTS += test-futimens
-+#check_PROGRAMS += test-futimens
-+#test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
- EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
- 
- ## end   gnulib module futimens-tests
-@@ -1107,9 +1107,9 @@
- 
- ## begin gnulib module lchown-tests
- 
--TESTS += test-lchown
--check_PROGRAMS += test-lchown
--test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
-+#TESTS += test-lchown
-+#check_PROGRAMS += test-lchown
-+#test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
- EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
- 
- ## end   gnulib module lchown-tests
-@@ -2428,9 +2428,9 @@
- 
- ## begin gnulib module utimens-tests
- 
--TESTS += test-utimens
--check_PROGRAMS += test-utimens
--test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
-+#TESTS += test-utimens
-+#check_PROGRAMS += test-utimens
-+#test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
- EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
- 
- ## end   gnulib module utimens-tests
---- coreutils-8.23/tests/local.mk~	2015-01-04 16:12:22.000000000 +0000
-+++ coreutils-8.23/tests/local.mk	2015-01-04 16:44:31.705861487 +0000
-@@ -163,7 +163,6 @@
-   tests/rm/cycle.sh				\
-   tests/cp/link-heap.sh				\
-   tests/cp/no-ctx.sh				\
--  tests/misc/tty-eof.pl				\
-   tests/tail-2/inotify-hash-abuse.sh		\
-   tests/tail-2/inotify-hash-abuse2.sh		\
-   tests/tail-2/F-vs-missing.sh			\
-@@ -339,7 +339,6 @@
-   tests/misc/sort-unique-segv.sh		\
-   tests/misc/sort-version.sh			\
-   tests/misc/sort-NaN-infloop.sh		\
--  tests/misc/sort-u-FMR.sh			\
-   tests/split/filter.sh				\
-   tests/split/suffix-auto-length.sh		\
-   tests/split/suffix-length.sh			\
-@@ -468,7 +467,6 @@
-   tests/df/unreadable.sh			\
-   tests/df/total-unprocessed.sh			\
-   tests/df/no-mtab-status.sh			\
--  tests/df/skip-duplicates.sh			\
-   tests/df/skip-rootfs.sh			\
-   tests/dd/ascii.sh				\
-   tests/dd/direct.sh				\

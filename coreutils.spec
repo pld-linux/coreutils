@@ -7,12 +7,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.25
+Version:	8.27
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	070e43ba7f618d747414ef56ab248a48
+# Source0-md5:	502795792c212932365e077946d353ae
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -174,7 +174,7 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 	--enable-install-program=arch \
 	--enable-no-install-program=hostname,kill,uptime
 
-%{__make}
+%{__make} -j1
 
 %if %{with tests}
 sed -i -e 's#COLUMNS##g' tests/envvar-check
@@ -263,6 +263,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /bin/uname
 %attr(755,root,root) /bin/unlink
 %attr(755,root,root) %{_bindir}/[
+%attr(755,root,root) %{_bindir}/b2sum
 %attr(755,root,root) %{_bindir}/base32
 %attr(755,root,root) %{_bindir}/base64
 %attr(755,root,root) %{_bindir}/chcon
@@ -344,6 +345,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/coreutils
 %attr(755,root,root) %{_libdir}/coreutils/libstdbuf.so
 %{_mandir}/man1/arch.1*
+%{_mandir}/man1/b2sum.1*
 %{_mandir}/man1/base32.1*
 %{_mandir}/man1/base64.1*
 %{_mandir}/man1/basename.1*
