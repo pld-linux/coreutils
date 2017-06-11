@@ -122,7 +122,7 @@ Programy zawarte w tym pakiecie to:
 %endif
 %patch10 -p1
 
-mv man/pt_BR man/pt
+%{__mv} man/pt_BR man/pt
 
 %{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
 
@@ -188,16 +188,16 @@ install -d $RPM_BUILD_ROOT{/bin,/sbin,%{_bindir},%{_sbindir},/etc/shrc.d}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_bindir}/{arch,basename,cat,chgrp,chmod,chown,cp,date,dd,\
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/{arch,basename,cat,chgrp,chmod,chown,cp,date,dd,\
 df,echo,false,id,link,ln,ls,mkdir,mknod,mktemp,mv,nice,printf,pwd,readlink,rm,rmdir,\
 sleep,sort,stat,stty,sync,touch,true,unlink,uname} $RPM_BUILD_ROOT/bin
 
 %if %{with multicall}
-mv $RPM_BUILD_ROOT{%{_bindir},/bin}/coreutils
+%{__mv} $RPM_BUILD_ROOT{%{_bindir},/bin}/coreutils
 ln -s ../../bin/coreutils $RPM_BUILD_ROOT%{_bindir}
 %endif
 
-mv $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/chroot $RPM_BUILD_ROOT%{_sbindir}
 
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}
