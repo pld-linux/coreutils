@@ -1,8 +1,8 @@
 #
 # Conditional build:
-%bcond_with	advcopy	# progress bar in cp (orphaned patch)
+%bcond_with	advcopy		# progress bar in cp (orphaned patch)
 %bcond_with	multicall	# Compile all the tools in a single binary
-%bcond_without	tests	# do not perform "make test check"
+%bcond_with	tests		# do not perform "make test check"
 
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
