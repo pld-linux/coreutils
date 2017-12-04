@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_with	advcopy		# progress bar in cp (orphaned patch)
 %bcond_with	multicall	# Compile all the tools in a single binary
-%bcond_with	tests		# do not perform "make test check"
+%bcond_with	tests		# unit tests running
 
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
@@ -36,10 +36,10 @@ Patch10:	tests.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
-BuildRequires:	autoconf >= 2.64
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11.2
 BuildRequires:	gcc >= 5:3.2
-BuildRequires:	gettext-tools >= 0.18.1
+BuildRequires:	gettext-tools >= 0.19.2
 BuildRequires:	gmp-devel
 BuildRequires:	help2man
 BuildRequires:	libcap-devel
