@@ -45,6 +45,7 @@ BuildRequires:	help2man
 BuildRequires:	libcap-devel
 BuildRequires:	libselinux-devel
 BuildRequires:	rpmbuild(find_lang) >= 1.24
+BuildRequires:	smack-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.2
 BuildRequires:	xz
