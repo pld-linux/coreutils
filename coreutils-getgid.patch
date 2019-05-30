@@ -1,15 +1,15 @@
 diff -ruN coreutils-8.27.orig/README coreutils-8.27/README
 --- coreutils-8.27.orig/README	2017-01-21 15:53:43.000000000 +0100
 +++ coreutils-8.27/README	2017-06-10 20:34:17.945208906 +0200
-@@ -9,7 +9,7 @@
+@@ -9,7 +9,7 @@ The programs that can be built with this
  
-   [ arch b2sum base32 base64 basename cat chcon chgrp chmod chown chroot cksum
-   comm coreutils cp csplit cut date dd df dir dircolors dirname du echo env
--  expand expr factor false fmt fold groups head hostid hostname id install
-+  expand expr factor false fmt fold getgid groups head hostid hostname id install
-   join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nice nl
-   nohup nproc numfmt od paste pathchk pinky pr printenv printf ptx pwd
-   readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum sha384sum
+   [ arch b2sum base32 base64 basename basenc cat chcon chgrp chmod chown
+   chroot cksum comm coreutils cp csplit cut date dd df dir dircolors dirname
+-  du echo env expand expr factor false fmt fold groups head hostid hostname
++  du echo env expand expr factor false fmt fold getgid groups head hostid hostname
+   id install join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp
+   mv nice nl nohup nproc numfmt od paste pathchk pinky pr printenv printf ptx
+   pwd readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum
 diff -ruN coreutils-8.27.orig/build-aux/gen-lists-of-programs.sh coreutils-8.27/build-aux/gen-lists-of-programs.sh
 --- coreutils-8.27.orig/build-aux/gen-lists-of-programs.sh	2017-02-10 06:53:47.000000000 +0100
 +++ coreutils-8.27/build-aux/gen-lists-of-programs.sh	2017-06-10 20:32:44.126465035 +0200
@@ -59,27 +59,27 @@ diff -ruN coreutils-8.27.orig/man/pl/getgid.1 coreutils-8.27/man/pl/getgid.1
 --- coreutils-8.27.orig/man/pl/getgid.1	1970-01-01 01:00:00.000000000 +0100
 +++ coreutils-8.27/man/pl/getgid.1	2017-06-10 20:32:44.117465059 +0200
 @@ -0,0 +1,22 @@
-+.TH GETGID "1" "Pa¼dziernik 2002" "getgid (coreutils) 4.5.3" "Polecenia u¿ytkownika"
++.TH GETGID "1" "Pa?dziernik 2002" "getgid (coreutils) 4.5.3" "Polecenia u?ytkownika"
 +.SH NAZWA
 +getgid \- wypisuje identyfikator podanej grupy
-+.SH SK£ADNIA
++.SH SK?ADNIA
 +.B getgid
 +\fINAZWA-GRUPY\fR
 +.SH OPIS
 +.PP
 +Wypisuje identyfikator grupy NAZWA-GRUPY.
 +.PP
-+Bez ¿adnych opcji podaje sposób u¿ycia.
++Bez ?adnych opcji podaje spos?b u?ycia.
 +.SH AUTOR
 +Napisane przez Artura Frysiaka.
-+.SH "ZG£ASZANIE B£ÊDÓW"
-+B³êdy proszê zg³aszaæ (w jêz. polskim lub angielskim) pod <feedback@pld-linux.org>.
++.SH "ZG?ASZANIE B??D?W"
++B??dy prosz? zg?asza? (w j?z. polskim lub angielskim) pod <feedback@pld-linux.org>.
 +.SH COPYRIGHT
 +Copyright \(co 1999 Artur Frysiak.
 +.br
 +This is free software; see the source for copying conditions.  There is NO
 +warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-+.SH ZOBACZ TAK¯E
++.SH ZOBACZ TAK?E
 +.BR id (1)
 diff -ruN coreutils-8.27.orig/po/POTFILES.in coreutils-8.27/po/POTFILES.in
 --- coreutils-8.27.orig/po/POTFILES.in	2017-02-18 04:37:23.000000000 +0100

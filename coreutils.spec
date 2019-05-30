@@ -7,12 +7,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.30
+Version:	8.31
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	ab06d68949758971fe744db66b572816
+# Source0-md5:	0009a224d8e288e8ec406ef0161f9293
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -108,7 +108,7 @@ Programy zawarte w tym pakiecie to:
 %prep
 %setup -q -a1
 %patch8 -p1
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -267,6 +267,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/b2sum
 %attr(755,root,root) %{_bindir}/base32
 %attr(755,root,root) %{_bindir}/base64
+%attr(755,root,root) %{_bindir}/basenc
 %attr(755,root,root) %{_bindir}/chcon
 %attr(755,root,root) %{_bindir}/cksum
 %attr(755,root,root) %{_bindir}/comm
@@ -349,6 +350,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/b2sum.1*
 %{_mandir}/man1/base32.1*
 %{_mandir}/man1/base64.1*
+%{_mandir}/man1/basenc.1*
 %{_mandir}/man1/basename.1*
 %{_mandir}/man1/cat.1*
 %{_mandir}/man1/chcon.1*

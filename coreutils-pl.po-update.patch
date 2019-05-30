@@ -1,307 +1,51 @@
-diff -urN coreutils-8.30.org/po/pl.po coreutils-8.30/po/pl.po
---- coreutils-8.30.org/po/pl.po	2018-07-02 02:59:42.000000000 +0200
-+++ coreutils-8.30/po/pl.po	2018-07-07 17:51:59.501517733 +0200
+diff -ur -x .svn -x .git -x .bzr -x CVS -urN coreutils-8.31.org/po/pl.po coreutils-8.31/po/pl.po
+--- coreutils-8.31.org/po/pl.po	2019-03-11 00:38:30.000000000 +0100
++++ coreutils-8.31/po/pl.po	2019-05-30 10:08:02.921208715 +0200
 @@ -16,7 +16,7 @@
  msgstr ""
- "Project-Id-Version: coreutils 8.30-pre1\n"
+ "Project-Id-Version: coreutils 8.30.79\n"
  "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
--"POT-Creation-Date: 2018-07-01 17:59-0700\n"
-+"POT-Creation-Date: 2018-06-24 21:56-0700\n"
- "PO-Revision-Date: 2018-06-26 17:30+0200\n"
+-"POT-Creation-Date: 2019-03-10 16:38-0700\n"
++"POT-Creation-Date: 2019-03-04 01:47-0800\n"
+ "PO-Revision-Date: 2019-03-09 17:00+0100\n"
  "Last-Translator: Rafał Maszkowski <rzm@icm.edu.pl>\n"
  "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
-@@ -57,7 +57,7 @@
- msgid "write error"
- msgstr "błąd zapisu"
+@@ -4441,32 +4441,32 @@
+ msgid "failed to set signal process mask"
+ msgstr "nie udało się ustawić maski sygnałów dla procesu"
  
--#: lib/copy-acl.c:54 src/copy.c:1393 src/copy.c:2908
-+#: lib/copy-acl.c:54 src/copy.c:1393 src/copy.c:2901
- #, c-format
- msgid "preserving permissions for %s"
- msgstr "zachowanie uprawnień %s"
-@@ -278,7 +278,7 @@
- msgid "cannot change permissions of %s"
- msgstr "nie można zmienić uprawnień do %s"
- 
--#: lib/mkdir-p.c:189 src/copy.c:2523 src/install.c:740 src/install.c:753
-+#: lib/mkdir-p.c:189 src/copy.c:2516 src/install.c:740 src/install.c:753
- #, c-format
- msgid "cannot create directory %s"
- msgstr "nie można utworzyć katalogu %s"
-@@ -447,7 +447,7 @@
- msgid "^[nN]"
- msgstr "^[nN]"
- 
--#: lib/set-acl.c:46 src/copy.c:2546 src/cp.c:514
-+#: lib/set-acl.c:46 src/copy.c:2539 src/cp.c:514
- #, c-format
- msgid "setting permissions for %s"
- msgstr "nie można ustawić uprawnień do %s"
-@@ -1876,7 +1876,7 @@
- msgid "clearing permissions for %s"
- msgstr "kasowanie uprawnień dla %s"
- 
--#: src/copy.c:841 src/copy.c:2754 src/cp.c:318
-+#: src/copy.c:841 src/copy.c:2747 src/cp.c:318
- #, c-format
- msgid "failed to preserve ownership for %s"
- msgstr "nie udało się zachować własności %s"
-@@ -1924,13 +1924,13 @@
- msgid "skipping file %s, as it was replaced while being copied"
- msgstr "plik %s został ominięty, bo został zmieniony w trakcie kopiowania"
- 
--#: src/copy.c:1094 src/copy.c:2184 src/remove.c:263 src/remove.c:280
-+#: src/copy.c:1094 src/copy.c:2177 src/remove.c:263 src/remove.c:280
- #: src/remove.c:406 src/remove.c:432
- #, c-format
- msgid "cannot remove %s"
- msgstr "nie można usunąć %s"
- 
--#: src/copy.c:1099 src/copy.c:1796 src/copy.c:2189 src/remove.c:376
-+#: src/copy.c:1099 src/copy.c:1796 src/copy.c:2182 src/remove.c:376
- #, c-format
- msgid "removed %s\n"
- msgstr "usunięty %s\n"
-@@ -1952,7 +1952,7 @@
- msgid "failed to clone %s from %s"
- msgstr "nie udało się sklonować %s z %s"
- 
--#: src/copy.c:1323 src/copy.c:2829
-+#: src/copy.c:1323 src/copy.c:2822
- #, c-format
- msgid "preserving times for %s"
- msgstr "zachowanie czasu %s"
-@@ -1993,7 +1993,7 @@
- msgid "cannot create hard link %s to %s"
- msgstr "nie można utworzyć dowiązania zwykłego %s do %s"
- 
--#: src/copy.c:1891 src/copy.c:1963 src/copy.c:2534 src/copy.c:2895
-+#: src/copy.c:1891 src/copy.c:1956 src/copy.c:2527 src/copy.c:2888
- #: src/find-mount-point.c:84 src/install.c:702 src/realpath.c:146
- #: src/stat.c:1389 src/truncate.c:338
- #, c-format
-@@ -2010,156 +2010,156 @@
- msgid "omitting directory %s"
- msgstr "katalog %s został pominięty"
- 
--#: src/copy.c:1924
-+#: src/copy.c:1917
- #, c-format
- msgid "warning: source file %s specified more than once"
- msgstr "uwaga: plik źródłowy %s podany więcej niż raz"
- 
--#: src/copy.c:1979 src/ln.c:263
-+#: src/copy.c:1972 src/ln.c:263
- #, c-format
- msgid "%s and %s are the same file"
- msgstr "%s i %s to ten sam plik"
- 
--#: src/copy.c:2069
-+#: src/copy.c:2062
- #, c-format
- msgid "cannot overwrite non-directory %s with directory %s"
- msgstr "nie można zamazać nie-katalogu %s katalogiem %s"
- 
--#: src/copy.c:2087 src/ln.c:231
-+#: src/copy.c:2080 src/ln.c:231
- #, c-format
- msgid "will not overwrite just-created %s with %s"
- msgstr "nie można zamazać właśnie utworzonego %s plikiem %s"
- 
--#: src/copy.c:2105
-+#: src/copy.c:2098
- #, c-format
- msgid "cannot overwrite directory %s with non-directory"
- msgstr "nie można zamazać katalogu %s nie-katalogiem"
- 
--#: src/copy.c:2119
-+#: src/copy.c:2112
- #, c-format
- msgid "cannot move directory onto non-directory: %s -> %s"
- msgstr "nie można przenieść katalogu do nie-katalogu: %s -> %s"
- 
--#: src/copy.c:2146
-+#: src/copy.c:2139
- #, c-format
- msgid "backing up %s might destroy source;  %s not moved"
- msgstr ""
- "utworzenie kopii zapasowej %s mogłoby zniszczyć żródło; %s nie został "
- "przeniesiony"
- 
--#: src/copy.c:2147
-+#: src/copy.c:2140
- #, c-format
- msgid "backing up %s might destroy source;  %s not copied"
- msgstr ""
- "utworzenie kopii zapasowej %s mogłoby zniszczyć żródło; %s nie został "
- "skopiowany"
- 
--#: src/copy.c:2168 src/ln.c:293
-+#: src/copy.c:2161 src/ln.c:293
- #, c-format
- msgid "cannot backup %s"
- msgstr "nie można utworzyć kopii zapasowej %s"
- 
--#: src/copy.c:2223
-+#: src/copy.c:2216
- #, c-format
- msgid "will not copy %s through just-created symlink %s"
- msgstr ""
- "plik %s nie będzie skopiowany poprzez właśnie utworzone dowiązanie "
- "symboliczne %s"
- 
--#: src/copy.c:2303
-+#: src/copy.c:2296
- #, c-format
- msgid "cannot copy a directory, %s, into itself, %s"
- msgstr "nie można skopiować katalogu %s do siebie samego %s"
- 
--#: src/copy.c:2311
-+#: src/copy.c:2304
- #, c-format
- msgid "warning: source directory %s specified more than once"
- msgstr "uwaga: katalog źródłowy %s podany więcej niż raz"
- 
--#: src/copy.c:2337
-+#: src/copy.c:2330
- #, c-format
- msgid "will not create hard link %s to directory %s"
- msgstr "nie można utworzyć dowiązania zwykłego %s do katalogu %s"
- 
--#: src/copy.c:2361
-+#: src/copy.c:2354
- #, c-format
- msgid "renamed "
- msgstr "przemianowany "
- 
--#: src/copy.c:2399
-+#: src/copy.c:2392
- #, c-format
- msgid "cannot move %s to a subdirectory of itself, %s"
- msgstr "nie można przenieść %s do własnego podkatalogu %s"
- 
--#: src/copy.c:2442
-+#: src/copy.c:2435
- #, c-format
- msgid "cannot move %s to %s"
- msgstr "nie można przenieść %s do %s"
- 
--#: src/copy.c:2458
-+#: src/copy.c:2451
- #, c-format
- msgid "inter-device move failed: %s to %s; unable to remove target"
- msgstr ""
- "nie udało się przeniesienie między urządzeniami: %s do %s; nie udało się "
- "usunać pliku docelowego"
- 
--#: src/copy.c:2466
-+#: src/copy.c:2459
- #, c-format
- msgid "copied "
- msgstr "skopiowany "
- 
--#: src/copy.c:2503
-+#: src/copy.c:2496
- #, c-format
- msgid "cannot copy cyclic symbolic link %s"
- msgstr "nie można skopiować cyklicznego dowiązania symbolicznego %s"
- 
--#: src/copy.c:2565
-+#: src/copy.c:2558
- #, c-format
- msgid "created directory %s\n"
- msgstr "utworzony katalog %s\n"
- 
--#: src/copy.c:2628
-+#: src/copy.c:2621
- #, c-format
- msgid "%s: can make relative symbolic links only in current directory"
- msgstr ""
- "%s: można zrobić tylko względne dowiązanie symboliczne w bieżącym katalogu"
- 
--#: src/copy.c:2637
-+#: src/copy.c:2630
- #, c-format
- msgid "cannot create symbolic link %s to %s"
- msgstr "nie można utworzyć dowiązania symbolicznego %s do %s"
- 
--#: src/copy.c:2691 src/mkfifo.c:170
-+#: src/copy.c:2684 src/mkfifo.c:170
- #, c-format
- msgid "cannot create fifo %s"
- msgstr "nie można utworzyć potoku %s"
- 
--#: src/copy.c:2700
-+#: src/copy.c:2693
- #, c-format
- msgid "cannot create special file %s"
- msgstr "nie można utworzyć pliku specjalnego %s"
- 
--#: src/copy.c:2711 src/ls.c:3455 src/stat.c:1071
-+#: src/copy.c:2704 src/ls.c:3455 src/stat.c:1071
- #, c-format
- msgid "cannot read symbolic link %s"
- msgstr "nie można przeczytać dowiązania symbolicznego %s"
- 
--#: src/copy.c:2738
-+#: src/copy.c:2731
- #, c-format
- msgid "cannot create symbolic link %s"
- msgstr "nie można utworzyć dowiązania symbolicznego %s"
- 
--#: src/copy.c:2770
-+#: src/copy.c:2763
- #, c-format
- msgid "%s has unknown file type"
- msgstr "%s to nieznany typ pliku"
- 
--#: src/copy.c:2935 src/ln.c:362
-+#: src/copy.c:2928 src/ln.c:362
- #, c-format
- msgid "cannot un-backup %s"
- msgstr "nie można przywrócić kopii zapasowej %s"
- 
--#: src/copy.c:2939
-+#: src/copy.c:2932
- #, c-format
- msgid "%s -> %s (unbackup)\n"
- msgstr "%s -> %s (przywrócenie kopii zapasowej)\n"
-@@ -4294,32 +4294,32 @@
- msgid "no terminating quote in -S string"
- msgstr "brak zamknięcia cudzysłowu w napisie przy -S"
- 
--#: src/env.c:573
-+#: src/env.c:574
+-#: src/env.c:857
++#: src/env.c:844
  #, c-format
  msgid "invalid option -- '%c'"
  msgstr "błędna opcja -- „%c”"
  
--#: src/env.c:574 src/env.c:658
-+#: src/env.c:576 src/env.c:660
+-#: src/env.c:858 src/env.c:949
++#: src/env.c:845 src/env.c:936
  #, c-format
  msgid "use -[v]S to pass options in shebang lines"
  msgstr "użyj -[v]S do przekazania opcji do linii z #!"
  
--#: src/env.c:607
-+#: src/env.c:609
+-#: src/env.c:891
++#: src/env.c:878
  #, c-format
  msgid "cannot set %s"
  msgstr "nie można ustawić %s"
  
--#: src/env.c:617
-+#: src/env.c:619
+-#: src/env.c:901
++#: src/env.c:888
  #, c-format
  msgid "cannot specify --null (-0) with command"
  msgstr "nie można podać --null (-0) razem z poleceniem"
  
--#: src/env.c:623
-+#: src/env.c:625
+-#: src/env.c:907
++#: src/env.c:894
  #, c-format
  msgid "must specify command with --chdir (-C)"
  msgstr "razem z --chdir (-C) musi być podane polecenie"
  
--#: src/env.c:641
-+#: src/env.c:643
+-#: src/env.c:932
++#: src/env.c:919
  #, c-format
  msgid "cannot change directory to %s"
  msgstr "nie można zmienić katalogu na %s"
