@@ -1,7 +1,6 @@
-diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.texi
---- coreutils-8.27.orig/doc/coreutils.texi	2017-03-09 02:24:43.000000000 +0100
-+++ coreutils-8.27/doc/coreutils.texi	2017-06-10 21:44:38.201424527 +0200
-@@ -22,122 +22,114 @@
+--- coreutils-8.31/doc/coreutils.texi.orig	2019-03-07 06:59:27.000000000 +0100
++++ coreutils-8.31/doc/coreutils.texi	2019-05-31 16:57:00.439962635 +0200
+@@ -22,123 +22,112 @@
  @syncodeindex pg cp
  @syncodeindex vr cp
  
@@ -27,6 +26,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
 -* base32: (coreutils)base32 invocation.         Base32 encode/decode data.
 -* base64: (coreutils)base64 invocation.         Base64 encode/decode data.
 -* basename: (coreutils)basename invocation.     Strip directory and suffix.
+-* basenc: (coreutils)basenc invocation.         Encoding/decoding of data.
 -* cat: (coreutils)cat invocation.               Concatenate and write files.
 -* chcon: (coreutils)chcon invocation.           Change SELinux CTX of files.
 -* chgrp: (coreutils)chgrp invocation.           Change file groups.
@@ -129,6 +129,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
 +* base32: (coreutils)base32.		Base32 encode/decode data
 +* base64: (coreutils)base64.		Base64 encode/decode data
 +* basename: (coreutils)basename.	Strip directory and suffix
++* basenc: (coreutils)basenc.		Encoding/decoding of data
 +* cat: (coreutils)cat.			Concatenate and write files
 +* chcon: (coreutils)chcon.		Change SELinux CTX of files
 +* chgrp: (coreutils)chgrp.		Change file groups
@@ -158,11 +159,9 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
 +* groups: (coreutils)groups.		Print group names a user is in
 +* head: (coreutils)head.		Output the first part of files
 +* hostid: (coreutils)hostid.		Print numeric host identifier
-+* hostname: (coreutils)hostname.	Print or set system name
 +* id: (coreutils)id.			Print user identity
 +* install: (coreutils)install.		Copy files and set attributes
 +* join: (coreutils)join.		Join lines on a common field
-+* kill: (coreutils)kill.		Send a signal to processes
 +* link: (coreutils)link.		Make hard links between files
 +* ln: (coreutils)ln.			Make links between files
 +* logname: (coreutils)logname.		Print current login name
@@ -178,7 +177,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
 +* nohup: (coreutils)nohup.		Immunize to hangups
 +* nproc: (coreutils)nproc.		Print the number of processors
 +* numfmt: (coreutils)numfmt.		Reformat numbers
-+* od: (coreutils)od.			Dump files in octal, etc
++* od: (coreutils)od.			Dump files in octal, etc.
 +* paste: (coreutils)paste.		Merge lines of files
 +* pathchk: (coreutils)pathchk.		Check file name portability
 +* pr: (coreutils)pr.			Paginate or columnate files
@@ -219,7 +218,6 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
 +* unexpand: (coreutils)unexpand.	Convert spaces to tabs
 +* uniq: (coreutils)uniq.		Uniquify files
 +* unlink: (coreutils)unlink.		Removal via unlink(2)
-+* uptime: (coreutils)uptime.		Print uptime and load
 +* users: (coreutils)users.		Print current user names
 +* vdir: (coreutils)vdir.		List directories verbosely
 +* wc: (coreutils)wc.			Line, word, and byte counts
@@ -229,7 +227,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @end direntry
  
  @copying
-@@ -202,10 +194,9 @@
+@@ -203,10 +192,9 @@
  * File name manipulation::       dirname basename pathchk mktemp realpath
  * Working context::              pwd stty printenv tty
  * User information::             id logname whoami groups users who
@@ -241,7 +239,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  * Delaying::                     sleep
  * Numeric operations::           factor numfmt seq
  * File permissions::             Access modes
-@@ -236,44 +227,44 @@
+@@ -237,45 +225,45 @@
  
  Output of entire files
  
@@ -251,12 +249,14 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
 -* od invocation::                Write files in octal or other formats
 -* base32 invocation::            Transform data into printable data
 -* base64 invocation::            Transform data into printable data
+-* basenc invocation::            Transform data into printable data
 +* cat::                          Concatenate and write files
 +* tac::                          Concatenate and write files in reverse
 +* nl::                           Number lines and write files
 +* od::                           Write files in octal or other formats
 +* base32::                       Transform data into printable data
 +* base64::                       Transform data into printable data
++* basenc::                       Transform data into printable data
  
  Formatting file contents
  
@@ -311,7 +311,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @command{ptx}: Produce permuted indexes
  
-@@ -285,15 +276,15 @@
+@@ -287,15 +275,15 @@
  
  Operating on fields
  
@@ -333,7 +333,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @command{tr}: Translate, squeeze, and/or delete characters
  
-@@ -303,10 +294,10 @@
+@@ -305,10 +293,10 @@
  
  Directory listing
  
@@ -348,7 +348,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @command{ls}:  List directory contents
  
-@@ -319,51 +310,51 @@
+@@ -321,51 +309,51 @@
  
  Basic operations
  
@@ -430,7 +430,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @command{test}: Check file types and compare values
  
-@@ -382,22 +373,22 @@
+@@ -384,22 +372,22 @@
  
  Redirection
  
@@ -463,7 +463,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @command{stty}: Print or change terminal characteristics
  
-@@ -411,22 +402,20 @@
+@@ -413,22 +401,20 @@
  
  User information
  
@@ -497,7 +497,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @command{date}: Print or set system date and time
  
-@@ -441,31 +430,27 @@
+@@ -443,31 +429,27 @@
  
  SELinux context
  
@@ -541,7 +541,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  
  File timestamps
-@@ -1566,15 +1551,15 @@
+@@ -1590,16 +1572,16 @@
  in some way.
  
  @menu
@@ -551,12 +551,14 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
 -* od invocation::               Write files in octal or other formats.
 -* base32 invocation::           Transform data into printable data.
 -* base64 invocation::           Transform data into printable data.
+-* basenc invocation::           Transform data into printable data.
 +* cat::                         Concatenate and write files.
 +* tac::                         Concatenate and write files in reverse.
 +* nl::                          Number lines and write files.
 +* od::                          Write files in octal or other formats.
 +* base32::                      Transform data into printable data.
 +* base64::                      Transform data into printable data.
++* basenc::                      Transform data into printable data.
  @end menu
  
 -@node cat invocation
@@ -564,8 +566,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{cat}: Concatenate and write files
  
  @pindex cat
-@@ -1675,7 +1660,7 @@
- @end smallexample
+@@ -1700,7 +1682,7 @@
+ @end example
  
  
 -@node tac invocation
@@ -573,7 +575,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{tac}: Concatenate and write files in reverse
  
  @pindex tac
-@@ -1733,7 +1718,7 @@
+@@ -1758,7 +1740,7 @@
  @end example
  
  
@@ -582,7 +584,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{nl}: Number lines and write files
  
  @pindex nl
-@@ -1896,7 +1881,7 @@
+@@ -1921,7 +1903,7 @@
  @exitstatus
  
  
@@ -591,7 +593,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{od}: Write files in octal or other formats
  
  @pindex od
-@@ -2162,7 +2147,7 @@
+@@ -2187,7 +2169,7 @@
  @exitstatus
  
  
@@ -600,7 +602,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{base32}: Transform data into printable data
  
  @pindex base32
-@@ -2172,10 +2157,10 @@
+@@ -2197,10 +2179,10 @@
  into (or from) base32 encoded form.  The base32 encoded form uses
  printable ASCII characters to represent binary data.
  The usage and options of this command are precisely the
@@ -613,7 +615,25 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{base64}: Transform data into printable data
  
  @pindex base64
-@@ -2244,13 +2229,13 @@
+@@ -2260,7 +2242,7 @@
+ 
+ @exitstatus
+ 
+-@node basenc invocation
++@node basenc
+ @section @command{basenc}: Transform data into printable data
+ 
+ @pindex basenc
+@@ -2280,7 +2262,7 @@
+ The @var{encoding} argument is required. If @var{file} is omitted,
+ reads input from stdin. The @option{-w/--wrap},@option{-i/--ignore-garbage},
+ @option{-d/--decode} options of this command are precisely the same as
+-for @command{base64}. @xref{base64 invocation}.
++for @command{base64}. @xref{base64}.
+ 
+ 
+ Supported @var{encoding}s are:
+@@ -2395,13 +2377,13 @@
  These commands reformat the contents of files.
  
  @menu
@@ -631,7 +651,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{fmt}: Reformat paragraph text
  
  @pindex fmt
-@@ -2354,7 +2339,7 @@
+@@ -2505,7 +2487,7 @@
  
  @exitstatus
  
@@ -640,7 +660,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{pr}: Paginate or columnate files for printing
  
  @pindex pr
-@@ -2464,7 +2449,7 @@
+@@ -2615,7 +2597,7 @@
  @cindex time formats
  @cindex formatting times
  Format header dates using @var{format}, using the same conventions as
@@ -649,7 +669,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  Except for directives, which start with
  @samp{%}, characters in @var{format} are printed unchanged.  You can use
  this option to specify an arbitrary string in place of the header date,
-@@ -2694,7 +2679,7 @@
+@@ -2845,7 +2827,7 @@
  @exitstatus
  
  
@@ -658,7 +678,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{fold}: Wrap input lines to fit in specified width
  
  @pindex fold
-@@ -2761,13 +2746,13 @@
+@@ -2912,13 +2894,13 @@
  These commands output pieces of the input.
  
  @menu
@@ -677,7 +697,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{head}: Output the first part of files
  
  @pindex head
-@@ -2846,7 +2831,7 @@
+@@ -2997,7 +2979,7 @@
  @exitstatus
  
  
@@ -686,7 +706,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{tail}: Output the last part of files
  
  @pindex tail
-@@ -3097,7 +3082,7 @@
+@@ -3247,7 +3229,7 @@
  @exitstatus
  
  
@@ -695,7 +715,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{split}: Split a file into pieces.
  
  @pindex split
-@@ -3346,7 +3331,7 @@
+@@ -3502,7 +3484,7 @@
  @end example
  
  
@@ -704,7 +724,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{csplit}: Split a file into context-determined pieces
  
  @pindex csplit
-@@ -3562,17 +3547,17 @@
+@@ -3721,17 +3703,17 @@
  contents of files.
  
  @menu
@@ -729,7 +749,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{wc}: Print newline, word, and byte counts
  
  @pindex wc
-@@ -3693,7 +3678,7 @@
+@@ -3852,7 +3834,7 @@
  @exitstatus
  
  
@@ -738,7 +758,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{sum}: Print checksum and block counts
  
  @pindex sum
-@@ -3744,7 +3729,7 @@
+@@ -3903,7 +3885,7 @@
  @exitstatus
  
  
@@ -747,7 +767,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{cksum}: Print CRC checksum and byte counts
  
  @pindex cksum
-@@ -3778,7 +3763,7 @@
+@@ -3937,7 +3919,7 @@
  @exitstatus
  
  
@@ -756,7 +776,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{b2sum}: Print or check BLAKE2 digests
  
  @pindex b2sum
-@@ -3790,7 +3775,7 @@
+@@ -3949,7 +3931,7 @@
  
  @command{b2sum} computes a 512-bit checksum for each specified
  @var{file}.  The same usage and options as the @command{md5sum}
@@ -765,7 +785,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  In addition @command{b2sum} supports the following options.
  
  @table @samp
-@@ -3805,7 +3790,7 @@
+@@ -3964,7 +3946,7 @@
  as the length is automatically determined when checking.
  @end table
  
@@ -774,7 +794,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{md5sum}: Print or check MD5 digests
  
  @pindex md5sum
-@@ -3828,7 +3813,7 @@
+@@ -3987,7 +3969,7 @@
  to modify certain files, including digital certificates, so that they
  appear valid when signed with an \hash\ digest.  For more secure hashes,
  consider using SHA-2, or the newer @command{b2sum} command.
@@ -783,7 +803,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @end macro
  @weakHash{MD5}
  
-@@ -3968,7 +3953,7 @@
+@@ -4130,7 +4112,7 @@
  @exitstatus
  
  
@@ -792,7 +812,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{sha1sum}: Print or check SHA-1 digests
  
  @pindex sha1sum
-@@ -3980,7 +3965,7 @@
+@@ -4142,7 +4124,7 @@
  
  @command{sha1sum} computes a 160-bit checksum for each specified
  @var{file}.  The usage and options of this command are precisely the
@@ -801,7 +821,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @weakHash{SHA-1}
  
-@@ -4016,7 +4001,7 @@
+@@ -4178,7 +4160,7 @@
  collectively known as the SHA-2 hashes.  The usage and options of
  these commands are precisely the same as for @command{md5sum}
  and @command{sha1sum}.
@@ -810,7 +830,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  
  @node Operating on sorted files
-@@ -4028,16 +4013,16 @@
+@@ -4190,16 +4172,16 @@
  These commands work with (or produce) sorted files.
  
  @menu
@@ -834,7 +854,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{sort}: Sort text files
  
  @pindex sort
-@@ -4327,7 +4312,7 @@
+@@ -4489,7 +4471,7 @@
  Sort by hashing the input keys and then sorting the hash values.
  Choose the hash function at random, ensuring that it is free of
  collisions so that differing keys have differing hash values.  This is
@@ -843,7 +863,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  except that keys with the same value sort together.
  
  If multiple random sort fields are specified, the same random hash
-@@ -4525,7 +4510,7 @@
+@@ -4687,7 +4669,7 @@
  @var{n} is set to the number of available processors, but limited
  to 8, as there are diminishing performance gains after that.
  Note also that using @var{n} threads increases the memory usage by
@@ -852,7 +872,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @item -u
  @itemx --unique
-@@ -4543,7 +4528,7 @@
+@@ -4705,7 +4687,7 @@
  this equivalence does not extend to arbitrary @command{sort} options.
  For example, @code{sort -n -u} inspects only the value of the initial
  numeric string when checking for uniqueness, whereas @code{sort -n |
@@ -861,7 +881,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @optZeroTerminated
  @macro newlineFieldSeparator
-@@ -4756,7 +4741,7 @@
+@@ -4918,7 +4900,7 @@
  @end itemize
  
  
@@ -870,7 +890,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{shuf}: Shuffling text
  
  @pindex shuf
-@@ -4912,7 +4897,7 @@
+@@ -5074,7 +5056,7 @@
  @exitstatus
  
  
@@ -879,7 +899,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{uniq}: Uniquify files
  
  @pindex uniq
-@@ -4934,7 +4919,7 @@
+@@ -5096,7 +5078,7 @@
  The input need not be sorted, but repeated input lines are detected
  only if they are adjacent.  If you want to discard non-adjacent
  duplicate lines, perhaps you want to use @code{sort -u}.
@@ -888,7 +908,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @vindex LC_COLLATE
  Comparisons honor the rules specified by the @env{LC_COLLATE}
-@@ -5099,7 +5084,7 @@
+@@ -5261,7 +5243,7 @@
  @exitstatus
  
  
@@ -897,7 +917,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{comm}: Compare two sorted files line by line
  
  @pindex comm
-@@ -5214,7 +5199,7 @@
+@@ -5376,7 +5358,7 @@
  
  @end table
  
@@ -906,7 +926,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{ptx}: Produce permuted indexes
  
  @pindex ptx
-@@ -5703,7 +5688,7 @@
+@@ -5865,7 +5847,7 @@
  @end itemize
  
  
@@ -915,7 +935,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{tsort}: Topological sort
  
  @pindex tsort
-@@ -5865,13 +5850,13 @@
+@@ -6027,13 +6009,13 @@
  @chapter Operating on fields
  
  @menu
@@ -933,7 +953,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{cut}: Print selected parts of lines
  
  @pindex cut
-@@ -5996,7 +5981,7 @@
+@@ -6158,7 +6140,7 @@
  @exitstatus
  
  
@@ -942,7 +962,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{paste}: Merge lines of files
  
  @pindex paste
-@@ -6094,7 +6079,7 @@
+@@ -6256,7 +6238,7 @@
  @exitstatus
  
  
@@ -951,7 +971,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{join}: Join lines on a common field
  
  @pindex join
-@@ -6625,13 +6610,13 @@
+@@ -6788,13 +6770,13 @@
  These commands operate on individual characters.
  
  @menu
@@ -969,7 +989,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{tr}: Translate, squeeze, and/or delete characters
  
  @pindex tr
-@@ -7014,7 +6999,7 @@
+@@ -7177,7 +7159,7 @@
  @end itemize
  
  
@@ -978,7 +998,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{expand}: Convert tabs to spaces
  
  @pindex expand
-@@ -7075,7 +7060,7 @@
+@@ -7246,7 +7228,7 @@
  @exitstatus
  
  
@@ -987,7 +1007,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{unexpand}: Convert spaces to tabs
  
  @pindex unexpand
-@@ -7138,14 +7123,14 @@
+@@ -7309,14 +7291,14 @@
  and @command{vdir}, which list information about files.
  
  @menu
@@ -1007,7 +1027,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{ls}: List directory contents
  
  @pindex ls
-@@ -8014,7 +7999,7 @@
+@@ -8205,7 +8187,7 @@
  @item +@var{format}
  @vindex LC_TIME
  List timestamps using @var{format}, where @var{format} is interpreted
@@ -1016,7 +1036,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
  @command{ls} to list timestamps like @samp{2002-03-30 23:45:56}.  As
  with @command{date}, @var{format}'s interpretation is affected by the
-@@ -8215,7 +8200,7 @@
+@@ -8406,7 +8388,7 @@
  @end table
  
  
@@ -1025,7 +1045,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{dir}: Briefly list directory contents
  
  @pindex dir
-@@ -8225,10 +8210,10 @@
+@@ -8416,10 +8398,10 @@
  -b}; that is, by default files are listed in columns, sorted vertically,
  and special characters are represented by backslash escape sequences.
  
@@ -1038,7 +1058,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{vdir}: Verbosely list directory contents
  
  @pindex vdir
-@@ -8238,9 +8223,9 @@
+@@ -8429,9 +8411,9 @@
  -b}; that is, by default files are listed in long format and special
  characters are represented by backslash escape sequences.
  
@@ -1050,7 +1070,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{dircolors}: Color setup for @command{ls}
  
  @pindex dircolors
-@@ -8327,16 +8312,16 @@
+@@ -8518,16 +8500,16 @@
  copying, moving (renaming), and deleting (removing).
  
  @menu
@@ -1074,7 +1094,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{cp}: Copy files and directories
  
  @pindex cp
-@@ -8818,7 +8803,7 @@
+@@ -9017,7 +8999,7 @@
  @exitstatus
  
  
@@ -1083,7 +1103,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{dd}: Convert and copy a file
  
  @pindex dd
-@@ -9340,7 +9325,7 @@
+@@ -9541,7 +9523,7 @@
  @exitstatus
  
  
@@ -1092,7 +1112,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{install}: Copy files and set attributes
  
  @pindex install
-@@ -9522,7 +9507,7 @@
+@@ -9723,7 +9705,7 @@
  @exitstatus
  
  
@@ -1101,7 +1121,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{mv}: Move (rename) files
  
  @pindex mv
-@@ -9666,7 +9651,7 @@
+@@ -9869,7 +9851,7 @@
  @exitstatus
  
  
@@ -1110,7 +1130,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{rm}: Remove files or directories
  
  @pindex rm
-@@ -9829,7 +9814,7 @@
+@@ -10035,7 +10017,7 @@
  @exitstatus
  
  
@@ -1119,7 +1139,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{shred}: Remove files more securely
  
  @pindex shred
-@@ -9839,7 +9824,7 @@
+@@ -10045,7 +10027,7 @@
  @command{shred} overwrites devices or files, to help prevent even
  very expensive hardware from recovering the data.
  
@@ -1128,7 +1148,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  not actually destroyed.  Only the index listing where the file is
  stored is destroyed, and the storage is made available for reuse.
  There are undelete utilities that will attempt to reconstruct the index
-@@ -10099,18 +10084,18 @@
+@@ -10305,18 +10287,18 @@
  (FIFOs), symbolic links, sockets, and so-called @dfn{special files}.
  
  @menu
@@ -1156,7 +1176,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{link}: Make a hard link via the link syscall
  
  @pindex link
-@@ -10123,7 +10108,7 @@
+@@ -10329,7 +10311,7 @@
  @code{link} function.  @xref{Hard Links, , , libc,
  The GNU C Library Reference Manual}.
  It avoids the bells and whistles of the more commonly-used
@@ -1165,7 +1185,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  Synopsis:
  
  @example
-@@ -10149,7 +10134,7 @@
+@@ -10355,7 +10337,7 @@
  @exitstatus
  
  
@@ -1174,7 +1194,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{ln}: Make links between files
  
  @pindex ln
-@@ -10335,7 +10320,7 @@
+@@ -10541,7 +10523,7 @@
  Relative symbolic links are generated based on their canonicalized
  containing directory, and canonicalized targets.  I.e., all symbolic
  links in these file names will be resolved.
@@ -1183,8 +1203,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  over relative file name generation, as demonstrated in the following example:
  
  @example
-@@ -10412,7 +10397,7 @@
- @end smallexample
+@@ -10618,7 +10600,7 @@
+ @end example
  
  
 -@node mkdir invocation
@@ -1192,7 +1212,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{mkdir}: Make directories
  
  @pindex mkdir
-@@ -10485,7 +10470,7 @@
+@@ -10691,7 +10673,7 @@
  @exitstatus
  
  
@@ -1201,7 +1221,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{mkfifo}: Make FIFOs (named pipes)
  
  @pindex mkfifo
-@@ -10526,7 +10511,7 @@
+@@ -10732,7 +10714,7 @@
  @exitstatus
  
  
@@ -1210,7 +1230,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{mknod}: Make block or character special files
  
  @pindex mknod
-@@ -10603,7 +10588,7 @@
+@@ -10809,7 +10791,7 @@
  @exitstatus
  
  
@@ -1219,7 +1239,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{readlink}: Print value of a symlink or canonical file name
  
  @pindex readlink
-@@ -10627,7 +10612,7 @@
+@@ -10833,7 +10815,7 @@
  @command{readlink} outputs the absolute name of the given files which contain
  no @file{.}, @file{..} components nor any repeated separators
  (@file{/}) or symbolic links.  Note the @command{realpath} command is the
@@ -1228,7 +1248,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @end table
  
-@@ -10702,7 +10687,7 @@
+@@ -10908,7 +10890,7 @@
  @exitstatus
  
  
@@ -1237,7 +1257,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{rmdir}: Remove empty directories
  
  @pindex rmdir
-@@ -10750,12 +10735,12 @@
+@@ -10956,12 +10938,12 @@
  
  @end table
  
@@ -1252,7 +1272,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{unlink}: Remove files via the unlink syscall
  
  @pindex unlink
-@@ -10766,7 +10751,7 @@
+@@ -10972,7 +10954,7 @@
  @code{unlink} function.  @xref{Deleting Files, , , libc,
  The GNU C Library Reference Manual}.  Synopsis:
  It avoids the bells and whistles of the more commonly-used
@@ -1261,7 +1281,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  
  @example
  unlink @var{filename}
-@@ -10800,14 +10785,14 @@
+@@ -11006,14 +10988,14 @@
  These commands change file attributes.
  
  @menu
@@ -1281,8 +1301,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{chown}: Change file owner and group
  
  @pindex chown
-@@ -11032,7 +11017,7 @@
- @end smallexample
+@@ -11240,7 +11222,7 @@
+ @end example
  
  
 -@node chgrp invocation
@@ -1290,7 +1310,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{chgrp}: Change group ownership
  
  @pindex chgrp
-@@ -11041,7 +11026,7 @@
+@@ -11249,7 +11231,7 @@
  
  @command{chgrp} changes the group ownership of each given @var{file}
  to @var{group} (which can be either a group name or a numeric group ID)
@@ -1299,8 +1319,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  Synopsis:
  
  @example
-@@ -11158,7 +11143,7 @@
- @end smallexample
+@@ -11368,7 +11350,7 @@
+ @end example
  
  
 -@node chmod invocation
@@ -1308,8 +1328,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{chmod}: Change access permissions
  
  @pindex chmod
-@@ -11258,7 +11243,7 @@
- @exitstatus
+@@ -11490,7 +11472,7 @@
+ @end smallexample
  
  
 -@node touch invocation
@@ -1317,7 +1337,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{touch}: Change file timestamps
  
  @pindex touch
-@@ -11432,15 +11417,15 @@
+@@ -11664,15 +11646,15 @@
  file status information, and write buffers to disk.
  
  @menu
@@ -1339,7 +1359,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{df}: Report file system disk space usage
  
  @pindex df
-@@ -11748,7 +11733,7 @@
+@@ -11980,7 +11962,7 @@
  or @option{-x} is used together with a file name argument.
  
  
@@ -1348,7 +1368,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{du}: Estimate file space usage
  
  @pindex du
-@@ -12005,7 +11990,7 @@
+@@ -12237,7 +12219,7 @@
  @item +@var{format}
  @vindex LC_TIME
  List timestamps using @var{format}, where @var{format} is interpreted
@@ -1357,7 +1377,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  For example, @option{--time-style="+%Y-%m-%d %H:%M:%S"} causes
  @command{du} to list timestamps like @samp{2002-03-30 23:45:56}.  As
  with @command{date}, @var{format}'s interpretation is affected by the
-@@ -12073,7 +12058,7 @@
+@@ -12305,7 +12287,7 @@
  @exitstatus
  
  
@@ -1366,7 +1386,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{stat}: Report file or file system status
  
  @pindex stat
-@@ -12286,7 +12271,7 @@
+@@ -12518,7 +12500,7 @@
  @exitstatus
  
  
@@ -1375,7 +1395,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{sync}: Synchronize cached writes to persistent storage
  
  @pindex sync
-@@ -12345,7 +12330,7 @@
+@@ -12577,7 +12559,7 @@
  @exitstatus
  
  
@@ -1384,7 +1404,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{truncate}: Shrink or extend the size of a file
  
  @pindex truncate
-@@ -12422,13 +12407,13 @@
+@@ -12654,13 +12636,13 @@
  This section describes commands that display text strings.
  
  @menu
@@ -1402,7 +1422,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{echo}: Print a line of text
  
  @pindex echo
-@@ -12517,12 +12502,12 @@
+@@ -12749,12 +12731,12 @@
  @var{string} contains a backslash or if the first argument is
  @option{-n}.  Portable programs can use the @command{printf} command
  if they need to omit trailing newlines or output control characters or
@@ -1417,7 +1437,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{printf}: Format and print data
  
  @pindex printf
-@@ -12684,7 +12669,7 @@
+@@ -12916,7 +12898,7 @@
  @exitstatus
  
  
@@ -1426,7 +1446,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{yes}: Print a string until interrupted
  
  @pindex yes
-@@ -12715,14 +12700,14 @@
+@@ -12947,14 +12929,14 @@
  pipeline.
  
  @menu
@@ -1446,7 +1466,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{false}: Do nothing, unsuccessfully
  
  @pindex false
-@@ -12752,7 +12737,7 @@
+@@ -12984,7 +12966,7 @@
  non-GNU hosts.
  
  
@@ -1455,7 +1475,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{true}: Do nothing, successfully
  
  @pindex true
-@@ -12788,7 +12773,7 @@
+@@ -13020,7 +13002,7 @@
  more secure and faster than a shell script implementation, and may safely
  be used as a dummy shell for the purpose of disabling accounts.
  
@@ -1464,7 +1484,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{test}: Check file types and compare values
  
  @pindex test
-@@ -13151,7 +13136,7 @@
+@@ -13389,7 +13371,7 @@
  @end table
  
  
@@ -1473,7 +1493,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{expr}: Evaluate expressions
  
  @pindex expr
-@@ -13428,11 +13413,11 @@
+@@ -13666,11 +13648,11 @@
  it's described here.
  
  @menu
@@ -1487,7 +1507,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{tee}: Redirect output to multiple files or processes
  
  @pindex tee
-@@ -13639,15 +13624,15 @@
+@@ -13877,15 +13859,15 @@
  This section describes commands that manipulate file names.
  
  @menu
@@ -1509,8 +1529,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{basename}: Strip directory and suffix from a file name
  
  @pindex basename
-@@ -13729,7 +13714,7 @@
- @end smallexample
+@@ -13967,7 +13949,7 @@
+ @end example
  
  
 -@node dirname invocation
@@ -1518,8 +1538,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{dirname}: Strip last file name component
  
  @pindex dirname
-@@ -13782,7 +13767,7 @@
- @end smallexample
+@@ -14020,7 +14002,7 @@
+ @end example
  
  
 -@node pathchk invocation
@@ -1527,7 +1547,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{pathchk}: Check file name validity and portability
  
  @pindex pathchk
-@@ -13858,7 +13843,7 @@
+@@ -14096,7 +14078,7 @@
  1 otherwise.
  @end display
  
@@ -1536,7 +1556,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{mktemp}: Create temporary file or directory
  
  @pindex mktemp
-@@ -14033,7 +14018,7 @@
+@@ -14271,7 +14253,7 @@
  @end display
  
  
@@ -1545,7 +1565,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{realpath}: Print the resolved file name.
  
  @pindex realpath
-@@ -14162,14 +14147,14 @@
+@@ -14463,14 +14445,14 @@
  so forth.  See also the user-related commands in the next section.
  
  @menu
@@ -1565,7 +1585,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{pwd}: Print working directory
  
  @pindex pwd
-@@ -14216,7 +14201,7 @@
+@@ -14517,7 +14499,7 @@
  @exitstatus
  
  
@@ -1574,7 +1594,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{stty}: Print or change terminal characteristics
  
  @pindex stty
-@@ -14958,7 +14943,7 @@
+@@ -15259,7 +15241,7 @@
  @end table
  
  
@@ -1583,7 +1603,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{printenv}: Print all or some environment variables
  
  @pindex printenv
-@@ -14993,7 +14978,7 @@
+@@ -15294,7 +15276,7 @@
  @end display
  
  
@@ -1592,7 +1612,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{tty}: Print file name of terminal on standard input
  
  @pindex tty
-@@ -15043,16 +15028,16 @@
+@@ -15344,16 +15326,16 @@
  logins, groups, and so forth.
  
  @menu
@@ -1616,7 +1636,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{id}: Print user identity
  
  @pindex id
-@@ -15156,7 +15141,7 @@
+@@ -15460,7 +15442,7 @@
  
  @exitstatus
  
@@ -1625,7 +1645,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{logname}: Print current login name
  
  @pindex logname
-@@ -15177,7 +15162,7 @@
+@@ -15481,7 +15463,7 @@
  @exitstatus
  
  
@@ -1634,7 +1654,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{whoami}: Print effective user ID
  
  @pindex whoami
-@@ -15193,7 +15178,7 @@
+@@ -15497,7 +15479,7 @@
  @exitstatus
  
  
@@ -1643,7 +1663,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{groups}: Print group names a user is in
  
  @pindex groups
-@@ -15220,7 +15205,7 @@
+@@ -15524,7 +15506,7 @@
  
  @exitstatus
  
@@ -1652,7 +1672,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{users}: Print login names of users currently logged in
  
  @pindex users
-@@ -15255,7 +15240,7 @@
+@@ -15559,7 +15541,7 @@
  @exitstatus
  
  
@@ -1661,7 +1681,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{who}: Print who is currently logged in
  
  @pindex who
-@@ -15418,16 +15403,14 @@
+@@ -15722,16 +15704,14 @@
  information.
  
  @menu
@@ -1684,7 +1704,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{date}: Print or set system date and time
  
  @pindex date
-@@ -16137,7 +16120,7 @@
+@@ -16459,7 +16439,7 @@
  @end itemize
  
  
@@ -1693,7 +1713,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{arch}: Print machine hardware name
  
  @pindex arch
-@@ -16160,7 +16143,7 @@
+@@ -16482,7 +16462,7 @@
  @exitstatus
  
  
@@ -1702,7 +1722,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{nproc}: Print the number of available processors
  
  @pindex nproc
-@@ -16199,7 +16182,7 @@
+@@ -16521,7 +16501,7 @@
  @exitstatus
  
  
@@ -1711,7 +1731,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{uname}: Print system information
  
  @pindex uname
-@@ -16329,35 +16312,7 @@
+@@ -16651,35 +16631,7 @@
  @exitstatus
  
  
@@ -1748,7 +1768,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{hostid}: Print numeric host identifier
  
  @pindex hostid
-@@ -16385,44 +16340,6 @@
+@@ -16707,44 +16659,6 @@
  
  @exitstatus
  
@@ -1793,7 +1813,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @node SELinux context
  @chapter SELinux context
  
-@@ -16434,11 +16351,11 @@
+@@ -16756,11 +16670,11 @@
  contexts.
  
  @menu
@@ -1808,7 +1828,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{chcon}: Change SELinux context of file
  
  @pindex chcon
-@@ -16541,7 +16458,7 @@
+@@ -16863,7 +16777,7 @@
  
  @exitstatus
  
@@ -1817,7 +1837,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{runcon}: Run a command in specified SELinux context
  
  @pindex runcon
-@@ -16626,16 +16543,16 @@
+@@ -16955,16 +16869,16 @@
  user, etc.
  
  @menu
@@ -1841,7 +1861,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{chroot}: Run a command with a different root directory
  
  @pindex chroot
-@@ -16751,7 +16668,7 @@
+@@ -17080,7 +16994,7 @@
  @end display
  
  
@@ -1850,8 +1870,8 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{env}: Run a command in a modified environment
  
  @pindex env
-@@ -16901,7 +16818,7 @@
- @end display
+@@ -17698,7 +17612,7 @@
+ 
  
  
 -@node nice invocation
@@ -1859,7 +1879,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{nice}: Run a command with modified niceness
  
  @pindex nice
-@@ -17032,7 +16949,7 @@
+@@ -17829,7 +17743,7 @@
  @end example
  
  
@@ -1868,7 +1888,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{nohup}: Run a command immune to hangups
  
  @pindex nohup
-@@ -17106,7 +17023,7 @@
+@@ -17903,7 +17817,7 @@
  instead of 125.
  
  
@@ -1877,7 +1897,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{stdbuf}: Run a command with modified I/O stream buffering
  
  @pindex stdbuf
-@@ -17200,7 +17117,7 @@
+@@ -17997,7 +17911,7 @@
  @end display
  
  
@@ -1886,7 +1906,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{timeout}: Run a command with a time limit
  
  @pindex timeout
-@@ -17290,90 +17207,6 @@
+@@ -18094,90 +18008,6 @@
  @end display
  
  
@@ -1977,7 +1997,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @node Delaying
  @chapter Delaying
  
-@@ -17383,11 +17216,11 @@
+@@ -18187,11 +18017,11 @@
  @c Perhaps @command{wait} or other commands should be described here also?
  
  @menu
@@ -1991,7 +2011,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{sleep}: Delay for a specified time
  
  @pindex sleep
-@@ -17437,13 +17270,13 @@
+@@ -18241,13 +18071,13 @@
  These programs do numerically-related operations.
  
  @menu
@@ -2009,7 +2029,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{factor}: Print prime factors
  
  @pindex factor
-@@ -17501,7 +17334,7 @@
+@@ -18305,7 +18135,7 @@
  @exitstatus
  
  
@@ -2018,7 +2038,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{numfmt}: Reformat numbers
  
  @pindex numfmt
-@@ -17841,7 +17674,7 @@
+@@ -18645,7 +18475,7 @@
  @end example
  
  
@@ -2027,7 +2047,7 @@ diff -ruN coreutils-8.27.orig/doc/coreutils.texi coreutils-8.27/doc/coreutils.te
  @section @command{seq}: Print numeric sequences
  
  @pindex seq
-@@ -18012,7 +17845,7 @@
+@@ -18817,7 +18647,7 @@
  whenever you read, write, or change the attributes of the file
  respectively, and searching a directory counts as reading it.  A
  file's atime and mtime can also be set directly, via the
