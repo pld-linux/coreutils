@@ -1,15 +1,6 @@
 diff -ur -x .svn -x .git -x .bzr -x CVS -urN coreutils-8.31.org/po/pl.po coreutils-8.31/po/pl.po
 --- coreutils-8.31.org/po/pl.po	2019-03-11 00:38:30.000000000 +0100
 +++ coreutils-8.31/po/pl.po	2019-05-30 10:08:02.921208715 +0200
-@@ -16,7 +16,7 @@
- msgstr ""
- "Project-Id-Version: coreutils 8.30.79\n"
- "Report-Msgid-Bugs-To: bug-coreutils@gnu.org\n"
--"POT-Creation-Date: 2019-03-10 16:38-0700\n"
-+"POT-Creation-Date: 2019-03-04 01:47-0800\n"
- "PO-Revision-Date: 2019-03-09 17:00+0100\n"
- "Last-Translator: Rafał Maszkowski <rzm@icm.edu.pl>\n"
- "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 @@ -4441,32 +4441,32 @@
  msgid "failed to set signal process mask"
  msgstr "nie udało się ustawić maski sygnałów dla procesu"

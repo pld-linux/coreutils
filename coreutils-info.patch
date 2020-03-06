@@ -1139,15 +1139,15 @@
  @section @command{shred}: Remove files more securely
  
  @pindex shred
-@@ -10045,7 +10027,7 @@
+@@ -10055,7 +10055,7 @@ predates the development of the @code{ge
  @command{shred} overwrites devices or files, to help prevent even
- very expensive hardware from recovering the data.
+ extensive forensics from recovering the data.
  
--Ordinarily when you remove a file (@pxref{rm invocation}), the data is
-+Ordinarily when you remove a file (@pxref{rm}), the data is
- not actually destroyed.  Only the index listing where the file is
- stored is destroyed, and the storage is made available for reuse.
- There are undelete utilities that will attempt to reconstruct the index
+-Ordinarily when you remove a file (@pxref{rm invocation}), its data
++Ordinarily when you remove a file (@pxref{rm}), its data
+ and metadata are not actually destroyed.  Only the file's directory
+ entry is removed, and the file's storage is reclaimed only when no
+ process has the file open and no other directory entry links to the
 @@ -10305,18 +10287,18 @@
  (FIFOs), symbolic links, sockets, and so-called @dfn{special files}.
  
