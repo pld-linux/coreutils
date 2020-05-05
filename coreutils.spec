@@ -25,6 +25,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-getgid.patch
 Patch2:		%{name}-uname-cpuinfo.patch
 Patch3:		%{name}-date-man.patch
+Patch4:		%{name}-8.32-ls-removed-dir.patch
 
 Patch6:		%{name}-fmt-wchars.patch
 Patch7:		%{name}-sparc64.patch
@@ -112,6 +113,7 @@ Programy zawarte w tym pakiecie to:
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %patch6 -p1
 %ifarch sparc64
