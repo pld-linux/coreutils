@@ -1,7 +1,7 @@
-diff -urN coreutils-5.2.1-orig/src/uname.c coreutils-5.2.1/src/uname.c
---- coreutils-5.2.1-orig/src/uname.c	2005-01-15 19:15:36.193346304 +0100
-+++ coreutils-5.2.1/src/uname.c	2005-01-15 19:19:06.918311240 +0100
-@@ -77,6 +77,8 @@
+diff -urNp -x '*.orig' coreutils-8.32.org/src/uname.c coreutils-8.32/src/uname.c
+--- coreutils-8.32.org/src/uname.c	2020-02-04 20:27:08.000000000 +0100
++++ coreutils-8.32/src/uname.c	2021-03-21 00:28:54.006899186 +0100
+@@ -86,6 +86,8 @@
  /* Operating system.  */
  #define PRINT_OPERATING_SYSTEM 128
  
@@ -10,7 +10,7 @@ diff -urN coreutils-5.2.1-orig/src/uname.c coreutils-5.2.1/src/uname.c
  static struct option const uname_long_options[] =
  {
    {"all", no_argument, NULL, 'a'},
-@@ -243,13 +245,9 @@
+@@ -301,13 +303,9 @@ main (int argc, char **argv)
    if (toprint & PRINT_PROCESSOR)
      {
        char const *element = unknown;
@@ -26,10 +26,10 @@ diff -urN coreutils-5.2.1-orig/src/uname.c coreutils-5.2.1/src/uname.c
 +      element = processor;
  #ifdef UNAME_PROCESSOR
        if (element == unknown)
- 	{
-@@ -294,3 +292,38 @@
+         {
+@@ -374,3 +372,38 @@ main (int argc, char **argv)
  
-   exit (EXIT_SUCCESS);
+   return EXIT_SUCCESS;
  }
 +
 +
