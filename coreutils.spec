@@ -31,7 +31,7 @@ Patch6:		%{name}-fmt-wchars.patch
 Patch7:		%{name}-sparc64.patch
 # http://translationproject.org/latest/coreutils/pl.po (pass through msgcat to generate shorter diff)
 Patch8:		%{name}-pl.po-update.patch
-# from http://www.beatex.org/web/advancedcopy.html, edited by shadzik
+# https://github.com/jarun/advcpmv
 Patch9:		%{name}-advcopy.patch
 Patch10:	tests.patch
 URL:		http://www.gnu.org/software/coreutils/
