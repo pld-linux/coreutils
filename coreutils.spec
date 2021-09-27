@@ -7,12 +7,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	8.32
-Release:	1
+Version:	9.0
+Release:	0.1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	022042695b7d5bcf1a93559a9735e668
+# Source0-md5:	0d79ae8a6124546e3b94171375e5e5d0
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -25,7 +25,6 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-getgid.patch
 Patch2:		%{name}-uname-cpuinfo.patch
 Patch3:		%{name}-date-man.patch
-Patch4:		%{name}-8.32-ls-removed-dir.patch
 
 Patch6:		%{name}-fmt-wchars.patch
 Patch7:		%{name}-sparc64.patch
@@ -113,7 +112,6 @@ Programy zawarte w tym pakiecie to:
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %patch6 -p1
 %ifarch sparc64
@@ -175,7 +173,8 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 	%{?with_multicall:--enable-single-binary=symlinks} \
 	--disable-silent-rules \
 	--enable-install-program=arch \
-	--enable-no-install-program=hostname,kill,uptime
+	--enable-no-install-program=hostname,kill,uptime \
+	--disable-year2038
 
 %{__make} -j1
 

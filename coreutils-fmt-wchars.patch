@@ -97,9 +97,9 @@
  
      /* Static attributes determined during input.  */
  
--    const char *text;		/* the text of the word */
+-    char const *text;		/* the text of the word */
 -    int length;			/* length of this word */
-+    const wchar_t *text;	/* the text of the word */
++    wchar_t const *text;	/* the text of the word */
 +    int length;			/* length of this word, in characters */
 +    int width;			/* width of this word, in columns */
      int space;			/* the size of the following space */
@@ -116,7 +116,7 @@
    };
 @@ -154,16 +175,16 @@
  static void set_prefix (char *p);
- static void fmt (FILE *f);
+ static bool fmt (FILE *f, char const *);
  static bool get_paragraph (FILE *f);
 -static int get_line (FILE *f, int c);
 -static int get_prefix (FILE *f);
@@ -145,7 +145,7 @@
 +static int sentence_space;
 +
  /* Prefix minus leading and trailing spaces (default "").  */
--static const char *prefix;
+-static char const *prefix;
 +static wchar_t *prefix;
  
  /* User-supplied maximum line width (default WIDTH).  The only output
@@ -296,7 +296,7 @@
 +  *s = L'\0';
  }
  
- /* read file F and send formatted output to stdout.  */
+ /* Read F and send formatted output to stdout.
 @@ -550,24 +587,24 @@
  static bool
  get_paragraph (FILE *f)
@@ -338,8 +338,8 @@
 +static wint_t
 +copy_rest (FILE *f, wint_t c)
  {
--  const char *s;
-+  const wchar_t *s;
+-  char const *s;
++  wchar_t const *s;
  
    out_column = 0;
 -  if (in_column > next_prefix_indent || (c != '\n' && c != EOF))
@@ -465,8 +465,8 @@
        prefix_lead_space : in_column;
    else
      {
--      const char *p;
-+      const wchar_t *p;
+-      char const *p;
++      wchar_t const *p;
        next_prefix_indent = in_column;
 -      for (p = prefix; *p != '\0'; p++)
 +      for (p = prefix; *p != L'\0'; p++)
@@ -678,8 +678,8 @@
  static void
  put_word (WORD *w)
  {
--  const char *s;
-+  const wchar_t *s;
+-  char const *s;
++  wchar_t const *s;
    int n;
  
    s = w->text;
