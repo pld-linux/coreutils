@@ -3,6 +3,7 @@
 %bcond_with	advcopy		# progress bar in cp (orphaned patch)
 %bcond_with	multicall	# Compile all the tools in a single binary
 %bcond_with	tests		# unit tests running
+%bcond_without	y2038		# Y2038 support for 32-bit archs
 
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
@@ -174,7 +175,8 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 	%{?with_multicall:--enable-single-binary=symlinks} \
 	--disable-silent-rules \
 	--enable-install-program=arch \
-	--enable-no-install-program=hostname,kill,uptime
+	--enable-no-install-program=hostname,kill,uptime \
+	%{!?with_y2038:--disable-year2038}
 
 %{__make} -j1
 
