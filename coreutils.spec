@@ -8,7 +8,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	9.0
-Release:	0.1
+Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -107,8 +107,9 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-%patch8 -p1
-%patch0 -p1
+# translationproject seems to be older than in 9.0
+#%patch8 -p1
+#%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
