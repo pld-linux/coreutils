@@ -174,8 +174,7 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 	%{?with_multicall:--enable-single-binary=symlinks} \
 	--disable-silent-rules \
 	--enable-install-program=arch \
-	--enable-no-install-program=hostname,kill,uptime \
-	--disable-year2038
+	--enable-no-install-program=hostname,kill,uptime
 
 %{__make} -j1
 
