@@ -192,7 +192,7 @@
 +* runcon: (coreutils)runcon.		Run in specified SELinux CTX.
 +* seq: (coreutils)seq.			Print numeric sequences
 +* sha1sum: (coreutils)sha1sum.		Print or check SHA-1 digests.
-+* sha2: (coreutils)sha2			Print or check SHA-2 digests.
++* sha2: (coreutils)sha2 utilities.	Print or check SHA-2 digests.
 +* shred: (coreutils)shred.		Remove files more securely.
 +* shuf: (coreutils)shuf.		Shuffling text files.
 +* sleep: (coreutils)sleep.		Delay for a specified time.
