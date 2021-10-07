@@ -111,7 +111,7 @@ Programy zawarte w tym pakiecie to:
 %setup -q -a1
 # translationproject seems to be older than in 9.0
 #%patch8 -p1
-#%patch0 -p1
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
