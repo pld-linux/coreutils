@@ -10,20 +10,21 @@ diff -urNp -x '*.orig' coreutils-8.32.org/src/uname.c coreutils-8.32/src/uname.c
  static struct option const uname_long_options[] =
  {
    {"all", no_argument, NULL, 'a'},
-@@ -301,13 +303,9 @@ main (int argc, char **argv)
-   if (toprint & PRINT_PROCESSOR)
-     {
-       char const *element = unknown;
+@@ -323,14 +323,12 @@
+       element = "powerpc";
+ # endif
+ #endif
 -#if HAVE_SYSINFO && defined SI_ARCHITECTURE
--      {
--        static char processor[257];
--        if (0 <= sysinfo (SI_ARCHITECTURE, processor, sizeof processor))
--          element = processor;
--      }
+       if (element == unknown)
+         {
+-          static char processor[257];
+-          if (0 <= sysinfo (SI_ARCHITECTURE, processor, sizeof processor))
+-            element = processor;
++          char processor[BUFSIZ];
++          __sysinfo_processor_type(processor);
++          element = processor;
+         }
 -#endif
-+      char processor[BUFSIZ];
-+      __sysinfo_processor_type(processor);
-+      element = processor;
  #ifdef UNAME_PROCESSOR
        if (element == unknown)
          {

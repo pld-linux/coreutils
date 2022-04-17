@@ -413,7 +413,7 @@
 +          word_limit->width += xwcwidth (c);
 +          c = xgetwc (f);
          }
--      while (c != EOF && !isspace (c));
+-      while (c != EOF && !c_isspace (c));
 -      in_column += word_limit->length = wptr - word_limit->text;
 +      while (c != WEOF && !isspace (c));
 +      word_limit->length = wptr - word_limit->text;
