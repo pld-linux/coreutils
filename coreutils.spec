@@ -9,7 +9,7 @@ Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
 Version:	9.1
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
@@ -171,7 +171,6 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 %{__automake}
 %configure \
 	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
-	DEFAULT_POSIX2_VERSION=199209 \
 	%{?with_multicall:--enable-single-binary=symlinks} \
 	--disable-silent-rules \
 	--enable-install-program=arch \
