@@ -7,10 +7,10 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-chown
 -check_PROGRAMS += test-chown
--test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
+-test_chown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
 +#TESTS += test-chown
 +#check_PROGRAMS += test-chown
-+#test_chown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
++#test_chown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
  EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
  
  ## end   gnulib module chown-tests
@@ -20,10 +20,10 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-fchownat
 -check_PROGRAMS += test-fchownat
--test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
+-test_fchownat_LDADD = $(LDADD) $(NANOSLEEP_LIB) @LIBINTL@
 +#TESTS += test-fchownat
 +#check_PROGRAMS += test-fchownat
-+#test_fchownat_LDADD = $(LDADD) $(LIB_NANOSLEEP) @LIBINTL@
++#test_fchownat_LDADD = $(LDADD) $(NANOSLEEP_LIB) @LIBINTL@
  EXTRA_DIST += nap.h test-chown.h test-lchown.h test-fchownat.c signature.h macros.h
  
  ## end   gnulib module fchownat-tests
@@ -33,12 +33,12 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-fdutimensat
 -check_PROGRAMS += test-fdutimensat
--test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
--  $(LIB_NANOSLEEP) @LIBINTL@
+-test_fdutimensat_LDADD = $(LDADD) $(CLOCK_TIME_LIB) \
+-  $(NANOSLEEP_LIB) @LIBINTL@
 +#TESTS += test-fdutimensat
 +#check_PROGRAMS += test-fdutimensat
-+#test_fdutimensat_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) \
-+#  $(LIB_NANOSLEEP) @LIBINTL@
++#test_fdutimensat_LDADD = $(LDADD) $(CLOCK_TIME_LIB) \
++#  $(NANOSLEEP_LIB) @LIBINTL@
  EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-fdutimensat.c macros.h
  
  ## end   gnulib module fdutimensat-tests
@@ -48,10 +48,10 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-futimens
 -check_PROGRAMS += test-futimens
--test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
+-test_futimens_LDADD = $(LDADD) $(CLOCK_TIME_LIB) $(NANOSLEEP_LIB) @LIBINTL@
 +#TESTS += test-futimens
 +#check_PROGRAMS += test-futimens
-+#test_futimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
++#test_futimens_LDADD = $(LDADD) $(CLOCK_TIME_LIB) $(NANOSLEEP_LIB) @LIBINTL@
  EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
  
  ## end   gnulib module futimens-tests
@@ -61,10 +61,10 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-lchown
 -check_PROGRAMS += test-lchown
--test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
+-test_lchown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
 +#TESTS += test-lchown
 +#check_PROGRAMS += test-lchown
-+#test_lchown_LDADD = $(LDADD) $(LIB_NANOSLEEP)
++#test_lchown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
  EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
  
  ## end   gnulib module lchown-tests
@@ -74,10 +74,10 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-utimens
 -check_PROGRAMS += test-utimens
--test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
+-test_utimens_LDADD = $(LDADD) $(CLOCK_TIME_LIB) $(NANOSLEEP_LIB) @LIBINTL@
 +#TESTS += test-utimens
 +#check_PROGRAMS += test-utimens
-+#test_utimens_LDADD = $(LDADD) $(LIB_CLOCK_GETTIME) $(LIB_NANOSLEEP) @LIBINTL@
++#test_utimens_LDADD = $(LDADD) $(CLOCK_TIME_LIB) $(NANOSLEEP_LIB) @LIBINTL@
  EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-utimens.c macros.h
  
  ## end   gnulib module utimens-tests
