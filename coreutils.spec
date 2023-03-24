@@ -59,11 +59,11 @@ Provides:	mktemp = %{version}-%{release}
 Provides:	sh-utils
 Provides:	stat
 Provides:	textutils
-Obsoletes:	fileutils
-Obsoletes:	mktemp
-Obsoletes:	sh-utils
-Obsoletes:	stat
-Obsoletes:	textutils
+Obsoletes:	fileutils < 4.2
+Obsoletes:	mktemp < 1.6
+Obsoletes:	sh-utils < 2.1
+Obsoletes:	stat < 3.4
+Obsoletes:	textutils < 1:2.2
 Conflicts:	shadow < 1:4.0.3-6
 Conflicts:	tetex < 1:2.0.2
 # ensure util-linux has su included
