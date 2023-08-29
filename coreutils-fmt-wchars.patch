@@ -83,13 +83,13 @@
 +
  /* Extra ctype(3)-style macros.  */
  
--#define isopen(c)	(strchr ("(['`\"", c) != NULL)
--#define isclose(c)	(strchr (")]'\"", c) != NULL)
--#define isperiod(c)	(strchr (".?!", c) != NULL)
+-#define isopen(c)	(strchr ("(['`\"", c) != nullptr)
+-#define isclose(c)	(strchr (")]'\"", c) != nullptr)
+-#define isperiod(c)	(strchr (".?!", c) != nullptr)
 +#define isopen(c)	\
-+  (wcschr (L"(['`\"\u2018\u201A\u201B\u201C\u201E\u201F", c) != NULL)
-+#define isclose(c)	(wcschr (L")]'\"\u2018\u2019\u201C\u201D", c) != NULL)
-+#define isperiod(c)	(wcschr (L".?!", c) != NULL)
++  (wcschr (L"(['`\"\u2018\u201A\u201B\u201C\u201E\u201F", c) != nullptr)
++#define isclose(c)	(wcschr (L")]'\"\u2018\u2019\u201C\u201D", c) != nullptr)
++#define isperiod(c)	(wcschr (L".?!", c) != nullptr)
  
  /* Size of a tab stop, for expansion on input and re-introduction on
     output.  */
@@ -214,12 +214,12 @@
    -g, --goal=WIDTH          goal width (default of 93% of width)\n\
  "), stdout);
 @@ -311,6 +336,7 @@
-   {"split-only", no_argument, NULL, 's'},
-   {"tagged-paragraph", no_argument, NULL, 't'},
-   {"uniform-spacing", no_argument, NULL, 'u'},
-+  {"single-spaces", no_argument, NULL, 'n'},
-   {"width", required_argument, NULL, 'w'},
-   {"goal", required_argument, NULL, 'g'},
+   {"split-only", no_argument, nullptr, 's'},
+   {"tagged-paragraph", no_argument, nullptr, 't'},
+   {"uniform-spacing", no_argument, nullptr, 'u'},
++  {"single-spaces", no_argument, nullptr, 'n'},
+   {"width", required_argument, nullptr, 'w'},
+   {"goal", required_argument, nullptr, 'g'},
    {GETOPT_HELP_OPTION_DECL},
 @@ -335,9 +361,10 @@
    atexit (close_stdout);
@@ -240,7 +240,7 @@
  
 -  while ((optchar = getopt_long (argc, argv, "0123456789cstuw:p:g:",
 +  while ((optchar = getopt_long (argc, argv, "0123456789cstunw:p:g:",
-                                  long_options, NULL))
+                                  long_options, nullptr))
           != -1)
      switch (optchar)
 @@ -378,6 +405,10 @@
@@ -611,7 +611,7 @@
 +  word_limit->width = saved_width;
  }
  
- /* Return the constant component of the cost of breaking before the
+ /* Work around <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=109628>.  */
 @@ -932,33 +975,33 @@
        else if ((this - 1)->punct)
          cost -= PUNCT_BONUS;

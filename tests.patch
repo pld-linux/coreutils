@@ -112,15 +112,15 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
    tests/rm/cycle.sh				\
    tests/cp/link-heap.sh				\
    tests/cp/no-ctx.sh				\
--  tests/misc/tty-eof.pl				\
-   tests/tail-2/inotify-hash-abuse.sh		\
-   tests/tail-2/inotify-hash-abuse2.sh		\
-   tests/tail-2/F-vs-missing.sh			\
+-  tests/tty/tty-eof.pl				\
+   tests/misc/read-errors.sh			\
+   tests/misc/write-errors.sh			\
+   tests/tail/inotify-hash-abuse.sh		\
 @@ -364,7 +363,6 @@
-   tests/misc/sort-unique-segv.sh		\
-   tests/misc/sort-version.sh			\
-   tests/misc/sort-NaN-infloop.sh		\
--  tests/misc/sort-u-FMR.sh			\
+   tests/sort/sort-unique-segv.sh		\
+   tests/sort/sort-version.sh			\
+   tests/sort/sort-NaN-infloop.sh		\
+-  tests/sort/sort-u-FMR.sh			\
    tests/split/filter.sh				\
    tests/split/suffix-auto-length.sh		\
    tests/split/suffix-length.sh			\

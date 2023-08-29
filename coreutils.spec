@@ -8,12 +8,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	9.3
+Version:	9.4
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	040b4b7acaf89499834bfc79609af29f
+# Source0-md5:	459e9546074db2834eefe5421f250025
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -140,8 +140,8 @@ Programy zawarte w tym pakiecie to:
 # getgid needs to be fixed:
 # getgid: missing operand
 # Try `getgid --help' for more information.
-%{__rm} tests/misc/help-version.sh
-%{__sed} -i -e '/misc\/help-version/d' tests/local.mk
+%{__rm} tests/help/help-version.sh
+%{__sed} -i -e '/help\/help-version/d' tests/local.mk
 
 # fails on some filesystems (like XFS), where readdir returns d_type=DT_UNKNOWN
 %{__rm} tests/ls/stat-free-color.sh
@@ -153,8 +153,8 @@ Programy zawarte w tym pakiecie to:
 
 # mksh is too smart for those, won't let programs fail on ulimit
 # would need bash here
-%{__rm} tests/misc/sort-merge-fdlimit.sh
-%{__sed} -i -e '/misc\/sort-merge-fdlimit/d' tests/local.mk
+%{__rm} tests/sort/sort-merge-fdlimit.sh
+%{__sed} -i -e '/sort\/sort-merge-fdlimit/d' tests/local.mk
 %{__rm} tests/split/r-chunk.sh
 %{__sed} -i -e '/split\/r-chunk/d' tests/local.mk
 

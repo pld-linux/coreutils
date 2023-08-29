@@ -9,7 +9,7 @@ diff -urNp -x '*.orig' coreutils-8.32.org/src/uname.c coreutils-8.32/src/uname.c
 +
  static struct option const uname_long_options[] =
  {
-   {"all", no_argument, NULL, 'a'},
+   {"all", no_argument, nullptr, 'a'},
 @@ -323,14 +323,12 @@
        element = "powerpc";
  # endif
