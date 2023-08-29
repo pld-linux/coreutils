@@ -29,8 +29,6 @@ Patch3:		%{name}-date-man.patch
 
 Patch6:		%{name}-fmt-wchars.patch
 Patch7:		%{name}-sparc64.patch
-# http://translationproject.org/latest/coreutils/pl.po (pass through msgcat to generate shorter diff)
-Patch8:		%{name}-pl.po-update.patch
 # https://github.com/jarun/advcpmv
 Patch9:		%{name}-advcopy.patch
 Patch10:	tests.patch
@@ -109,8 +107,6 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-# translationproject seems to be older than in 9.0
-#%patch8 -p1
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
