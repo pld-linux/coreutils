@@ -24,9 +24,9 @@
  
  #include <config.h>
 +#include <wchar.h>
+ #include <ctype.h>
  #include <stdio.h>
  #include <sys/types.h>
- #include <getopt.h>
 @@ -40,7 +41,7 @@
  /* The following parameters represent the program's idea of what is
     "best".  Adjust to taste, subject to the caveats given.  */

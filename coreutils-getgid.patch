@@ -109,7 +109,7 @@ diff -urNp -x '*.orig' coreutils-8.32.org/po/pl.po coreutils-8.32/po/pl.po
 +"\t%s nazwa-grupy\n"
 +
  #. This is a proper name. See the gettext manual, section Names.
- #: src/echo.c:27
+ #: src/echo.c:28
  msgid "Brian Fox"
 diff -urNp -x '*.orig' coreutils-8.32.org/src/getgid.c coreutils-8.32/src/getgid.c
 --- coreutils-8.32.org/src/getgid.c	1970-01-01 01:00:00.000000000 +0100
