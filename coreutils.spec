@@ -107,20 +107,20 @@ Programy zawarte w tym pakiecie to:
 
 %prep
 %setup -q -a1
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
 
-%patch6 -p1
+%patch -P6 -p1
 %ifarch sparc64
-%patch7 -p1
+%patch -P7 -p1
 %endif
 %if %{with advcopy}
 # progress-bar patch, -g,--progress-bar //if in doubt, comment it out
-%patch9 -p1
+%patch -P9 -p1
 %endif
-%patch10 -p1
+%patch -P10 -p1
 
 %{__mv} man/pt_BR man/pt
 
