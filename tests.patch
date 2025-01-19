@@ -7,10 +7,10 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-chown
 -check_PROGRAMS += test-chown
--test_chown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
+-test_chown_LDADD = $(LDADD) $(NANOSLEEP_LIB) @LIBINTL@
 +#TESTS += test-chown
 +#check_PROGRAMS += test-chown
-+#test_chown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
++#test_chown_LDADD = $(LDADD) $(NANOSLEEP_LIB) @LIBINTL@
  EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
  
  ## end   gnulib module chown-tests
@@ -61,10 +61,10 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  
 -TESTS += test-lchown
 -check_PROGRAMS += test-lchown
--test_lchown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
+-test_lchown_LDADD = $(LDADD) $(NANOSLEEP_LIB) @LIBINTL@
 +#TESTS += test-lchown
 +#check_PROGRAMS += test-lchown
-+#test_lchown_LDADD = $(LDADD) $(NANOSLEEP_LIB)
++#test_lchown_LDADD = $(LDADD) $(NANOSLEEP_LIB) @LIBINTL@
  EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
  
  ## end   gnulib module lchown-tests

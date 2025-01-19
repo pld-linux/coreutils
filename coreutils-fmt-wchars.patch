@@ -232,7 +232,7 @@
 +  prefix = L"";
 +  prefix_width = prefix_lead_space = prefix_full_width = 0;
  
-   if (argc > 1 && argv[1][0] == '-' && ISDIGIT (argv[1][1]))
+   if (argc > 1 && argv[1][0] == '-' && c_isdigit (argv[1][1]))
      {
 @@ -350,7 +377,7 @@
        argc--;
