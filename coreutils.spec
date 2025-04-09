@@ -12,7 +12,7 @@ Version:	9.6
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
-Source0:	http://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
+Source0:	https://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
 # Source0-md5:	0ed6cc983fe02973bc98803155cc1733
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
