@@ -191,7 +191,7 @@ diff -ruN coreutils-8.27.orig/tests/misc/printenv.sh coreutils-8.27/tests/misc/p
 diff -ruN coreutils-8.27.orig/tests/misc/realpath.sh coreutils-8.27/tests/misc/realpath.sh
 --- coreutils-8.27.orig/tests/misc/realpath.sh	2017-01-01 23:34:24.000000000 +0100
 +++ coreutils-8.27/tests/misc/realpath.sh	2017-06-10 20:43:44.597627268 +0200
-@@ -40,68 +40,68 @@
+@@ -40,71 +40,71 @@
  ln -s /// three || framework_failure_
  
  # Basic operation
@@ -210,6 +210,10 @@ diff -ruN coreutils-8.27.orig/tests/misc/realpath.sh coreutils-8.27/tests/misc/r
 -realpath -e --relative-to=dir1/  --relative-base=. . || fail=1
 +returns_ 1 $initial_cwd_/src/realpath -e --relative-to=dir1/f --relative-base=. . || fail=1
 +$initial_cwd_/src/realpath -e --relative-to=dir1/  --relative-base=. . || fail=1
+ 
+ # Check that using -E after -e uses -E as specified by POSIX.
+-realpath -e -E --relative-to=dir1/f --relative-base=. . || fail=1
++$initial_cwd_/src/realpath -e -E --relative-to=dir1/f --relative-base=. . || fail=1
  
  # Note NUL params are unconditionally rejected by canonicalize_filename_mode
 -returns_ 1 realpath -m '' || fail=1

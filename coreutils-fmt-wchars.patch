@@ -611,7 +611,7 @@
 +  word_limit->width = saved_width;
  }
  
- /* Work around <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=109628>.  */
+ /* Work around <https://gcc.gnu.org/PR109628>.  */
 @@ -932,33 +975,33 @@
        else if ((this - 1)->punct)
          cost -= PUNCT_BONUS;

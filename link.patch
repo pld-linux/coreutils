@@ -1,0 +1,10 @@
+--- coreutils-9.8/src/local.mk.orig	2025-09-24 01:50:01.142487707 +0200
++++ coreutils-9.8/src/local.mk	2025-09-24 02:09:51.672636099 +0200
+@@ -238,6 +238,7 @@
+ 
+ # for selinux use
+ copy_ldadd += $(LIB_SELINUX)
++copy_ldadd += $(LIB_SMACK)
+ src_chcon_LDADD += $(LIB_SELINUX)
+ src_ginstall_LDADD += $(LIB_SELINUX)
+ src_id_LDADD += $(LIB_SELINUX)
