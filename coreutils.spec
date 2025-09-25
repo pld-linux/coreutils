@@ -33,6 +33,7 @@ Patch7:		%{name}-sparc64.patch
 Patch9:		%{name}-advcopy.patch
 Patch10:	tests.patch
 Patch11:	link.patch
+Patch12:	tail-large-nr.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -123,6 +124,7 @@ Programy zawarte w tym pakiecie to:
 %endif
 %patch -P10 -p1
 %patch -P11 -p1
+%patch -P12 -p1
 
 %{__mv} man/pt_BR man/pt
 
