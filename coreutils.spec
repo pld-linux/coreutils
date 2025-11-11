@@ -8,12 +8,12 @@
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	9.8
+Version:	9.9
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	https://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	b2e687b6e664b9dd76581836c5c3e782
+# Source0-md5:	ce613d0dae179f4171966ecd0a898ec4
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -32,8 +32,6 @@ Patch7:		%{name}-sparc64.patch
 # https://github.com/jarun/advcpmv
 Patch9:		%{name}-advcopy.patch
 Patch10:	tests.patch
-Patch11:	link.patch
-Patch12:	tail-large-nr.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -123,8 +121,6 @@ Programy zawarte w tym pakiecie to:
 %patch -P9 -p1
 %endif
 %patch -P10 -p1
-%patch -P11 -p1
-%patch -P12 -p1
 
 %{__mv} man/pt_BR man/pt
 

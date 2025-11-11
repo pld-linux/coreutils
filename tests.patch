@@ -115,7 +115,7 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
 -  tests/tty/tty-eof.pl				\
    tests/misc/read-errors.sh			\
    tests/misc/write-errors.sh			\
-   tests/tail/inotify-hash-abuse.sh		\
+   tests/tail/basic-seek.sh			\
 @@ -364,7 +363,6 @@
    tests/sort/sort-unique-segv.sh		\
    tests/sort/sort-version.sh			\

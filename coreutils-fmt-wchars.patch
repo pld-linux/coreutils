@@ -521,14 +521,18 @@
  
    w->paren = isopen (*start);
    w->punct = !! ispunct (fin);
-@@ -805,7 +845,9 @@
+@@ -805,10 +845,10 @@
  
    if (word_limit == word)
      {
--      fwrite (parabuf, sizeof *parabuf, wptr - parabuf, stdout);
+-      size_t to_write = wptr - parabuf;
+-      if (fwrite (parabuf, 1, to_write, stdout) != to_write)
+-        write_error ();
+-
 +      wchar_t *outptr;
 +      for (outptr = parabuf; outptr < wptr; outptr++)
-+        putwchar (*outptr);
++        if (putwchar (*outptr) == WEOF)
++          write_error ();
        wptr = parabuf;
        return;
      }
@@ -671,9 +675,9 @@
 -  putchar ('\n');
 +  last_line_width = out_column;
 +  putwchar (L'\n');
- }
  
- /* Output to stdout the word W.  */
+   if (ferror (stdout))
+     write_error ();
 @@ -1007,13 +1050,13 @@
  static void
  put_word (WORD *w)
