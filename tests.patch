@@ -113,9 +113,9 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
    tests/cp/link-heap.sh				\
    tests/cp/no-ctx.sh				\
 -  tests/tty/tty-eof.pl				\
+   tests/misc/io-errors.sh			\
    tests/misc/read-errors.sh			\
    tests/misc/write-errors.sh			\
-   tests/tail/basic-seek.sh			\
 @@ -364,7 +363,6 @@
    tests/sort/sort-unique-segv.sh		\
    tests/sort/sort-version.sh			\
@@ -124,14 +124,14 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
    tests/split/filter.sh				\
    tests/split/suffix-auto-length.sh		\
    tests/split/suffix-length.sh			\
-@@ -498,7 +496,6 @@
-   tests/df/unreadable.sh			\
+@@ -586,7 +586,6 @@ all_tests =					\
    tests/df/total-unprocessed.sh			\
    tests/df/no-mtab-status.sh			\
+   tests/df/no-mtab-status-masked-proc.sh			\
 -  tests/df/skip-duplicates.sh			\
    tests/df/skip-rootfs.sh			\
    tests/dd/ascii.sh				\
-   tests/dd/direct.sh				\
+   tests/dd/conv-case.sh				\
 diff -ruN coreutils-8.27.orig/tests/misc/nohup.sh coreutils-8.27/tests/misc/nohup.sh
 --- coreutils-8.27.orig/tests/misc/nohup.sh	2017-01-01 23:34:24.000000000 +0100
 +++ coreutils-8.27/tests/misc/nohup.sh	2017-06-10 20:44:45.353459732 +0200
