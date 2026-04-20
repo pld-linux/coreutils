@@ -112,10 +112,10 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
    tests/rm/cycle.sh				\
    tests/cp/link-heap.sh				\
    tests/cp/no-ctx.sh				\
--  tests/tty/tty-eof.pl				\
+-  tests/misc/tty-eof.pl				\
    tests/misc/io-errors.sh			\
    tests/misc/read-errors.sh			\
-   tests/misc/write-errors.sh			\
+   tests/misc/responsive.sh			\
 @@ -364,7 +363,6 @@
    tests/sort/sort-unique-segv.sh		\
    tests/sort/sort-version.sh			\
@@ -127,7 +127,7 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
 @@ -586,7 +586,6 @@ all_tests =					\
    tests/df/total-unprocessed.sh			\
    tests/df/no-mtab-status.sh			\
-   tests/df/no-mtab-status-masked-proc.sh			\
+   tests/df/no-mtab-status-masked-proc.sh	\
 -  tests/df/skip-duplicates.sh			\
    tests/df/skip-rootfs.sh			\
    tests/dd/ascii.sh				\

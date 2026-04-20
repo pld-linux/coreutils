@@ -147,8 +147,8 @@
 +static int sentence_space;
 +
  /* Prefix minus leading and trailing spaces (default "").  */
--static char const *prefix;
-+static wchar_t *prefix;
+-static char const *prefix = "";
++static wchar_t *prefix = L"";
  
  /* User-supplied maximum line width (default WIDTH).  The only output
     lines longer than this will each comprise a single word.  */
@@ -226,19 +226,15 @@
    {"width", required_argument, NULL, 'w'},
    {"goal", required_argument, NULL, 'g'},
    {GETOPT_HELP_OPTION_DECL},
-@@ -345,9 +374,10 @@
+@@ -345,6 +374,8 @@
+ 
    atexit (close_stdout);
  
-   crown = tagged = split = uniform = false;
 +  sentence_space = 2;
-   max_width = WIDTH;
--  prefix = "";
--  prefix_length = prefix_lead_space = prefix_full_length = 0;
-+  prefix = L"";
-+  prefix_width = prefix_lead_space = prefix_full_width = 0;
- 
++
    if (argc > 1 && argv[1][0] == '-' && c_isdigit (argv[1][1]))
      {
+       /* Old option syntax; a dash followed by one or more digits.  */
 @@ -360,7 +390,7 @@
        argc--;
      }
