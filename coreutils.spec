@@ -3,7 +3,7 @@
 %bcond_with	advcopy		# progress bar in cp (orphaned patch)
 %bcond_with	multicall	# Compile all the tools in a single binary
 %bcond_without	systemd		# take login records from systemd-logind
-%bcond_with	tests		# unit tests running
+%bcond_without	tests		# unit tests running
 %bcond_with	wtmpdb		# don't read login records from the wtmpdb database
 %bcond_without	y2038		# Y2038 support for 32-bit archs
 
@@ -154,13 +154,13 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 	%{?with_wtmpdb:--with-wtmpdb} \
 	%{!?with_y2038:--disable-year2038}
 
-%{__make} -j1
+%{__make}
 
 # bison emits #line directives without the lib/ prefix, so debugsource misses these
 %{__ln} lib/parse-datetime.c lib/parse-datetime.y .
 
 %if %{with tests}
-LC_ALL=C LANG=C %{__make} -j1 tests check
+LC_ALL=C LANG=C %{__make} tests check
 %endif
 
 %install
