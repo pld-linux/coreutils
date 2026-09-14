@@ -61,20 +61,11 @@
  #define ORPHAN_COST(n)	(EQUIV (150) / ((n) + 2))
  
  /* Bonus for breaking a line at the end of a sentence.  */
-@@ -113,11 +114,30 @@
+@@ -113,11 +114,21 @@
  #define MAXWORDS	1000
  #define MAXCHARS	5000
  
 +/* Wide character support */
-+
-+static wint_t
-+xgetwc (FILE *stream)
-+{
-+  wint_t c = getwc (stream);
-+  if (c == WEOF && ferror (stream))
-+    error (EXIT_FAILURE, errno, _("read error"));
-+  return c;
-+}
 +
 +static inline int
 +xwcwidth (wchar_t wc)
@@ -362,7 +353,7 @@
 -      putchar (c);
 -      c = getc (f);
 +      putwchar (c);
-+      c = xgetwc (f);
++      c = getwc (f);
      }
    return c;
  }
@@ -410,7 +401,7 @@
            *wptr++ = c;
 -          c = getc (f);
 +          word_limit->width += xwcwidth (c);
-+          c = xgetwc (f);
++          c = getwc (f);
          }
 -      while (c != EOF && !c_isspace (c));
 -      in_column += word_limit->length = wptr - word_limit->text;
@@ -458,7 +449,7 @@
    in_column = 0;
 -  c = get_space (f, getc (f));
 -  if (prefix_length == 0)
-+  c = get_space (f, xgetwc (f));
++  c = get_space (f, getwc (f));
 +  if (prefix_width == 0)
      next_prefix_indent = prefix_lead_space < in_column ?
        prefix_lead_space : in_column;
@@ -474,7 +465,7 @@
              return c;
            in_column++;
 -          c = getc (f);
-+          c = xgetwc (f);
++          c = getwc (f);
          }
        c = get_space (f, c);
      }
@@ -501,7 +492,7 @@
        else
          return c;
 -      c = getc (f);
-+      c = xgetwc (f);
++      c = getwc (f);
      }
  }
  
@@ -705,3 +696,32 @@
        out_column++;
      }
  }
+--- coreutils-9.12/doc/coreutils.texi.orig
++++ coreutils-9.12/doc/coreutils.texi
+@@ -2530,6 +2530,10 @@
+ Uniform spacing.  Reduce spacing between words to one space, and spacing
+ between sentences to two spaces.
+ 
++@optItem{fmt,-n,}
++@optItemx{fmt,--single-spaces,}
++Separate sentences with a single space rather than two.
++
+ @optItem{fmt,-@var{width},}
+ @optItemx{fmt,-w,@w{ }@var{width}}
+ @optItemx{fmt,--width,=@var{width}}
+The 8-bit-pfx case cannot pass with this patch applied: under LC_ALL=C a
+byte above 0x7f is not a valid character, getwc() fails with EILSEQ and
+fmt reports a read error where upstream simply formats the bytes.
+
+--- coreutils-9.12/tests/fmt/base.pl.orig
++++ coreutils-9.12/tests/fmt/base.pl
+@@ -24,9 +24,6 @@
+ 
+ my @Tests =
+     (
+-     ['8-bit-pfx', qw (-p 'ç'),
+-      {IN=> "ça\nçb\n"},
+-      {OUT=>"ça b\n"}],
+      ['wide-1', '-w 32768',
+       {ERR => "fmt: invalid width: '32768': $limits->{ERANGE}\n"}, {EXIT => 1}],
+      ['wide-2', '-w 2147483647',

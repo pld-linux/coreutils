@@ -278,13 +278,13 @@
  
  Summarizing files
  
--* wc invocation::                Print newline, word, and byte counts
+-* wc invocation::                Print line, word, and character counts
 -* sum invocation::               Print checksum and block counts
 -* cksum invocation::             Print CRC checksum and byte counts
 -* md5sum invocation::            Print or check MD5 digests
 -* b2sum invocation::             Print or check BLAKE2 digests
 -* sha1sum invocation::           Print or check SHA-1 digests
-+* wc::                           Print newline, word, and byte counts
++* wc::                           Print line, word, and character counts
 +* sum::                          Print checksum and block counts
 +* cksum::                        Print CRC checksum and byte counts
 +* b2sum::                        Print or check BLAKE2 digests
@@ -739,13 +739,13 @@
  contents of files.
  
  @menu
--* wc invocation::               Print newline, word, and byte counts.
+-* wc invocation::               Print line, word, and character counts.
 -* sum invocation::              Print checksum and block counts.
 -* cksum invocation::            Print CRC checksum and byte counts.
 -* md5sum invocation::           Print or check MD5 digests.
 -* b2sum invocation::            Print or check BLAKE2 digests.
 -* sha1sum invocation::          Print or check SHA-1 digests.
-+* wc::               Print newline, word, and byte counts.
++* wc::               Print line, word, and character counts.
 +* sum::              Print checksum and block counts.
 +* cksum::            Print CRC checksum and byte counts.
 +* md5sum::           Print or check MD5 digests.
@@ -757,7 +757,7 @@
  
 -@node wc invocation
 +@node wc
- @section @command{wc}: Print newline, word, and byte counts
+ @section @command{wc}: Print newline, word, and byte or character counts
  
  @pindex wc
 @@ -3858,7 +3844,7 @@ find . -name '*.[ch]' -print0 |
@@ -911,8 +911,8 @@
  
  @pindex comm
 @@ -5497,7 +5483,7 @@ $ comm -12 file1 file2 | wc -l    # numb
- 
- @end table
+ the second as if it were from @var{file2}, and continues alternating in
+ this manner until the end of file is reached.
  
 -@node ptx invocation
 +@node ptx
@@ -2102,3 +2102,23 @@
  though, timestamps are not updated quite that way.
  
  For efficiency reasons, many systems are lazy about updating atimes:
+--- coreutils-9.12/src/system.h.org
++++ coreutils-9.12/src/system.h
+@@ -855,7 +855,7 @@
+ emit_ancillary_info (char const *program)
+ {
+   struct infomap { char const *program; char const *node; } const infomap[] = {
+-    { "[", "test invocation" },
++    { "[", "test" },
+     { "coreutils", "Multi-call invocation" },
+     { "sha224sum", "sha2 utilities" },
+     { "sha256sum", "sha2 utilities" },
+@@ -882,7 +882,7 @@
+   printf (_("Full documentation <%s%s>\n"),
+           PACKAGE_URL, url_program);
+   printf (_("or available locally via: info '(coreutils) %s%s'\n"),
+-          node, node == program ? " invocation" : "");
++          node, "");
+ }
+ 
+ /* Use a macro rather than an inline function, as this references

@@ -111,9 +111,9 @@ diff -urNp -x '*.orig' coreutils-8.32.org/po/pl.po coreutils-8.32/po/pl.po
  #. This is a proper name. See the gettext manual, section Names.
  #: src/echo.c:28
  msgid "Brian Fox"
-diff -urNp -x '*.orig' coreutils-8.32.org/src/getgid.c coreutils-8.32/src/getgid.c
---- coreutils-8.32.org/src/getgid.c	1970-01-01 01:00:00.000000000 +0100
-+++ coreutils-8.32/src/getgid.c	2021-03-21 00:28:40.317899186 +0100
+diff -urNp -x '*.orig' coreutils-9.12.org/src/getgid.c coreutils-9.12/src/getgid.c
+--- coreutils-9.12.org/src/getgid.c
++++ coreutils-9.12/src/getgid.c
 @@ -0,0 +1,88 @@
 +/* getgid - print GID of given group
 +   Copyright (C) 1999 Artur Frysiak <wiget@pld-linux.org>
@@ -169,8 +169,6 @@ diff -urNp -x '*.orig' coreutils-8.32.org/src/getgid.c coreutils-8.32/src/getgid
 +int
 +main (int argc, char **argv)
 +{
-+  struct group *gr;
-+
 +  initialize_main (&argc, &argv);
 +  set_program_name (argv[0]);
 +  setlocale (LC_ALL, "");
@@ -179,38 +177,123 @@ diff -urNp -x '*.orig' coreutils-8.32.org/src/getgid.c coreutils-8.32/src/getgid
 +
 +  atexit (close_stdout);
 +
-+  parse_long_options (argc, argv, PROGRAM_NAME, PACKAGE_NAME, Version,
-+                      usage, AUTHORS, (char const *) NULL);
-+  if (getopt_long (argc, argv, "", NULL, NULL) != -1)
-+    usage (EXIT_FAILURE);
++  parse_gnu_standard_options_only (argc, argv, PROGRAM_NAME, PACKAGE_NAME,
++                                   Version, true, usage, AUTHORS,
++                                   (char const *) NULL);
 +
-+  if (argc < optind + 1)
++  if (optind == argc)
 +    {
 +      error (0, 0, _("missing operand"));
 +      usage (EXIT_FAILURE);
 +    }
 +
-+  if (optind + 2 < argc)
++  int status = EXIT_SUCCESS;
++
++  for (; optind < argc; optind++)
 +    {
-+      error (0, 0, _("extra operand %s"), quote (argv[optind + 2]));
-+      usage (EXIT_FAILURE);
++      struct group *gr = getgrnam (argv[optind]);
++      if (gr == NULL)
++        {
++          error (0, 0, _("cannot find group name %s"), quote (argv[optind]));
++          status = EXIT_FAILURE;
++        }
++      else
++        printf ("%lu\n", (unsigned long int) gr->gr_gid);
 +    }
 +
-+  gr = getgrnam(argv[optind]);
-+  if (gr == NULL)
-+    error (EXIT_FAILURE, errno, _("cannot find group name %s"), quote (argv[optind]));
-+  else
-+    printf("%lu\n", (unsigned long int) gr->gr_gid);
-+  exit(EXIT_SUCCESS);
++  return status;
 +}
 diff -urNp -x '*.orig' coreutils-8.32.org/src/local.mk coreutils-8.32/src/local.mk
 --- coreutils-8.32.org/src/local.mk	2020-02-25 13:54:28.000000000 +0100
 +++ coreutils-8.32/src/local.mk	2021-03-21 00:28:40.317899186 +0100
 @@ -130,6 +130,7 @@ src_factor_LDADD = $(LDADD)
- src_false_LDADD = $(LDADD)
+ # See src_false_LDADD below
  src_fmt_LDADD = $(LDADD)
  src_fold_LDADD = $(LDADD)
 +src_getgid_LDADD = $(LDADD)
  src_getlimits_LDADD = $(LDADD)
  src_ginstall_LDADD = $(LDADD)
  src_groups_LDADD = $(LDADD)
+diff -urNp -x '*.orig' coreutils-9.12.org/tests/help/help-version.sh coreutils-9.12/tests/help/help-version.sh
+--- coreutils-9.12.org/tests/help/help-version.sh
++++ coreutils-9.12/tests/help/help-version.sh
+@@ -124,6 +124,7 @@ tr_setup () { args='a a'; }
+ chmod_setup () { args="a+x $tmp_in"; }
+ # Punt on these.
+ chgrp_setup () { args=--version; }
++getgid_setup () { args=--version; }
+ chown_setup () { args=--version; }
+ mkfifo_setup () { args=--version; }
+ mknod_setup () { args=--version; }
+diff -urNp -x '*.orig' coreutils-9.12.org/tests/misc/getgid.sh coreutils-9.12/tests/misc/getgid.sh
+--- coreutils-9.12.org/tests/misc/getgid.sh
++++ coreutils-9.12/tests/misc/getgid.sh
+@@ -0,0 +1,46 @@
++#!/bin/sh
++# Exercise getgid.
++
++# Copyright (C) 2026 Free Software Foundation, Inc.
++
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++
++# You should have received a copy of the GNU General Public License
++# along with this program.  If not, see <https://www.gnu.org/licenses/>.
++
++. "${srcdir=.}/tests/init.sh"; path_prepend_ ./src
++print_ver_ getgid
++
++group_name=$(id -gn) || skip_ 'cannot determine the group name'
++group_id=$(id -g) || skip_ 'cannot determine the group id'
++
++# The name of the invoking user's primary group maps back to its id.
++echo "$group_id" > exp || framework_failure_
++getgid "$group_name" > out || fail=1
++compare exp out || fail=1
++
++# Every operand is looked up, one line each.
++cat exp exp > exp2 || framework_failure_
++getgid "$group_name" "$group_name" > out2 || fail=1
++compare exp2 out2 || fail=1
++
++# An unknown group is diagnosed and is not silently skipped.
++returns_ 1 getgid nosuchgroup-getgid-test 2>err || fail=1
++grep 'nosuchgroup-getgid-test' err >/dev/null || fail=1
++
++# A missing operand is an error.
++returns_ 1 getgid 2>/dev/null || fail=1
++
++# Unknown options are rejected, naming the option.
++returns_ 1 getgid --nosuchoption 2>err2 || fail=1
++grep -F -- '--nosuchoption' err2 >/dev/null || { cat err2; fail=1; }
++
++Exit $fail
+diff -urNp -x '*.orig' coreutils-9.12.org/tests/local.mk coreutils-9.12/tests/local.mk
+--- coreutils-9.12.org/tests/local.mk
++++ coreutils-9.12/tests/local.mk
+@@ -177,6 +177,7 @@ all_tests =					\
+   tests/tail/inotify-race2.sh			\
+   tests/misc/invalid-opt.pl			\
+   tests/misc/user.sh				\
++  tests/misc/getgid.sh				\
+   tests/rm/ext3-perf.sh				\
+   tests/rm/cycle.sh				\
+   tests/cp/link-heap.sh				\
+diff -urNp -x '*.orig' coreutils-9.12.org/man/local.mk coreutils-9.12/man/local.mk
+--- coreutils-9.12.org/man/local.mk
++++ coreutils-9.12/man/local.mk
+@@ -105,6 +105,7 @@ man/factor.1:    src/factor$(EXEEXT)
+ man/false.1:     src/false$(EXEEXT)
+ man/fmt.1:       src/fmt$(EXEEXT)
+ man/fold.1:      src/fold$(EXEEXT)
++man/getgid.1:    src/getgid$(EXEEXT)
+ man/groups.1:    src/groups$(EXEEXT)
+ man/head.1:      src/head$(EXEEXT)
+ man/hostid.1:    src/hostid$(EXEEXT)

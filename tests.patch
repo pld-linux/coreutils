@@ -1,7 +1,34 @@
+Adjust the test suite to what PLD's build environment can run.
+
+Tests taken out of the test lists:
+  ls/stat-free-color       fails where readdir returns d_type=DT_UNKNOWN, e.g. XFS
+  dd/sparse                depends on the file system layout
+  sort/sort-merge-fdlimit  mksh does not let a program fail on ulimit
+  split/r-chunk            likewise
+
+  acl tests                libcoreutils.a pulls smack symbols in via file-has-acl
+
+Environment assumptions of the remaining tests:
+  read-file test           /etc/resolv.conf is not readable on the builders
+  envvar-check             COLUMNS is set in the build environment
+  realpath                 run the freshly built binary, not the installed one
+  nohup                    no controlling terminal on the builders
+
 diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests/gnulib.mk
 --- coreutils-8.27.orig/gnulib-tests/gnulib.mk	2017-03-09 04:52:57.000000000 +0100
 +++ coreutils-8.27/gnulib-tests/gnulib.mk	2017-06-10 20:43:44.600627260 +0200
-@@ -264,9 +264,9 @@
+@@ -99,8 +99,8 @@
+   test-copy-acl.sh test-copy-acl-1.sh test-copy-acl-2.sh
+ TESTS_ENVIRONMENT += USE_ACL=$(USE_ACL)
+ check_PROGRAMS += test-set-mode-acl test-copy-acl test-sameacls
+-test_set_mode_acl_LDADD = $(LDADD) $(LIB_ACL) $(LIBUNISTRING) @LIBINTL@ $(MBRTOWC_LIB) $(LIBC32CONV)
+-test_copy_acl_LDADD = $(LDADD) $(LIB_ACL) $(QCOPY_ACL_LIB) $(LIBUNISTRING) @LIBINTL@ $(MBRTOWC_LIB) $(LIBC32CONV)
++test_set_mode_acl_LDADD = $(LDADD) $(LIB_ACL) $(LIB_SMACK) $(LIBUNISTRING) @LIBINTL@ $(MBRTOWC_LIB) $(LIBC32CONV)
++test_copy_acl_LDADD = $(LDADD) $(LIB_ACL) $(LIB_SMACK) $(QCOPY_ACL_LIB) $(LIBUNISTRING) @LIBINTL@ $(MBRTOWC_LIB) $(LIBC32CONV)
+ test_sameacls_LDADD = $(LDADD) $(LIB_ACL) @LIBINTL@ $(MBRTOWC_LIB)
+ EXTRA_DIST += test-set-mode-acl.sh test-set-mode-acl-1.sh test-set-mode-acl-2.sh test-copy-acl.sh test-copy-acl-1.sh test-copy-acl-2.sh test-set-mode-acl.c test-copy-acl.c test-sameacls.c macros.h
+ 
+@@ -696,9 +696,9 @@
  
  ## begin gnulib module chown-tests
  
@@ -14,7 +41,7 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  EXTRA_DIST += nap.h test-chown.h test-chown.c signature.h macros.h
  
  ## end   gnulib module chown-tests
-@@ -465,9 +465,9 @@
+@@ -1085,9 +1085,9 @@
  
  ## begin gnulib module fchownat-tests
  
@@ -27,7 +54,7 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  EXTRA_DIST += nap.h test-chown.h test-lchown.h test-fchownat.c signature.h macros.h
  
  ## end   gnulib module fchownat-tests
-@@ -532,10 +532,10 @@
+@@ -1152,10 +1152,10 @@
  
  ## begin gnulib module fdutimensat-tests
  
@@ -42,7 +69,16 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  EXTRA_DIST += nap.h test-futimens.h test-lutimens.h test-utimens.h test-utimens-common.h test-fdutimensat.c macros.h
  
  ## end   gnulib module fdutimensat-tests
-@@ -798,9 +798,9 @@
+@@ -1185,7 +1185,7 @@
+   USE_ACL=$(USE_ACL) \
+   host_os='@host_os@'
+ check_PROGRAMS += test-file-has-acl
+-test_file_has_acl_LDADD = $(LDADD) $(FILE_HAS_ACL_LIB)
++test_file_has_acl_LDADD = $(LDADD) $(FILE_HAS_ACL_LIB) $(LIB_SMACK)
+ EXTRA_DIST += test-file-has-acl.sh test-file-has-acl-1.sh test-file-has-acl-2.sh test-file-has-acl.c macros.h
+ 
+ ## end   gnulib module file-has-acl-tests
+@@ -1488,9 +1488,9 @@
  
  ## begin gnulib module futimens-tests
  
@@ -55,7 +91,7 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  EXTRA_DIST += nap.h test-futimens.h test-utimens-common.h test-futimens.c signature.h macros.h
  
  ## end   gnulib module futimens-tests
-@@ -1126,9 +1126,9 @@
+@@ -1983,9 +1983,9 @@
  
  ## begin gnulib module lchown-tests
  
@@ -68,7 +104,7 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/gnulib.mk coreutils-8.27/gnulib-tests
  EXTRA_DIST += nap.h test-lchown.h test-lchown.c signature.h macros.h
  
  ## end   gnulib module lchown-tests
-@@ -2381,9 +2381,9 @@
+@@ -4465,9 +4465,9 @@
  
  ## begin gnulib module utimens-tests
  
@@ -108,7 +144,7 @@ diff -ruN coreutils-8.27.orig/gnulib-tests/test-utimens-common.h coreutils-8.27/
 diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
 --- coreutils-8.27.orig/tests/local.mk	2017-03-01 05:25:37.000000000 +0100
 +++ coreutils-8.27/tests/local.mk	2017-06-10 20:43:44.601627257 +0200
-@@ -167,7 +167,6 @@
+@@ -182,7 +182,6 @@
    tests/rm/cycle.sh				\
    tests/cp/link-heap.sh				\
    tests/cp/no-ctx.sh				\
@@ -116,7 +152,15 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
    tests/misc/io-errors.sh			\
    tests/misc/read-errors.sh			\
    tests/misc/responsive.sh			\
-@@ -364,7 +363,6 @@
+@@ -460,7 +459,6 @@
+   tests/sort/sort-h-thousands-sep.sh		\
+   tests/sort/sort-locale.sh			\
+   tests/sort/sort-merge.pl			\
+-  tests/sort/sort-merge-fdlimit.sh		\
+   tests/sort/sort-month.sh			\
+   tests/sort/sort-exit-early.sh			\
+   tests/sort/sort-rand.sh			\
+@@ -470,7 +468,6 @@
    tests/sort/sort-unique-segv.sh		\
    tests/sort/sort-version.sh			\
    tests/sort/sort-NaN-infloop.sh		\
@@ -124,7 +168,15 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
    tests/split/filter.sh				\
    tests/split/suffix-auto-length.sh		\
    tests/split/suffix-length.sh			\
-@@ -586,7 +586,6 @@ all_tests =					\
+@@ -480,7 +477,6 @@
+   tests/split/lines.sh				\
+   tests/split/line-bytes.sh			\
+   tests/split/l-chunk.sh			\
+-  tests/split/r-chunk.sh			\
+   tests/split/record-sep.sh			\
+   tests/split/numeric.sh			\
+   tests/split/guard-input.sh			\
+@@ -633,7 +629,6 @@
    tests/df/total-unprocessed.sh			\
    tests/df/no-mtab-status.sh			\
    tests/df/no-mtab-status-masked-proc.sh	\
@@ -132,6 +184,22 @@ diff -ruN coreutils-8.27.orig/tests/local.mk coreutils-8.27/tests/local.mk
    tests/df/skip-rootfs.sh			\
    tests/dd/ascii.sh				\
    tests/dd/conv-case.sh				\
+@@ -651,7 +646,6 @@
+   tests/dd/skip-seek2.sh			\
+   tests/dd/bytes.sh				\
+   tests/dd/skip-seek-past-file.sh		\
+-  tests/dd/sparse.sh				\
+   tests/dd/stderr.sh				\
+   tests/dd/unblock.pl				\
+   tests/dd/unblock-sync.sh			\
+@@ -751,7 +745,6 @@
+   tests/ls/slink-acl.sh				\
+   tests/ls/stat-dtype.sh			\
+   tests/ls/stat-failed.sh			\
+-  tests/ls/stat-free-color.sh			\
+   tests/ls/stat-free-symlinks.sh		\
+   tests/ls/stat-vs-dirent.sh			\
+   tests/ls/symlink-loop.sh			\
 diff -ruN coreutils-8.27.orig/tests/misc/nohup.sh coreutils-8.27/tests/misc/nohup.sh
 --- coreutils-8.27.orig/tests/misc/nohup.sh	2017-01-01 23:34:24.000000000 +0100
 +++ coreutils-8.27/tests/misc/nohup.sh	2017-06-10 20:44:45.353459732 +0200
@@ -191,7 +259,7 @@ diff -ruN coreutils-8.27.orig/tests/misc/printenv.sh coreutils-8.27/tests/misc/p
 diff -ruN coreutils-8.27.orig/tests/misc/realpath.sh coreutils-8.27/tests/misc/realpath.sh
 --- coreutils-8.27.orig/tests/misc/realpath.sh	2017-01-01 23:34:24.000000000 +0100
 +++ coreutils-8.27/tests/misc/realpath.sh	2017-06-10 20:43:44.597627268 +0200
-@@ -40,71 +40,71 @@
+@@ -40,87 +40,87 @@
  ln -s /// three || framework_failure_
  
  # Basic operation
@@ -220,6 +288,24 @@ diff -ruN coreutils-8.27.orig/tests/misc/realpath.sh coreutils-8.27/tests/misc/r
 -returns_ 1 realpath --relative-base= --relative-to=. . || fail=1
 +returns_ 1 $initial_cwd_/src/realpath -m '' || fail=1
 +returns_ 1 $initial_cwd_/src/realpath --relative-base= --relative-to=. . || fail=1
+ 
+ # QUOTING_STYLE does not affect redirected output.
+ printf 'q name\n' > exp || framework_failure_
+ for style in literal shell-always invalid; do
+   QUOTING_STYLE="$style" \
+-    realpath -m --relative-to=. 'q name' > out 2> err || fail=1
++    $initial_cwd_/src/realpath -m --relative-to=. 'q name' > out 2> err || fail=1
+   compare exp out || fail=1
+   compare /dev/null err || fail=1
+ done
+ 
+ # --zero disables quoting, and does not inspect QUOTING_STYLE.
+ QUOTING_STYLE=invalid \
+-  realpath -zm --relative-to=. 'q name' > out 2> err || fail=1
++  $initial_cwd_/src/realpath -zm --relative-to=. 'q name' > out 2> err || fail=1
+ printf 'q name\0' > exp || framework_failure_
+ compare exp out || fail=1
+ compare /dev/null err || fail=1
  
  # symlink resolution
 -this=$(realpath .)
@@ -291,3 +377,26 @@ diff -ruN coreutils-8.27.orig/tests/misc/realpath.sh coreutils-8.27/tests/misc/r
  if test $double_slash = //; then
    test "$out" = "/$nl//" || fail=1
  else
+diff -ruN coreutils-9.12.orig/gnulib-tests/test-read-file.c coreutils-9.12/gnulib-tests/test-read-file.c
+--- coreutils-9.12.orig/gnulib-tests/test-read-file.c
++++ coreutils-9.12/gnulib-tests/test-read-file.c
+@@ -25,7 +25,7 @@
+ 
+ #include "macros.h"
+ 
+-#define FILE1 "/etc/resolv.conf"
++#define FILE1 "/etc/hosts"
+ #define FILE2 "/dev/null"
+ 
+ static int
+diff -ruN coreutils-9.12.orig/tests/envvar-check coreutils-9.12/tests/envvar-check
+--- coreutils-9.12.orig/tests/envvar-check
++++ coreutils-9.12/tests/envvar-check
+@@ -32,7 +32,6 @@
+   BLOCKSIZE
+   BLOCK_SIZE
+   CDPATH
+-  COLUMNS
+   DF_BLOCK_SIZE
+   DU_BLOCK_SIZE
+   ENV

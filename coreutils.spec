@@ -2,18 +2,20 @@
 # Conditional build:
 %bcond_with	advcopy		# progress bar in cp (orphaned patch)
 %bcond_with	multicall	# Compile all the tools in a single binary
+%bcond_without	systemd		# take login records from systemd-logind
 %bcond_with	tests		# unit tests running
+%bcond_with	wtmpdb		# don't read login records from the wtmpdb database
 %bcond_without	y2038		# Y2038 support for 32-bit archs
 
 Summary:	GNU Core-utils - basic command line utilities
 Summary(pl.UTF-8):	GNU Core-utils - podstawowe narzędzia działające z linii poleceń
 Name:		coreutils
-Version:	9.11
+Version:	9.12
 Release:	1
 License:	GPL v3+
 Group:		Applications/System
 Source0:	https://ftp.gnu.org/gnu/coreutils/%{name}-%{version}.tar.xz
-# Source0-md5:	e52e9857e4aa9ae38ef32f8ed6a27604
+# Source0-md5:	d7451ac748c319e6e1bc30e9ec63956c
 Source1:	%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	f7c986ebc74ccb8d08ed70141063f14c
 Source2:	DIR_COLORS
@@ -28,10 +30,11 @@ Patch2:		%{name}-uname-cpuinfo.patch
 Patch3:		%{name}-date-man.patch
 
 Patch6:		%{name}-fmt-wchars.patch
-Patch7:		%{name}-sparc64.patch
 # https://github.com/jarun/advcpmv
 Patch9:		%{name}-advcopy.patch
 Patch10:	tests.patch
+Patch11:	%{name}-readutmp-sd-booted.patch
+Patch12:	%{name}-pld-os-name.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -40,14 +43,21 @@ BuildRequires:	automake >= 1:1.11.2
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	gettext-tools >= 0.19.2
 BuildRequires:	gmp-devel
-BuildRequires:	help2man
 BuildRequires:	libcap-devel
 BuildRequires:	libselinux-devel
+BuildRequires:	openssl-devel
 BuildRequires:	perl-base
+BuildRequires:	perl-modules
 BuildRequires:	rpmbuild(find_lang) >= 1.24
 BuildRequires:	smack-devel
+%if %{with systemd}
+BuildRequires:	systemd-devel >= 1:254
+%endif
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	texinfo >= 4.2
+%if %{with wtmpdb}
+BuildRequires:	wtmpdb-devel
+%endif
 BuildRequires:	xz
 %if %{with tests}
 BuildRequires:	strace
@@ -113,50 +123,18 @@ Programy zawarte w tym pakiecie to:
 %patch -P3 -p1
 
 %patch -P6 -p1
-%ifarch sparc64
-%patch -P7 -p1
-%endif
 %if %{with advcopy}
 # progress-bar patch, -g,--progress-bar //if in doubt, comment it out
 %patch -P9 -p1
 %endif
 %patch -P10 -p1
+%patch -P11 -p1
+%patch -P12 -p1
 
 %{__mv} man/pt_BR man/pt
 
-%{__perl} -pi -e 's@GNU/Linux@PLD Linux@' m4/host-os.m4
-
 # allow rebuilding *.gmo
 %{__rm} po/stamp-po
-
-# 8-bit-pfx test fails under C locale:
-# LC_ALL=C echo -e "ça\nçb\n"|LC_ALL=C fmt -p 'ç'
-# fmt: memory exhausted
-%{__sed} -i -e 25,27d tests/fmt/base.pl
-
-# /etc/resolv.conf is blocked in pld builders, try some other file
-%{__sed} -i -e 's,/etc/resolv.conf,/etc/hosts,' gnulib-tests/test-read-file.c
-
-# getgid needs to be fixed:
-# getgid: missing operand
-# Try `getgid --help' for more information.
-%{__rm} tests/help/help-version.sh
-%{__sed} -i -e '/help\/help-version/d' tests/local.mk
-
-# fails on some filesystems (like XFS), where readdir returns d_type=DT_UNKNOWN
-%{__rm} tests/ls/stat-free-color.sh
-%{__sed} -i -e '/ls\/stat-free-color/d' tests/local.mk
-
-# filesystem layout dependant (fails on some xfs fs)
-%{__rm} tests/dd/sparse.sh
-%{__sed} -i -e '/dd\/sparse/d' tests/local.mk
-
-# mksh is too smart for those, won't let programs fail on ulimit
-# would need bash here
-%{__rm} tests/sort/sort-merge-fdlimit.sh
-%{__sed} -i -e '/sort\/sort-merge-fdlimit/d' tests/local.mk
-%{__rm} tests/split/r-chunk.sh
-%{__sed} -i -e '/split\/r-chunk/d' tests/local.mk
 
 %build
 build-aux/gen-lists-of-programs.sh --autoconf > m4/cu-progs.m4
@@ -167,17 +145,21 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 %{__autoheader}
 %{__automake}
 %configure \
-	CFLAGS="%{rpmcflags} -DSYSLOG_SUCCESS -DSYSLOG_FAILURE -DSYSLOG_NON_ROOT" \
 	%{?with_multicall:--enable-single-binary=symlinks} \
 	--disable-silent-rules \
 	--enable-install-program=arch \
 	--enable-no-install-program=hostname,kill,uptime \
+	--with-openssl \
+	%{?with_systemd:--with-systemd} \
+	%{?with_wtmpdb:--with-wtmpdb} \
 	%{!?with_y2038:--disable-year2038}
 
 %{__make} -j1
 
+# bison emits #line directives without the lib/ prefix, so debugsource misses these
+%{__ln} lib/parse-datetime.c lib/parse-datetime.y .
+
 %if %{with tests}
-sed -i -e 's#COLUMNS##g' tests/envvar-check
 LC_ALL=C LANG=C %{__make} -j1 tests check
 %endif
 

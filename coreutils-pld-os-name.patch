@@ -1,0 +1,13 @@
+uname -o should name the distribution, not the generic GNU/Linux.
+
+--- coreutils-9.12/m4/host-os.m4.orig
++++ coreutils-9.12/m4/host-os.m4
+@@ -51,7 +51,7 @@
+        mint*)           os='MiNT';;
+        mingw* | windows*) os='MinGW';;
+        lynxos*)         os='LynxOS';;
+-       linux*)          os='GNU/Linux';;
++       linux*)          os='PLD Linux';;
+        hpux*)           os='HP-UX';;
+        hiux*)           os='HI-UX';;
+        gnu*)            os='GNU';;

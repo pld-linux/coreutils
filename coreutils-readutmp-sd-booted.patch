@@ -1,0 +1,74 @@
+Without a booted systemd there is no logind to query, sd_get_sessions() returns
+no sessions and who/users/pinky print nothing; the utmp file is never consulted
+because this code path has no fallback.  Only prefer logind when systemd is
+actually running - chroots, containers and non-systemd boots then keep the
+traditional utmp view.
+
+--- coreutils-9.12/lib/readutmp.c.orig
++++ coreutils-9.12/lib/readutmp.c
+@@ -48,6 +48,7 @@
+ #if READUTMP_USE_SYSTEMD
+ # include <dirent.h>
+ # include <systemd/sd-login.h>
++# include <systemd/sd-daemon.h>
+ #endif
+ 
+ #if HAVE_SYS_SYSCTL_H && !(defined __GLIBC__ && defined __linux__) && !defined __minix
+@@ -1146,7 +1147,7 @@
+            int options)
+ {
+ # if READUTMP_USE_SYSTEMD
+-  if (streq (file, UTMP_FILE))
++  if (streq (file, UTMP_FILE) && sd_booted () > 0)
+     /* Imitate reading UTMP_FILE, using systemd and Linux APIs.  */
+     return read_utmp_from_systemd (n_entries, utmp_buf, options);
+ # endif
+--- coreutils-9.12/tests/misc/readutmp-no-systemd.sh.orig
++++ coreutils-9.12/tests/misc/readutmp-no-systemd.sh
+@@ -0,0 +1,36 @@
++#!/bin/sh
++# Ensure that the utmp file is still consulted when systemd is not running.
++
++# Copyright (C) 2026 Free Software Foundation, Inc.
++
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++
++# You should have received a copy of the GNU General Public License
++# along with this program.  If not, see <https://www.gnu.org/licenses/>.
++
++. "${srcdir=.}/tests/init.sh"; path_prepend_ ./src
++print_ver_ users
++skip_if_root_
++require_strace_ openat
++
++unshare -rm unshare --version || skip_ 'User namespace sandbox is disabled'
++
++# Hide /run/systemd, i.e. pretend the system was not booted with systemd.
++# Built with --with-systemd, 'users' asks logind and would otherwise report
++# nothing at all here, silently ignoring the utmp file.
++unshare -rm $SHELL -c '
++  mount -t tmpfs tmpfs /run/systemd 2>/dev/null
++  strace -f -e trace=openat users' 2>trace >/dev/null
++
++grep -q openat trace || skip_ 'strace produced no trace inside the sandbox'
++grep -q utmp trace || { cat trace; fail=1; }
++
++Exit $fail
+--- coreutils-9.12/tests/local.mk.orig
++++ coreutils-9.12/tests/local.mk
+@@ -178,6 +178,7 @@
+   tests/misc/invalid-opt.pl			\
+   tests/misc/user.sh				\
+   tests/misc/getgid.sh				\
++  tests/misc/readutmp-no-systemd.sh		\
+   tests/rm/ext3-perf.sh				\
+   tests/rm/cycle.sh				\
+   tests/cp/link-heap.sh				\
