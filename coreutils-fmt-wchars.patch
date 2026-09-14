@@ -19,17 +19,28 @@
  #: src/fmt.c:298
  msgid ""
  "  -w, --width=WIDTH\n"
---- coreutils-9.10/src/fmt.c.orig	2026-01-30 14:31:27.000000000 +0100
-+++ coreutils-9.10/src/fmt.c	2026-02-09 20:56:04.510881761 +0100
-@@ -17,6 +17,7 @@
+--- coreutils-9.12/src/fmt.c.orig
++++ coreutils-9.12/src/fmt.c
+@@ -17,6 +17,8 @@
  /* Written by Ross Paterson <rap@doc.ic.ac.uk>.  */
  
  #include <config.h>
 +#include <wchar.h>
++#include <stdlib.h>
  #include <stdio.h>
  #include <sys/types.h>
  #include <getopt.h>
-@@ -38,7 +39,7 @@
+@@ -28,6 +30,9 @@
+ #include "c-ctype.h"
+ #include "system.h"
+ #include "fadvise.h"
++#include "ioblksize.h"
++#include "mbbuf.h"
++#include <uchar.h>
+ #include "xdectoint.h"
+ 
+ /* The official name of this program (e.g., no 'g' prefix).  */
+@@ -38,7 +43,7 @@
  /* The following parameters represent the program's idea of what is
     "best".  Adjust to taste, subject to the caveats given.  */
  
@@ -38,7 +49,7 @@
  #define WIDTH	75
  
  /* Prefer lines to be LEEWAY % shorter than the maximum width, giving
-@@ -50,7 +51,7 @@
+@@ -50,7 +55,7 @@
  #define DEF_INDENT 3
  
  /* Costs and bonuses are expressed as the equivalent departure from the
@@ -47,7 +58,7 @@
     cost of 50 means that it is as bad as a line 5 characters too short
     or too long.  The definition of SHORT_COST(n) should not be changed.
     However, EQUIV(n) may need tuning.  */
-@@ -77,11 +78,11 @@
+@@ -77,11 +82,11 @@ typedef long int COST;
  #define LINE_COST	EQUIV (70)
  
  /* Cost of breaking a line after the first word of a sentence, where
@@ -61,17 +72,77 @@
  #define ORPHAN_COST(n)	(EQUIV (150) / ((n) + 2))
  
  /* Bonus for breaking a line at the end of a sentence.  */
-@@ -113,11 +114,21 @@
+@@ -113,11 +118,81 @@ typedef long int COST;
  #define MAXWORDS	1000
  #define MAXCHARS	5000
  
 +/* Wide character support */
 +
++/* A byte that is not part of a valid character in this locale is carried
++   through the formatter in the surrogate range and written back unchanged,
++   so that 8-bit input gets formatted rather than rejected.  */
++enum { BYTE_ESCAPE = 0xDC00 };
++
++static bool
++is_escaped_byte (wint_t c)
++{
++  return BYTE_ESCAPE <= c && c < BYTE_ESCAPE + 0x100;
++}
++
 +static inline int
 +xwcwidth (wchar_t wc)
 +{
-+  int w = wcwidth (wc);
-+  return w < 0 ? 0 : w;
++  if (is_escaped_byte (wc))
++    return 1;
++  /* c32width, not wcwidth, to match how the input is decoded.  */
++  int w = c32width (wc);
++  if (0 <= w)
++    return w;
++  /* A unibyte locale decodes every byte, including ones it calls unprintable;
++     such a byte occupies one column, as it did before fmt knew about wide
++     characters at all.  */
++  return MB_CUR_MAX == 1 && wc < 0x100 ? 1 : 0;
++}
++
++static mbbuf_t input_buf;
++static char input_bytes[IO_BUFSIZE];
++
++/* Return the next character of F, or WEOF at end of input.  Reading goes
++   through mbbuf so that an invalid byte is reported rather than ending the
++   input, and so that the stream keeps its byte orientation.  */
++
++static wint_t
++fmt_getwc (MAYBE_UNUSED FILE *f)
++{
++  mcel_t g = mbbuf_get_char (&input_buf);
++  if (g.ch == MBBUF_EOF)
++    return WEOF;
++  return g.err ? BYTE_ESCAPE + g.ch : g.ch;
++}
++
++/* Write C to stdout, which stays byte oriented so that escaped bytes go out
++   exactly as they came in.  */
++
++static wint_t
++fmt_putwc (wint_t c)
++{
++  if (is_escaped_byte (c))
++    return putchar (c - BYTE_ESCAPE) == EOF ? WEOF : c;
++
++  static mbstate_t mbs;
++  char buf[MB_LEN_MAX];
++  size_t n = c32rtomb (buf, c, &mbs);
++  if (n == (size_t) -1)
++    {
++      /* In a unibyte locale every byte decodes to a character, including
++         bytes the locale cannot encode back; write such a one as it came.  */
++      if (MB_CUR_MAX == 1 && c < 0x100)
++        return putchar (c) == EOF ? WEOF : c;
++      return WEOF;
++    }
++  if (fwrite (buf, 1, n, stdout) < n)
++    return WEOF;
++  return c;
 +}
 +
  /* Extra ctype(3)-style macros.  */
@@ -86,7 +157,7 @@
  
  /* Size of a tab stop, for expansion on input and re-introduction on
     output.  */
-@@ -132,8 +152,9 @@
+@@ -132,8 +207,9 @@ struct Word
  
      /* Static attributes determined during input.  */
  
@@ -98,7 +169,7 @@
      int space;			/* the size of the following space */
      unsigned int paren:1;	/* starts with open paren */
      unsigned int period:1;	/* ends in [.?!])* */
-@@ -142,7 +163,7 @@
+@@ -142,7 +218,7 @@ struct Word
  
      /* The remaining fields are computed during the optimization.  */
  
@@ -107,7 +178,7 @@
      COST best_cost;		/* cost of best paragraph starting here */
      WORD *next_break;		/* break which achieves best_cost */
    };
-@@ -152,16 +173,16 @@
+@@ -152,16 +228,16 @@ struct Word
  static void set_prefix (char *p);
  static bool fmt (FILE *f, char const *);
  static bool get_paragraph (FILE *f);
@@ -130,7 +201,7 @@
  static void put_paragraph (WORD *finish);
  static void put_line (WORD *w, int indent);
  static void put_word (WORD *w);
-@@ -181,8 +202,11 @@
+@@ -181,8 +257,11 @@ static bool split;
  /* If true, don't preserve inter-word spacing (default false).  */
  static bool uniform;
  
@@ -143,7 +214,7 @@
  
  /* User-supplied maximum line width (default WIDTH).  The only output
     lines longer than this will each comprise a single word.  */
-@@ -190,14 +214,14 @@
+@@ -190,14 +269,14 @@ static int max_width = WIDTH;
  
  /* Values derived from the option values.  */
  
@@ -163,7 +234,7 @@
  
  /* The preferred width of text lines, set to LEEWAY % less than max_width.  */
  static int goal_width;
-@@ -212,10 +236,10 @@
+@@ -212,10 +291,10 @@ static int out_column;
  
  /* Space for the paragraph text -- longer paragraphs are handled neatly
     (cf. flush_paragraph()).  */
@@ -176,7 +247,7 @@
  
  /* The words of a paragraph -- longer paragraphs are handled neatly
     (cf. flush_paragraph()).  */
-@@ -247,16 +271,16 @@
+@@ -247,16 +326,16 @@ static int other_indent;
     prefix (next_prefix_indent).  See get_paragraph() and copy_rest().  */
  
  /* The last character read from the input file.  */
@@ -196,7 +267,7 @@
  
  void
  usage (int status)
-@@ -293,7 +317,11 @@
+@@ -293,7 +372,11 @@ The option -WIDTH is an abbreviated form
  "));
        oputs (_("\
    -u, --uniform-spacing\n\
@@ -209,7 +280,7 @@
  "));
        oputs (_("\
    -w, --width=WIDTH\n\
-@@ -321,6 +349,7 @@
+@@ -321,6 +404,7 @@ static struct option const long_options[
    {"split-only", no_argument, NULL, 's'},
    {"tagged-paragraph", no_argument, NULL, 't'},
    {"uniform-spacing", no_argument, NULL, 'u'},
@@ -217,7 +288,7 @@
    {"width", required_argument, NULL, 'w'},
    {"goal", required_argument, NULL, 'g'},
    {GETOPT_HELP_OPTION_DECL},
-@@ -345,6 +374,8 @@
+@@ -344,6 +428,8 @@ main (int argc, char **argv)
  
    atexit (close_stdout);
  
@@ -226,7 +297,7 @@
    if (argc > 1 && argv[1][0] == '-' && c_isdigit (argv[1][1]))
      {
        /* Old option syntax; a dash followed by one or more digits.  */
-@@ -360,7 +390,7 @@
+@@ -355,7 +441,7 @@ main (int argc, char **argv)
        argc--;
      }
  
@@ -235,7 +306,7 @@
                                   long_options, NULL))
           != -1)
      switch (optchar)
-@@ -388,6 +418,10 @@
+@@ -383,6 +469,10 @@ main (int argc, char **argv)
          uniform = true;
          break;
  
@@ -246,7 +317,7 @@
        case 'w':
          max_width_option = optarg;
          break;
-@@ -467,26 +501,32 @@
+@@ -462,26 +552,45 @@ main (int argc, char **argv)
  }
  
  /* Trim space from the front and back of the string P, yielding the prefix,
@@ -257,7 +328,6 @@
  set_prefix (char *p)
  {
 -  char *s;
-+  size_t len;
 +  wchar_t *s;
  
    prefix_lead_space = 0;
@@ -274,9 +344,23 @@
 -    s--;
 -  *s = '\0';
 -  prefix_length = s - p;
-+  len = mbsrtowcs (NULL, (const char **) &p, 0, NULL);
-+  prefix = xmalloc (len * sizeof (wchar_t));
-+  mbsrtowcs (prefix, (const char **) &p, len, NULL);
++
++  /* Convert byte by byte rather than with mbsrtowcs, which gives up on the
++     whole prefix as soon as one byte is not a character in this locale.
++     Each byte yields at most one wide character.  */
++  prefix = xnmalloc (strlen (p) + 1, sizeof *prefix);
++  s = prefix;
++  for (char const *b = p; *b; )
++    {
++      mcel_t g = mcel_scanz (b);
++      /* On an encoding error mcel leaves CH zero and puts the byte in ERR,
++         unlike mbbuf_get_char which fills CH in; take the byte from ERR so
++         that a prefix escapes exactly like the input does.  */
++      *s++ = g.err ? BYTE_ESCAPE + g.err : g.ch;
++      b += g.len;
++    }
++  *s = L'\0';
++
 +  for (s = prefix; *s; s++)
 +    prefix_full_width += xwcwidth (*s);
 +  prefix_width = prefix_full_width;
@@ -289,7 +373,15 @@
  }
  
  /* Read F and send formatted output to stdout.
-@@ -574,24 +614,24 @@
+@@ -493,6 +602,7 @@ static bool
+ fmt (FILE *f, char const *file)
+ {
+   fadvise (f, FADVISE_SEQUENTIAL);
++  mbbuf_init (&input_buf, input_bytes, sizeof input_bytes, f);
+   tabs = false;
+   other_indent = 0;
+   next_char = get_prefix (f);
+@@ -569,24 +679,24 @@ set_other_indent (bool same_paragraph)
  static bool
  get_paragraph (FILE *f)
  {
@@ -317,11 +409,11 @@
            return false;
          }
 -      putchar ('\n');
-+      putwchar (L'\n');
++      fmt_putwc (L'\n');
        c = get_prefix (f);
      }
  
-@@ -648,24 +688,24 @@
+@@ -643,24 +753,24 @@ get_paragraph (FILE *f)
     that failed to match the prefix.  In the latter, C is \n or EOF.
     Return the character (\n or EOF) ending the line.  */
  
@@ -339,25 +431,25 @@
 -        putchar (*s++);
 -      if (c != EOF && c != '\n')
 +      for (wchar_t const *s = prefix; out_column != in_column && *s; out_column++)
-+        putwchar (*s++);
++        fmt_putwc (*s++);
 +      if (c != WEOF && c != L'\n')
          put_space (in_column - out_column);
 -      if (c == EOF && in_column >= next_prefix_indent + prefix_length)
 -        putchar ('\n');
 +      if (c == WEOF && in_column >= next_prefix_indent + prefix_width)
-+        putwchar (L'\n');
++        fmt_putwc (L'\n');
      }
 -  while (c != '\n' && c != EOF)
 +  while (c != L'\n' && c != WEOF)
      {
 -      putchar (c);
 -      c = getc (f);
-+      putwchar (c);
-+      c = getwc (f);
++      fmt_putwc (c);
++      c = fmt_getwc (f);
      }
    return c;
  }
-@@ -675,11 +715,11 @@
+@@ -670,11 +780,11 @@ copy_rest (FILE *f, int c)
     otherwise false.  */
  
  static bool
@@ -372,7 +464,7 @@
  }
  
  /* Read a line from input file F, given first non-blank character C
-@@ -690,11 +730,11 @@
+@@ -685,11 +795,11 @@ same_para (int c)
  
     Return the first non-blank character of the next line.  */
  
@@ -387,7 +479,7 @@
    WORD *end_of_word;
  
    end_of_parabuf = &parabuf[MAXCHARS];
-@@ -706,6 +746,7 @@
+@@ -701,6 +811,7 @@ get_line (FILE *f, int c)
        /* Scan word.  */
  
        word_limit->text = wptr;
@@ -395,13 +487,13 @@
        do
          {
            if (wptr == end_of_parabuf)
-@@ -714,10 +755,12 @@
+@@ -709,10 +820,12 @@ get_line (FILE *f, int c)
                flush_paragraph ();
              }
            *wptr++ = c;
 -          c = getc (f);
 +          word_limit->width += xwcwidth (c);
-+          c = getwc (f);
++          c = fmt_getwc (f);
          }
 -      while (c != EOF && !c_isspace (c));
 -      in_column += word_limit->length = wptr - word_limit->text;
@@ -411,7 +503,7 @@
        check_punctuation (word_limit);
  
        /* Scan inter-word space.  */
-@@ -725,11 +768,11 @@
+@@ -720,11 +833,11 @@ get_line (FILE *f, int c)
        start = in_column;
        c = get_space (f, c);
        word_limit->space = in_column - start;
@@ -427,7 +519,7 @@
        if (word_limit == end_of_word)
          {
            set_other_indent (true);
-@@ -737,33 +780,33 @@
+@@ -732,33 +845,33 @@ get_line (FILE *f, int c)
          }
        word_limit++;
      }
@@ -449,7 +541,7 @@
    in_column = 0;
 -  c = get_space (f, getc (f));
 -  if (prefix_length == 0)
-+  c = get_space (f, getwc (f));
++  c = get_space (f, fmt_getwc (f));
 +  if (prefix_width == 0)
      next_prefix_indent = prefix_lead_space < in_column ?
        prefix_lead_space : in_column;
@@ -465,11 +557,11 @@
              return c;
            in_column++;
 -          c = getc (f);
-+          c = getwc (f);
++          c = fmt_getwc (f);
          }
        c = get_space (f, c);
      }
-@@ -773,21 +816,21 @@
+@@ -768,21 +881,21 @@ get_prefix (FILE *f)
  /* Read blank characters from input file F, starting with C, and keeping
     in_column up-to-date.  Return first non-blank character.  */
  
@@ -492,11 +584,11 @@
        else
          return c;
 -      c = getc (f);
-+      c = getwc (f);
++      c = fmt_getwc (f);
      }
  }
  
-@@ -796,9 +839,9 @@
+@@ -791,9 +904,9 @@ get_space (FILE *f, int c)
  static void
  check_punctuation (WORD *w)
  {
@@ -509,7 +601,7 @@
  
    w->paren = isopen (*start);
    w->punct = !! ispunct (fin);
-@@ -822,10 +865,10 @@
+@@ -817,10 +930,10 @@ flush_paragraph (void)
  
    if (word_limit == word)
      {
@@ -519,12 +611,12 @@
 -
 +      wchar_t *outptr;
 +      for (outptr = parabuf; outptr < wptr; outptr++)
-+        if (putwchar (*outptr) == WEOF)
++        if (fmt_putwc (*outptr) == WEOF)
 +          write_error ();
        wptr = parabuf;
        return;
      }
-@@ -857,7 +900,8 @@
+@@ -852,7 +965,8 @@ flush_paragraph (void)
    /* Copy text of words down to start of parabuf -- we use memmove because
       the source and target may overlap.  */
  
@@ -534,7 +626,7 @@
    shift = split_point->text - parabuf;
    wptr -= shift;
  
-@@ -881,53 +925,53 @@
+@@ -876,53 +990,53 @@ static void
  fmt_paragraph (void)
  {
    WORD *w;
@@ -604,7 +696,7 @@
  }
  
  /* Work around <https://gcc.gnu.org/PR109628>.  */
-@@ -957,33 +1001,33 @@
+@@ -952,33 +1066,33 @@ base_cost (WORD *this)
        else if ((this - 1)->punct)
          cost -= PUNCT_BONUS;
        else if (this > word + 1 && (this - 2)->final)
@@ -644,29 +736,30 @@
        cost += RAGGED_COST (n);
      }
    return cost;
-@@ -1010,8 +1054,8 @@
+@@ -1005,8 +1119,9 @@ put_line (WORD *w, int indent)
  
    out_column = 0;
    put_space (prefix_indent);
 -  fputs (prefix, stdout);
 -  out_column += prefix_length;
-+  fputws (prefix, stdout);
++  for (wchar_t const *p = prefix; *p != L'\0'; p++)
++    fmt_putwc (*p);
 +  out_column += prefix_width;
    put_space (indent - out_column);
  
    endline = w->next_break - 1;
-@@ -1021,8 +1065,8 @@
+@@ -1016,8 +1131,8 @@ put_line (WORD *w, int indent)
        put_space (w->space);
      }
    put_word (w);
 -  last_line_length = out_column;
 -  putchar ('\n');
 +  last_line_width = out_column;
-+  putwchar (L'\n');
++  fmt_putwc (L'\n');
  
    if (ferror (stdout))
      write_error ();
-@@ -1033,10 +1077,10 @@
+@@ -1028,10 +1143,10 @@ put_line (WORD *w, int indent)
  static void
  put_word (WORD *w)
  {
@@ -675,24 +768,24 @@
    for (int n = w->length; n != 0; n--)
 -    putchar (*s++);
 -  out_column += w->length;
-+    putwchar (*s++);
++    fmt_putwc (*s++);
 +  out_column += w->width;
  }
  
  /* Output to stdout SPACE spaces, or equivalent tabs.  */
-@@ -1053,13 +1097,13 @@
+@@ -1048,13 +1163,13 @@ put_space (int space)
        if (out_column + 1 < tab_target)
          while (out_column < tab_target)
            {
 -            putchar ('\t');
-+            putwchar (L'\t');
++            fmt_putwc (L'\t');
              out_column = (out_column / TABWIDTH + 1) * TABWIDTH;
            }
      }
    while (out_column < space_target)
      {
 -      putchar (' ');
-+      putwchar (L' ');
++      fmt_putwc (L' ');
        out_column++;
      }
  }
@@ -709,19 +802,73 @@
  @optItem{fmt,-@var{width},}
  @optItemx{fmt,-w,@w{ }@var{width}}
  @optItemx{fmt,--width,=@var{width}}
-The 8-bit-pfx case cannot pass with this patch applied: under LC_ALL=C a
-byte above 0x7f is not a valid character, getwc() fails with EILSEQ and
-fmt reports a read error where upstream simply formats the bytes.
-
 --- coreutils-9.12/tests/fmt/base.pl.orig
 +++ coreutils-9.12/tests/fmt/base.pl
-@@ -24,9 +24,6 @@
- 
- my @Tests =
-     (
--     ['8-bit-pfx', qw (-p 'ç'),
--      {IN=> "ça\nçb\n"},
--      {OUT=>"ça b\n"}],
+@@ -27,6 +27,10 @@ my @Tests =
+      ['8-bit-pfx', qw (-p 'ç'),
+       {IN=> "ça\nçb\n"},
+       {OUT=>"ça b\n"}],
++     # bytes that are not characters in this locale are formatted, not rejected
++     ['8-bit-data', '-w 20',
++      {IN=> "\xe7a\n\xf3b\n"},
++      {OUT=>"\xe7a \xf3b\n"}],
       ['wide-1', '-w 32768',
        {ERR => "fmt: invalid width: '32768': $limits->{ERANGE}\n"}, {EXIT => 1}],
       ['wide-2', '-w 2147483647',
+--- coreutils-9.12/tests/fmt/invalid-prefix.sh.orig
++++ coreutils-9.12/tests/fmt/invalid-prefix.sh
+@@ -0,0 +1,44 @@
++#!/bin/sh
++# Ensure a prefix works when it holds a byte that is not a character here.
++
++# Copyright (C) 2026 Free Software Foundation, Inc.
++
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++
++# You should have received a copy of the GNU General Public License
++# along with this program.  If not, see <https://www.gnu.org/licenses/>.
++
++. "${srcdir=.}/tests/init.sh"; path_prepend_ ./src
++print_ver_ fmt
++
++printf '\377a\n\377b\n' > in || framework_failure_
++printf '\377a b\n' > exp || framework_failure_
++prefix=$(printf '\377') || framework_failure_
++
++# 0xff is a character in a unibyte locale and an encoding error in a UTF-8 one;
++# either way the prefix has to match the same byte in the input.
++for loc in C $LOCALE_FR_UTF8; do
++  test -z "$loc" && continue
++  test "$loc" = none && continue
++
++  LC_ALL="$loc" fmt -p "$prefix" in > out || fail=1
++  compare exp out || fail=1
++done
++
++# A multi-byte prefix, for comparison.
++if test -n "$LOCALE_FR_UTF8" && test "$LOCALE_FR_UTF8" != none; then
++  printf '\303\247a\n\303\247b\n' > in2 || framework_failure_
++  printf '\303\247a b\n' > exp2 || framework_failure_
++  LC_ALL="$LOCALE_FR_UTF8" fmt -p "$(printf '\303\247')" in2 > out2 || fail=1
++  compare exp2 out2 || fail=1
++fi
++
++Exit $fail
+--- coreutils-9.12/tests/local.mk.orig
++++ coreutils-9.12/tests/local.mk
+@@ -259,6 +259,7 @@
+   tests/chgrp/posix-H.sh			\
+   tests/chgrp/recurse.sh			\
+   tests/fmt/base.pl				\
++  tests/fmt/invalid-prefix.sh			\
+   tests/fmt/goal-option.sh			\
+   tests/fmt/long-line.sh			\
+   tests/fmt/non-space.sh			\
