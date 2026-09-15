@@ -164,7 +164,7 @@ build-aux/gen-lists-of-programs.sh --automake > src/cu-progs.mk
 %{__ln} lib/parse-datetime.c lib/parse-datetime.y .
 
 %if %{with tests}
-LC_ALL=C LANG=C %{__make} tests check
+LC_ALL=C.UTF-8 LANG=C.UTF-8 %{__make} tests check
 %endif
 
 %install
