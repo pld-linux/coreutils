@@ -1,0 +1,16 @@
+On x32 glibc computes the page counts for sysconf(_SC_PHYS_PAGES) and
+sysconf(_SC_AVPHYS_PAGES) with a 32-bit long, so on a machine with more than
+4 GiB of RAM both wrap around and the reported total comes out smaller than
+the reported available memory, which is what this test checks.  Not a bug in
+coreutils; drop this once glibc handles x32 correctly.
+
+--- coreutils-9.12/gnulib-tests/gnulib.mk.orig
++++ coreutils-9.12/gnulib-tests/gnulib.mk
+@@ -2668,7 +2668,6 @@
+ 
+ ## begin gnulib module physmem-tests
+ 
+-TESTS += test-physmem
+ check_PROGRAMS += test-physmem
+ EXTRA_DIST += test-physmem.c macros.h
+ 

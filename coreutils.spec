@@ -35,6 +35,7 @@ Patch9:		%{name}-advcopy.patch
 Patch10:	tests.patch
 Patch11:	%{name}-readutmp-sd-booted.patch
 Patch12:	%{name}-pld-os-name.patch
+Patch13:	%{name}-x32-physmem-test.patch
 URL:		http://www.gnu.org/software/coreutils/
 BuildRequires:	acl-devel
 BuildRequires:	attr-devel
@@ -130,6 +131,9 @@ Programy zawarte w tym pakiecie to:
 %patch -P10 -p1
 %patch -P11 -p1
 %patch -P12 -p1
+%ifarch x32
+%patch -P13 -p1
+%endif
 
 %{__mv} man/pt_BR man/pt
 
